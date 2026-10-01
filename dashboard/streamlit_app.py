@@ -65,7 +65,7 @@ elif page == "SoA (ISO 27001)":
     if controls_data:
         df_ctrl = pd.DataFrame(controls_data)
         # On réorganise les colonnes pour que ce soit lisible
-        cols = ["id", "nom", "description", "theme", "applicable", "etat", "maturite", "justification", "preuve"]
+        cols = ["id", "name", "description", "theme", "is_applicable", "status", "maturity", "justification", "evidence"]
         st.dataframe(df_ctrl[cols], use_container_width=True)
 
 elif page == "Conformité Globale":
@@ -220,15 +220,15 @@ Document annexe au Dossier de Sécurité de la Solution Déployée — À titre 
                 
                 for _, row in theme_controls.iterrows():
                     desc = row['description'] if row.get('description') else 'Description non spécifiée.'
-                    etat = row.get('etat', 'Non défini')
-                    color = "#27ae60" if etat == "En place" else "#f39c12" if etat == "Partiel" else "#c0392b"
+                    etat = row.get('status', 'Non défini')
+                    color = "#27ae60" if etat == "implemented" else "#f39c12" if etat == "partial" else "#c0392b"
                     badge = f'<span style="background-color: {color}; color: white; padding: 2px 6px; border-radius: 10px; font-size: 11px;">{etat}</span>'
-                    mat = f"{row.get('maturite', 0)}/5"
+                    mat = f"{row.get('maturity', 0)}/5"
                     justif = row.get('justification', '')
                     
                     html_content += f"""<tr>
 <td style="font-weight: bold; color: #1c325c;">{row['id']}</td>
-<td style="font-weight: bold; font-size: 12px;">{row['nom']}</td>
+<td style="font-weight: bold; font-size: 12px;">{row['name']}</td>
 <td style="font-size: 11px; color: #555;">{desc}</td>
 <td>{badge}</td>
 <td style="text-align: center; font-weight: bold; font-size: 12px;">{mat}</td>

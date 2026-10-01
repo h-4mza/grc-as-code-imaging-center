@@ -52,11 +52,20 @@ def load():
         for sc in a3_data.get("strategic_scenarios", []):
             db.merge(models.ScenarioStrategique(id=sc["id"], nom=sc["name"], srov_id=sc.get("srov_id"), partie_prenante_id=sc.get("stakeholder_id"), vraisemblance=sc.get("likelihood"), description=sc.get("description")))
             
-        # ISO Controls (Old schema)
+        # ISO Controls
         iso_data = load_yaml("grc/iso27001/annex_a.yaml")
         for ctrl in iso_data.get("controls", []):
-            ctrl["id"] = str(ctrl["id"])
-            db.merge(models.Control(**ctrl))
+            db.merge(models.Control(
+                id=str(ctrl["id"]),
+                name=ctrl["name"],
+                description=ctrl.get("description"),
+                theme=ctrl.get("theme"),
+                is_applicable=ctrl.get("is_applicable", True),
+                justification=ctrl.get("justification"),
+                status=ctrl.get("status"),
+                maturity=ctrl.get("maturity"),
+                evidence=ctrl.get("evidence")
+            ))
         db.commit()
 
         # Op

@@ -1,66 +1,178 @@
+import json
 import yaml
+import random
+
+# All 93 ISO 27001:2022 Controls
+raw_controls = [
+    # Chapter 5 - 37 controls
+    ("5.1", "Politiques de sécurité de l'information", "Organisationnel"),
+    ("5.2", "Rôles et responsabilités", "Organisationnel"),
+    ("5.3", "Séparation des tâches", "Organisationnel"),
+    ("5.4", "Responsabilités de la direction", "Organisationnel"),
+    ("5.5", "Contacts avec les autorités", "Organisationnel"),
+    ("5.6", "Contacts avec des groupes d'intérêts", "Organisationnel"),
+    ("5.7", "Renseignements sur les menaces", "Organisationnel"),
+    ("5.8", "Sécurité dans la gestion de projet", "Organisationnel"),
+    ("5.9", "Inventaire des actifs", "Organisationnel"),
+    ("5.10", "Utilisation acceptable des actifs", "Organisationnel"),
+    ("5.11", "Restitution des actifs", "Organisationnel"),
+    ("5.12", "Classification des informations", "Organisationnel"),
+    ("5.13", "Marquage des informations", "Organisationnel"),
+    ("5.14", "Transfert d'information", "Organisationnel"),
+    ("5.15", "Contrôle d'accès", "Organisationnel"),
+    ("5.16", "Gestion des identités", "Organisationnel"),
+    ("5.17", "Informations d'authentification", "Organisationnel"),
+    ("5.18", "Droits d'accès", "Organisationnel"),
+    ("5.19", "Sécurité fournisseurs", "Organisationnel"),
+    ("5.20", "Sécurité dans les contrats fournisseurs", "Organisationnel"),
+    ("5.21", "Sécurité chaîne d'approvisionnement TIC", "Organisationnel"),
+    ("5.22", "Surveillance des fournisseurs", "Organisationnel"),
+    ("5.23", "Sécurité des services cloud", "Organisationnel"),
+    ("5.24", "Préparation gestion incidents", "Organisationnel"),
+    ("5.25", "Évaluation des événements", "Organisationnel"),
+    ("5.26", "Réponse aux incidents", "Organisationnel"),
+    ("5.27", "Apprentissage des incidents", "Organisationnel"),
+    ("5.28", "Collecte de preuves", "Organisationnel"),
+    ("5.29", "Sécurité lors de perturbations", "Organisationnel"),
+    ("5.30", "Préparation TIC pour continuité", "Organisationnel"),
+    ("5.31", "Exigences légales", "Organisationnel"),
+    ("5.32", "Propriété intellectuelle", "Organisationnel"),
+    ("5.33", "Protection des enregistrements", "Organisationnel"),
+    ("5.34", "Données personnelles", "Organisationnel"),
+    ("5.35", "Révision indépendante", "Organisationnel"),
+    ("5.36", "Conformité aux politiques", "Organisationnel"),
+    ("5.37", "Procédures d'exploitation", "Organisationnel"),
+
+    # Chapter 6 - 8 controls
+    ("6.1", "Sélection du personnel", "Personnes"),
+    ("6.2", "Conditions d'emploi", "Personnes"),
+    ("6.3", "Sensibilisation", "Personnes"),
+    ("6.4", "Processus disciplinaire", "Personnes"),
+    ("6.5", "Fin d'emploi", "Personnes"),
+    ("6.6", "Accords de confidentialité", "Personnes"),
+    ("6.7", "Travail à distance", "Personnes"),
+    ("6.8", "Signalement", "Personnes"),
+
+    # Chapter 7 - 14 controls
+    ("7.1", "Périmètres de sécurité", "Physique"),
+    ("7.2", "Entrée physique", "Physique"),
+    ("7.3", "Sécurisation bureaux/salles", "Physique"),
+    ("7.4", "Surveillance physique", "Physique"),
+    ("7.5", "Protection contre menaces externes", "Physique"),
+    ("7.6", "Travail dans zones sécurisées", "Physique"),
+    ("7.7", "Bureaux et écrans dégagés", "Physique"),
+    ("7.8", "Emplacement des équipements", "Physique"),
+    ("7.9", "Sécurité des actifs hors site", "Physique"),
+    ("7.10", "Supports de stockage", "Physique"),
+    ("7.11", "Services généraux", "Physique"),
+    ("7.12", "Sécurité câblage", "Physique"),
+    ("7.13", "Maintenance des équipements", "Physique"),
+    ("7.14", "Élimination sécurisée", "Physique"),
+
+    # Chapter 8 - 34 controls
+    ("8.1", "Appareils terminaux", "Technologique"),
+    ("8.2", "Privilèges d'accès", "Technologique"),
+    ("8.3", "Restriction d'accès", "Technologique"),
+    ("8.4", "Code source", "Technologique"),
+    ("8.5", "Authentification sécurisée", "Technologique"),
+    ("8.6", "Gestion de capacité", "Technologique"),
+    ("8.7", "Protection malwares", "Technologique"),
+    ("8.8", "Vulnérabilités techniques", "Technologique"),
+    ("8.9", "Configurations", "Technologique"),
+    ("8.10", "Suppression de l'information", "Technologique"),
+    ("8.11", "Masquage des données", "Technologique"),
+    ("8.12", "Prévention des fuites (DLP)", "Technologique"),
+    ("8.13", "Sauvegarde", "Technologique"),
+    ("8.14", "Redondance", "Technologique"),
+    ("8.15", "Journalisation", "Technologique"),
+    ("8.16", "Surveillance", "Technologique"),
+    ("8.17", "Synchronisation horloges", "Technologique"),
+    ("8.18", "Utilisation de programmes", "Technologique"),
+    ("8.19", "Installation logiciels", "Technologique"),
+    ("8.20", "Sécurité réseaux", "Technologique"),
+    ("8.21", "Services réseau", "Technologique"),
+    ("8.22", "Ségrégation réseaux", "Technologique"),
+    ("8.23", "Filtrage Web", "Technologique"),
+    ("8.24", "Cryptographie", "Technologique"),
+    ("8.25", "Cycle de vie développement", "Technologique"),
+    ("8.26", "Exigences sécurité", "Technologique"),
+    ("8.27", "Architecture sécurité", "Technologique"),
+    ("8.28", "Sécurité du codage", "Technologique"),
+    ("8.29", "Tests de sécurité", "Technologique"),
+    ("8.30", "Développement externalisé", "Technologique"),
+    ("8.31", "Séparation environnements", "Technologique"),
+    ("8.32", "Gestion des changements", "Technologique"),
+    ("8.33", "Informations de test", "Technologique"),
+    ("8.34", "Protection systèmes d'audit", "Technologique")
+]
 
 controls = []
+statuses = ["implemented", "partial", "not_implemented"]
 
-# Thème 5 : Organisationnel (Sélection des plus pertinents pour l'imagerie médicale)
-theme5_controls = [
-    ("5.1", "Politiques en matière de sécurité de l'information", True, "Nécessaire pour définir le cadre général.", "En place", 3, "P-SSI-01 signée par la direction"),
-    ("5.2", "Rôles et responsabilités", True, "Nécessaire pour répartir les tâches (RSSI, DPO, admins).", "Partiel", 2, "Fiches de poste, charte IT"),
-    ("5.3", "Séparation des tâches", True, "Évite les conflits d'intérêts et la fraude.", "En place", 3, "Matrice des droits (Matrice_RBAC_v1.xlsx)"),
-    ("5.7", "Veille sur les menaces", True, "Identification des menaces du secteur santé.", "En place", 2, "Abonnement CERT-Santé"),
-    ("5.8", "Sécurité dans la gestion de projet", True, "Intégration de la sécurité (Security by design).", "Non initié", 1, "Aucune procédure formalisée"),
-    ("5.9", "Inventaire des informations et autres actifs", True, "Base de l'analyse de risque.", "En place", 3, "Fichier assets.yaml"),
-    ("5.10", "Utilisation acceptable des actifs", True, "Encadrement de l'utilisation des postes et équipements.", "En place", 4, "Charte d'utilisation du SI signée"),
-    ("5.15", "Contrôle d'accès", True, "Gestion stricte des accès au PACS et DPI.", "Partiel", 2, "Politique d'accès, mais révisions incomplètes"),
-    ("5.19", "Sécurité des informations dans les relations fournisseurs", True, "Contrôle des éditeurs PACS et mainteneurs.", "Partiel", 2, "Contrats avec clauses cyber, mais sans audit"),
-    ("5.24", "Gestion des incidents de cybersécurité", True, "Réponse aux attaques (ex: ransomware).", "En place", 2, "Procédure P-INC-01, mais non testée"),
-    ("5.29", "Continuité de la sécurité de l'information", True, "Maintien de la sécurité en cas de crise.", "Partiel", 2, "PRA technique existant, PCA métier à revoir"),
-]
+for c in raw_controls:
+    cid = c[0]
+    name = c[1]
+    theme = c[2]
+    
+    # Custom Contextual Justifications and statuses for a Medical Imaging Center
+    status = "partial"
+    maturity = 2
+    evidence = "A documenter"
+    justification = "Applicable pour la protection globale du centre d'imagerie."
+    
+    if cid == "6.7":
+        status = "implemented"
+        maturity = 4
+        justification = "Contrôle essentiel pour les médecins pratiquant la téléradiologie (VPN IPSec, poste durci)."
+        evidence = "Charte de télétravail"
+    elif cid == "8.13":
+        status = "partial"
+        maturity = 3
+        justification = "Le PACS est sauvegardé quotidiennement mais l'immutabilité cloud reste à finaliser."
+        evidence = "Rapport de sauvegarde Veeam"
+    elif cid == "8.5":
+        status = "not_implemented"
+        maturity = 1
+        justification = "Le MFA n'est pas encore déployé sur les postes RDP administratifs."
+        evidence = "Audit interne"
+    elif cid == "5.34":
+        status = "implemented"
+        maturity = 4
+        justification = "Conformité RGPD et HDS strictement respectée pour les dossiers patients et comptes-rendus."
+        evidence = "Registre RGPD"
+    elif cid == "7.3":
+        status = "implemented"
+        maturity = 4
+        justification = "Accès aux salles d'interprétation et aux salles machines par badge RFID nominatif."
+        evidence = "Logs contrôle d'accès"
+    elif cid == "8.24":
+        status = "partial"
+        maturity = 2
+        justification = "Le flux DICOM en interne n'est pas encore chiffré TLS, mais le VPN externe l'est."
+        evidence = "Analyse réseau"
+    else:
+        # Randomize for realistic feeling
+        status = random.choice(statuses)
+        if status == "implemented":
+            maturity = random.choice([3, 4])
+        elif status == "partial":
+            maturity = random.choice([1, 2])
+        else:
+            maturity = 0
 
-for c in theme5_controls:
     controls.append({
-        "id": c[0],
-        "nom": c[1],
-        "theme": "Organisationnel",
-        "applicable": c[2],
-        "justification": c[3],
-        "etat": c[4],
-        "maturite": c[5],
-        "preuve": c[6]
-    })
-
-# Thème 8 : Technologique (Sélection)
-theme8_controls = [
-    ("8.1", "Appareils terminaux (Endpoint devices)", True, "Protection des postes radiologues.", "Partiel", 2, "Antivirus standard, pas d'EDR"),
-    ("8.2", "Droits d'accès privilégiés", True, "Protection des comptes admins du PACS/Domaine.", "Partiel", 1, "Comptes partagés sur certains équipements"),
-    ("8.3", "Restriction d'accès à l'information", True, "Cloisonnement des dossiers patients.", "En place", 3, "Droits RBAC dans le DPI"),
-    ("8.4", "Accès au code source", False, "Le centre ne développe pas de logiciels.", "N/A", 0, "Exclusion validée par la direction"),
-    ("8.5", "Authentification sécurisée", True, "Protection contre les vols de mots de passe.", "Non initié", 1, "MFA non déployé"),
-    ("8.7", "Protection contre les logiciels malveillants", True, "Lutte contre les ransomwares.", "Partiel", 2, "Antivirus déployé mais non géré centralement"),
-    ("8.8", "Gestion des vulnérabilités techniques", True, "Patch management des serveurs et scanners.", "Partiel", 1, "Scanners médicaux obsolètes (Win 7)"),
-    ("8.9", "Gestion des configurations", True, "Durcissement des systèmes.", "Non initié", 1, "Installations par défaut, pas de master"),
-    ("8.10", "Suppression de l'information", True, "Purge des anciens dossiers selon réglementation.", "En place", 3, "Script de purge > 10 ans sur le PACS"),
-    ("8.11", "Masquage des données", True, "Anonymisation pour recherche/téléradiologie.", "En place", 3, "Module d'anonymisation DICOM actif"),
-    ("8.12", "Prévention des fuites de données (DLP)", True, "Éviter l'exfiltration de données patients.", "Non initié", 0, "Aucun outil DLP"),
-    ("8.13", "Sauvegarde de l'information", True, "Protection contre les ransomwares.", "En place", 3, "Sauvegardes 3-2-1 chez l'hébergeur HDS"),
-    ("8.16", "Activités de surveillance (Monitoring)", True, "Détection d'intrusions (SIEM).", "Non initié", 0, "Pas de centralisation des logs"),
-    ("8.20", "Sécurité des réseaux", True, "Segmentation des modalités d'imagerie.", "Partiel", 2, "VLANs existants mais règles de firewall permissives"),
-    ("8.24", "Cryptographie", True, "Chiffrement des données en transit et au repos.", "Partiel", 2, "VPN pour téléradiologie (TLS), mais PACS non chiffré au repos"),
-]
-
-for c in theme8_controls:
-    controls.append({
-        "id": c[0],
-        "nom": c[1],
-        "theme": "Technologique",
-        "applicable": c[2],
-        "justification": c[3],
-        "etat": c[4],
-        "maturite": c[5],
-        "preuve": c[6]
+        "id": cid,
+        "name": name,
+        "description": "Contrôle " + cid + " - " + name,
+        "theme": theme,
+        "is_applicable": True,
+        "justification": justification,
+        "status": status,
+        "maturity": maturity,
+        "evidence": evidence
     })
 
 data = {"controls": controls}
 
-with open(r"C:\Users\HP\Desktop\GRC\grc\iso27001\annex_a.yaml", "w", encoding="utf-8") as f:
+with open("grc/iso27001/annex_a.yaml", "w", encoding="utf-8") as f:
     yaml.dump(data, f, allow_unicode=True, sort_keys=False, default_flow_style=False)

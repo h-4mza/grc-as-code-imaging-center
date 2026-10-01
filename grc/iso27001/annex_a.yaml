@@ -1,600 +1,843 @@
 controls:
 - id: '5.1'
-  nom: Politiques de sécurité de l'information
-  description: Des politiques de sécurité de l'information, leurs sujets spécifiques
-    et leur mise en œuvre doivent être définis, approuvés par la direction...
+  name: Politiques de sécurité de l'information
+  description: Contrôle 5.1 - Politiques de sécurité de l'information
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
 - id: '5.2'
-  nom: Rôles et responsabilités en matière de sécurité de l'information
-  description: Les rôles et responsabilités en matière de sécurité de l'information
-    doivent être définis et attribués...
+  name: Rôles et responsabilités
+  description: Contrôle 5.2 - Rôles et responsabilités
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.3'
-  nom: Séparation des tâches
-  description: Les tâches conflictuelles et les domaines de responsabilités conflictuels
-    doivent être séparés.
+  name: Séparation des tâches
+  description: Contrôle 5.3 - Séparation des tâches
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.4'
-  nom: Responsabilités de la direction
-  description: La direction doit exiger de tout le personnel qu'il applique la sécurité
-    de l'information...
+  name: Responsabilités de la direction
+  description: Contrôle 5.4 - Responsabilités de la direction
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.5'
-  nom: Contacts avec les autorités
-  description: L'organisation doit établir et maintenir des contacts avec les autorités
-    compétentes.
+  name: Contacts avec les autorités
+  description: Contrôle 5.5 - Contacts avec les autorités
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.6'
-  nom: Contacts avec des groupes d'intérêts spéciaux
-  description: L'organisation doit établir et maintenir des contacts avec des groupes
-    d'intérêt particuliers...
+  name: Contacts avec des groupes d'intérêts
+  description: Contrôle 5.6 - Contacts avec des groupes d'intérêts
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.7'
-  nom: Renseignements sur les menaces
-  description: Des informations relatives aux menaces pour la sécurité de l'information
-    doivent être recueillies...
+  name: Renseignements sur les menaces
+  description: Contrôle 5.7 - Renseignements sur les menaces
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.8'
-  nom: Sécurité de l'information dans la gestion de projet
-  description: La sécurité de l'information doit être intégrée dans la gestion de
-    projet.
+  name: Sécurité dans la gestion de projet
+  description: Contrôle 5.8 - Sécurité dans la gestion de projet
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.9'
-  nom: Inventaire des informations et des autres actifs associés
-  description: Un inventaire des informations et des autres actifs associés, y compris
-    leurs propriétaires, doit être élaboré...
+  name: Inventaire des actifs
+  description: Contrôle 5.9 - Inventaire des actifs
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
 - id: '5.10'
-  nom: Utilisation acceptable des informations et des autres actifs associés
-  description: Des règles relatives à l'utilisation acceptable et aux procédures de
-    traitement...
+  name: Utilisation acceptable des actifs
+  description: Contrôle 5.10 - Utilisation acceptable des actifs
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.11'
-  nom: Restitution des actifs
-  description: Le personnel et les autres parties intéressées concernés doivent restituer
-    tous les actifs...
+  name: Restitution des actifs
+  description: Contrôle 5.11 - Restitution des actifs
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.12'
-  nom: Classification des informations
-  description: Les informations doivent être classifiées selon les besoins de sécurité...
+  name: Classification des informations
+  description: Contrôle 5.12 - Classification des informations
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.13'
-  nom: Marquage des informations
-  description: Un ensemble approprié de procédures de marquage des informations doit
-    être élaboré...
+  name: Marquage des informations
+  description: Contrôle 5.13 - Marquage des informations
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '5.14'
-  nom: Transfert d'information
-  description: Des règles, procédures ou accords relatifs au transfert d'informations
-    doivent être mis en place...
+  name: Transfert d'information
+  description: Contrôle 5.14 - Transfert d'information
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.15'
-  nom: Contrôle d'accès
-  description: Des règles de contrôle d'accès aux informations et aux autres actifs
-    associés doivent être établies...
+  name: Contrôle d'accès
+  description: Contrôle 5.15 - Contrôle d'accès
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '5.16'
-  nom: Gestion des identités
-  description: Le cycle de vie complet des identités doit être géré.
+  name: Gestion des identités
+  description: Contrôle 5.16 - Gestion des identités
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
 - id: '5.17'
-  nom: Informations d'authentification
-  description: L'attribution et la gestion des informations d'authentification doivent
-    être contrôlées...
+  name: Informations d'authentification
+  description: Contrôle 5.17 - Informations d'authentification
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
 - id: '5.18'
-  nom: Droits d'accès
-  description: Les droits d'accès aux informations et aux autres actifs associés doivent
-    être provisionnés...
+  name: Droits d'accès
+  description: Contrôle 5.18 - Droits d'accès
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.19'
-  nom: Sécurité de l'information dans les relations avec les fournisseurs
-  description: Des processus et des procédures doivent être définis et mis en œuvre
-    pour gérer les risques...
+  name: Sécurité fournisseurs
+  description: Contrôle 5.19 - Sécurité fournisseurs
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.20'
-  nom: Prise en compte de la sécurité de l'information dans les contrats fournisseurs
-  description: Les exigences pertinentes en matière de sécurité de l'information doivent
-    être établies...
+  name: Sécurité dans les contrats fournisseurs
+  description: Contrôle 5.20 - Sécurité dans les contrats fournisseurs
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.21'
-  nom: Gestion de la sécurité de l'information dans la chaîne d'approvisionnement
-    des TIC
-  description: Des processus et des procédures doivent être définis et mis en œuvre...
+  name: Sécurité chaîne d'approvisionnement TIC
+  description: Contrôle 5.21 - Sécurité chaîne d'approvisionnement TIC
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.22'
-  nom: Surveillance, révision et gestion du changement des services fournisseurs
-  description: L'organisation doit régulièrement surveiller, réviser, évaluer et gérer
-    les changements...
+  name: Surveillance des fournisseurs
+  description: Contrôle 5.22 - Surveillance des fournisseurs
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.23'
-  nom: Sécurité de l'information pour l'utilisation de services cloud
-  description: Les processus d'acquisition, d'utilisation, de gestion et de cessation
-    des services cloud...
+  name: Sécurité des services cloud
+  description: Contrôle 5.23 - Sécurité des services cloud
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
 - id: '5.24'
-  nom: Planification et préparation de la gestion des incidents de sécurité de l'information
-  description: L'organisation doit planifier et se préparer à gérer les incidents...
+  name: Préparation gestion incidents
+  description: Contrôle 5.24 - Préparation gestion incidents
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.25'
-  nom: Évaluation et décision sur les événements de sécurité de l'information
-  description: L'organisation doit évaluer les événements de sécurité de l'information...
+  name: Évaluation des événements
+  description: Contrôle 5.25 - Évaluation des événements
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.26'
-  nom: Réponse aux incidents de sécurité de l'information
-  description: Les incidents de sécurité de l'information doivent faire l'objet d'une
-    réponse...
+  name: Réponse aux incidents
+  description: Contrôle 5.26 - Réponse aux incidents
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '5.27'
-  nom: Apprentissage des incidents de sécurité de l'information
-  description: Les connaissances acquises à partir des incidents de sécurité de l'information
-    doivent être utilisées...
+  name: Apprentissage des incidents
+  description: Contrôle 5.27 - Apprentissage des incidents
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '5.28'
-  nom: Collecte de preuves
-  description: L'organisation doit établir et mettre en œuvre des procédures pour
-    l'identification...
+  name: Collecte de preuves
+  description: Contrôle 5.28 - Collecte de preuves
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.29'
-  nom: Sécurité de l'information lors de perturbations
-  description: L'organisation doit planifier comment maintenir la sécurité de l'information...
+  name: Sécurité lors de perturbations
+  description: Contrôle 5.29 - Sécurité lors de perturbations
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.30'
-  nom: Préparation des TIC pour la continuité d'activité
-  description: La préparation des TIC doit être planifiée, mise en œuvre, maintenue
-    et testée...
+  name: Préparation TIC pour continuité
+  description: Contrôle 5.30 - Préparation TIC pour continuité
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '5.31'
-  nom: Exigences légales, réglementaires et contractuelles
-  description: Les exigences légales, réglementaires et contractuelles pertinentes
-    à la sécurité...
+  name: Exigences légales
+  description: Contrôle 5.31 - Exigences légales
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
 - id: '5.32'
-  nom: Droits de propriété intellectuelle
-  description: L'organisation doit mettre en œuvre des procédures appropriées pour
-    protéger les droits...
+  name: Propriété intellectuelle
+  description: Contrôle 5.32 - Propriété intellectuelle
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.33'
-  nom: Protection des enregistrements
-  description: Les enregistrements doivent être protégés contre la perte, la destruction...
+  name: Protection des enregistrements
+  description: Contrôle 5.33 - Protection des enregistrements
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
 - id: '5.34'
-  nom: Confidentialité et protection des informations personnelles
-  description: L'organisation doit identifier et satisfaire aux exigences relatives
-    à la préservation...
+  name: Données personnelles
+  description: Contrôle 5.34 - Données personnelles
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Conformité RGPD et HDS strictement respectée pour les dossiers patients
+    et comptes-rendus.
+  status: implemented
+  maturity: 4
+  evidence: Registre RGPD
 - id: '5.35'
-  nom: Révision indépendante de la sécurité de l'information
-  description: L'approche de l'organisation en matière de gestion de la sécurité de
-    l'information...
+  name: Révision indépendante
+  description: Contrôle 5.35 - Révision indépendante
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '5.36'
-  nom: Conformité aux politiques, règles et normes de sécurité de l'information
-  description: La conformité à la politique de sécurité de l'information...
+  name: Conformité aux politiques
+  description: Contrôle 5.36 - Conformité aux politiques
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '5.37'
-  nom: Procédures d'exploitation documentées
-  description: Les procédures d'exploitation relatives aux installations de traitement
-    de l'information...
+  name: Procédures d'exploitation
+  description: Contrôle 5.37 - Procédures d'exploitation
   theme: Organisationnel
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '6.1'
-  nom: Sélection du personnel
-  description: Les vérifications des antécédents de tous les candidats au recrutement
-    doivent être effectuées...
+  name: Sélection du personnel
+  description: Contrôle 6.1 - Sélection du personnel
   theme: Personnes
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '6.2'
-  nom: Conditions d'emploi
-  description: Les accords contractuels avec le personnel et les sous-traitants doivent
-    énoncer leurs responsabilités...
+  name: Conditions d'emploi
+  description: Contrôle 6.2 - Conditions d'emploi
   theme: Personnes
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '6.3'
-  nom: Sensibilisation, éducation et formation à la sécurité de l'information
-  description: Tout le personnel de l'organisation et les parties intéressées pertinentes
-    doivent recevoir...
+  name: Sensibilisation
+  description: Contrôle 6.3 - Sensibilisation
   theme: Personnes
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '6.4'
-  nom: Processus disciplinaire
-  description: Un processus disciplinaire doit être formalisé et communiqué...
+  name: Processus disciplinaire
+  description: Contrôle 6.4 - Processus disciplinaire
   theme: Personnes
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
 - id: '6.5'
-  nom: Responsabilités après la fin ou le changement d'emploi
-  description: Les responsabilités et obligations en matière de sécurité de l'information
-    qui demeurent valables...
+  name: Fin d'emploi
+  description: Contrôle 6.5 - Fin d'emploi
   theme: Personnes
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
 - id: '6.6'
-  nom: Accords de confidentialité ou de non-divulgation
-  description: Des accords de confidentialité ou de non-divulgation reflétant les
-    besoins de l'organisation...
+  name: Accords de confidentialité
+  description: Contrôle 6.6 - Accords de confidentialité
   theme: Personnes
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '6.7'
-  nom: Travail à distance
-  description: Lorsque le personnel travaille à distance, des mesures de sécurité
-    doivent être mises en œuvre...
+  name: Travail à distance
+  description: Contrôle 6.7 - Travail à distance
   theme: Personnes
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Contrôle essentiel pour les médecins pratiquant la téléradiologie
+    (VPN IPSec, poste durci).
+  status: implemented
+  maturity: 4
+  evidence: Charte de télétravail
 - id: '6.8'
-  nom: Signalement des événements de sécurité de l'information
-  description: L'organisation doit mettre à disposition du personnel un mécanisme
-    lui permettant de signaler...
+  name: Signalement
+  description: Contrôle 6.8 - Signalement
   theme: Personnes
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '7.1'
-  nom: Périmètres de sécurité physique
-  description: Des périmètres de sécurité doivent être définis et utilisés pour protéger
-    les zones...
+  name: Périmètres de sécurité
+  description: Contrôle 7.1 - Périmètres de sécurité
   theme: Physique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '7.2'
-  nom: Entrée physique
-  description: Les zones sécurisées doivent être protégées par des contrôles d'entrée
-    appropriés...
+  name: Entrée physique
+  description: Contrôle 7.2 - Entrée physique
   theme: Physique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '7.3'
-  nom: Sécurisation des bureaux, salles et installations
-  description: Une sécurité physique doit être conçue et mise en œuvre pour les bureaux,
-    les salles...
+  name: Sécurisation bureaux/salles
+  description: Contrôle 7.3 - Sécurisation bureaux/salles
   theme: Physique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Accès aux salles d'interprétation et aux salles machines par badge
+    RFID nominatif.
+  status: implemented
+  maturity: 4
+  evidence: Logs contrôle d'accès
 - id: '7.4'
-  nom: Surveillance physique de la sécurité
-  description: Les locaux doivent être surveillés en permanence contre les accès non
-    autorisés.
+  name: Surveillance physique
+  description: Contrôle 7.4 - Surveillance physique
   theme: Physique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
+- id: '7.5'
+  name: Protection contre menaces externes
+  description: Contrôle 7.5 - Protection contre menaces externes
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
+- id: '7.6'
+  name: Travail dans zones sécurisées
+  description: Contrôle 7.6 - Travail dans zones sécurisées
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '7.7'
+  name: Bureaux et écrans dégagés
+  description: Contrôle 7.7 - Bureaux et écrans dégagés
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '7.8'
+  name: Emplacement des équipements
+  description: Contrôle 7.8 - Emplacement des équipements
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '7.9'
+  name: Sécurité des actifs hors site
+  description: Contrôle 7.9 - Sécurité des actifs hors site
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
+- id: '7.10'
+  name: Supports de stockage
+  description: Contrôle 7.10 - Supports de stockage
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
+- id: '7.11'
+  name: Services généraux
+  description: Contrôle 7.11 - Services généraux
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '7.12'
+  name: Sécurité câblage
+  description: Contrôle 7.12 - Sécurité câblage
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '7.13'
+  name: Maintenance des équipements
+  description: Contrôle 7.13 - Maintenance des équipements
+  theme: Physique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '7.14'
-  nom: Élimination sécurisée
-  description: L'élimination du matériel contenant des données doit être sécurisée.
+  name: Élimination sécurisée
+  description: Contrôle 7.14 - Élimination sécurisée
   theme: Physique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '8.1'
-  nom: Appareils terminaux
-  description: Les terminaux utilisateurs doivent être protégés.
+  name: Appareils terminaux
+  description: Contrôle 8.1 - Appareils terminaux
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.2'
+  name: Privilèges d'accès
+  description: Contrôle 8.2 - Privilèges d'accès
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.3'
+  name: Restriction d'accès
+  description: Contrôle 8.3 - Restriction d'accès
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
+- id: '8.4'
+  name: Code source
+  description: Contrôle 8.4 - Code source
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
 - id: '8.5'
-  nom: Authentification sécurisée
-  description: L'authentification doit être forte.
+  name: Authentification sécurisée
+  description: Contrôle 8.5 - Authentification sécurisée
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Le MFA n'est pas encore déployé sur les postes RDP administratifs.
+  status: not_implemented
+  maturity: 1
+  evidence: Audit interne
+- id: '8.6'
+  name: Gestion de capacité
+  description: Contrôle 8.6 - Gestion de capacité
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '8.7'
-  nom: Protection contre les logiciels malveillants
-  description: Les systèmes doivent être protégés contre les malwares.
+  name: Protection malwares
+  description: Contrôle 8.7 - Protection malwares
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
 - id: '8.8'
-  nom: Gestion des vulnérabilités techniques
-  description: Les failles doivent être identifiées et corrigées.
+  name: Vulnérabilités techniques
+  description: Contrôle 8.8 - Vulnérabilités techniques
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
 - id: '8.9'
-  nom: Gestion des configurations
-  description: Les systèmes doivent être durcis.
+  name: Configurations
+  description: Contrôle 8.9 - Configurations
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
 - id: '8.10'
-  nom: Suppression de l'information
-  description: L'information ne doit être conservée que si nécessaire.
+  name: Suppression de l'information
+  description: Contrôle 8.10 - Suppression de l'information
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
 - id: '8.11'
-  nom: Masquage des données
-  description: Les données sensibles doivent être anonymisées si applicable.
+  name: Masquage des données
+  description: Contrôle 8.11 - Masquage des données
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '8.12'
-  nom: Prévention des fuites de données (DLP)
-  description: Des outils DLP doivent être mis en place.
+  name: Prévention des fuites (DLP)
+  description: Contrôle 8.12 - Prévention des fuites (DLP)
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
 - id: '8.13'
-  nom: Sauvegarde de l'information
-  description: Les données doivent être sauvegardées régulièrement.
+  name: Sauvegarde
+  description: Contrôle 8.13 - Sauvegarde
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Le PACS est sauvegardé quotidiennement mais l'immutabilité cloud
+    reste à finaliser.
+  status: partial
+  maturity: 3
+  evidence: Rapport de sauvegarde Veeam
+- id: '8.14'
+  name: Redondance
+  description: Contrôle 8.14 - Redondance
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
+- id: '8.15'
+  name: Journalisation
+  description: Contrôle 8.15 - Journalisation
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '8.16'
-  nom: Activités de surveillance
-  description: Les événements de sécurité doivent être surveillés.
+  name: Surveillance
+  description: Contrôle 8.16 - Surveillance
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.17'
+  name: Synchronisation horloges
+  description: Contrôle 8.17 - Synchronisation horloges
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
+- id: '8.18'
+  name: Utilisation de programmes
+  description: Contrôle 8.18 - Utilisation de programmes
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.19'
+  name: Installation logiciels
+  description: Contrôle 8.19 - Installation logiciels
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '8.20'
-  nom: Sécurité des réseaux
-  description: Le réseau doit être segmenté et sécurisé.
+  name: Sécurité réseaux
+  description: Contrôle 8.20 - Sécurité réseaux
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
+- id: '8.21'
+  name: Services réseau
+  description: Contrôle 8.21 - Services réseau
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
+- id: '8.22'
+  name: Ségrégation réseaux
+  description: Contrôle 8.22 - Ségrégation réseaux
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.23'
+  name: Filtrage Web
+  description: Contrôle 8.23 - Filtrage Web
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
 - id: '8.24'
-  nom: Cryptographie
-  description: La cryptographie doit être utilisée pour protéger les données.
+  name: Cryptographie
+  description: Contrôle 8.24 - Cryptographie
   theme: Technologique
-  applicable: true
-  justification: Applicable pour la protection des données de santé du centre d'imagerie.
-  etat: Partiel
-  maturite: 2
-  preuve: A documenter
+  is_applicable: true
+  justification: Le flux DICOM en interne n'est pas encore chiffré TLS, mais le VPN
+    externe l'est.
+  status: partial
+  maturity: 2
+  evidence: Analyse réseau
+- id: '8.25'
+  name: Cycle de vie développement
+  description: Contrôle 8.25 - Cycle de vie développement
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
+- id: '8.26'
+  name: Exigences sécurité
+  description: Contrôle 8.26 - Exigences sécurité
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 3
+  evidence: A documenter
+- id: '8.27'
+  name: Architecture sécurité
+  description: Contrôle 8.27 - Architecture sécurité
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.28'
+  name: Sécurité du codage
+  description: Contrôle 8.28 - Sécurité du codage
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.29'
+  name: Tests de sécurité
+  description: Contrôle 8.29 - Tests de sécurité
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.30'
+  name: Développement externalisé
+  description: Contrôle 8.30 - Développement externalisé
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 1
+  evidence: A documenter
+- id: '8.31'
+  name: Séparation environnements
+  description: Contrôle 8.31 - Séparation environnements
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter
+- id: '8.32'
+  name: Gestion des changements
+  description: Contrôle 8.32 - Gestion des changements
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: implemented
+  maturity: 4
+  evidence: A documenter
+- id: '8.33'
+  name: Informations de test
+  description: Contrôle 8.33 - Informations de test
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: partial
+  maturity: 2
+  evidence: A documenter
+- id: '8.34'
+  name: Protection systèmes d'audit
+  description: Contrôle 8.34 - Protection systèmes d'audit
+  theme: Technologique
+  is_applicable: true
+  justification: Applicable pour la protection globale du centre d'imagerie.
+  status: not_implemented
+  maturity: 0
+  evidence: A documenter

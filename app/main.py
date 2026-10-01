@@ -23,7 +23,7 @@ def get_risks(db: Session = Depends(get_db)):
         scores = get_risk_scores(gravite=sc.gravite, vraisemblance=sc.vraisemblance, maturity_avg=2.0)
         results.append({
             "id": sc.id,
-            "nom": sc.nom,
+            "nom": sc.name,
             "scores": scores
         })
     return results
@@ -41,7 +41,7 @@ def get_kpi_overview(db: Session = Depends(get_db)):
     
     total_risks = db.query(ScenarioOperationnel).count()
     total_controls = db.query(Control).count()
-    controls_en_place = db.query(Control).filter(Control.etat == "En place").count()
+    controls_en_place = db.query(Control).filter(Control.status == "implemented").count()
     total_findings = db.query(Finding).count()
     total_treatments = db.query(Treatment).count()
     
@@ -69,7 +69,7 @@ def get_kpi_heatmap(db: Session = Depends(get_db)):
         scores = get_risk_scores(sc.gravite, sc.vraisemblance, 2.0) # Maturity mocked at 2.0 for now
         data.append({
             "id": sc.id,
-            "nom": sc.nom,
+            "nom": sc.name,
             "gravite": sc.gravite,
             "vraisemblance_inherente": sc.vraisemblance,
             "score_inherent": scores["score_inherent"],
@@ -86,7 +86,7 @@ def get_kpi_soa(db: Session = Depends(get_db)):
         if c.theme not in stats:
             stats[c.theme] = {"total": 0, "en_place": 0}
         stats[c.theme]["total"] += 1
-        if c.etat == "En place":
+        if c.status == "implemented":
             stats[c.theme]["en_place"] += 1
             
     return [{"theme": k, "total": v["total"], "en_place": v["en_place"]} for k, v in stats.items()]
@@ -95,7 +95,7 @@ def get_kpi_soa(db: Session = Depends(get_db)):
 def get_kpi_treatments(db: Session = Depends(get_db)):
     from app.models import Treatment
     treatments = db.query(Treatment).all()
-    return [{"id": t.id, "nom": t.nom, "responsable": t.responsable, "echeance": t.echeance, "jira": t.jira_key} for t in treatments]
+    return [{"id": t.id, "nom": t.name, "responsable": t.responsable, "echeance": t.echeance, "jira": t.jira_key} for t in treatments]
 
 @app.get("/kpi/compliance")
 def get_kpi_compliance(db: Session = Depends(get_db)):

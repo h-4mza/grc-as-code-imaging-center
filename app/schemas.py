@@ -78,14 +78,14 @@ class Atelier4(BaseModel):
 
 class Control(BaseModel):
     id: str = Field(..., description="ID du contrôle ISO 27001 (ex: 5.1)")
-    nom: str = Field(..., description="Nom du contrôle")
+    name: str = Field(..., description="Nom du contrôle")
     description: Optional[str] = Field(None, description="Description ou objectif du contrôle")
     theme: str = Field(..., description="Thème (Organisationnel, Personnes, Physique, Technologique)")
-    applicable: bool = Field(..., description="Applicabilité du contrôle")
+    is_applicable: bool = Field(..., description="Applicabilité du contrôle")
     justification: str = Field(..., description="Justification d'applicabilité ou d'exclusion")
-    etat: str = Field(..., description="État de mise en œuvre (En place, Partiel, Non initié, N/A)")
-    maturite: int = Field(..., ge=0, le=5, description="Niveau de maturité (0 à 5)")
-    preuve: str = Field(..., description="Élément de preuve ou commentaire")
+    status: str = Field(..., description="État de mise en œuvre (implemented, partial, not_implemented, not_applicable)")
+    maturity: int = Field(..., ge=0, le=5, description="Niveau de maturité (0 à 5)")
+    evidence: str = Field(..., description="Élément de preuve ou commentaire")
 
 class AnnexA(BaseModel):
     controls: List[Control]

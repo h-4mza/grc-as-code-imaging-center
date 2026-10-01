@@ -100,14 +100,14 @@ class ScenarioOperationnel(Base):
 class Control(Base):
     __tablename__ = "controls"
     id = Column(String, primary_key=True)
-    nom = Column(String, nullable=False)
+    name = Column(String, nullable=False)
     description = Column(String, nullable=True)
     theme = Column(String)
-    applicable = Column(Boolean)
+    is_applicable = Column(Boolean)
     justification = Column(String)
-    etat = Column(String)
-    maturite = Column(Integer)
-    preuve = Column(String)
+    status = Column(String)
+    maturity = Column(Integer)
+    evidence = Column(String)
 
 finding_control_table = Table(
     'finding_control',
