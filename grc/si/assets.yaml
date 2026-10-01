@@ -1,61 +1,52 @@
 assets:
-  - id: ast_pacs
-    nom: "PACS (Picture Archiving and Communication System)"
-    type: "Logiciel applicatif"
-    criticite: 5
-    valeurs_metier_liees: ["bv_acquisition", "bv_interpretation", "bv_teleradiologie", "bv_archivage"]
-  - id: ast_modalites
-    nom: "Scanner IRM / Scanner CT / Mammographe"
-    type: "Matériel médical"
-    criticite: 5
-    valeurs_metier_liees: ["bv_acquisition"]
-  - id: ast_dpi
-    nom: "Dossier Patient Informatisé (DPI)"
-    type: "Données / Application"
-    criticite: 5
-    valeurs_metier_liees: ["bv_prise_en_charge", "bv_interpretation"]
-  - id: ast_ris
-    nom: "RIS (Radiology Information System)"
-    type: "Logiciel applicatif"
-    criticite: 5
-    valeurs_metier_liees: ["bv_prise_en_charge", "bv_interpretation", "bv_facturation"]
-  - id: ast_reseau_local
-    nom: "Réseau LAN / Wi-Fi interne"
-    type: "Infrastructure réseau"
-    criticite: 4
-    valeurs_metier_liees: ["bv_prise_en_charge", "bv_acquisition", "bv_interpretation", "bv_facturation"]
-  - id: ast_stockage
-    nom: "Serveurs de stockage (NAS/SAN)"
-    type: "Infrastructure IT"
-    criticite: 5
-    valeurs_metier_liees: ["bv_archivage"]
-  - id: ast_postes_travail
-    nom: "Postes de travail radiologues / techniciens"
-    type: "Matériel IT"
-    criticite: 4
-    valeurs_metier_liees: ["bv_prise_en_charge", "bv_acquisition", "bv_interpretation"]
-  - id: ast_sauvegarde
-    nom: "Systèmes de sauvegarde"
-    type: "Infrastructure IT"
-    criticite: 4
-    valeurs_metier_liees: ["bv_archivage"]
-  - id: ast_donnees_identite
-    nom: "Données d'identification patients"
-    type: "Données"
-    criticite: 5
-    valeurs_metier_liees: ["bv_prise_en_charge", "bv_facturation"]
-  - id: ast_personnel
-    nom: "Personnel médical et administratif"
-    type: "Humain"
-    criticite: 4
-    valeurs_metier_liees: ["bv_prise_en_charge", "bv_acquisition", "bv_interpretation", "bv_facturation"]
-  - id: ast_vpn
-    nom: "Connexion Internet / VPN téléradiologie"
-    type: "Réseau externe"
-    criticite: 4
-    valeurs_metier_liees: ["bv_teleradiologie", "bv_facturation"]
-  - id: ast_secu
-    nom: "Logiciels de cybersécurité (antivirus, SIEM)"
-    type: "Logiciel sécurité"
-    criticite: 3
-    valeurs_metier_liees: []
+- id: ast_pacs
+  name: PACS (Picture Archiving and Communication System)
+  type: application
+  criticality: 4
+  business_values:
+  - bv_acquisition
+  - bv_interpretation
+  - bv_teleradiologie
+  - bv_archivage
+- id: ast_modalites
+  name: Scanner IRM / Scanner CT / Mammographe
+  type: device
+  criticality: 4
+  business_values:
+  - bv_acquisition
+- id: ast_vpn
+  name: Connexion Internet / VPN téléradiologie
+  type: network
+  criticality: 4
+  business_values:
+  - bv_teleradiologie
+  - bv_archivage
+- id: ast_postes_travail
+  name: Postes de travail (Secrétariat, Médecins)
+  type: device
+  criticality: 3
+  business_values:
+  - bv_prise_en_charge
+  - bv_interpretation
+- id: ast_personnel
+  name: Personnel du centre (Administratif, Manipulateurs, Médecins)
+  type: human
+  criticality: 4
+  business_values:
+  - bv_prise_en_charge
+  - bv_acquisition
+  - bv_interpretation
+- id: ast_ris
+  name: RIS (Radiological Information System)
+  type: application
+  criticality: 4
+  business_values:
+  - bv_prise_en_charge
+  - bv_interpretation
+  - bv_teleradiologie
+- id: ast_donnees_identite
+  name: Données administratives et identité patient
+  type: data
+  criticality: 4
+  business_values:
+  - bv_prise_en_charge

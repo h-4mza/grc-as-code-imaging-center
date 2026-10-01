@@ -1,58 +1,27 @@
-parties_prenantes:
-  - id: pp_cliniques
-    nom: "Cliniques partenaires"
-    type: "Partenaire métier"
-    niveau_menace: 3
-    dependance: "Élevée (Interconnexion continue pour l'échange de dossiers)"
-  - id: pp_teleradiologie
-    nom: "Service de téléradiologie"
-    type: "Prestataire médical"
-    niveau_menace: 3
-    dependance: "Critique (Gardes et urgences nocturnes)"
-  - id: pp_editeur_pacs
-    nom: "Éditeur du PACS"
-    type: "Fournisseur logiciel"
-    niveau_menace: 4
-    dependance: "Critique (Cœur du SI, accès télémaintenance privilégié)"
-  - id: pp_hebergeur_hds
-    nom: "Hébergeur HDS"
-    type: "Sous-traitant IT"
-    niveau_menace: 2
-    dependance: "Élevée (Sauvegardes externalisées, PRA)"
-  - id: pp_mainteneurs
-    nom: "Mainteneurs biomédicaux (Scanners, IRM)"
-    type: "Prestataire maintenance"
-    niveau_menace: 4
-    dependance: "Élevée (Accès physiques et distants non maîtrisés)"
-
-scenarios_strategiques:
-  - id: sc_strat_1
-    nom: "Compromission via l'éditeur PACS (Supply Chain)"
-    srov_id: srov_1
-    partie_prenante_id: pp_editeur_pacs
-    vraisemblance: 3
-    description: "Des cybercriminels compromettent l'éditeur du PACS et déploient une mise à jour malveillante (ransomware) chez tous ses clients, y compris le centre d'imagerie."
-  - id: sc_strat_2
-    nom: "Rebond depuis le service de téléradiologie"
-    srov_id: srov_2
-    partie_prenante_id: pp_teleradiologie
-    vraisemblance: 4
-    description: "Le VPN du service de téléradiologie est compromis, permettant aux attaquants d'accéder au réseau interne du centre pour exfiltrer la base de données patients."
-  - id: sc_strat_3
-    nom: "Usurpation d'accès d'un mainteneur biomédical"
-    srov_id: srov_1
-    partie_prenante_id: pp_mainteneurs
-    vraisemblance: 4
-    description: "Les identifiants d'un technicien de maintenance sont volés. L'attaquant utilise l'accès distant de télémaintenance pour s'introduire sur un scanner et pivoter vers le PACS."
-  - id: sc_strat_4
-    nom: "Accès illégitime via une clinique partenaire"
-    srov_id: srov_6
-    partie_prenante_id: pp_cliniques
-    vraisemblance: 3
-    description: "Un poste de travail d'une clinique partenaire est infecté, permettant à un attaquant de falsifier des comptes rendus médicaux via l'interconnexion existante."
-  - id: sc_strat_5
-    nom: "Attaque sur les sauvegardes externalisées"
-    srov_id: srov_5
-    partie_prenante_id: pp_hebergeur_hds
-    vraisemblance: 2
-    description: "L'infrastructure de l'hébergeur HDS subit une panne majeure ou une attaque destructive, rendant impossible la restauration des données en cas de sinistre local."
+stakeholders:
+- id: pp_editeur_pacs
+  name: Éditeur du PACS
+  type: Fournisseur logiciel
+  threat_level: 4
+  dependency: Critique (Cœur du SI, accès télémaintenance privilégié)
+- id: pp_maintenance
+  name: Prestataire maintenance biomédicale
+  type: Fournisseur service
+  threat_level: 3
+  dependency: Forte (Accès réseau aux modalités IRM/Scanner)
+strategic_scenarios:
+- id: sc_strat_1
+  name: Compromission via l'éditeur PACS (Supply Chain)
+  srov_id: srov_1
+  stakeholder_id: pp_editeur_pacs
+  likelihood: 3
+  description: Des cybercriminels compromettent l'éditeur du PACS et déploient une
+    mise à jour malveillante (ransomware) chez tous ses clients, y compris le centre
+    d'imagerie.
+- id: sc_strat_2
+  name: Attaque via accès VPN partenaire
+  srov_id: srov_1
+  stakeholder_id: pp_maintenance
+  likelihood: 4
+  description: Un prestataire externe se fait voler ses accès, permettant aux attaquants
+    d'entrer sur le réseau.

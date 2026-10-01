@@ -2,7 +2,6 @@ from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from app.db import Base
 
-# Association table for Asset <-> BusinessValue
 asset_bv_table = Table(
     'asset_business_value',
     Base.metadata,
@@ -70,15 +69,33 @@ class ScenarioStrategique(Base):
     srov = relationship("CoupleSROV")
     partie_prenante = relationship("PartiePrenante")
 
+
+risk_asset_table = Table(
+    'risk_asset',
+    Base.metadata,
+    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True),
+    Column('asset_id', String, ForeignKey('assets.id'), primary_key=True)
+)
+
+risk_control_table = Table(
+    'risk_control',
+    Base.metadata,
+    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True),
+    Column('control_id', String, ForeignKey('controls.id'), primary_key=True)
+)
+
 class ScenarioOperationnel(Base):
     __tablename__ = "scenarios_operationnels"
     id = Column(String, primary_key=True)
     nom = Column(String, nullable=False)
-    sc_strat_id = Column(String, nullable=True) # Pas de ForeignKey stricte pour les N/A
-    techniques_attack = Column(String) # Stored as comma separated or JSON string
+    sc_strat_id = Column(String, nullable=True)
+    techniques_attack = Column(String)
     vraisemblance = Column(Integer)
     gravite = Column(Integer)
     description = Column(String)
+    nist_csf = Column(String, nullable=True)
+    assets = relationship("Asset", secondary=risk_asset_table)
+    controls_list = relationship("Control", secondary=risk_control_table)
 
 class Control(Base):
     __tablename__ = "controls"
@@ -92,7 +109,6 @@ class Control(Base):
     maturite = Column(Integer)
     preuve = Column(String)
 
-# Association tables for Finding
 finding_control_table = Table(
     'finding_control',
     Base.metadata,
@@ -104,7 +120,7 @@ finding_risk_table = Table(
     'finding_risk',
     Base.metadata,
     Column('finding_id', Integer, ForeignKey('findings.id'), primary_key=True),
-    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True) # sc_op = risk
+    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True)
 )
 
 class Finding(Base):
@@ -139,5 +155,6 @@ class Treatment(Base):
     echeance = Column(String)
     responsable = Column(String)
     jira_key = Column(String, nullable=True)
+    status = Column(String, default="todo")
     
     risk = relationship("ScenarioOperationnel")

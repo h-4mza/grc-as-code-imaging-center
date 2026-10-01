@@ -1,4 +1,46 @@
-import typer
+import os
+import re
+
+# 1. Update app/models.py
+with open('app/models.py', 'r', encoding='utf-8') as f:
+    models_code = f.read()
+
+if 'risk_asset_table' not in models_code:
+    assoc_tables = '''
+risk_asset_table = Table(
+    'risk_asset',
+    Base.metadata,
+    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True),
+    Column('asset_id', String, ForeignKey('assets.id'), primary_key=True)
+)
+
+risk_control_table = Table(
+    'risk_control',
+    Base.metadata,
+    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True),
+    Column('control_id', String, ForeignKey('controls.id'), primary_key=True)
+)
+'''
+    models_code = models_code.replace('class ScenarioOperationnel(Base):', assoc_tables + '\nclass ScenarioOperationnel(Base):')
+    
+    # Add fields to ScenarioOperationnel
+    models_code = models_code.replace(
+        'description = Column(String)',
+        'description = Column(String)\n    nist_csf = Column(String, nullable=True)\n    assets = relationship("Asset", secondary=risk_asset_table)\n    controls_list = relationship("Control", secondary=risk_control_table)'
+    )
+    
+    # Add status to Treatment
+    models_code = models_code.replace(
+        'jira_key = Column(String, nullable=True)',
+        'jira_key = Column(String, nullable=True)\n    status = Column(String, default="todo")'
+    )
+    
+    with open('app/models.py', 'w', encoding='utf-8') as f:
+        f.write(models_code)
+
+
+# 2. Update app/cli.py
+cli_code = '''import typer
 import yaml
 import os
 import json
@@ -130,3 +172,6 @@ def export_jira(dry_run: bool = True):
 
 if __name__ == "__main__":
     app()
+'''
+with open('app/cli.py', 'w', encoding='utf-8') as f:
+    f.write(cli_code)

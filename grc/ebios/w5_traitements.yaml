@@ -1,29 +1,33 @@
-traitements:
-  - id: tr_mfa
-    nom: "Déploiement MFA pour accès critiques"
-    risk_id: sc_op_10
-    option: "Réduire"
-    echeance: "2026-12-31"
-    responsable: "DSSI"
-    jira_key: null
-  - id: tr_segmentation
-    nom: "Segmentation réseau et sauvegardes hors ligne testées"
-    risk_id: sc_op_1
-    option: "Réduire"
-    echeance: "2026-11-30"
-    responsable: "IT"
-    jira_key: null
-  - id: tr_chiffrement
-    nom: "Chiffrement AES-256 données repos/transit"
-    risk_id: sc_op_2
-    option: "Réduire"
-    echeance: "2027-03-31"
-    responsable: "DSSI"
-    jira_key: null
-  - id: tr_rbac
-    nom: "RBAC granulaire et journalisation des accès DPI"
-    risk_id: sc_op_5
-    option: "Réduire"
-    echeance: "2027-06-30"
-    responsable: "IT / DRH"
-    jira_key: null
+treatments:
+- id: tr_mfa
+  name: Déploiement MFA pour accès critiques
+  risk_id: R-10
+  option: reduce
+  due_date: '2026-12-31'
+  owner: DSSI
+  jira_key: null
+  status: todo
+- id: tr_segmentation
+  name: Segmentation réseau et sauvegardes hors ligne testées
+  risk_id: R-01
+  option: reduce
+  due_date: '2026-11-30'
+  owner: IT
+  jira_key: null
+  status: in_progress
+- id: tr_patch_vpn
+  name: Mise à jour d'urgence firmware VPN
+  risk_id: R-02
+  option: reduce
+  due_date: '2026-10-15'
+  owner: Réseau
+  jira_key: null
+  status: todo
+- id: tr_dicom_tls
+  name: Chiffrement TLS flux DICOM
+  risk_id: R-09
+  option: reduce
+  due_date: '2027-01-31'
+  owner: Biomédical
+  jira_key: null
+  status: todo
