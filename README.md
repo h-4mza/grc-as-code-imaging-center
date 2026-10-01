@@ -17,28 +17,28 @@ La solution repose sur une stack moderne, légère et orientée API. Le schéma 
 
 ```mermaid
 flowchart TD
-    subgraph Data [GRC As-Code Data (Git)]
-        EBIOS[Fichiers YAML\nEBIOS RM]
-        ISO[Fichiers YAML\nISO 27001]
-        MAP[Mappings\nNIS2, NIST, ATT&CK]
+    subgraph Data ["GRC As-Code Data (Git)"]
+        EBIOS["Fichiers YAML<br>EBIOS RM"]
+        ISO["Fichiers YAML<br>ISO 27001"]
+        MAP["Mappings<br>NIS2, NIST, ATT&CK"]
     end
 
-    subgraph Operations [Administration (DevSecOps)]
-        SARIF[Rapports de Scan\n(Format SARIF)]
-        CLI[CLI Typer\n'grc load' / 'grc ingest']
+    subgraph Operations ["Administration (DevSecOps)"]
+        SARIF["Rapports de Scan<br>(Format SARIF)"]
+        CLI["CLI Typer<br>'grc load' / 'grc ingest'"]
     end
 
-    subgraph Core [Backend Services]
-        DB[(PostgreSQL\nBase GRC)]
-        API[FastAPI\nMoteur de règles & API]
+    subgraph Core ["Backend Services"]
+        DB[("PostgreSQL<br>Base GRC")]
+        API["FastAPI<br>Moteur de règles & API"]
     end
 
-    subgraph Users [Interfaces]
-        DASH[Dashboard Streamlit\n(Heatmap, SoA, KPIs)]
+    subgraph Users ["Interfaces"]
+        DASH["Dashboard Streamlit<br>(Heatmap, SoA, KPIs)"]
     end
     
-    subgraph External [Outils Tiers]
-        JIRA[Jira / ITSM\n(Suivi des traitements)]
+    subgraph External ["Outils Tiers"]
+        JIRA["Jira / ITSM<br>(Suivi des traitements)"]
     end
 
     Data -->|Parsé par CLI| CLI
