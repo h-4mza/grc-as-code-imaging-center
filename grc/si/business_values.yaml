@@ -1,0 +1,31 @@
+business_values:
+  - id: bv_prise_en_charge
+    nom: "Prise en charge patient"
+    processus: "Accueil administratif, vérification des prescriptions, enregistrement DPI/RIS, consentement"
+    evenement_redoute: "Impossibilité d'accueillir et d'enregistrer les patients, entraînant des retards de prise en charge."
+    gravite: 4
+  - id: bv_acquisition
+    nom: "Acquisition des images"
+    processus: "Réalisation de l'examen par le manipulateur, acquisition et transfert DICOM vers le PACS"
+    evenement_redoute: "Arrêt des équipements d'imagerie ou impossibilité de transférer les images, arrêt de la production de soins."
+    gravite: 5
+  - id: bv_interpretation
+    nom: "Interprétation et compte rendu"
+    processus: "Visualisation PACS, rédaction CR dans le RIS, signature électronique, envoi MSSanté"
+    evenement_redoute: "Indisponibilité des images ou du RIS retardant le diagnostic, ou erreur de compte rendu affectant la santé du patient."
+    gravite: 5
+  - id: bv_teleradiologie
+    nom: "Téléradiologie"
+    processus: "Transfert chiffré VPN, interprétation à distance, retour CR signé"
+    evenement_redoute: "Interception ou indisponibilité du flux de téléradiologie compromettant les gardes et urgences."
+    gravite: 4
+  - id: bv_archivage
+    nom: "Archivage et traçabilité"
+    processus: "Archivage long terme PACS (10 ans), journalisation"
+    evenement_redoute: "Perte définitive d'images d'archives ou de traces médico-légales."
+    gravite: 4
+  - id: bv_facturation
+    nom: "Administration et facturation"
+    processus: "Gestion rendez-vous, facturation, transmission FSE"
+    evenement_redoute: "Perte de revenus due à l'impossibilité de facturer ou transmettre à l'Assurance Maladie."
+    gravite: 3

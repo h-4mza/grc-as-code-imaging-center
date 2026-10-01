@@ -1,0 +1,8 @@
+site_name: GRC-as-code
+theme:
+  name: material
+
+nav:
+  - Accueil: index.md
+  - EBIOS RM:
+    - Atelier 1: ebios/atelier1.md
