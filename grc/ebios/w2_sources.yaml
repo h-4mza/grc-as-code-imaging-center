@@ -1,0 +1,67 @@
+sources_risques:
+  - id: sr_cybercriminels
+    nom: "Groupe de cybercriminels"
+    type: "Malveillance externe"
+    motivation: "Gain financier (extorsion)"
+    ressources: "Importantes (outils sophistiqués, botnets, RaaS)"
+  - id: sr_interne_malveillant
+    nom: "Employé malveillant ou compromis"
+    type: "Malveillance interne"
+    motivation: "Revente de données, vengeance, ou compte usurpé"
+    ressources: "Limitées mais dispose d'accès légitimes initiaux"
+  - id: sr_hacktivistes
+    nom: "Hacktivistes"
+    type: "Malveillance externe"
+    motivation: "Nuire à l'image ou revendication idéologique"
+    ressources: "Moyennes (déni de service, défiguration)"
+  - id: sr_defaillance
+    nom: "Défaillance technique / Accident"
+    type: "Accident / Environnemental"
+    motivation: "N/A"
+    ressources: "N/A"
+
+objectifs_vises:
+  - id: ov_extorsion
+    nom: "Extorsion par paralysie du SI et/ou menace de divulgation"
+    description: "Chiffrement des données (PACS, DPI) et exfiltration préalable pour double extorsion."
+  - id: ov_vol_donnees
+    nom: "Vol de données de santé (revente)"
+    description: "Exfiltration discrète de la base de données patients (RIS/DPI) pour revente sur le dark web."
+  - id: ov_indisponibilite
+    nom: "Atteinte à la continuité des soins"
+    description: "Interruption des services critiques (DDoS, panne matérielle de stockage)."
+  - id: ov_alteration
+    nom: "Altération des données médicales"
+    description: "Modification illégitime d'images ou de comptes rendus pouvant entraîner des erreurs de diagnostic."
+
+couples_sr_ov:
+  - id: srov_1
+    sr_id: sr_cybercriminels
+    ov_id: ov_extorsion
+    pertinence: 5
+    description: "Un groupe de ransomwares cible le centre pour chiffrer le PACS et demander une rançon."
+  - id: srov_2
+    sr_id: sr_cybercriminels
+    ov_id: ov_vol_donnees
+    pertinence: 4
+    description: "Vol massif de données d'identification et de santé pour revente."
+  - id: srov_3
+    sr_id: sr_interne_malveillant
+    ov_id: ov_vol_donnees
+    pertinence: 3
+    description: "Un employé (ou compte usurpé) accède et exfiltre des dossiers médicaux VIP ou en masse."
+  - id: srov_4
+    sr_id: sr_hacktivistes
+    ov_id: ov_indisponibilite
+    pertinence: 2
+    description: "Attaque DDoS sur la connexion Internet bloquant la téléradiologie."
+  - id: srov_5
+    sr_id: sr_defaillance
+    ov_id: ov_indisponibilite
+    pertinence: 4
+    description: "Panne matérielle majeure des serveurs de stockage (NAS/SAN) entraînant un arrêt de l'activité."
+  - id: srov_6
+    sr_id: sr_interne_malveillant
+    ov_id: ov_alteration
+    pertinence: 2
+    description: "Modification d'un compte rendu radiologique par un accès non autorisé."

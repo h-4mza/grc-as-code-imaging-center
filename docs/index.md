@@ -7,7 +7,7 @@ Cette documentation est générée à partir des fichiers Markdown situés dans 
 ## Ateliers EBIOS RM
 
 - [Atelier 1 : Contexte et Périmètre](ebios/atelier1.md)
-- Atelier 2 : Événements Redoutés (À venir)
+- [Atelier 2 : Événements Redoutés](ebios/atelier2.md)
 - Atelier 3 : Scénarios Stratégiques (À venir)
 - Atelier 4 : Scénarios Opérationnels (À venir)
 - Atelier 5 : Traitement du Risque (À venir)

@@ -20,3 +20,27 @@ class Asset(BaseModel):
 
 class AssetList(BaseModel):
     assets: List[Asset]
+
+class SourceRisque(BaseModel):
+    id: str = Field(..., description="Identifiant unique de la SR")
+    nom: str = Field(..., description="Nom de la source de risque")
+    type: str = Field(..., description="Type (Malveillance externe, interne, etc.)")
+    motivation: str = Field(..., description="Motivation principale")
+    ressources: str = Field(..., description="Niveau de ressources")
+
+class ObjectifVise(BaseModel):
+    id: str = Field(..., description="Identifiant unique de l'OV")
+    nom: str = Field(..., description="Nom de l'objectif visé")
+    description: str = Field(..., description="Description détaillée")
+
+class CoupleSROV(BaseModel):
+    id: str = Field(..., description="Identifiant unique du couple SR/OV")
+    sr_id: str = Field(..., description="ID de la Source de Risque")
+    ov_id: str = Field(..., description="ID de l'Objectif Visé")
+    pertinence: int = Field(..., ge=1, le=5, description="Pertinence évaluée (1 à 5)")
+    description: str = Field(..., description="Description du scénario stratégique de haut niveau")
+
+class Atelier2(BaseModel):
+    sources_risques: List[SourceRisque]
+    objectifs_vises: List[ObjectifVise]
+    couples_sr_ov: List[CoupleSROV]
