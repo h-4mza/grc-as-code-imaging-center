@@ -103,85 +103,71 @@ elif page == "Rapports Documentaires":
     filepath = file_map.get(report)
     
     if report == "Déclaration d'Applicabilité (SoA) - ISO 27001":
-        # CSS pour un rendu de document officiel professionnel
         st.markdown("""
         <style>
-        .report-page {
-            background-color: white;
-            color: #333;
-            padding: 40px 60px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        .soa-header {
+            font-family: Arial, sans-serif;
             margin-bottom: 20px;
         }
-        .report-header {
-            text-align: right;
-            font-size: 12px;
-            color: #7f8c8d;
-            border-bottom: 1px solid #ecf0f1;
-            padding-bottom: 10px;
-            margin-bottom: 40px;
-        }
-        .report-title {
-            color: #2c3e50;
-            font-size: 32px;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .report-subtitle {
-            color: #34495e;
-            font-size: 18px;
-            text-align: center;
-            margin-bottom: 50px;
-        }
-        .chapter-title {
-            color: #2980b9;
-            font-size: 22px;
-            border-bottom: 2px solid #2980b9;
-            padding-bottom: 5px;
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        .control-box {
-            background-color: #f8f9fa;
-            border: 1px solid #e0e0e0;
-            border-left: 4px solid #2980b9;
-            padding: 15px;
-            margin-bottom: 15px;
-            border-radius: 4px;
-        }
-        .control-title {
-            font-size: 16px;
+        .soa-title {
+            color: #1c325c;
+            font-size: 24px;
             font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
         }
-        .control-desc {
-            font-size: 14px;
+        .soa-subtitle {
             color: #555;
-            font-style: italic;
-            margin-bottom: 12px;
+            font-size: 14px;
+            margin-bottom: 20px;
         }
-        .control-meta {
-            font-size: 13px;
-            color: #444;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
+        .chap-summary {
+            display: flex;
+            margin-bottom: 30px;
         }
-        .badge {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 11px;
-            font-weight: bold;
+        .chap-box {
+            flex: 1;
+            padding: 10px;
             color: white;
-            text-transform: uppercase;
+            font-family: Arial, sans-serif;
+            text-align: left;
         }
-        .bg-success { background-color: #27ae60; }
-        .bg-warning { background-color: #f39c12; }
-        .bg-danger { background-color: #c0392b; }
+        .chap-box-1 { background-color: #21355c; }
+        .chap-box-2 { background-color: #436436; }
+        .chap-box-3 { background-color: #9c4819; }
+        .chap-box-4 { background-color: #21355c; border-left: 1px solid white;}
+        
+        .chap-title-text {
+            color: #1c325c;
+            font-size: 20px;
+            font-weight: bold;
+            border-bottom: 2px solid #1c325c;
+            margin-bottom: 10px;
+            margin-top: 30px;
+            padding-bottom: 5px;
+            font-family: Arial, sans-serif;
+        }
+        
+        .soa-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+        }
+        .soa-table th {
+            background-color: #1c325c;
+            color: white;
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        .soa-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            vertical-align: top;
+        }
+        .soa-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
         </style>
         """, unsafe_allow_html=True)
         
@@ -191,65 +177,61 @@ elif page == "Rapports Documentaires":
             df = pd.DataFrame(controls_data)
             
             html_content = f"""
-            <div class="report-page">
-                <div class="report-header">
-                    <strong>Centre d'Imagerie Médicale</strong><br>
-                    Référence : CIM-SEC-CYBER-001 | Version : v1.5 — Juin 2026<br>
-                    Classification : CONFIDENTIEL
+            <div class="soa-header">
+                <div class="soa-title">Centre d'Imagerie Médicale</div>
+                <div class="soa-subtitle">
+                    Référence Projet : CIM-SEC-CYBER-001 | Version : v1.5 — Juin 2026<br>
+                    Document annexe au Dossier de Sécurité de la Solution Déployée — À titre de référence normative
                 </div>
-                
-                <div class="report-title">
-                    DÉCLARATION D'APPLICABILITÉ (SoA)
-                </div>
-                <div class="report-subtitle">
-                    Référentiel des 93 contrôles de sécurité — Norme ISO/IEC 27001:2022
-                </div>
-                
-                <p style="text-align: justify; font-size: 14px; line-height: 1.6; color: #555;">
-                    Le présent document constitue la Déclaration d'Applicabilité (SoA) requise par l'exigence 6.1.3 d) de la norme ISO/IEC 27001:2022. 
-                    Il identifie les contrôles de sécurité nécessaires pour traiter les risques liés à la sécurité de l'information pour l'infrastructure 
-                    du Centre d'Imagerie Médicale, justifie leur inclusion ou exclusion, et précise leur statut d'implémentation actuel.
-                </p>
+            </div>
+            
+            <div class="chap-summary">
+                <div class="chap-box chap-box-1"><b>Chapitre 5</b><br>37 contrôles</div>
+                <div class="chap-box chap-box-2"><b>Chapitre 6</b><br>8 contrôles</div>
+                <div class="chap-box chap-box-3"><b>Chapitre 7</b><br>14 contrôles</div>
+                <div class="chap-box chap-box-4"><b>Chapitre 8</b><br>34 contrôles</div>
+            </div>
             """
             
-            # Map des thèmes aux chapitres ISO 27001:2022
             chapitres = {
-                "Organisationnel": "Chapitre 5 — Contrôles Organisationnels",
-                "Personnes": "Chapitre 6 — Contrôles liés aux Personnes",
-                "Physique": "Chapitre 7 — Contrôles Physiques",
-                "Technologique": "Chapitre 8 — Contrôles Technologiques"
+                "Organisationnel": "5. Contrôles organisationnels",
+                "Personnes": "6. Contrôles liés aux personnes",
+                "Physique": "7. Contrôles physiques",
+                "Technologique": "8. Contrôles technologiques"
             }
             
             for theme in df['theme'].unique():
                 theme_controls = df[df['theme'] == theme]
                 titre_chapitre = chapitres.get(theme, f"Contrôles : {theme}")
                 
-                html_content += f'<div class="chapter-title">{titre_chapitre}</div>'
+                html_content += f"""
+                <div class="chap-title-text">{titre_chapitre}</div>
+                <table class="soa-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">Contrôle</th>
+                            <th style="width: 25%;">Titre</th>
+                            <th style="width: 65%;">Description / Objectif</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                """
                 
                 for _, row in theme_controls.iterrows():
-                    etat = row['etat']
-                    badge_class = "bg-success" if etat == "En place" else "bg-warning" if etat == "Partiel" else "bg-danger"
                     desc = row['description'] if row.get('description') else 'Description non spécifiée.'
-                    
                     html_content += f"""
-                    <div class="control-box">
-                        <div class="control-title">{row['id']} - {row['nom']}</div>
-                        <div class="control-desc">« {desc} »</div>
-                        <div class="control-meta">
-                            <div>
-                                <strong>Statut d'implémentation :</strong> <span class="badge {badge_class}">{etat}</span>
-                            </div>
-                            <div>
-                                <strong>Niveau de Maturité :</strong> {row['maturite']}/5
-                            </div>
-                            <div style="grid-column: span 2; margin-top: 5px;">
-                                <strong>Justification / Preuves :</strong> {row['justification']} (Réf: {row['preuve']})
-                            </div>
-                        </div>
-                    </div>
+                        <tr>
+                            <td style="font-weight: bold; color: #1c325c;">{row['id']}</td>
+                            <td style="font-weight: bold;">{row['nom']}</td>
+                            <td>{desc}</td>
+                        </tr>
                     """
                     
-            html_content += "</div>"
+                html_content += """
+                    </tbody>
+                </table>
+                """
+            
             st.markdown(html_content, unsafe_allow_html=True)
     elif filepath and os.path.exists(filepath):
         st.markdown("---")
