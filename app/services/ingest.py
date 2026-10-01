@@ -18,6 +18,7 @@ def ingest_findings(db: Session, source: str, filepath: str):
             actif_id=data["actif_id"],
             cve=data["cve"],
             technique_attack=data["technique_attack"],
+            description=data.get("message", ""),
             date=data["date"]
         )
         db.add(finding)

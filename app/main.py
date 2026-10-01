@@ -16,15 +16,21 @@ def root():
 
 @app.get("/risks")
 def get_risks(db: Session = Depends(get_db)):
+    from app.models import Finding
     scenarios = db.query(ScenarioOperationnel).all()
     results = []
     for sc in scenarios:
-        # Mock maturity calculation (would be based on mapped controls later)
-        scores = get_risk_scores(gravite=sc.gravite, vraisemblance=sc.vraisemblance, maturity_avg=2.0)
+        findings = db.query(Finding).filter(Finding.risks.contains(sc)).all()
+        errors = len([f for f in findings if f.severite == 'error'])
+        warnings = len([f for f in findings if f.severite == 'warning'])
+        computed_maturity = max(0.0, 3.0 - (errors * 1.0) - (warnings * 0.5))
+        
+        scores = get_risk_scores(gravite=sc.gravite, vraisemblance=sc.vraisemblance, maturity_avg=computed_maturity)
         results.append({
             "id": sc.id,
             "nom": sc.name,
-            "scores": scores
+            "scores": scores,
+            "constats_ouverts": len(findings)
         })
     return results
 
@@ -62,11 +68,16 @@ def get_kpi_overview(db: Session = Depends(get_db)):
 
 @app.get("/kpi/heatmap")
 def get_kpi_heatmap(db: Session = Depends(get_db)):
+    from app.models import Finding
     scenarios = db.query(ScenarioOperationnel).all()
-    # Mock return format for a scatter plot or heatmap
     data = []
     for sc in scenarios:
-        scores = get_risk_scores(sc.gravite, sc.vraisemblance, 2.0) # Maturity mocked at 2.0 for now
+        findings = db.query(Finding).filter(Finding.risks.contains(sc)).all()
+        errors = len([f for f in findings if f.severite == 'error'])
+        warnings = len([f for f in findings if f.severite == 'warning'])
+        computed_maturity = max(0.0, 3.0 - (errors * 1.0) - (warnings * 0.5))
+        
+        scores = get_risk_scores(sc.gravite, sc.vraisemblance, computed_maturity)
         data.append({
             "id": sc.id,
             "nom": sc.name,
@@ -139,4 +150,22 @@ def get_kpi_compliance_matrix(db: Session = Depends(get_db)):
             "status": m[3]
         }
         for m in mappings
+    ]
+
+
+@app.get("/findings")
+def get_findings(db: Session = Depends(get_db)):
+    from app.models import Finding
+    findings = db.query(Finding).all()
+    return [
+        {
+            "id": f.id,
+            "source": f.source,
+            "cve": f.cve,
+            "severite": f.severite,
+            "description": f.description,
+            "actif": f.actif_id,
+            "technique": f.technique_attack
+        }
+        for f in findings
     ]

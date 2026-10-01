@@ -14,7 +14,8 @@ page = st.sidebar.radio("Menu", [
     "SoA (ISO 27001)", 
     "Conformité Globale", 
     "Plan de Traitement",
-    "Rapports Documentaires"
+    "Rapports Documentaires",
+    "Registre des Constats"
 ])
 
 def fetch_data(endpoint):
@@ -117,7 +118,8 @@ elif page == "Plan de Traitement":
         st.dataframe(df, use_container_width=True)
         st.success("Les traitements sont synchronisés avec Jira via GRC as-code.")
 
-elif page == "Rapports Documentaires":
+elif page == "Rapports Documentaires",
+    "Registre des Constats":
     st.title("📄 Rapports Documentaires GRC")
     
     st.write("Visualisation des rapports générés (EBIOS, ISO 27001).")
@@ -279,3 +281,28 @@ Document annexe au Dossier de Sécurité de la Solution Déployée — À titre 
             st.markdown(f.read())
     else:
         st.warning("Le fichier de rapport est introuvable sur le volume Docker.")
+
+elif page == "Registre des Constats":
+    st.title("🚨 Registre Central des Constats (Vulnérabilités & Audits)")
+    st.markdown("Ce registre consolide les remontées automatiques (ex: Trivy, BloodHound) avec le référentiel de risques EBIOS.")
+    
+    data = fetch_data("/findings")
+    if data:
+        df = pd.DataFrame(data)
+        
+        # Colorisation de la sévérité
+        def color_severity(val):
+            color = 'red' if val == 'error' else 'orange' if val == 'warning' else 'green'
+            return f'color: {color}; font-weight: bold;'
+            
+        st.dataframe(df.style.map(color_severity, subset=['severite']), use_container_width=True)
+        
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("Par Sévérité")
+            st.bar_chart(df['severite'].value_counts())
+        with col2:
+            st.subheader("Par Actif")
+            st.bar_chart(df['actif'].value_counts())
+    else:
+        st.info("Aucun constat n'a été ingéré.")

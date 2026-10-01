@@ -13,8 +13,8 @@ def parse_sarif(filepath: str):
                 "cve": result.get("ruleId"),
                 "severite": result.get("level", "medium"),
                 "date": "2026-10-01",
-                # Logique simplifiée : on extrait l'actif cible depuis les tags ou les locations
-                "actif_id": "ast_modalites", # Valeur par défaut pour l'exemple
+                "message": result.get("message", {}).get("text", ""),
+                "actif_id": result.get("properties", {}).get("asset_id", "ast_modalites"),
                 "technique_attack": None
             }
             # Tentative de récupération du tag ATT&CK

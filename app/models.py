@@ -133,6 +133,7 @@ class Finding(Base):
     actif_id = Column(String, ForeignKey("assets.id"))
     cve = Column(String, nullable=True)
     technique_attack = Column(String, nullable=True)
+    description = Column(String, nullable=True)
     date = Column(String)
     
     actif = relationship("Asset")

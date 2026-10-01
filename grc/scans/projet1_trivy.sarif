@@ -1,0 +1,36 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Trivy"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2024-1234",
+          "level": "error",
+          "properties": {
+            "tags": ["T1190"],
+            "asset_id": "ast_vpn"
+          },
+          "message": {
+            "text": "Vulnérabilité critique sur le portail VPN de téléradiologie permettant une exécution de code (RCE)."
+          }
+        },
+        {
+          "ruleId": "CVE-2023-5678",
+          "level": "warning",
+          "properties": {
+            "tags": ["T1005"],
+            "asset_id": "ast_vpn"
+          },
+          "message": {
+            "text": "Fuite de mémoire permettant la collecte de données."
+          }
+        }
+      ]
+    }
+  ]
+}

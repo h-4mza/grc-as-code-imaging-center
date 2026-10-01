@@ -1,0 +1,36 @@
+{
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "BloodHound / AD Audit"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "AD-VULN-001",
+          "level": "error",
+          "properties": {
+            "tags": ["T1078"],
+            "asset_id": "ast_postes_travail"
+          },
+          "message": {
+            "text": "Comptes de service avec des privilèges d'administration de domaine et mots de passe faibles."
+          }
+        },
+        {
+          "ruleId": "PHISH-FAIL-001",
+          "level": "error",
+          "properties": {
+            "tags": ["T1566"],
+            "asset_id": "ast_personnel"
+          },
+          "message": {
+            "text": "Taux de clic élevé (>40%) sur la campagne de phishing simulée par l'équipe SecOps."
+          }
+        }
+      ]
+    }
+  ]
+}
