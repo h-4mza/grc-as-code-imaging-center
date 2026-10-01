@@ -21,6 +21,7 @@ def load_yaml(filepath):
 def load():
     """Charge le YAML en base de données."""
     typer.echo("Initialisation de la base de données...")
+    Base.metadata.drop_all(bind=engine)
     Base.metadata.create_all(bind=engine)
     
     db: Session = SessionLocal()

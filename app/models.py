@@ -84,6 +84,7 @@ class Control(Base):
     __tablename__ = "controls"
     id = Column(String, primary_key=True)
     nom = Column(String, nullable=False)
+    description = Column(String, nullable=True)
     theme = Column(String)
     applicable = Column(Boolean)
     justification = Column(String)

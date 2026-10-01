@@ -1,329 +1,600 @@
 controls:
 - id: '5.1'
-  nom: Politiques en matière de sécurité de l'information
+  nom: Politiques de sécurité de l'information
+  description: Des politiques de sécurité de l'information, leurs sujets spécifiques
+    et leur mise en œuvre doivent être définis, approuvés par la direction...
   theme: Organisationnel
   applicable: true
-  justification: Nécessaire pour définir le cadre général.
-  etat: En place
-  maturite: 3
-  preuve: P-SSI-01 signée par la direction
-- id: '5.2'
-  nom: Rôles et responsabilités
-  theme: Organisationnel
-  applicable: true
-  justification: Nécessaire pour répartir les tâches (RSSI, DPO, admins).
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Fiches de poste, charte IT
+  preuve: A documenter
+- id: '5.2'
+  nom: Rôles et responsabilités en matière de sécurité de l'information
+  description: Les rôles et responsabilités en matière de sécurité de l'information
+    doivent être définis et attribués...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '5.3'
   nom: Séparation des tâches
+  description: Les tâches conflictuelles et les domaines de responsabilités conflictuels
+    doivent être séparés.
   theme: Organisationnel
   applicable: true
-  justification: Évite les conflits d'intérêts et la fraude.
-  etat: En place
-  maturite: 3
-  preuve: Matrice des droits (Matrice_RBAC_v1.xlsx)
-- id: '5.7'
-  nom: Veille sur les menaces
-  theme: Organisationnel
-  applicable: true
-  justification: Identification des menaces du secteur santé.
-  etat: En place
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
   maturite: 2
-  preuve: Abonnement CERT-Santé
+  preuve: A documenter
+- id: '5.4'
+  nom: Responsabilités de la direction
+  description: La direction doit exiger de tout le personnel qu'il applique la sécurité
+    de l'information...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.5'
+  nom: Contacts avec les autorités
+  description: L'organisation doit établir et maintenir des contacts avec les autorités
+    compétentes.
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.6'
+  nom: Contacts avec des groupes d'intérêts spéciaux
+  description: L'organisation doit établir et maintenir des contacts avec des groupes
+    d'intérêt particuliers...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.7'
+  nom: Renseignements sur les menaces
+  description: Des informations relatives aux menaces pour la sécurité de l'information
+    doivent être recueillies...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '5.8'
-  nom: Sécurité dans la gestion de projet
+  nom: Sécurité de l'information dans la gestion de projet
+  description: La sécurité de l'information doit être intégrée dans la gestion de
+    projet.
   theme: Organisationnel
   applicable: true
-  justification: Intégration de la sécurité (Security by design).
-  etat: Non initié
-  maturite: 1
-  preuve: Aucune procédure formalisée
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '5.9'
-  nom: Inventaire des informations et autres actifs
+  nom: Inventaire des informations et des autres actifs associés
+  description: Un inventaire des informations et des autres actifs associés, y compris
+    leurs propriétaires, doit être élaboré...
   theme: Organisationnel
   applicable: true
-  justification: Base de l'analyse de risque.
-  etat: En place
-  maturite: 3
-  preuve: Fichier assets.yaml
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '5.10'
-  nom: Utilisation acceptable des actifs
+  nom: Utilisation acceptable des informations et des autres actifs associés
+  description: Des règles relatives à l'utilisation acceptable et aux procédures de
+    traitement...
   theme: Organisationnel
   applicable: true
-  justification: Encadrement de l'utilisation des postes et équipements.
-  etat: En place
-  maturite: 4
-  preuve: Charte d'utilisation du SI signée
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.11'
+  nom: Restitution des actifs
+  description: Le personnel et les autres parties intéressées concernés doivent restituer
+    tous les actifs...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.12'
+  nom: Classification des informations
+  description: Les informations doivent être classifiées selon les besoins de sécurité...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.13'
+  nom: Marquage des informations
+  description: Un ensemble approprié de procédures de marquage des informations doit
+    être élaboré...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.14'
+  nom: Transfert d'information
+  description: Des règles, procédures ou accords relatifs au transfert d'informations
+    doivent être mis en place...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '5.15'
   nom: Contrôle d'accès
+  description: Des règles de contrôle d'accès aux informations et aux autres actifs
+    associés doivent être établies...
   theme: Organisationnel
   applicable: true
-  justification: Gestion stricte des accès au PACS et DPI.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Politique d'accès, mais révisions incomplètes
+  preuve: A documenter
+- id: '5.16'
+  nom: Gestion des identités
+  description: Le cycle de vie complet des identités doit être géré.
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.17'
+  nom: Informations d'authentification
+  description: L'attribution et la gestion des informations d'authentification doivent
+    être contrôlées...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.18'
+  nom: Droits d'accès
+  description: Les droits d'accès aux informations et aux autres actifs associés doivent
+    être provisionnés...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '5.19'
-  nom: Sécurité des informations dans les relations fournisseurs
+  nom: Sécurité de l'information dans les relations avec les fournisseurs
+  description: Des processus et des procédures doivent être définis et mis en œuvre
+    pour gérer les risques...
   theme: Organisationnel
   applicable: true
-  justification: Contrôle des éditeurs PACS et mainteneurs.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Contrats avec clauses cyber, mais sans audit
+  preuve: A documenter
+- id: '5.20'
+  nom: Prise en compte de la sécurité de l'information dans les contrats fournisseurs
+  description: Les exigences pertinentes en matière de sécurité de l'information doivent
+    être établies...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.21'
+  nom: Gestion de la sécurité de l'information dans la chaîne d'approvisionnement
+    des TIC
+  description: Des processus et des procédures doivent être définis et mis en œuvre...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.22'
+  nom: Surveillance, révision et gestion du changement des services fournisseurs
+  description: L'organisation doit régulièrement surveiller, réviser, évaluer et gérer
+    les changements...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.23'
+  nom: Sécurité de l'information pour l'utilisation de services cloud
+  description: Les processus d'acquisition, d'utilisation, de gestion et de cessation
+    des services cloud...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '5.24'
-  nom: Gestion des incidents de cybersécurité
+  nom: Planification et préparation de la gestion des incidents de sécurité de l'information
+  description: L'organisation doit planifier et se préparer à gérer les incidents...
   theme: Organisationnel
   applicable: true
-  justification: 'Réponse aux attaques (ex: ransomware).'
-  etat: En place
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
   maturite: 2
-  preuve: Procédure P-INC-01, mais non testée
+  preuve: A documenter
+- id: '5.25'
+  nom: Évaluation et décision sur les événements de sécurité de l'information
+  description: L'organisation doit évaluer les événements de sécurité de l'information...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.26'
+  nom: Réponse aux incidents de sécurité de l'information
+  description: Les incidents de sécurité de l'information doivent faire l'objet d'une
+    réponse...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.27'
+  nom: Apprentissage des incidents de sécurité de l'information
+  description: Les connaissances acquises à partir des incidents de sécurité de l'information
+    doivent être utilisées...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.28'
+  nom: Collecte de preuves
+  description: L'organisation doit établir et mettre en œuvre des procédures pour
+    l'identification...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '5.29'
-  nom: Continuité de la sécurité de l'information
+  nom: Sécurité de l'information lors de perturbations
+  description: L'organisation doit planifier comment maintenir la sécurité de l'information...
   theme: Organisationnel
   applicable: true
-  justification: Maintien de la sécurité en cas de crise.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: PRA technique existant, PCA métier à revoir
-- id: '8.1'
-  nom: Appareils terminaux (Endpoint devices)
-  theme: Technologique
+  preuve: A documenter
+- id: '5.30'
+  nom: Préparation des TIC pour la continuité d'activité
+  description: La préparation des TIC doit être planifiée, mise en œuvre, maintenue
+    et testée...
+  theme: Organisationnel
   applicable: true
-  justification: Protection des postes radiologues.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Antivirus standard, pas d'EDR
-- id: '8.2'
-  nom: Droits d'accès privilégiés
-  theme: Technologique
+  preuve: A documenter
+- id: '5.31'
+  nom: Exigences légales, réglementaires et contractuelles
+  description: Les exigences légales, réglementaires et contractuelles pertinentes
+    à la sécurité...
+  theme: Organisationnel
   applicable: true
-  justification: Protection des comptes admins du PACS/Domaine.
-  etat: Partiel
-  maturite: 1
-  preuve: Comptes partagés sur certains équipements
-- id: '8.3'
-  nom: Restriction d'accès à l'information
-  theme: Technologique
-  applicable: true
-  justification: Cloisonnement des dossiers patients.
-  etat: En place
-  maturite: 3
-  preuve: Droits RBAC dans le DPI
-- id: '8.4'
-  nom: Accès au code source
-  theme: Technologique
-  applicable: false
-  justification: Le centre ne développe pas de logiciels.
-  etat: N/A
-  maturite: 0
-  preuve: Exclusion validée par la direction
-- id: '8.5'
-  nom: Authentification sécurisée
-  theme: Technologique
-  applicable: true
-  justification: Protection contre les vols de mots de passe.
-  etat: Non initié
-  maturite: 1
-  preuve: MFA non déployé
-- id: '8.7'
-  nom: Protection contre les logiciels malveillants
-  theme: Technologique
-  applicable: true
-  justification: Lutte contre les ransomwares.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Antivirus déployé mais non géré centralement
-- id: '8.8'
-  nom: Gestion des vulnérabilités techniques
-  theme: Technologique
+  preuve: A documenter
+- id: '5.32'
+  nom: Droits de propriété intellectuelle
+  description: L'organisation doit mettre en œuvre des procédures appropriées pour
+    protéger les droits...
+  theme: Organisationnel
   applicable: true
-  justification: Patch management des serveurs et scanners.
-  etat: Partiel
-  maturite: 1
-  preuve: Scanners médicaux obsolètes (Win 7)
-- id: '8.9'
-  nom: Gestion des configurations
-  theme: Technologique
-  applicable: true
-  justification: Durcissement des systèmes.
-  etat: Non initié
-  maturite: 1
-  preuve: Installations par défaut, pas de master
-- id: '8.10'
-  nom: Suppression de l'information
-  theme: Technologique
-  applicable: true
-  justification: Purge des anciens dossiers selon réglementation.
-  etat: En place
-  maturite: 3
-  preuve: Script de purge > 10 ans sur le PACS
-- id: '8.11'
-  nom: Masquage des données
-  theme: Technologique
-  applicable: true
-  justification: Anonymisation pour recherche/téléradiologie.
-  etat: En place
-  maturite: 3
-  preuve: Module d'anonymisation DICOM actif
-- id: '8.12'
-  nom: Prévention des fuites de données (DLP)
-  theme: Technologique
-  applicable: true
-  justification: Éviter l'exfiltration de données patients.
-  etat: Non initié
-  maturite: 0
-  preuve: Aucun outil DLP
-- id: '8.13'
-  nom: Sauvegarde de l'information
-  theme: Technologique
-  applicable: true
-  justification: Protection contre les ransomwares.
-  etat: En place
-  maturite: 3
-  preuve: Sauvegardes 3-2-1 chez l'hébergeur HDS
-- id: '8.16'
-  nom: Activités de surveillance (Monitoring)
-  theme: Technologique
-  applicable: true
-  justification: Détection d'intrusions (SIEM).
-  etat: Non initié
-  maturite: 0
-  preuve: Pas de centralisation des logs
-- id: '8.20'
-  nom: Sécurité des réseaux
-  theme: Technologique
-  applicable: true
-  justification: Segmentation des modalités d'imagerie.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: VLANs existants mais règles de firewall permissives
-- id: '8.24'
-  nom: Cryptographie
-  theme: Technologique
+  preuve: A documenter
+- id: '5.33'
+  nom: Protection des enregistrements
+  description: Les enregistrements doivent être protégés contre la perte, la destruction...
+  theme: Organisationnel
   applicable: true
-  justification: Chiffrement des données en transit et au repos.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: VPN pour téléradiologie (TLS), mais PACS non chiffré au repos
+  preuve: A documenter
+- id: '5.34'
+  nom: Confidentialité et protection des informations personnelles
+  description: L'organisation doit identifier et satisfaire aux exigences relatives
+    à la préservation...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.35'
+  nom: Révision indépendante de la sécurité de l'information
+  description: L'approche de l'organisation en matière de gestion de la sécurité de
+    l'information...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.36'
+  nom: Conformité aux politiques, règles et normes de sécurité de l'information
+  description: La conformité à la politique de sécurité de l'information...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '5.37'
+  nom: Procédures d'exploitation documentées
+  description: Les procédures d'exploitation relatives aux installations de traitement
+    de l'information...
+  theme: Organisationnel
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '6.1'
-  nom: Criblage (Screening)
+  nom: Sélection du personnel
+  description: Les vérifications des antécédents de tous les candidats au recrutement
+    doivent être effectuées...
   theme: Personnes
   applicable: true
-  justification: Vérification des antécédents du personnel.
-  etat: En place
-  maturite: 3
-  preuve: Procédure RH
-- id: '6.2'
-  nom: Termes et conditions d'embauche
-  theme: Personnes
-  applicable: true
-  justification: Contrats incluant les clauses de sécurité.
-  etat: En place
-  maturite: 4
-  preuve: Contrat de travail type
-- id: '6.3'
-  nom: Sensibilisation, formation et éducation à la SSI
-  theme: Personnes
-  applicable: true
-  justification: Formation contre le phishing.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Campagnes annuelles
+  preuve: A documenter
+- id: '6.2'
+  nom: Conditions d'emploi
+  description: Les accords contractuels avec le personnel et les sous-traitants doivent
+    énoncer leurs responsabilités...
+  theme: Personnes
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '6.3'
+  nom: Sensibilisation, éducation et formation à la sécurité de l'information
+  description: Tout le personnel de l'organisation et les parties intéressées pertinentes
+    doivent recevoir...
+  theme: Personnes
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '6.4'
   nom: Processus disciplinaire
+  description: Un processus disciplinaire doit être formalisé et communiqué...
   theme: Personnes
   applicable: true
-  justification: Sanctions en cas de non-respect.
-  etat: En place
-  maturite: 3
-  preuve: Règlement intérieur
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '6.5'
-  nom: Responsabilités après la fin de contrat
+  nom: Responsabilités après la fin ou le changement d'emploi
+  description: Les responsabilités et obligations en matière de sécurité de l'information
+    qui demeurent valables...
   theme: Personnes
   applicable: true
-  justification: Restitution du matériel.
-  etat: En place
-  maturite: 3
-  preuve: Checklist RH de départ
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '6.6'
-  nom: Accords de confidentialité
+  nom: Accords de confidentialité ou de non-divulgation
+  description: Des accords de confidentialité ou de non-divulgation reflétant les
+    besoins de l'organisation...
   theme: Personnes
   applicable: true
-  justification: Signature des NDAs par les partenaires.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Manque sur certains sous-traitants
+  preuve: A documenter
 - id: '6.7'
-  nom: Télétravail
+  nom: Travail à distance
+  description: Lorsque le personnel travaille à distance, des mesures de sécurité
+    doivent être mises en œuvre...
   theme: Personnes
   applicable: true
-  justification: Règles pour le téléradiologue.
-  etat: En place
-  maturite: 3
-  preuve: Charte télétravail
-- id: '6.8'
-  nom: Signalement des événements de sécurité
-  theme: Personnes
-  applicable: true
-  justification: Déclaration des incidents.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Formulaire intranet peu utilisé
+  preuve: A documenter
+- id: '6.8'
+  nom: Signalement des événements de sécurité de l'information
+  description: L'organisation doit mettre à disposition du personnel un mécanisme
+    lui permettant de signaler...
+  theme: Personnes
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '7.1'
   nom: Périmètres de sécurité physique
+  description: Des périmètres de sécurité doivent être définis et utilisés pour protéger
+    les zones...
   theme: Physique
   applicable: true
-  justification: Accès réglementé aux salles d'imagerie.
-  etat: En place
-  maturite: 4
-  preuve: Badges d'accès
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '7.2'
-  nom: Contrôles d'entrée physiques
+  nom: Entrée physique
+  description: Les zones sécurisées doivent être protégées par des contrôles d'entrée
+    appropriés...
   theme: Physique
   applicable: true
-  justification: Contrôle à l'accueil du centre.
-  etat: En place
-  maturite: 4
-  preuve: Vigile et accueil
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
 - id: '7.3'
   nom: Sécurisation des bureaux, salles et installations
+  description: Une sécurité physique doit être conçue et mise en œuvre pour les bureaux,
+    les salles...
   theme: Physique
   applicable: true
-  justification: Bureaux des radiologues fermés.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Portes parfois ouvertes
+  preuve: A documenter
 - id: '7.4'
   nom: Surveillance physique de la sécurité
+  description: Les locaux doivent être surveillés en permanence contre les accès non
+    autorisés.
   theme: Physique
   applicable: true
-  justification: Caméras dans les zones communes.
-  etat: En place
-  maturite: 3
-  preuve: Vidéosurveillance
-- id: '7.8'
-  nom: Emplacement et protection des équipements
-  theme: Physique
-  applicable: true
-  justification: Baie informatique sécurisée.
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
   etat: Partiel
   maturite: 2
-  preuve: Local climatisé mais partagé
-- id: '7.10'
-  nom: Supports de stockage
-  theme: Physique
-  applicable: true
-  justification: Gestion des disques durs PACS.
-  etat: En place
-  maturite: 3
-  preuve: Procédure de destruction certifiée
+  preuve: A documenter
 - id: '7.14'
   nom: Élimination sécurisée
+  description: L'élimination du matériel contenant des données doit être sécurisée.
   theme: Physique
   applicable: true
-  justification: Rebut du matériel médical obsolète.
-  etat: En place
-  maturite: 3
-  preuve: Contrat avec prestataire DEEE
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.1'
+  nom: Appareils terminaux
+  description: Les terminaux utilisateurs doivent être protégés.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.5'
+  nom: Authentification sécurisée
+  description: L'authentification doit être forte.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.7'
+  nom: Protection contre les logiciels malveillants
+  description: Les systèmes doivent être protégés contre les malwares.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.8'
+  nom: Gestion des vulnérabilités techniques
+  description: Les failles doivent être identifiées et corrigées.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.9'
+  nom: Gestion des configurations
+  description: Les systèmes doivent être durcis.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.10'
+  nom: Suppression de l'information
+  description: L'information ne doit être conservée que si nécessaire.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.11'
+  nom: Masquage des données
+  description: Les données sensibles doivent être anonymisées si applicable.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.12'
+  nom: Prévention des fuites de données (DLP)
+  description: Des outils DLP doivent être mis en place.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.13'
+  nom: Sauvegarde de l'information
+  description: Les données doivent être sauvegardées régulièrement.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.16'
+  nom: Activités de surveillance
+  description: Les événements de sécurité doivent être surveillés.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.20'
+  nom: Sécurité des réseaux
+  description: Le réseau doit être segmenté et sécurisé.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter
+- id: '8.24'
+  nom: Cryptographie
+  description: La cryptographie doit être utilisée pour protéger les données.
+  theme: Technologique
+  applicable: true
+  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  etat: Partiel
+  maturite: 2
+  preuve: A documenter

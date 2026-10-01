@@ -58,7 +58,7 @@ elif page == "SoA (ISO 27001)":
     if controls_data:
         df_ctrl = pd.DataFrame(controls_data)
         # On réorganise les colonnes pour que ce soit lisible
-        cols = ["id", "nom", "theme", "applicable", "etat", "maturite", "justification", "preuve"]
+        cols = ["id", "nom", "description", "theme", "applicable", "etat", "maturite", "justification", "preuve"]
         st.dataframe(df_ctrl[cols], use_container_width=True)
 
 elif page == "Conformité Globale":
