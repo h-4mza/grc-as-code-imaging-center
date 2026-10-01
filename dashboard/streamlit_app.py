@@ -193,8 +193,8 @@ elif page == "Rapports Documentaires":
             html_content = f"""
             <div class="report-page">
                 <div class="report-header">
-                    <strong>Aéroport Tanger Ibn Batouta — ONDA</strong><br>
-                    Référence : ONDA-TNG-SEC-CYBER-001 | Version : v1.5 — Juin 2026<br>
+                    <strong>Centre d'Imagerie Médicale</strong><br>
+                    Référence : CIM-SEC-CYBER-001 | Version : v1.5 — Juin 2026<br>
                     Classification : CONFIDENTIEL
                 </div>
                 
@@ -208,7 +208,7 @@ elif page == "Rapports Documentaires":
                 <p style="text-align: justify; font-size: 14px; line-height: 1.6; color: #555;">
                     Le présent document constitue la Déclaration d'Applicabilité (SoA) requise par l'exigence 6.1.3 d) de la norme ISO/IEC 27001:2022. 
                     Il identifie les contrôles de sécurité nécessaires pour traiter les risques liés à la sécurité de l'information pour l'infrastructure 
-                    de l'Aéroport Tanger Ibn Batouta, justifie leur inclusion ou exclusion, et précise leur statut d'implémentation actuel.
+                    du Centre d'Imagerie Médicale, justifie leur inclusion ou exclusion, et précise leur statut d'implémentation actuel.
                 </p>
             """
             

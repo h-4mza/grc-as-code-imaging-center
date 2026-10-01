@@ -5,7 +5,7 @@ controls:
     et leur mise en œuvre doivent être définis, approuvés par la direction...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -15,7 +15,7 @@ controls:
     doivent être définis et attribués...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -25,7 +25,7 @@ controls:
     doivent être séparés.
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -35,7 +35,7 @@ controls:
     de l'information...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -45,7 +45,7 @@ controls:
     compétentes.
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -55,7 +55,7 @@ controls:
     d'intérêt particuliers...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -65,7 +65,7 @@ controls:
     doivent être recueillies...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -75,7 +75,7 @@ controls:
     projet.
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -85,7 +85,7 @@ controls:
     leurs propriétaires, doit être élaboré...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -95,7 +95,7 @@ controls:
     traitement...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -105,7 +105,7 @@ controls:
     tous les actifs...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -114,7 +114,7 @@ controls:
   description: Les informations doivent être classifiées selon les besoins de sécurité...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -124,7 +124,7 @@ controls:
     être élaboré...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -134,7 +134,7 @@ controls:
     doivent être mis en place...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -144,7 +144,7 @@ controls:
     associés doivent être établies...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -153,7 +153,7 @@ controls:
   description: Le cycle de vie complet des identités doit être géré.
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -163,7 +163,7 @@ controls:
     être contrôlées...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -173,7 +173,7 @@ controls:
     être provisionnés...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -183,7 +183,7 @@ controls:
     pour gérer les risques...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -193,7 +193,7 @@ controls:
     être établies...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -203,7 +203,7 @@ controls:
   description: Des processus et des procédures doivent être définis et mis en œuvre...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -213,7 +213,7 @@ controls:
     les changements...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -223,7 +223,7 @@ controls:
     des services cloud...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -232,7 +232,7 @@ controls:
   description: L'organisation doit planifier et se préparer à gérer les incidents...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -241,7 +241,7 @@ controls:
   description: L'organisation doit évaluer les événements de sécurité de l'information...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -251,7 +251,7 @@ controls:
     réponse...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -261,7 +261,7 @@ controls:
     doivent être utilisées...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -271,7 +271,7 @@ controls:
     l'identification...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -280,7 +280,7 @@ controls:
   description: L'organisation doit planifier comment maintenir la sécurité de l'information...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -290,7 +290,7 @@ controls:
     et testée...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -300,7 +300,7 @@ controls:
     à la sécurité...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -310,7 +310,7 @@ controls:
     protéger les droits...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -319,7 +319,7 @@ controls:
   description: Les enregistrements doivent être protégés contre la perte, la destruction...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -329,7 +329,7 @@ controls:
     à la préservation...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -339,7 +339,7 @@ controls:
     l'information...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -348,7 +348,7 @@ controls:
   description: La conformité à la politique de sécurité de l'information...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -358,7 +358,7 @@ controls:
     de l'information...
   theme: Organisationnel
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -368,7 +368,7 @@ controls:
     doivent être effectuées...
   theme: Personnes
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -378,7 +378,7 @@ controls:
     énoncer leurs responsabilités...
   theme: Personnes
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -388,7 +388,7 @@ controls:
     doivent recevoir...
   theme: Personnes
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -397,7 +397,7 @@ controls:
   description: Un processus disciplinaire doit être formalisé et communiqué...
   theme: Personnes
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -407,7 +407,7 @@ controls:
     qui demeurent valables...
   theme: Personnes
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -417,7 +417,7 @@ controls:
     besoins de l'organisation...
   theme: Personnes
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -427,7 +427,7 @@ controls:
     doivent être mises en œuvre...
   theme: Personnes
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -437,7 +437,7 @@ controls:
     lui permettant de signaler...
   theme: Personnes
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -447,7 +447,7 @@ controls:
     les zones...
   theme: Physique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -457,7 +457,7 @@ controls:
     appropriés...
   theme: Physique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -467,7 +467,7 @@ controls:
     les salles...
   theme: Physique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -477,7 +477,7 @@ controls:
     autorisés.
   theme: Physique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -486,7 +486,7 @@ controls:
   description: L'élimination du matériel contenant des données doit être sécurisée.
   theme: Physique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -495,7 +495,7 @@ controls:
   description: Les terminaux utilisateurs doivent être protégés.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -504,7 +504,7 @@ controls:
   description: L'authentification doit être forte.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -513,7 +513,7 @@ controls:
   description: Les systèmes doivent être protégés contre les malwares.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -522,7 +522,7 @@ controls:
   description: Les failles doivent être identifiées et corrigées.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -531,7 +531,7 @@ controls:
   description: Les systèmes doivent être durcis.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -540,7 +540,7 @@ controls:
   description: L'information ne doit être conservée que si nécessaire.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -549,7 +549,7 @@ controls:
   description: Les données sensibles doivent être anonymisées si applicable.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -558,7 +558,7 @@ controls:
   description: Des outils DLP doivent être mis en place.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -567,7 +567,7 @@ controls:
   description: Les données doivent être sauvegardées régulièrement.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -576,7 +576,7 @@ controls:
   description: Les événements de sécurité doivent être surveillés.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -585,7 +585,7 @@ controls:
   description: Le réseau doit être segmenté et sécurisé.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter
@@ -594,7 +594,7 @@ controls:
   description: La cryptographie doit être utilisée pour protéger les données.
   theme: Technologique
   applicable: true
-  justification: Applicable dans le cadre de la conformité ONDA-TNG-SEC.
+  justification: Applicable pour la protection des données de santé du centre d'imagerie.
   etat: Partiel
   maturite: 2
   preuve: A documenter

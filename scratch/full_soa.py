@@ -82,7 +82,7 @@ for c in raw_controls:
         "description": c[2],
         "theme": c[3],
         "applicable": True,
-        "justification": "Applicable dans le cadre de la conformité ONDA-TNG-SEC.",
+        "justification": "Applicable pour la protection des données de santé du centre d'imagerie.",
         "etat": "Partiel",
         "maturite": 2,
         "preuve": "A documenter"
