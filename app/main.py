@@ -28,7 +28,7 @@ def get_risks(db: Session = Depends(get_db)):
         scores = get_risk_scores(gravite=sc.gravite, vraisemblance=sc.vraisemblance, maturity_avg=computed_maturity)
         results.append({
             "id": sc.id,
-            "nom": sc.name,
+            "nom": sc.nom,
             "scores": scores,
             "constats_ouverts": len(findings)
         })
@@ -51,11 +51,22 @@ def get_kpi_overview(db: Session = Depends(get_db)):
     total_findings = db.query(Finding).count()
     total_treatments = db.query(Treatment).count()
     
-    # On recalcule les risques critiques pour la démo
     risques_critiques = 0
-    for sc in db.query(ScenarioOperationnel).all():
-        scores = get_risk_scores(sc.gravite, sc.vraisemblance, 2.0)
-        if scores["niveau_residuel"] == "Critique" or scores["niveau_inherent"] == "Critique":
+    scenarios = db.query(ScenarioOperationnel).all()
+    
+    # Calculate finding stats
+    findings_stats = {"error": 0, "warning": 0, "info": 0}
+    for f_obj in db.query(Finding).all():
+        findings_stats[f_obj.severite] = findings_stats.get(f_obj.severite, 0) + 1
+        
+    for sc in scenarios:
+        findings = db.query(Finding).filter(Finding.risks.contains(sc)).all()
+        errors = len([f for f in findings if f.severite == 'error'])
+        warnings = len([f for f in findings if f.severite == 'warning'])
+        computed_maturity = max(0.0, 3.0 - (errors * 1.0) - (warnings * 0.5))
+        
+        scores = get_risk_scores(sc.gravite, sc.vraisemblance, computed_maturity)
+        if scores["niveau_residuel"] == "Critique":
             risques_critiques += 1
 
     return {
@@ -63,9 +74,9 @@ def get_kpi_overview(db: Session = Depends(get_db)):
         "risques_critiques": risques_critiques,
         "controls_en_place_pct": round((controls_en_place / total_controls * 100) if total_controls else 0),
         "total_findings": total_findings,
-        "total_treatments": total_treatments
+        "total_treatments": total_treatments,
+        "findings_stats": findings_stats
     }
-
 @app.get("/kpi/heatmap")
 def get_kpi_heatmap(db: Session = Depends(get_db)):
     from app.models import Finding
@@ -80,7 +91,7 @@ def get_kpi_heatmap(db: Session = Depends(get_db)):
         scores = get_risk_scores(sc.gravite, sc.vraisemblance, computed_maturity)
         data.append({
             "id": sc.id,
-            "nom": sc.name,
+            "nom": sc.nom,
             "gravite": sc.gravite,
             "vraisemblance_inherente": sc.vraisemblance,
             "score_inherent": scores["score_inherent"],
@@ -106,7 +117,7 @@ def get_kpi_soa(db: Session = Depends(get_db)):
 def get_kpi_treatments(db: Session = Depends(get_db)):
     from app.models import Treatment
     treatments = db.query(Treatment).all()
-    return [{"id": t.id, "nom": t.name, "responsable": t.responsable, "echeance": t.echeance, "jira": t.jira_key} for t in treatments]
+    return [{"id": t.id, "nom": t.nom, "responsable": t.responsable, "echeance": t.echeance, "jira": t.jira_key} for t in treatments]
 
 @app.get("/kpi/compliance")
 def get_kpi_compliance(db: Session = Depends(get_db)):

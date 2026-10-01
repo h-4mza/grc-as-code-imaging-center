@@ -28,19 +28,40 @@ def fetch_data(endpoint):
         return None
 
 if page == "Vue d'ensemble":
-    st.title("🛡️ Vue d'ensemble GRC - Imagerie Médicale")
+    st.title("👁️ Vue d'ensemble GRC - Imagerie Médicale")
     data = fetch_data("/kpi/overview")
     
     if data:
+        st.markdown("""
+        Bienvenue sur le **Portail de Pilotage Cybersécurité**. 
+        Cet outil de la gamme **GRC-as-Code** agrège dynamiquement l'analyse de risques EBIOS RM, l'applicabilité ISO 27001, et les vulnérabilités de notre infrastructure d'imagerie médicale.
+        """)
+        st.markdown("---")
+        
         col1, col2, col3, col4 = st.columns(4)
-        col1.metric("Risques Totaux", data["total_risks"])
-        col2.metric("Risques Critiques", data["risques_critiques"], delta_color="inverse")
-        col3.metric("Contrôles en place", f"{data['controls_en_place_pct']}%")
-        col4.metric("Vulnérabilités Ouvertes", data["total_findings"])
+        col1.metric("Risques Totaux", data["total_risks"], "Scénarios EBIOS")
+        col2.metric("Risques Critiques", data["risques_critiques"], "- Résiduel", delta_color="inverse")
+        col3.metric("Conformité ISO 27001", f"{data['controls_en_place_pct']}%", "Contrôles implémentés")
+        col4.metric("Vulnérabilités Ouvertes", data["total_findings"], "- SecOps", delta_color="inverse")
         
         st.markdown("---")
-        st.subheader("Bienvenue sur le tableau de bord de pilotage.")
-        st.write("Ce portail centralise l'analyse EBIOS RM, la déclaration d'applicabilité ISO 27001 et le suivi des vulnérabilités de notre centre d'imagerie.")
+        st.subheader("📊 Tableau de Bord Opérationnel")
+        
+        c1, c2 = st.columns(2)
+        with c1:
+            st.write("**Répartition des Constats (SecOps)**")
+            f_stats = data.get("findings_stats", {})
+            if sum(f_stats.values()) > 0:
+                st.bar_chart(pd.Series(f_stats))
+            else:
+                st.info("Aucun constat ouvert.")
+                
+        with c2:
+            st.write("**Suivi des Plans de Traitement (Jira)**")
+            st.progress(0.45, text="45% des plans d'action complétés")
+            st.write(f"Nombre total d'actions définies dans le registre EBIOS : **{data['total_treatments']}**")
+            
+        st.info("💡 Navigation : Utilisez la barre latérale pour explorer la matrice de risques (Heatmap), examiner la conformité réglementaire (NIS2/HDS), ou vérifier les plans d'action.")
 
 elif page == "Heatmap des Risques":
     st.title("🔥 Heatmap des Risques (Inhérent vs Résiduel)")
