@@ -41,6 +41,7 @@ services:
       - api
     volumes:
       - ./dashboard:/app/dashboard
+      - ./docs:/app/docs
 
 volumes:
   pgdata:

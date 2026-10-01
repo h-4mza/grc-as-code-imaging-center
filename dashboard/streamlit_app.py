@@ -8,7 +8,14 @@ API_URL = os.getenv("API_URL", "http://localhost:8000")
 st.set_page_config(page_title="GRC Dashboard", layout="wide", page_icon="🛡️")
 
 st.sidebar.title("Navigation GRC")
-page = st.sidebar.radio("Menu", ["Vue d'ensemble", "Heatmap des Risques", "SoA (ISO 27001)", "Conformité Globale", "Plan de Traitement"])
+page = st.sidebar.radio("Menu", [
+    "Vue d'ensemble", 
+    "Heatmap des Risques", 
+    "SoA (ISO 27001)", 
+    "Conformité Globale", 
+    "Plan de Traitement",
+    "Rapports Documentaires"
+])
 
 def fetch_data(endpoint):
     try:
@@ -77,3 +84,54 @@ elif page == "Plan de Traitement":
         df = pd.DataFrame(data)
         st.dataframe(df, use_container_width=True)
         st.success("Les traitements sont synchronisés avec Jira via GRC as-code.")
+
+elif page == "Rapports Documentaires":
+    st.title("📄 Rapports Documentaires GRC")
+    
+    st.write("Visualisation des rapports générés (EBIOS, ISO 27001).")
+    
+    report = st.selectbox("Sélectionnez un document à consulter", [
+        "Déclaration d'Applicabilité (SoA) - ISO 27001",
+        "EBIOS RM - Atelier 4 (Scénarios Opérationnels)"
+    ])
+    
+    file_map = {
+        "Déclaration d'Applicabilité (SoA) - ISO 27001": "docs/iso27001/soa.md",
+        "EBIOS RM - Atelier 4 (Scénarios Opérationnels)": "docs/ebios/atelier4.md"
+    }
+    
+    filepath = file_map.get(report)
+    
+    if report == "Déclaration d'Applicabilité (SoA) - ISO 27001":
+        st.markdown("---")
+        # On génère le document officiel dynamiquement à partir de la base de données
+        st.markdown("""
+        # ANNEXE A — NORME ISO 27001:2022
+        **Référentiel complet des 93 contrôles de sécurité**  
+        *Aéroport Tanger Ibn Batouta — ONDA*  
+        Référence Projet : ONDA-TNG-SEC-CYBER-001 | Version : v1.5 — Juin 2026
+        
+        *Document annexe au Dossier de Sécurité de la Solution Déployée — À titre de référence normative*
+        """)
+        
+        controls_data = fetch_data("/controls")
+        if controls_data:
+            import pandas as pd
+            df = pd.DataFrame(controls_data)
+            
+            for theme in df['theme'].unique():
+                theme_controls = df[df['theme'] == theme]
+                st.header(f"Contrôles : {theme} ({len(theme_controls)} contrôles)")
+                
+                for _, row in theme_controls.iterrows():
+                    st.markdown(f"### {row['id']} - {row['nom']}")
+                    st.write(f"**Description :** {row['description'] if row.get('description') else 'N/A'}")
+                    st.write(f"**État d'implémentation :** {row['etat']} (Maturité: {row['maturite']}/5)")
+                    st.write(f"**Preuve / Justification :** {row['preuve']} - {row['justification']}")
+                    st.markdown("---")
+    elif filepath and os.path.exists(filepath):
+        st.markdown("---")
+        with open(filepath, "r", encoding="utf-8") as f:
+            st.markdown(f.read())
+    else:
+        st.warning(f"Le fichier de rapport est introuvable sur le volume Docker.")
