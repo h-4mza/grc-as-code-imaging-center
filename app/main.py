@@ -119,3 +119,24 @@ def get_kpi_compliance(db: Session = Depends(get_db)):
         } 
         for r in results
     ]
+
+
+@app.get("/kpi/compliance_matrix")
+def get_kpi_compliance_matrix(db: Session = Depends(get_db)):
+    from app.models import ControlMapping, Control
+    mappings = db.query(
+        ControlMapping.control_id,
+        ControlMapping.framework,
+        ControlMapping.reference,
+        Control.status
+    ).join(Control, ControlMapping.control_id == Control.id).all()
+    
+    return [
+        {
+            "control_id": m[0],
+            "framework": m[1],
+            "reference": m[2],
+            "status": m[3]
+        }
+        for m in mappings
+    ]

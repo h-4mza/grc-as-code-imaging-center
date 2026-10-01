@@ -69,22 +69,45 @@ elif page == "SoA (ISO 27001)":
         st.dataframe(df_ctrl[cols], use_container_width=True)
 
 elif page == "Conformité Globale":
-    st.title("🎯 Mappings de Conformité (NIS2, ATT&CK, NIST)")
-    data = fetch_data("/kpi/compliance")
-    if data:
-        df = pd.DataFrame(data)
-        st.write("Taux de conformité réel calculé selon l'état d'implémentation des contrôles ISO 27001 mappés :")
+    st.title("🎯 Matrice de Couverture & Conformité")
+    
+    # 1. Retrieve aggregate data for Metrics
+    kpi_data = fetch_data("/kpi/compliance")
+    if kpi_data:
+        st.subheader("Taux d'implémentation par Framework")
+        cols = st.columns(len(kpi_data))
+        for i, kpi in enumerate(kpi_data):
+            cols[i].metric(
+                label=kpi["framework"],
+                value=f"{kpi['compliance_rate']}%",
+                delta=f"{kpi['implemented_controls']} / {kpi['total_mapped_controls']} en place"
+            )
+            
+    # 2. Retrieve detailed data for the Matrix
+    matrix_data = fetch_data("/kpi/compliance_matrix")
+    if matrix_data:
+        st.markdown("---")
+        st.subheader("Matrice Croisée (ISO 27001 vs Frameworks)")
+        df = pd.DataFrame(matrix_data)
         
-        # Format the display
-        df_display = df.copy()
-        df_display['Taux de Conformité'] = df_display['compliance_rate'].astype(str) + '%'
-        df_display = df_display[['framework', 'total_mapped_controls', 'implemented_controls', 'Taux de Conformité']]
-        df_display.columns = ['Framework', 'Total Contrôles', 'En Place', 'Conformité (%)']
+        # We pivot: index = control_id, columns = framework, values = reference.
+        df_pivot = df.pivot_table(
+            index="control_id", 
+            columns="framework", 
+            values="reference", 
+            aggfunc=lambda x: ' | '.join(x)
+        ).fillna("-")
         
-        st.dataframe(df_display, use_container_width=True)
-        
-        st.subheader("Progression par Framework")
-        st.bar_chart(df.set_index("framework")[["implemented_controls", "total_mapped_controls"]])
+        # Sort index numerically if possible
+        try:
+            df_pivot.index = pd.to_numeric(df_pivot.index, errors='coerce').fillna(df_pivot.index)
+            df_pivot = df_pivot.sort_index()
+            # Restore to string to look good
+            df_pivot.index = df_pivot.index.astype(str)
+        except:
+            df_pivot = df_pivot.sort_index()
+            
+        st.dataframe(df_pivot, use_container_width=True)
 
 elif page == "Plan de Traitement":
     st.title("🚀 Plan de Traitement de Sécurité (PTS)")
