@@ -118,8 +118,7 @@ elif page == "Plan de Traitement":
         st.dataframe(df, use_container_width=True)
         st.success("Les traitements sont synchronisés avec Jira via GRC as-code.")
 
-elif page == "Rapports Documentaires",
-    "Registre des Constats":
+elif page == "Rapports Documentaires":
     st.title("📄 Rapports Documentaires GRC")
     
     st.write("Visualisation des rapports générés (EBIOS, ISO 27001).")
