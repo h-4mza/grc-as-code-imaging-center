@@ -13,7 +13,41 @@ Un système de pilotage de la sécurité de l'information (GRC : Gouvernance, Ri
 
 ## 🏗️ Architecture Technique
 
-La solution repose sur une stack moderne, légère et orientée API :
+La solution repose sur une stack moderne, légère et orientée API. Le schéma ci-dessous illustre le flux de données de l'approche "GRC As-Code" :
+
+```mermaid
+flowchart TD
+    subgraph Data [GRC As-Code Data (Git)]
+        EBIOS[Fichiers YAML\nEBIOS RM]
+        ISO[Fichiers YAML\nISO 27001]
+        MAP[Mappings\nNIS2, NIST, ATT&CK]
+    end
+
+    subgraph Operations [Administration (DevSecOps)]
+        SARIF[Rapports de Scan\n(Format SARIF)]
+        CLI[CLI Typer\n'grc load' / 'grc ingest']
+    end
+
+    subgraph Core [Backend Services]
+        DB[(PostgreSQL\nBase GRC)]
+        API[FastAPI\nMoteur de règles & API]
+    end
+
+    subgraph Users [Interfaces]
+        DASH[Dashboard Streamlit\n(Heatmap, SoA, KPIs)]
+    end
+    
+    subgraph External [Outils Tiers]
+        JIRA[Jira / ITSM\n(Suivi des traitements)]
+    end
+
+    Data -->|Parsé par CLI| CLI
+    SARIF -->|Ingéré par CLI| CLI
+    CLI -->|Alimente| DB
+    DB <-->|Interroge| API
+    API <-->|Consomme les KPIs| DASH
+    API -->|Synchronise| JIRA
+```
 
 - **Base de données** : PostgreSQL (stockage relationnel des risques, contrôles, et mappings).
 - **Backend / API** : FastAPI (Python 3.11), exposant les endpoints de pilotage et les KPIs (`http://localhost:8000/docs`).
