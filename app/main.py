@@ -99,8 +99,23 @@ def get_kpi_treatments(db: Session = Depends(get_db)):
 
 @app.get("/kpi/compliance")
 def get_kpi_compliance(db: Session = Depends(get_db)):
-    from app.models import ControlMapping
-    from sqlalchemy import func
+    from app.models import ControlMapping, Control
+    from sqlalchemy import func, case
     
-    mappings = db.query(ControlMapping.framework, func.count(ControlMapping.id).label('total')).group_by(ControlMapping.framework).all()
-    return [{"framework": m[0], "total_mapped_controls": m[1]} for m in mappings]
+    results = db.query(
+        ControlMapping.framework,
+        func.count(ControlMapping.id).label('total'),
+        func.sum(
+            case((Control.status == 'implemented', 1), else_=0)
+        ).label('implemented')
+    ).join(Control, ControlMapping.control_id == Control.id).group_by(ControlMapping.framework).all()
+    
+    return [
+        {
+            "framework": r[0], 
+            "total_mapped_controls": r[1],
+            "implemented_controls": int(r[2] or 0),
+            "compliance_rate": round((int(r[2] or 0) / r[1] * 100)) if r[1] > 0 else 0
+        } 
+        for r in results
+    ]

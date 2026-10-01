@@ -69,13 +69,22 @@ elif page == "SoA (ISO 27001)":
         st.dataframe(df_ctrl[cols], use_container_width=True)
 
 elif page == "Conformité Globale":
-    st.title("🌍 Mappings de Conformité (NIS2, ATT&CK, NIST)")
+    st.title("🎯 Mappings de Conformité (NIS2, ATT&CK, NIST)")
     data = fetch_data("/kpi/compliance")
     if data:
         df = pd.DataFrame(data)
-        st.write("Couverture des frameworks de conformité à travers nos contrôles :")
-        st.dataframe(df, use_container_width=True)
-        st.bar_chart(df.set_index("framework"))
+        st.write("Taux de conformité réel calculé selon l'état d'implémentation des contrôles ISO 27001 mappés :")
+        
+        # Format the display
+        df_display = df.copy()
+        df_display['Taux de Conformité'] = df_display['compliance_rate'].astype(str) + '%'
+        df_display = df_display[['framework', 'total_mapped_controls', 'implemented_controls', 'Taux de Conformité']]
+        df_display.columns = ['Framework', 'Total Contrôles', 'En Place', 'Conformité (%)']
+        
+        st.dataframe(df_display, use_container_width=True)
+        
+        st.subheader("Progression par Framework")
+        st.bar_chart(df.set_index("framework")[["implemented_controls", "total_mapped_controls"]])
 
 elif page == "Plan de Traitement":
     st.title("🚀 Plan de Traitement de Sécurité (PTS)")
