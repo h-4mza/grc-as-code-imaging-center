@@ -44,3 +44,22 @@ class Atelier2(BaseModel):
     sources_risques: List[SourceRisque]
     objectifs_vises: List[ObjectifVise]
     couples_sr_ov: List[CoupleSROV]
+
+class PartiePrenante(BaseModel):
+    id: str = Field(..., description="Identifiant unique de la partie prenante")
+    nom: str = Field(..., description="Nom de la partie prenante")
+    type: str = Field(..., description="Type (Partenaire, fournisseur, etc.)")
+    niveau_menace: int = Field(..., ge=1, le=5, description="Niveau de menace perçu (1 à 5)")
+    dependance: str = Field(..., description="Niveau et nature de la dépendance")
+
+class ScenarioStrategique(BaseModel):
+    id: str = Field(..., description="Identifiant du scénario stratégique")
+    nom: str = Field(..., description="Nom du scénario")
+    srov_id: str = Field(..., description="ID du couple SR/OV associé")
+    partie_prenante_id: str = Field(..., description="ID de la partie prenante (vecteur)")
+    vraisemblance: int = Field(..., ge=1, le=5, description="Vraisemblance (1 à 5)")
+    description: str = Field(..., description="Description de l'attaque via l'écosystème")
+
+class Atelier3(BaseModel):
+    parties_prenantes: List[PartiePrenante]
+    scenarios_strategiques: List[ScenarioStrategique]
