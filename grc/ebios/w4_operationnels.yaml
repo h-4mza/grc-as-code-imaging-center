@@ -1,0 +1,80 @@
+scenarios_operationnels:
+  - id: sc_op_1
+    nom: "Phishing et déploiement de Ransomware"
+    sc_strat_id: "N/A (Accès direct)"
+    techniques_attack: ["T1566 (Phishing)", "T1078 (Valid Accounts)", "T1486 (Data Encrypted for Impact)"]
+    vraisemblance: 4
+    gravite: 5
+    description: "Envoi d'un email de phishing à un secrétaire médical, vol d'identifiants, puis déploiement d'un ransomware chiffrant le PACS."
+    
+  - id: sc_op_2
+    nom: "Exfiltration de données via faille VPN"
+    sc_strat_id: sc_strat_2
+    techniques_attack: ["T1190 (Exploit Public-Facing App)", "T1005 (Data from Local System)", "T1567 (Exfiltration Over Web Service)"]
+    vraisemblance: 4
+    gravite: 5
+    description: "Exploitation d'une vulnérabilité non patchée sur le pare-feu/VPN de téléradiologie pour accéder au RIS et exfiltrer les données."
+
+  - id: sc_op_3
+    nom: "Compromission de la chaîne logistique PACS"
+    sc_strat_id: sc_strat_1
+    techniques_attack: ["T1195 (Supply Chain Compromise)", "T1021 (Remote Services)", "T1486 (Data Encrypted)"]
+    vraisemblance: 3
+    gravite: 5
+    description: "L'éditeur du PACS est piraté, poussant une mise à jour malveillante qui chiffre automatiquement les bases de données du centre."
+
+  - id: sc_op_4
+    nom: "Attaque d'un équipement IRM via télémaintenance"
+    sc_strat_id: sc_strat_3
+    techniques_attack: ["T1078 (Valid Accounts)", "T1499 (Endpoint Denial of Service)", "T1190 (Exploit)"]
+    vraisemblance: 3
+    gravite: 5
+    description: "Utilisation d'identifiants de mainteneur volés pour accéder au réseau biomédical et paralyser le scanner IRM (OS Windows 7 vulnérable)."
+
+  - id: sc_op_5
+    nom: "Vol de données internes (Insider Threat)"
+    sc_strat_id: "N/A (Interne)"
+    techniques_attack: ["T1078 (Valid Accounts)", "T1213 (Data from Info Repository)", "T1052 (Exfiltration over Physical Medium)"]
+    vraisemblance: 3
+    gravite: 4
+    description: "Un employé télécharge massivement des dossiers patients depuis le DPI vers une clé USB."
+
+  - id: sc_op_6
+    nom: "Attaque DDoS sur la ligne Internet"
+    sc_strat_id: "N/A"
+    techniques_attack: ["T1498 (Network Denial of Service)"]
+    vraisemblance: 4
+    gravite: 4
+    description: "Saturation de la bande passante du centre, bloquant l'accès au service de téléradiologie et l'envoi des comptes rendus."
+
+  - id: sc_op_7
+    nom: "Rebond via une clinique partenaire"
+    sc_strat_id: sc_strat_4
+    techniques_attack: ["T1190 (Exploit)", "T1565 (Data Manipulation)"]
+    vraisemblance: 3
+    gravite: 4
+    description: "Un poste infecté dans une clinique voisine utilise la connexion VPN inter-sites pour altérer des comptes rendus médicaux dans le RIS."
+
+  - id: sc_op_8
+    nom: "Destruction des sauvegardes HDS"
+    sc_strat_id: sc_strat_5
+    techniques_attack: ["T1531 (Account Access Removal)", "T1485 (Data Destruction)"]
+    vraisemblance: 2
+    gravite: 5
+    description: "L'attaquant accède à la console cloud de l'hébergeur HDS et supprime les snapshots et sauvegardes du PACS."
+
+  - id: sc_op_9
+    nom: "Interception de trafic DICOM non chiffré"
+    sc_strat_id: "N/A"
+    techniques_attack: ["T1557 (Adversary-in-the-Middle)", "T1040 (Network Sniffing)"]
+    vraisemblance: 3
+    gravite: 4
+    description: "Écoute du trafic sur le réseau LAN interne pour intercepter des images médicales DICOM transmises en clair (HTTP/TCP standard)."
+
+  - id: sc_op_10
+    nom: "Compromission de compte Administrateur (Brute Force)"
+    sc_strat_id: "N/A"
+    techniques_attack: ["T1110 (Brute Force)", "T1078 (Valid Accounts)", "T1547 (Boot or Logon Autostart Execution)"]
+    vraisemblance: 4
+    gravite: 5
+    description: "Attaque par force brute sur un port RDP exposé, menant à la compromission d'un compte admin de domaine (absence de MFA)."

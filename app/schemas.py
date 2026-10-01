@@ -63,3 +63,15 @@ class ScenarioStrategique(BaseModel):
 class Atelier3(BaseModel):
     parties_prenantes: List[PartiePrenante]
     scenarios_strategiques: List[ScenarioStrategique]
+
+class ScenarioOperationnel(BaseModel):
+    id: str = Field(..., description="Identifiant du scénario opérationnel")
+    nom: str = Field(..., description="Nom du scénario")
+    sc_strat_id: str = Field(..., description="ID du scénario stratégique parent (ou N/A)")
+    techniques_attack: List[str] = Field(..., description="Liste des techniques MITRE ATT&CK")
+    vraisemblance: int = Field(..., ge=1, le=5, description="Vraisemblance évaluée (1 à 5)")
+    gravite: int = Field(..., ge=1, le=5, description="Gravité évaluée (1 à 5)")
+    description: str = Field(..., description="Description technique du mode opératoire")
+
+class Atelier4(BaseModel):
+    scenarios_operationnels: List[ScenarioOperationnel]
