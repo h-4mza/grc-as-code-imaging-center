@@ -75,3 +75,16 @@ class ScenarioOperationnel(BaseModel):
 
 class Atelier4(BaseModel):
     scenarios_operationnels: List[ScenarioOperationnel]
+
+class Control(BaseModel):
+    id: str = Field(..., description="ID du contrôle ISO 27001 (ex: 5.1)")
+    nom: str = Field(..., description="Nom du contrôle")
+    theme: str = Field(..., description="Thème (Organisationnel, Personnes, Physique, Technologique)")
+    applicable: bool = Field(..., description="Applicabilité du contrôle")
+    justification: str = Field(..., description="Justification d'applicabilité ou d'exclusion")
+    etat: str = Field(..., description="État de mise en œuvre (En place, Partiel, Non initié, N/A)")
+    maturite: int = Field(..., ge=0, le=5, description="Niveau de maturité (0 à 5)")
+    preuve: str = Field(..., description="Élément de preuve ou commentaire")
+
+class AnnexA(BaseModel):
+    controls: List[Control]

@@ -11,3 +11,8 @@ Cette documentation est générée à partir des fichiers Markdown situés dans 
 - [Atelier 3 : Scénarios Stratégiques](ebios/atelier3.md)
 - [Atelier 4 : Scénarios Opérationnels](ebios/atelier4.md)
 - Atelier 5 : Traitement du Risque (À venir)
+
+## ISO 27001
+
+- [Déclaration d'Applicabilité (SoA)](iso27001/soa.md)
+- Plan de Traitement (À venir)

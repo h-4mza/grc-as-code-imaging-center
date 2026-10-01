@@ -9,3 +9,5 @@ nav:
     - Atelier 2: ebios/atelier2.md
     - Atelier 3: ebios/atelier3.md
     - Atelier 4: ebios/atelier4.md
+  - ISO 27001:
+    - SoA (Déclaration Applicabilité): iso27001/soa.md

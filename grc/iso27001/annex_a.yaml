@@ -1,0 +1,209 @@
+controls:
+- id: '5.1'
+  nom: Politiques en matière de sécurité de l'information
+  theme: Organisationnel
+  applicable: true
+  justification: Nécessaire pour définir le cadre général.
+  etat: En place
+  maturite: 3
+  preuve: P-SSI-01 signée par la direction
+- id: '5.2'
+  nom: Rôles et responsabilités
+  theme: Organisationnel
+  applicable: true
+  justification: Nécessaire pour répartir les tâches (RSSI, DPO, admins).
+  etat: Partiel
+  maturite: 2
+  preuve: Fiches de poste, charte IT
+- id: '5.3'
+  nom: Séparation des tâches
+  theme: Organisationnel
+  applicable: true
+  justification: Évite les conflits d'intérêts et la fraude.
+  etat: En place
+  maturite: 3
+  preuve: Matrice des droits (Matrice_RBAC_v1.xlsx)
+- id: '5.7'
+  nom: Veille sur les menaces
+  theme: Organisationnel
+  applicable: true
+  justification: Identification des menaces du secteur santé.
+  etat: En place
+  maturite: 2
+  preuve: Abonnement CERT-Santé
+- id: '5.8'
+  nom: Sécurité dans la gestion de projet
+  theme: Organisationnel
+  applicable: true
+  justification: Intégration de la sécurité (Security by design).
+  etat: Non initié
+  maturite: 1
+  preuve: Aucune procédure formalisée
+- id: '5.9'
+  nom: Inventaire des informations et autres actifs
+  theme: Organisationnel
+  applicable: true
+  justification: Base de l'analyse de risque.
+  etat: En place
+  maturite: 3
+  preuve: Fichier assets.yaml
+- id: '5.10'
+  nom: Utilisation acceptable des actifs
+  theme: Organisationnel
+  applicable: true
+  justification: Encadrement de l'utilisation des postes et équipements.
+  etat: En place
+  maturite: 4
+  preuve: Charte d'utilisation du SI signée
+- id: '5.15'
+  nom: Contrôle d'accès
+  theme: Organisationnel
+  applicable: true
+  justification: Gestion stricte des accès au PACS et DPI.
+  etat: Partiel
+  maturite: 2
+  preuve: Politique d'accès, mais révisions incomplètes
+- id: '5.19'
+  nom: Sécurité des informations dans les relations fournisseurs
+  theme: Organisationnel
+  applicable: true
+  justification: Contrôle des éditeurs PACS et mainteneurs.
+  etat: Partiel
+  maturite: 2
+  preuve: Contrats avec clauses cyber, mais sans audit
+- id: '5.24'
+  nom: Gestion des incidents de cybersécurité
+  theme: Organisationnel
+  applicable: true
+  justification: 'Réponse aux attaques (ex: ransomware).'
+  etat: En place
+  maturite: 2
+  preuve: Procédure P-INC-01, mais non testée
+- id: '5.29'
+  nom: Continuité de la sécurité de l'information
+  theme: Organisationnel
+  applicable: true
+  justification: Maintien de la sécurité en cas de crise.
+  etat: Partiel
+  maturite: 2
+  preuve: PRA technique existant, PCA métier à revoir
+- id: '8.1'
+  nom: Appareils terminaux (Endpoint devices)
+  theme: Technologique
+  applicable: true
+  justification: Protection des postes radiologues.
+  etat: Partiel
+  maturite: 2
+  preuve: Antivirus standard, pas d'EDR
+- id: '8.2'
+  nom: Droits d'accès privilégiés
+  theme: Technologique
+  applicable: true
+  justification: Protection des comptes admins du PACS/Domaine.
+  etat: Partiel
+  maturite: 1
+  preuve: Comptes partagés sur certains équipements
+- id: '8.3'
+  nom: Restriction d'accès à l'information
+  theme: Technologique
+  applicable: true
+  justification: Cloisonnement des dossiers patients.
+  etat: En place
+  maturite: 3
+  preuve: Droits RBAC dans le DPI
+- id: '8.4'
+  nom: Accès au code source
+  theme: Technologique
+  applicable: false
+  justification: Le centre ne développe pas de logiciels.
+  etat: N/A
+  maturite: 0
+  preuve: Exclusion validée par la direction
+- id: '8.5'
+  nom: Authentification sécurisée
+  theme: Technologique
+  applicable: true
+  justification: Protection contre les vols de mots de passe.
+  etat: Non initié
+  maturite: 1
+  preuve: MFA non déployé
+- id: '8.7'
+  nom: Protection contre les logiciels malveillants
+  theme: Technologique
+  applicable: true
+  justification: Lutte contre les ransomwares.
+  etat: Partiel
+  maturite: 2
+  preuve: Antivirus déployé mais non géré centralement
+- id: '8.8'
+  nom: Gestion des vulnérabilités techniques
+  theme: Technologique
+  applicable: true
+  justification: Patch management des serveurs et scanners.
+  etat: Partiel
+  maturite: 1
+  preuve: Scanners médicaux obsolètes (Win 7)
+- id: '8.9'
+  nom: Gestion des configurations
+  theme: Technologique
+  applicable: true
+  justification: Durcissement des systèmes.
+  etat: Non initié
+  maturite: 1
+  preuve: Installations par défaut, pas de master
+- id: '8.10'
+  nom: Suppression de l'information
+  theme: Technologique
+  applicable: true
+  justification: Purge des anciens dossiers selon réglementation.
+  etat: En place
+  maturite: 3
+  preuve: Script de purge > 10 ans sur le PACS
+- id: '8.11'
+  nom: Masquage des données
+  theme: Technologique
+  applicable: true
+  justification: Anonymisation pour recherche/téléradiologie.
+  etat: En place
+  maturite: 3
+  preuve: Module d'anonymisation DICOM actif
+- id: '8.12'
+  nom: Prévention des fuites de données (DLP)
+  theme: Technologique
+  applicable: true
+  justification: Éviter l'exfiltration de données patients.
+  etat: Non initié
+  maturite: 0
+  preuve: Aucun outil DLP
+- id: '8.13'
+  nom: Sauvegarde de l'information
+  theme: Technologique
+  applicable: true
+  justification: Protection contre les ransomwares.
+  etat: En place
+  maturite: 3
+  preuve: Sauvegardes 3-2-1 chez l'hébergeur HDS
+- id: '8.16'
+  nom: Activités de surveillance (Monitoring)
+  theme: Technologique
+  applicable: true
+  justification: Détection d'intrusions (SIEM).
+  etat: Non initié
+  maturite: 0
+  preuve: Pas de centralisation des logs
+- id: '8.20'
+  nom: Sécurité des réseaux
+  theme: Technologique
+  applicable: true
+  justification: Segmentation des modalités d'imagerie.
+  etat: Partiel
+  maturite: 2
+  preuve: VLANs existants mais règles de firewall permissives
+- id: '8.24'
+  nom: Cryptographie
+  theme: Technologique
+  applicable: true
+  justification: Chiffrement des données en transit et au repos.
+  etat: Partiel
+  maturite: 2
+  preuve: VPN pour téléradiologie (TLS), mais PACS non chiffré au repos
