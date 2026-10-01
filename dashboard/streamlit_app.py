@@ -207,9 +207,12 @@ Document annexe au Dossier de Sécurité de la Solution Déployée — À titre 
 <table class="soa-table">
 <thead>
 <tr>
-<th style="width: 10%;">Contrôle</th>
-<th style="width: 25%;">Titre</th>
-<th style="width: 65%;">Description / Objectif</th>
+<th style="width: 7%;">Contrôle</th>
+<th style="width: 15%;">Titre</th>
+<th style="width: 38%;">Description</th>
+<th style="width: 10%;">Statut</th>
+<th style="width: 5%;">Maturité</th>
+<th style="width: 25%;">Justification</th>
 </tr>
 </thead>
 <tbody>
@@ -217,10 +220,19 @@ Document annexe au Dossier de Sécurité de la Solution Déployée — À titre 
                 
                 for _, row in theme_controls.iterrows():
                     desc = row['description'] if row.get('description') else 'Description non spécifiée.'
+                    etat = row.get('etat', 'Non défini')
+                    color = "#27ae60" if etat == "En place" else "#f39c12" if etat == "Partiel" else "#c0392b"
+                    badge = f'<span style="background-color: {color}; color: white; padding: 2px 6px; border-radius: 10px; font-size: 11px;">{etat}</span>'
+                    mat = f"{row.get('maturite', 0)}/5"
+                    justif = row.get('justification', '')
+                    
                     html_content += f"""<tr>
 <td style="font-weight: bold; color: #1c325c;">{row['id']}</td>
-<td style="font-weight: bold;">{row['nom']}</td>
-<td>{desc}</td>
+<td style="font-weight: bold; font-size: 12px;">{row['nom']}</td>
+<td style="font-size: 11px; color: #555;">{desc}</td>
+<td>{badge}</td>
+<td style="text-align: center; font-weight: bold; font-size: 12px;">{mat}</td>
+<td style="font-size: 11px; font-style: italic;">{justif}</td>
 </tr>
 """
                     
