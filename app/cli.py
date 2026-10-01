@@ -75,6 +75,11 @@ def load():
                 m["control_id"] = str(m["control_id"])
                 db.merge(models.ControlMapping(**m))
                 
+        # Load A5 (Traitements)
+        a5_data = load_yaml("grc/ebios/w5_traitements.yaml")
+        for tr in a5_data.get("traitements", []):
+            db.merge(models.Treatment(**tr))
+
         db.commit()
         typer.echo("Données GRC chargées avec succès en base !")
     except Exception as e:
@@ -98,9 +103,32 @@ def ingest(source: str = typer.Option(...), file: str = typer.Option(...)):
     finally:
         db.close()
 
+from app.services.jira_client import JiraClient
+
 @app.command()
 def export_jira(dry_run: bool = True):
-    typer.echo(f"Export Jira (dry-run: {dry_run})... (à implémenter)")
+    """Exporte les traitements vers Jira."""
+    typer.echo(f"Export Jira (dry-run: {dry_run})...")
+    db: Session = SessionLocal()
+    jira = JiraClient()
+    try:
+        # On sélectionne les traitements qui n'ont pas encore de clé Jira (idempotence)
+        treatments = db.query(models.Treatment).filter(models.Treatment.jira_key == None).all()
+        if not treatments:
+            typer.echo("Aucun nouveau traitement à exporter vers Jira.")
+            return
+
+        for t in treatments:
+            key = jira.export_treatment(t, t.risk, dry_run=dry_run)
+            if key and not dry_run:
+                t.jira_key = key
+                db.commit()
+            typer.echo(f"Traitement '{t.nom}' exporté avec succès -> {key}")
+            
+    except Exception as e:
+        typer.echo(f"Erreur lors de l'export Jira : {e}", err=True)
+    finally:
+        db.close()
 
 if __name__ == "__main__":
     app()

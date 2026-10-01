@@ -94,3 +94,12 @@ class ControlMapping(BaseModel):
     control_id: str = Field(..., description="ID du contrôle ISO")
     framework: str = Field(..., description="Nom du framework cible (NIS2, ATT&CK, NIST)")
     reference: str = Field(..., description="Référence ou article dans le framework cible")
+
+class Treatment(BaseModel):
+    id: str = Field(..., description="ID du traitement")
+    nom: str = Field(..., description="Nom de l'action de traitement")
+    risk_id: str = Field(..., description="ID du risque (scénario opérationnel) traité")
+    option: str = Field(..., description="Option de traitement (Réduire, Accepter, Éviter, Transférer)")
+    echeance: str = Field(..., description="Date d'échéance (YYYY-MM-DD)")
+    responsable: str = Field(..., description="Responsable de l'action")
+    jira_key: Optional[str] = Field(None, description="Clé du ticket Jira associé")

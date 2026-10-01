@@ -128,3 +128,15 @@ class ControlMapping(Base):
     reference = Column(String)
     
     control = relationship("Control")
+
+class Treatment(Base):
+    __tablename__ = "treatments"
+    id = Column(String, primary_key=True)
+    nom = Column(String, nullable=False)
+    risk_id = Column(String, ForeignKey("scenarios_operationnels.id"))
+    option = Column(String)
+    echeance = Column(String)
+    responsable = Column(String)
+    jira_key = Column(String, nullable=True)
+    
+    risk = relationship("ScenarioOperationnel")
