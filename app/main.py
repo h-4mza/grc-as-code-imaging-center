@@ -80,13 +80,6 @@ def get_kpi_heatmap(db: Session = Depends(get_db)):
 
 @app.get("/kpi/soa")
 def get_kpi_soa(db: Session = Depends(get_db)):
-    from sqlalchemy import func
-    controls = db.query(Control.theme, func.count(Control.id).label('total'),
-                        func.sum(case((Control.etat == 'En place', 1), else_=0)).label('en_place'))\
-                 .group_by(Control.theme).all()
-    
-    # workaround for case not imported
-    # Let's do it in memory for simplicity
     all_controls = db.query(Control).all()
     stats = {}
     for c in all_controls:
@@ -100,6 +93,7 @@ def get_kpi_soa(db: Session = Depends(get_db)):
 
 @app.get("/kpi/treatments")
 def get_kpi_treatments(db: Session = Depends(get_db)):
+    from app.models import Treatment
     treatments = db.query(Treatment).all()
     return [{"id": t.id, "nom": t.nom, "responsable": t.responsable, "echeance": t.echeance, "jira": t.jira_key} for t in treatments]
 
