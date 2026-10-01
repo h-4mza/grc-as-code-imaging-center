@@ -103,35 +103,157 @@ elif page == "Rapports Documentaires":
     filepath = file_map.get(report)
     
     if report == "Déclaration d'Applicabilité (SoA) - ISO 27001":
-        st.markdown("---")
-        # On génère le document officiel dynamiquement à partir de la base de données
+        # CSS pour un rendu de document officiel professionnel
         st.markdown("""
-        # ANNEXE A — NORME ISO 27001:2022
-        **Référentiel complet des 93 contrôles de sécurité**  
-        *Aéroport Tanger Ibn Batouta — ONDA*  
-        Référence Projet : ONDA-TNG-SEC-CYBER-001 | Version : v1.5 — Juin 2026
-        
-        *Document annexe au Dossier de Sécurité de la Solution Déployée — À titre de référence normative*
-        """)
+        <style>
+        .report-page {
+            background-color: white;
+            color: #333;
+            padding: 40px 60px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-bottom: 20px;
+        }
+        .report-header {
+            text-align: right;
+            font-size: 12px;
+            color: #7f8c8d;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 10px;
+            margin-bottom: 40px;
+        }
+        .report-title {
+            color: #2c3e50;
+            font-size: 32px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .report-subtitle {
+            color: #34495e;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .chapter-title {
+            color: #2980b9;
+            font-size: 22px;
+            border-bottom: 2px solid #2980b9;
+            padding-bottom: 5px;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+        .control-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-left: 4px solid #2980b9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+        .control-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .control-desc {
+            font-size: 14px;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 12px;
+        }
+        .control-meta {
+            font-size: 13px;
+            color: #444;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        .badge {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+            text-transform: uppercase;
+        }
+        .bg-success { background-color: #27ae60; }
+        .bg-warning { background-color: #f39c12; }
+        .bg-danger { background-color: #c0392b; }
+        </style>
+        """, unsafe_allow_html=True)
         
         controls_data = fetch_data("/controls")
         if controls_data:
             import pandas as pd
             df = pd.DataFrame(controls_data)
             
+            html_content = f"""
+            <div class="report-page">
+                <div class="report-header">
+                    <strong>Aéroport Tanger Ibn Batouta — ONDA</strong><br>
+                    Référence : ONDA-TNG-SEC-CYBER-001 | Version : v1.5 — Juin 2026<br>
+                    Classification : CONFIDENTIEL
+                </div>
+                
+                <div class="report-title">
+                    DÉCLARATION D'APPLICABILITÉ (SoA)
+                </div>
+                <div class="report-subtitle">
+                    Référentiel des 93 contrôles de sécurité — Norme ISO/IEC 27001:2022
+                </div>
+                
+                <p style="text-align: justify; font-size: 14px; line-height: 1.6; color: #555;">
+                    Le présent document constitue la Déclaration d'Applicabilité (SoA) requise par l'exigence 6.1.3 d) de la norme ISO/IEC 27001:2022. 
+                    Il identifie les contrôles de sécurité nécessaires pour traiter les risques liés à la sécurité de l'information pour l'infrastructure 
+                    de l'Aéroport Tanger Ibn Batouta, justifie leur inclusion ou exclusion, et précise leur statut d'implémentation actuel.
+                </p>
+            """
+            
+            # Map des thèmes aux chapitres ISO 27001:2022
+            chapitres = {
+                "Organisationnel": "Chapitre 5 — Contrôles Organisationnels",
+                "Personnes": "Chapitre 6 — Contrôles liés aux Personnes",
+                "Physique": "Chapitre 7 — Contrôles Physiques",
+                "Technologique": "Chapitre 8 — Contrôles Technologiques"
+            }
+            
             for theme in df['theme'].unique():
                 theme_controls = df[df['theme'] == theme]
-                st.header(f"Contrôles : {theme} ({len(theme_controls)} contrôles)")
+                titre_chapitre = chapitres.get(theme, f"Contrôles : {theme}")
+                
+                html_content += f'<div class="chapter-title">{titre_chapitre}</div>'
                 
                 for _, row in theme_controls.iterrows():
-                    st.markdown(f"### {row['id']} - {row['nom']}")
-                    st.write(f"**Description :** {row['description'] if row.get('description') else 'N/A'}")
-                    st.write(f"**État d'implémentation :** {row['etat']} (Maturité: {row['maturite']}/5)")
-                    st.write(f"**Preuve / Justification :** {row['preuve']} - {row['justification']}")
-                    st.markdown("---")
+                    etat = row['etat']
+                    badge_class = "bg-success" if etat == "En place" else "bg-warning" if etat == "Partiel" else "bg-danger"
+                    desc = row['description'] if row.get('description') else 'Description non spécifiée.'
+                    
+                    html_content += f"""
+                    <div class="control-box">
+                        <div class="control-title">{row['id']} - {row['nom']}</div>
+                        <div class="control-desc">« {desc} »</div>
+                        <div class="control-meta">
+                            <div>
+                                <strong>Statut d'implémentation :</strong> <span class="badge {badge_class}">{etat}</span>
+                            </div>
+                            <div>
+                                <strong>Niveau de Maturité :</strong> {row['maturite']}/5
+                            </div>
+                            <div style="grid-column: span 2; margin-top: 5px;">
+                                <strong>Justification / Preuves :</strong> {row['justification']} (Réf: {row['preuve']})
+                            </div>
+                        </div>
+                    </div>
+                    """
+                    
+            html_content += "</div>"
+            st.markdown(html_content, unsafe_allow_html=True)
     elif filepath and os.path.exists(filepath):
         st.markdown("---")
         with open(filepath, "r", encoding="utf-8") as f:
             st.markdown(f.read())
     else:
-        st.warning(f"Le fichier de rapport est introuvable sur le volume Docker.")
+        st.warning("Le fichier de rapport est introuvable sur le volume Docker.")
