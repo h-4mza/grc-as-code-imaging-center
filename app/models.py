@@ -108,6 +108,8 @@ class Control(Base):
     status = Column(String)
     maturity = Column(Integer)
     evidence = Column(String)
+    
+    mappings = relationship("ControlMapping", back_populates="control")
 
 finding_control_table = Table(
     'finding_control',
@@ -144,7 +146,7 @@ class ControlMapping(Base):
     framework = Column(String)
     reference = Column(String)
     
-    control = relationship("Control")
+    control = relationship("Control", back_populates="mappings")
 
 class Treatment(Base):
     __tablename__ = "treatments"
