@@ -67,6 +67,14 @@ def load():
             ctrl["id"] = str(ctrl["id"])
             db.merge(models.Control(**ctrl))
             
+        # Load Mappings
+        for mapping_file in ["iso_nis2.yaml", "iso_attack.yaml", "iso_nist.yaml"]:
+            mapping_data = load_yaml(f"grc/mappings/{mapping_file}")
+            for m in mapping_data.get("mappings", []):
+                # Ensure control_id is string
+                m["control_id"] = str(m["control_id"])
+                db.merge(models.ControlMapping(**m))
+                
         db.commit()
         typer.echo("Données GRC chargées avec succès en base !")
     except Exception as e:

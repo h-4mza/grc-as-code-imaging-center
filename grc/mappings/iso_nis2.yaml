@@ -1,0 +1,25 @@
+mappings:
+  - id: map_nis2_1
+    control_id: "5.1"
+    framework: "NIS2"
+    reference: "Article 21 (2) a - Politiques relatives à la sécurité des SI"
+  - id: map_nis2_2
+    control_id: "5.24"
+    framework: "NIS2"
+    reference: "Article 21 (2) b - Gestion des incidents"
+  - id: map_nis2_3
+    control_id: "5.29"
+    framework: "NIS2"
+    reference: "Article 21 (2) c - Continuité des activités (PRA/PCA)"
+  - id: map_nis2_4
+    control_id: "5.19"
+    framework: "NIS2"
+    reference: "Article 21 (2) d - Sécurité de la chaîne d'approvisionnement"
+  - id: map_nis2_5
+    control_id: "8.24"
+    framework: "NIS2"
+    reference: "Article 21 (2) h - Utilisation de la cryptographie et du chiffrement"
+  - id: map_nis2_6
+    control_id: "8.5"
+    framework: "NIS2"
+    reference: "Article 21 (2) j - MFA et communications sécurisées"

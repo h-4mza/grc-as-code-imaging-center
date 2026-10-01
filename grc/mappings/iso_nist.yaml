@@ -1,0 +1,25 @@
+mappings:
+  - id: map_nist_1
+    control_id: "5.1"
+    framework: "NIST CSF 2.0"
+    reference: "GV.OC-01 - Organizational policies are established"
+  - id: map_nist_2
+    control_id: "5.9"
+    framework: "NIST CSF 2.0"
+    reference: "ID.AM-01 - Inventories of hardware and software are maintained"
+  - id: map_nist_3
+    control_id: "8.1"
+    framework: "NIST CSF 2.0"
+    reference: "PR.AA-01 - Identities and credentials are managed"
+  - id: map_nist_4
+    control_id: "8.16"
+    framework: "NIST CSF 2.0"
+    reference: "DE.CM-01 - Networks and systems are monitored"
+  - id: map_nist_5
+    control_id: "5.24"
+    framework: "NIST CSF 2.0"
+    reference: "RS.MA-01 - Incidents are managed"
+  - id: map_nist_6
+    control_id: "8.13"
+    framework: "NIST CSF 2.0"
+    reference: "RC.RP-01 - Recovery plan is executed"

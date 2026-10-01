@@ -207,3 +207,123 @@ controls:
   etat: Partiel
   maturite: 2
   preuve: VPN pour téléradiologie (TLS), mais PACS non chiffré au repos
+- id: '6.1'
+  nom: Criblage (Screening)
+  theme: Personnes
+  applicable: true
+  justification: Vérification des antécédents du personnel.
+  etat: En place
+  maturite: 3
+  preuve: Procédure RH
+- id: '6.2'
+  nom: Termes et conditions d'embauche
+  theme: Personnes
+  applicable: true
+  justification: Contrats incluant les clauses de sécurité.
+  etat: En place
+  maturite: 4
+  preuve: Contrat de travail type
+- id: '6.3'
+  nom: Sensibilisation, formation et éducation à la SSI
+  theme: Personnes
+  applicable: true
+  justification: Formation contre le phishing.
+  etat: Partiel
+  maturite: 2
+  preuve: Campagnes annuelles
+- id: '6.4'
+  nom: Processus disciplinaire
+  theme: Personnes
+  applicable: true
+  justification: Sanctions en cas de non-respect.
+  etat: En place
+  maturite: 3
+  preuve: Règlement intérieur
+- id: '6.5'
+  nom: Responsabilités après la fin de contrat
+  theme: Personnes
+  applicable: true
+  justification: Restitution du matériel.
+  etat: En place
+  maturite: 3
+  preuve: Checklist RH de départ
+- id: '6.6'
+  nom: Accords de confidentialité
+  theme: Personnes
+  applicable: true
+  justification: Signature des NDAs par les partenaires.
+  etat: Partiel
+  maturite: 2
+  preuve: Manque sur certains sous-traitants
+- id: '6.7'
+  nom: Télétravail
+  theme: Personnes
+  applicable: true
+  justification: Règles pour le téléradiologue.
+  etat: En place
+  maturite: 3
+  preuve: Charte télétravail
+- id: '6.8'
+  nom: Signalement des événements de sécurité
+  theme: Personnes
+  applicable: true
+  justification: Déclaration des incidents.
+  etat: Partiel
+  maturite: 2
+  preuve: Formulaire intranet peu utilisé
+- id: '7.1'
+  nom: Périmètres de sécurité physique
+  theme: Physique
+  applicable: true
+  justification: Accès réglementé aux salles d'imagerie.
+  etat: En place
+  maturite: 4
+  preuve: Badges d'accès
+- id: '7.2'
+  nom: Contrôles d'entrée physiques
+  theme: Physique
+  applicable: true
+  justification: Contrôle à l'accueil du centre.
+  etat: En place
+  maturite: 4
+  preuve: Vigile et accueil
+- id: '7.3'
+  nom: Sécurisation des bureaux, salles et installations
+  theme: Physique
+  applicable: true
+  justification: Bureaux des radiologues fermés.
+  etat: Partiel
+  maturite: 2
+  preuve: Portes parfois ouvertes
+- id: '7.4'
+  nom: Surveillance physique de la sécurité
+  theme: Physique
+  applicable: true
+  justification: Caméras dans les zones communes.
+  etat: En place
+  maturite: 3
+  preuve: Vidéosurveillance
+- id: '7.8'
+  nom: Emplacement et protection des équipements
+  theme: Physique
+  applicable: true
+  justification: Baie informatique sécurisée.
+  etat: Partiel
+  maturite: 2
+  preuve: Local climatisé mais partagé
+- id: '7.10'
+  nom: Supports de stockage
+  theme: Physique
+  applicable: true
+  justification: Gestion des disques durs PACS.
+  etat: En place
+  maturite: 3
+  preuve: Procédure de destruction certifiée
+- id: '7.14'
+  nom: Élimination sécurisée
+  theme: Physique
+  applicable: true
+  justification: Rebut du matériel médical obsolète.
+  etat: En place
+  maturite: 3
+  preuve: Contrat avec prestataire DEEE

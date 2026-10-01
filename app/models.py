@@ -119,3 +119,12 @@ class Finding(Base):
     actif = relationship("Asset")
     controls = relationship("Control", secondary=finding_control_table)
     risks = relationship("ScenarioOperationnel", secondary=finding_risk_table)
+
+class ControlMapping(Base):
+    __tablename__ = "control_mappings"
+    id = Column(String, primary_key=True)
+    control_id = Column(String, ForeignKey("controls.id"))
+    framework = Column(String)
+    reference = Column(String)
+    
+    control = relationship("Control")

@@ -1,0 +1,21 @@
+mappings:
+  - id: map_att_1
+    control_id: "6.3"
+    framework: "ATT&CK"
+    reference: "T1566 - Phishing (Mitigation: User Training)"
+  - id: map_att_2
+    control_id: "8.5"
+    framework: "ATT&CK"
+    reference: "T1110 - Brute Force (Mitigation: Multi-factor Authentication)"
+  - id: map_att_3
+    control_id: "8.20"
+    framework: "ATT&CK"
+    reference: "T1190 - Exploit Public-Facing Application (Mitigation: Network Segmentation)"
+  - id: map_att_4
+    control_id: "8.7"
+    framework: "ATT&CK"
+    reference: "T1486 - Data Encrypted for Impact (Mitigation: Antivirus/Antimalware)"
+  - id: map_att_5
+    control_id: "8.13"
+    framework: "ATT&CK"
+    reference: "T1485 - Data Destruction (Mitigation: Data Backup)"

@@ -88,3 +88,9 @@ class Control(BaseModel):
 
 class AnnexA(BaseModel):
     controls: List[Control]
+
+class ControlMapping(BaseModel):
+    id: str = Field(..., description="ID unique du mapping")
+    control_id: str = Field(..., description="ID du contrôle ISO")
+    framework: str = Field(..., description="Nom du framework cible (NIS2, ATT&CK, NIST)")
+    reference: str = Field(..., description="Référence ou article dans le framework cible")
