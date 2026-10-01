@@ -176,22 +176,21 @@ elif page == "Rapports Documentaires":
             import pandas as pd
             df = pd.DataFrame(controls_data)
             
-            html_content = f"""
-            <div class="soa-header">
-                <div class="soa-title">Centre d'Imagerie Médicale</div>
-                <div class="soa-subtitle">
-                    Référence Projet : CIM-SEC-CYBER-001 | Version : v1.5 — Juin 2026<br>
-                    Document annexe au Dossier de Sécurité de la Solution Déployée — À titre de référence normative
-                </div>
-            </div>
-            
-            <div class="chap-summary">
-                <div class="chap-box chap-box-1"><b>Chapitre 5</b><br>37 contrôles</div>
-                <div class="chap-box chap-box-2"><b>Chapitre 6</b><br>8 contrôles</div>
-                <div class="chap-box chap-box-3"><b>Chapitre 7</b><br>14 contrôles</div>
-                <div class="chap-box chap-box-4"><b>Chapitre 8</b><br>34 contrôles</div>
-            </div>
-            """
+            html_content = f"""<div class="soa-header">
+<div class="soa-title">Centre d'Imagerie Médicale</div>
+<div class="soa-subtitle">
+Référence Projet : CIM-SEC-CYBER-001 | Version : v1.5 — Juin 2026<br>
+Document annexe au Dossier de Sécurité de la Solution Déployée — À titre de référence normative
+</div>
+</div>
+
+<div class="chap-summary">
+<div class="chap-box chap-box-1"><b>Chapitre 5</b><br>37 contrôles</div>
+<div class="chap-box chap-box-2"><b>Chapitre 6</b><br>8 contrôles</div>
+<div class="chap-box chap-box-3"><b>Chapitre 7</b><br>14 contrôles</div>
+<div class="chap-box chap-box-4"><b>Chapitre 8</b><br>34 contrôles</div>
+</div>
+"""
             
             chapitres = {
                 "Organisationnel": "5. Contrôles organisationnels",
@@ -204,33 +203,30 @@ elif page == "Rapports Documentaires":
                 theme_controls = df[df['theme'] == theme]
                 titre_chapitre = chapitres.get(theme, f"Contrôles : {theme}")
                 
-                html_content += f"""
-                <div class="chap-title-text">{titre_chapitre}</div>
-                <table class="soa-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 10%;">Contrôle</th>
-                            <th style="width: 25%;">Titre</th>
-                            <th style="width: 65%;">Description / Objectif</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                """
+                html_content += f"""<div class="chap-title-text">{titre_chapitre}</div>
+<table class="soa-table">
+<thead>
+<tr>
+<th style="width: 10%;">Contrôle</th>
+<th style="width: 25%;">Titre</th>
+<th style="width: 65%;">Description / Objectif</th>
+</tr>
+</thead>
+<tbody>
+"""
                 
                 for _, row in theme_controls.iterrows():
                     desc = row['description'] if row.get('description') else 'Description non spécifiée.'
-                    html_content += f"""
-                        <tr>
-                            <td style="font-weight: bold; color: #1c325c;">{row['id']}</td>
-                            <td style="font-weight: bold;">{row['nom']}</td>
-                            <td>{desc}</td>
-                        </tr>
-                    """
+                    html_content += f"""<tr>
+<td style="font-weight: bold; color: #1c325c;">{row['id']}</td>
+<td style="font-weight: bold;">{row['nom']}</td>
+<td>{desc}</td>
+</tr>
+"""
                     
-                html_content += """
-                    </tbody>
-                </table>
-                """
+                html_content += """</tbody>
+</table>
+"""
             
             st.markdown(html_content, unsafe_allow_html=True)
     elif filepath and os.path.exists(filepath):
