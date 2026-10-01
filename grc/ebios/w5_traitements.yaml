@@ -31,3 +31,51 @@ treatments:
   owner: Biomédical
   jira_key: null
   status: todo
+- id: tr_assurance_cyber
+  name: Souscription assurance cyber et audit fournisseur
+  risk_id: R-03
+  option: transfer
+  due_date: '2026-12-15'
+  owner: Direction
+  jira_key: null
+  status: todo
+- id: tr_bastion
+  name: Mise en place d'un bastion pour la télémaintenance IRM
+  risk_id: R-04
+  option: reduce
+  due_date: '2027-02-28'
+  owner: Biomédical
+  jira_key: null
+  status: todo
+- id: tr_dlp_usb
+  name: Désactivation des ports USB et monitoring DLP
+  risk_id: R-05
+  option: reduce
+  due_date: '2026-11-15'
+  owner: IT
+  jira_key: null
+  status: in_progress
+- id: tr_anti_ddos
+  name: Acceptation du risque avec solution Anti-DDoS FAI de base
+  risk_id: R-06
+  option: accept
+  due_date: '2026-10-30'
+  owner: Réseau
+  jira_key: null
+  status: done
+- id: tr_ipsec_filter
+  name: Filtrage strict des flux IPSec inter-cliniques
+  risk_id: R-07
+  option: reduce
+  due_date: '2026-12-01'
+  owner: Réseau
+  jira_key: null
+  status: todo
+- id: tr_backup_immutability
+  name: Activation de l'immutabilité des sauvegardes (WORM) sur le cloud
+  risk_id: R-08
+  option: reduce
+  due_date: '2027-01-15'
+  owner: IT
+  jira_key: null
+  status: todo
