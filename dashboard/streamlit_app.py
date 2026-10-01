@@ -52,6 +52,14 @@ elif page == "SoA (ISO 27001)":
         df["progression (%)"] = (df["en_place"] / df["total"] * 100).round(1)
         st.dataframe(df, use_container_width=True)
         st.bar_chart(df.set_index("theme")[["en_place", "total"]])
+        
+    st.subheader("Détail des Contrôles de l'Annexe A")
+    controls_data = fetch_data("/controls")
+    if controls_data:
+        df_ctrl = pd.DataFrame(controls_data)
+        # On réorganise les colonnes pour que ce soit lisible
+        cols = ["id", "nom", "theme", "applicable", "etat", "maturite", "justification", "preuve"]
+        st.dataframe(df_ctrl[cols], use_container_width=True)
 
 elif page == "Conformité Globale":
     st.title("🌍 Mappings de Conformité (NIS2, ATT&CK, NIST)")
