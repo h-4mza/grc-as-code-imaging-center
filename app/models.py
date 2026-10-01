@@ -90,3 +90,32 @@ class Control(Base):
     etat = Column(String)
     maturite = Column(Integer)
     preuve = Column(String)
+
+# Association tables for Finding
+finding_control_table = Table(
+    'finding_control',
+    Base.metadata,
+    Column('finding_id', Integer, ForeignKey('findings.id'), primary_key=True),
+    Column('control_id', String, ForeignKey('controls.id'), primary_key=True)
+)
+
+finding_risk_table = Table(
+    'finding_risk',
+    Base.metadata,
+    Column('finding_id', Integer, ForeignKey('findings.id'), primary_key=True),
+    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True) # sc_op = risk
+)
+
+class Finding(Base):
+    __tablename__ = "findings"
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    source = Column(String)
+    severite = Column(String)
+    actif_id = Column(String, ForeignKey("assets.id"))
+    cve = Column(String, nullable=True)
+    technique_attack = Column(String, nullable=True)
+    date = Column(String)
+    
+    actif = relationship("Asset")
+    controls = relationship("Control", secondary=finding_control_table)
+    risks = relationship("ScenarioOperationnel", secondary=finding_risk_table)

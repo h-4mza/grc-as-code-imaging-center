@@ -1,0 +1,35 @@
+{
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Nmap Vulnerability Scanner"
+        }
+      },
+      "results": [
+        {
+          "ruleId": "CVE-2021-12345",
+          "level": "error",
+          "message": {
+            "text": "Vulnérabilité critique sur le service RDP."
+          },
+          "properties": {
+            "tags": ["T1110 (Brute Force)"]
+          }
+        },
+        {
+          "ruleId": "MISCONF-VPN",
+          "level": "warning",
+          "message": {
+            "text": "Le VPN de téléradiologie utilise un chiffrement obsolète."
+          },
+          "properties": {
+            "tags": ["T1190 (Exploit Public-Facing App)"]
+          }
+        }
+      ]
+    }
+  ]
+}

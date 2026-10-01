@@ -20,12 +20,13 @@ services:
     ports:
       - "8000:8000"
     environment:
-      DATABASE_URL: postgresql://grc_user:grc_password@postgres/grc_db
+      DATABASE_URL: postgresql+psycopg2://grc_user:grc_password@postgres/grc_db
     depends_on:
       - postgres
     volumes:
       - ./app:/app/app
       - ./grc:/app/grc
+      - ./samples:/app/samples
 
   dashboard:
     build:

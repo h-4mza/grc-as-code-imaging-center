@@ -75,9 +75,20 @@ def load():
     finally:
         db.close()
 
+from app.services.ingest import ingest_findings
+
 @app.command()
 def ingest(source: str = typer.Option(...), file: str = typer.Option(...)):
-    typer.echo(f"Ingestion de {file} depuis {source}... (à implémenter)")
+    """Ingère des constats techniques."""
+    typer.echo(f"Ingestion de {file} depuis {source}...")
+    db: Session = SessionLocal()
+    try:
+        count = ingest_findings(db, source, file)
+        typer.echo(f"Succès : {count} constats ingérés et rattachés.")
+    except Exception as e:
+        typer.echo(f"Erreur lors de l'ingestion : {e}", err=True)
+    finally:
+        db.close()
 
 @app.command()
 def export_jira(dry_run: bool = True):
