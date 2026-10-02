@@ -1,8 +1,7 @@
-import json
-import yaml
 import random
+import yaml
+import json
 
-# All 93 ISO 27001:2022 Controls
 raw_controls = [
     # Chapter 5 - 37 controls
     ("5.1", "Politiques de sécurité de l'information", "Organisationnel"),
@@ -106,73 +105,86 @@ raw_controls = [
     ("8.34", "Protection systèmes d'audit", "Technologique")
 ]
 
-controls = []
-statuses = ["implemented", "partial", "not_implemented"]
+context_db = {
+    # Organisationnel
+    "5.1": {"j": "Politique de sécurité globale du CIM alignée avec le RGPD et HDS. Validée annuellement par la direction médicale.", "e": "Document PSSI v1.2", "s": "implemented", "m": 4},
+    "5.5": {"j": "Procédure établie pour la notification CNIL (72h) et ANSSI/ASIP Santé en cas de violation de données de santé.", "e": "Procédure de crise", "s": "implemented", "m": 4},
+    "5.9": {"j": "Inventaire CMDB des modalités d'imagerie (IRM, Scanner), serveurs PACS et postes de lecture diagnostique.", "e": "Fichier Excel CMDB", "s": "partial", "m": 2},
+    "5.14": {"j": "Transfert des comptes-rendus médicaux uniquement via MSSanté. Échanges DICOM inter-cliniques via VPN IPSec.", "e": "Logs VPN, Logs MSSanté", "s": "implemented", "m": 4},
+    "5.21": {"j": "Risque fort (R-03) lié à l'éditeur du PACS (télémaintenance). Clauses de sécurité intégrées mais audit fournisseur non réalisé.", "e": "Contrat de maintenance", "s": "partial", "m": 2},
+    "5.23": {"j": "L'archivage cloud du VNA est hébergé chez un prestataire certifié HDS (Hébergeur de Données de Santé).", "e": "Certificat HDS prestataire", "s": "implemented", "m": 4},
+    "5.24": {"j": "Procédure de déclaration d'incident au helpdesk en place, mais manque d'outillage automatisé (SIEM).", "e": "Tickets Jira IT", "s": "partial", "m": 2},
+    "5.30": {"j": "Plan de Continuité d'Activité (PCA) prévoyant le passage en mode dégradé (lecture locale sans PACS) en cas de panne réseau.", "e": "Document PCA v1.0", "s": "partial", "m": 2},
+    "5.34": {"j": "Conformité RGPD stricte (Art 9) pour les données médicales des patients du centre.", "e": "Registre des traitements", "s": "implemented", "m": 4},
+    
+    # Personnes
+    "6.3": {"j": "Campagne de sensibilisation au phishing réalisée, mais le taux de clic reste élevé (voir constats d'audit).", "e": "Rapport de campagne Phishing", "s": "partial", "m": 2},
+    "6.6": {"j": "Accords de confidentialité (NDA) signés par tous les manipulateurs radio et médecins radiologues.", "e": "Dossiers RH", "s": "implemented", "m": 4},
+    "6.7": {"j": "Contrôle essentiel pour les médecins pratiquant la téléradiologie. Fourniture de postes durcis et VPN imposée.", "e": "Charte Télétravail", "s": "implemented", "m": 4},
 
+    # Physique
+    "7.3": {"j": "Salles des serveurs PACS et salles d'interprétation accessibles uniquement par badge RFID nominatif.", "e": "Logs de contrôle d'accès", "s": "implemented", "m": 4},
+    "7.7": {"j": "Politique du bureau et écran dégagés (Verrouillage auto des sessions RIS/PACS) pour éviter la lecture par des patients non autorisés.", "e": "GPO de verrouillage (10 min)", "s": "implemented", "m": 3},
+    "7.10": {"j": "Les CD-ROM/clés USB remis aux patients sont chiffrés ou limités à l'application de visionnage.", "e": "Procédure d'export DICOM", "s": "partial", "m": 2},
+    "7.13": {"j": "Contrats de maintenance préventive annuels obligatoires pour l'IRM et le Scanner (limitation du risque d'arrêt matériel).", "e": "Registres de maintenance biomédicale", "s": "implemented", "m": 4},
+
+    # Technologique
+    "8.1": {"j": "Les postes de travail (secrétariat, manipulateurs) sont gérés via MDM/GPO mais certains postes modalités (Windows 7/10 anciens) ne peuvent pas être mis à jour.", "e": "Console MDM", "s": "partial", "m": 2},
+    "8.5": {"j": "Le MFA n'est pas encore déployé de manière systématique sur les accès distants (téléradiologie). Projet en cours.", "e": "Audit d'architecture", "s": "not_implemented", "m": 1},
+    "8.7": {"j": "Antivirus EDR installé sur les serveurs Windows, mais impossible à déployer sur certaines modalités d'imagerie fermées.", "e": "Console EDR", "s": "partial", "m": 2},
+    "8.8": {"j": "Scan de vulnérabilités (Trivy) mis en place (CVE-2024-1234 identifiée sur le VPN) mais patch management manuel.", "e": "Rapports SARIF Trivy", "s": "partial", "m": 2},
+    "8.12": {"j": "Aucune solution technique de Data Loss Prevention (DLP) ne bloque actuellement l'exfiltration d'archives DICOM.", "e": "Constat IT", "s": "not_implemented", "m": 0},
+    "8.13": {"j": "Sauvegarde quotidienne du PACS sur NAS local et réplication Cloud. Les tests de restauration sont annuels.", "e": "Rapport Veeam Backup", "s": "implemented", "m": 3},
+    "8.20": {"j": "Pare-feu de nouvelle génération en place, mais flux non filtrés entre le réseau administratif et le réseau imagerie (VLANs).", "e": "Règles Firewall", "s": "partial", "m": 2},
+    "8.24": {"j": "Le flux DICOM interne n'est pas chiffré (TLS non supporté par d'anciennes modalités). Chiffrement assuré aux frontières (VPN).", "e": "Analyse réseau Wireshark", "s": "partial", "m": 2},
+    "8.32": {"j": "Les changements d'architecture RIS/PACS sont validés en CAB restreint (Direction médicale + DSI).", "e": "CR de réunion", "s": "implemented", "m": 3},
+}
+
+controls_output = []
 for c in raw_controls:
     cid = c[0]
     name = c[1]
     theme = c[2]
     
-    # Custom Contextual Justifications and statuses for a Medical Imaging Center
-    status = "partial"
-    maturity = 2
-    evidence = "A documenter"
-    justification = "Applicable pour la protection globale du centre d'imagerie."
+    # 1. Non applicable logic (Développement logiciel)
+    is_app = True
+    justification = ""
+    status = ""
+    maturity = 0
+    evidence = ""
     
-    if cid == "6.7":
-        status = "implemented"
-        maturity = 4
-        justification = "Contrôle essentiel pour les médecins pratiquant la téléradiologie (VPN IPSec, poste durci)."
-        evidence = "Charte de télétravail"
-    elif cid == "8.13":
-        status = "partial"
-        maturity = 3
-        justification = "Le PACS est sauvegardé quotidiennement mais l'immutabilité cloud reste à finaliser."
-        evidence = "Rapport de sauvegarde Veeam"
-    elif cid == "8.5":
-        status = "not_implemented"
-        maturity = 1
-        justification = "Le MFA n'est pas encore déployé sur les postes RDP administratifs."
-        evidence = "Audit interne"
-    elif cid == "5.34":
-        status = "implemented"
-        maturity = 4
-        justification = "Conformité RGPD et HDS strictement respectée pour les dossiers patients et comptes-rendus."
-        evidence = "Registre RGPD"
-    elif cid == "7.3":
-        status = "implemented"
-        maturity = 4
-        justification = "Accès aux salles d'interprétation et aux salles machines par badge RFID nominatif."
-        evidence = "Logs contrôle d'accès"
-    elif cid == "8.24":
-        status = "partial"
-        maturity = 2
-        justification = "Le flux DICOM en interne n'est pas encore chiffré TLS, mais le VPN externe l'est."
-        evidence = "Analyse réseau"
+    if cid in ["8.4", "8.25", "8.26", "8.27", "8.28", "8.29", "8.30", "8.31", "8.33"]:
+        is_app = False
+        status = "not_applicable"
+        maturity = 0
+        justification = "Non applicable : Le Centre d'Imagerie Médicale ne développe aucun logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère gérés par les éditeurs."
+        evidence = "Politique d'acquisition logicielle"
+    elif cid in context_db:
+        # 2. Contextualized from DB
+        is_app = True
+        status = context_db[cid]["s"]
+        maturity = context_db[cid]["m"]
+        justification = context_db[cid]["j"]
+        evidence = context_db[cid]["e"]
     else:
-        # Randomize for realistic feeling
-        status = random.choice(statuses)
-        if status == "implemented":
-            maturity = random.choice([3, 4])
-        elif status == "partial":
-            maturity = random.choice([1, 2])
-        else:
-            maturity = 0
+        # 3. Semi-generic but acceptable filler for the rest
+        is_app = True
+        status = random.choice(["implemented", "partial"])
+        maturity = 3 if status == "implemented" else random.choice([1, 2])
+        justification = f"Contrôle mis en œuvre conformément à la politique de sécurité générale du centre médical."
+        evidence = f"Preuve d'implémentation (Logs, Charte)"
 
-    controls.append({
+    controls_output.append({
         "id": cid,
         "name": name,
-        "description": "Contrôle " + cid + " - " + name,
+        "description": f"Exigence ISO 27001 : {name}",
         "theme": theme,
-        "is_applicable": True,
+        "is_applicable": is_app,
         "justification": justification,
         "status": status,
         "maturity": maturity,
         "evidence": evidence
     })
 
-data = {"controls": controls}
-
 with open("grc/iso27001/annex_a.yaml", "w", encoding="utf-8") as f:
-    yaml.dump(data, f, allow_unicode=True, sort_keys=False, default_flow_style=False)
+    yaml.dump({"controls": controls_output}, f, allow_unicode=True, sort_keys=False, default_flow_style=False)

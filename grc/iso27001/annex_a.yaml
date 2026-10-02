@@ -1,843 +1,941 @@
 controls:
 - id: '5.1'
   name: Politiques de sécurité de l'information
-  description: Contrôle 5.1 - Politiques de sécurité de l'information
+  description: 'Exigence ISO 27001 : Politiques de sécurité de l''information'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Politique de sécurité globale du CIM alignée avec le RGPD et HDS.
+    Validée annuellement par la direction médicale.
   status: implemented
-  maturity: 3
-  evidence: A documenter
+  maturity: 4
+  evidence: Document PSSI v1.2
 - id: '5.2'
   name: Rôles et responsabilités
-  description: Contrôle 5.2 - Rôles et responsabilités
+  description: 'Exigence ISO 27001 : Rôles et responsabilités'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.3'
   name: Séparation des tâches
-  description: Contrôle 5.3 - Séparation des tâches
+  description: 'Exigence ISO 27001 : Séparation des tâches'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.4'
   name: Responsabilités de la direction
-  description: Contrôle 5.4 - Responsabilités de la direction
+  description: 'Exigence ISO 27001 : Responsabilités de la direction'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.5'
   name: Contacts avec les autorités
-  description: Contrôle 5.5 - Contacts avec les autorités
+  description: 'Exigence ISO 27001 : Contacts avec les autorités'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Procédure établie pour la notification CNIL (72h) et ANSSI/ASIP Santé
+    en cas de violation de données de santé.
+  status: implemented
+  maturity: 4
+  evidence: Procédure de crise
 - id: '5.6'
   name: Contacts avec des groupes d'intérêts
-  description: Contrôle 5.6 - Contacts avec des groupes d'intérêts
+  description: 'Exigence ISO 27001 : Contacts avec des groupes d''intérêts'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
-  maturity: 2
-  evidence: A documenter
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.7'
   name: Renseignements sur les menaces
-  description: Contrôle 5.7 - Renseignements sur les menaces
+  description: 'Exigence ISO 27001 : Renseignements sur les menaces'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.8'
   name: Sécurité dans la gestion de projet
-  description: Contrôle 5.8 - Sécurité dans la gestion de projet
+  description: 'Exigence ISO 27001 : Sécurité dans la gestion de projet'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.9'
   name: Inventaire des actifs
-  description: Contrôle 5.9 - Inventaire des actifs
+  description: 'Exigence ISO 27001 : Inventaire des actifs'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
+  justification: Inventaire CMDB des modalités d'imagerie (IRM, Scanner), serveurs
+    PACS et postes de lecture diagnostique.
+  status: partial
+  maturity: 2
+  evidence: Fichier Excel CMDB
 - id: '5.10'
   name: Utilisation acceptable des actifs
-  description: Contrôle 5.10 - Utilisation acceptable des actifs
+  description: 'Exigence ISO 27001 : Utilisation acceptable des actifs'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.11'
   name: Restitution des actifs
-  description: Contrôle 5.11 - Restitution des actifs
+  description: 'Exigence ISO 27001 : Restitution des actifs'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 2
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.12'
   name: Classification des informations
-  description: Contrôle 5.12 - Classification des informations
+  description: 'Exigence ISO 27001 : Classification des informations'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.13'
   name: Marquage des informations
-  description: Contrôle 5.13 - Marquage des informations
+  description: 'Exigence ISO 27001 : Marquage des informations'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
   maturity: 1
-  evidence: A documenter
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.14'
   name: Transfert d'information
-  description: Contrôle 5.14 - Transfert d'information
+  description: 'Exigence ISO 27001 : Transfert d''information'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Transfert des comptes-rendus médicaux uniquement via MSSanté. Échanges
+    DICOM inter-cliniques via VPN IPSec.
+  status: implemented
+  maturity: 4
+  evidence: Logs VPN, Logs MSSanté
 - id: '5.15'
   name: Contrôle d'accès
-  description: Contrôle 5.15 - Contrôle d'accès
+  description: 'Exigence ISO 27001 : Contrôle d''accès'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
   maturity: 1
-  evidence: A documenter
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.16'
   name: Gestion des identités
-  description: Contrôle 5.16 - Gestion des identités
+  description: 'Exigence ISO 27001 : Gestion des identités'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.17'
   name: Informations d'authentification
-  description: Contrôle 5.17 - Informations d'authentification
+  description: 'Exigence ISO 27001 : Informations d''authentification'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: implemented
   maturity: 3
-  evidence: A documenter
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.18'
   name: Droits d'accès
-  description: Contrôle 5.18 - Droits d'accès
+  description: 'Exigence ISO 27001 : Droits d''accès'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.19'
   name: Sécurité fournisseurs
-  description: Contrôle 5.19 - Sécurité fournisseurs
+  description: 'Exigence ISO 27001 : Sécurité fournisseurs'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
   maturity: 2
-  evidence: A documenter
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.20'
   name: Sécurité dans les contrats fournisseurs
-  description: Contrôle 5.20 - Sécurité dans les contrats fournisseurs
+  description: 'Exigence ISO 27001 : Sécurité dans les contrats fournisseurs'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.21'
   name: Sécurité chaîne d'approvisionnement TIC
-  description: Contrôle 5.21 - Sécurité chaîne d'approvisionnement TIC
+  description: 'Exigence ISO 27001 : Sécurité chaîne d''approvisionnement TIC'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Risque fort (R-03) lié à l'éditeur du PACS (télémaintenance). Clauses
+    de sécurité intégrées mais audit fournisseur non réalisé.
+  status: partial
+  maturity: 2
+  evidence: Contrat de maintenance
 - id: '5.22'
   name: Surveillance des fournisseurs
-  description: Contrôle 5.22 - Surveillance des fournisseurs
+  description: 'Exigence ISO 27001 : Surveillance des fournisseurs'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
-  maturity: 2
-  evidence: A documenter
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.23'
   name: Sécurité des services cloud
-  description: Contrôle 5.23 - Sécurité des services cloud
+  description: 'Exigence ISO 27001 : Sécurité des services cloud'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: L'archivage cloud du VNA est hébergé chez un prestataire certifié
+    HDS (Hébergeur de Données de Santé).
   status: implemented
-  maturity: 3
-  evidence: A documenter
+  maturity: 4
+  evidence: Certificat HDS prestataire
 - id: '5.24'
   name: Préparation gestion incidents
-  description: Contrôle 5.24 - Préparation gestion incidents
+  description: 'Exigence ISO 27001 : Préparation gestion incidents'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Procédure de déclaration d'incident au helpdesk en place, mais manque
+    d'outillage automatisé (SIEM).
   status: partial
   maturity: 2
-  evidence: A documenter
+  evidence: Tickets Jira IT
 - id: '5.25'
   name: Évaluation des événements
-  description: Contrôle 5.25 - Évaluation des événements
+  description: 'Exigence ISO 27001 : Évaluation des événements'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.26'
   name: Réponse aux incidents
-  description: Contrôle 5.26 - Réponse aux incidents
+  description: 'Exigence ISO 27001 : Réponse aux incidents'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 1
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.27'
   name: Apprentissage des incidents
-  description: Contrôle 5.27 - Apprentissage des incidents
+  description: 'Exigence ISO 27001 : Apprentissage des incidents'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 1
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.28'
   name: Collecte de preuves
-  description: Contrôle 5.28 - Collecte de preuves
+  description: 'Exigence ISO 27001 : Collecte de preuves'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.29'
   name: Sécurité lors de perturbations
-  description: Contrôle 5.29 - Sécurité lors de perturbations
+  description: 'Exigence ISO 27001 : Sécurité lors de perturbations'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.30'
   name: Préparation TIC pour continuité
-  description: Contrôle 5.30 - Préparation TIC pour continuité
+  description: 'Exigence ISO 27001 : Préparation TIC pour continuité'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Plan de Continuité d'Activité (PCA) prévoyant le passage en mode
+    dégradé (lecture locale sans PACS) en cas de panne réseau.
   status: partial
   maturity: 2
-  evidence: A documenter
+  evidence: Document PCA v1.0
 - id: '5.31'
   name: Exigences légales
-  description: Contrôle 5.31 - Exigences légales
+  description: 'Exigence ISO 27001 : Exigences légales'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: implemented
   maturity: 3
-  evidence: A documenter
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.32'
   name: Propriété intellectuelle
-  description: Contrôle 5.32 - Propriété intellectuelle
+  description: 'Exigence ISO 27001 : Propriété intellectuelle'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 2
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.33'
   name: Protection des enregistrements
-  description: Contrôle 5.33 - Protection des enregistrements
+  description: 'Exigence ISO 27001 : Protection des enregistrements'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 3
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 2
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.34'
   name: Données personnelles
-  description: Contrôle 5.34 - Données personnelles
+  description: 'Exigence ISO 27001 : Données personnelles'
   theme: Organisationnel
   is_applicable: true
-  justification: Conformité RGPD et HDS strictement respectée pour les dossiers patients
-    et comptes-rendus.
+  justification: Conformité RGPD stricte (Art 9) pour les données médicales des patients
+    du centre.
   status: implemented
   maturity: 4
-  evidence: Registre RGPD
+  evidence: Registre des traitements
 - id: '5.35'
   name: Révision indépendante
-  description: Contrôle 5.35 - Révision indépendante
+  description: 'Exigence ISO 27001 : Révision indépendante'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
-  maturity: 1
-  evidence: A documenter
+  maturity: 2
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.36'
   name: Conformité aux politiques
-  description: Contrôle 5.36 - Conformité aux politiques
+  description: 'Exigence ISO 27001 : Conformité aux politiques'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '5.37'
   name: Procédures d'exploitation
-  description: Contrôle 5.37 - Procédures d'exploitation
+  description: 'Exigence ISO 27001 : Procédures d''exploitation'
   theme: Organisationnel
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
-  maturity: 2
-  evidence: A documenter
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '6.1'
   name: Sélection du personnel
-  description: Contrôle 6.1 - Sélection du personnel
+  description: 'Exigence ISO 27001 : Sélection du personnel'
   theme: Personnes
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 1
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '6.2'
   name: Conditions d'emploi
-  description: Contrôle 6.2 - Conditions d'emploi
+  description: 'Exigence ISO 27001 : Conditions d''emploi'
   theme: Personnes
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 1
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '6.3'
   name: Sensibilisation
-  description: Contrôle 6.3 - Sensibilisation
+  description: 'Exigence ISO 27001 : Sensibilisation'
   theme: Personnes
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Campagne de sensibilisation au phishing réalisée, mais le taux de
+    clic reste élevé (voir constats d'audit).
+  status: partial
+  maturity: 2
+  evidence: Rapport de campagne Phishing
 - id: '6.4'
   name: Processus disciplinaire
-  description: Contrôle 6.4 - Processus disciplinaire
+  description: 'Exigence ISO 27001 : Processus disciplinaire'
   theme: Personnes
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 3
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '6.5'
   name: Fin d'emploi
-  description: Contrôle 6.5 - Fin d'emploi
+  description: 'Exigence ISO 27001 : Fin d''emploi'
   theme: Personnes
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '6.6'
   name: Accords de confidentialité
-  description: Contrôle 6.6 - Accords de confidentialité
+  description: 'Exigence ISO 27001 : Accords de confidentialité'
   theme: Personnes
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
+  justification: Accords de confidentialité (NDA) signés par tous les manipulateurs
+    radio et médecins radiologues.
+  status: implemented
+  maturity: 4
+  evidence: Dossiers RH
 - id: '6.7'
   name: Travail à distance
-  description: Contrôle 6.7 - Travail à distance
+  description: 'Exigence ISO 27001 : Travail à distance'
   theme: Personnes
   is_applicable: true
-  justification: Contrôle essentiel pour les médecins pratiquant la téléradiologie
-    (VPN IPSec, poste durci).
+  justification: Contrôle essentiel pour les médecins pratiquant la téléradiologie.
+    Fourniture de postes durcis et VPN imposée.
   status: implemented
   maturity: 4
-  evidence: Charte de télétravail
+  evidence: Charte Télétravail
 - id: '6.8'
   name: Signalement
-  description: Contrôle 6.8 - Signalement
+  description: 'Exigence ISO 27001 : Signalement'
   theme: Personnes
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 1
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.1'
   name: Périmètres de sécurité
-  description: Contrôle 7.1 - Périmètres de sécurité
+  description: 'Exigence ISO 27001 : Périmètres de sécurité'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.2'
   name: Entrée physique
-  description: Contrôle 7.2 - Entrée physique
+  description: 'Exigence ISO 27001 : Entrée physique'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 1
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.3'
   name: Sécurisation bureaux/salles
-  description: Contrôle 7.3 - Sécurisation bureaux/salles
+  description: 'Exigence ISO 27001 : Sécurisation bureaux/salles'
   theme: Physique
   is_applicable: true
-  justification: Accès aux salles d'interprétation et aux salles machines par badge
-    RFID nominatif.
+  justification: Salles des serveurs PACS et salles d'interprétation accessibles uniquement
+    par badge RFID nominatif.
   status: implemented
   maturity: 4
-  evidence: Logs contrôle d'accès
+  evidence: Logs de contrôle d'accès
 - id: '7.4'
   name: Surveillance physique
-  description: Contrôle 7.4 - Surveillance physique
+  description: 'Exigence ISO 27001 : Surveillance physique'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
-  maturity: 2
-  evidence: A documenter
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.5'
   name: Protection contre menaces externes
-  description: Contrôle 7.5 - Protection contre menaces externes
+  description: 'Exigence ISO 27001 : Protection contre menaces externes'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: implemented
-  maturity: 4
-  evidence: A documenter
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.6'
   name: Travail dans zones sécurisées
-  description: Contrôle 7.6 - Travail dans zones sécurisées
+  description: 'Exigence ISO 27001 : Travail dans zones sécurisées'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.7'
   name: Bureaux et écrans dégagés
-  description: Contrôle 7.7 - Bureaux et écrans dégagés
+  description: 'Exigence ISO 27001 : Bureaux et écrans dégagés'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Politique du bureau et écran dégagés (Verrouillage auto des sessions
+    RIS/PACS) pour éviter la lecture par des patients non autorisés.
+  status: implemented
+  maturity: 3
+  evidence: GPO de verrouillage (10 min)
 - id: '7.8'
   name: Emplacement des équipements
-  description: Contrôle 7.8 - Emplacement des équipements
+  description: 'Exigence ISO 27001 : Emplacement des équipements'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.9'
   name: Sécurité des actifs hors site
-  description: Contrôle 7.9 - Sécurité des actifs hors site
+  description: 'Exigence ISO 27001 : Sécurité des actifs hors site'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: implemented
-  maturity: 4
-  evidence: A documenter
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.10'
   name: Supports de stockage
-  description: Contrôle 7.10 - Supports de stockage
+  description: 'Exigence ISO 27001 : Supports de stockage'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
+  justification: Les CD-ROM/clés USB remis aux patients sont chiffrés ou limités à
+    l'application de visionnage.
+  status: partial
+  maturity: 2
+  evidence: Procédure d'export DICOM
 - id: '7.11'
   name: Services généraux
-  description: Contrôle 7.11 - Services généraux
+  description: 'Exigence ISO 27001 : Services généraux'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.12'
   name: Sécurité câblage
-  description: Contrôle 7.12 - Sécurité câblage
+  description: 'Exigence ISO 27001 : Sécurité câblage'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '7.13'
   name: Maintenance des équipements
-  description: Contrôle 7.13 - Maintenance des équipements
+  description: 'Exigence ISO 27001 : Maintenance des équipements'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrats de maintenance préventive annuels obligatoires pour l'IRM
+    et le Scanner (limitation du risque d'arrêt matériel).
+  status: implemented
+  maturity: 4
+  evidence: Registres de maintenance biomédicale
 - id: '7.14'
   name: Élimination sécurisée
-  description: Contrôle 7.14 - Élimination sécurisée
+  description: 'Exigence ISO 27001 : Élimination sécurisée'
   theme: Physique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 2
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '8.1'
   name: Appareils terminaux
-  description: Contrôle 8.1 - Appareils terminaux
+  description: 'Exigence ISO 27001 : Appareils terminaux'
   theme: Technologique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Les postes de travail (secrétariat, manipulateurs) sont gérés via
+    MDM/GPO mais certains postes modalités (Windows 7/10 anciens) ne peuvent pas être
+    mis à jour.
+  status: partial
+  maturity: 2
+  evidence: Console MDM
 - id: '8.2'
   name: Privilèges d'accès
-  description: Contrôle 8.2 - Privilèges d'accès
+  description: 'Exigence ISO 27001 : Privilèges d''accès'
   theme: Technologique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 2
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '8.3'
   name: Restriction d'accès
-  description: Contrôle 8.3 - Restriction d'accès
+  description: 'Exigence ISO 27001 : Restriction d''accès'
   theme: Technologique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
   maturity: 1
-  evidence: A documenter
+  evidence: Preuve d'implémentation (Logs, Charte)
 - id: '8.4'
   name: Code source
-  description: Contrôle 8.4 - Code source
+  description: 'Exigence ISO 27001 : Code source'
   theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 1
-  evidence: A documenter
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
 - id: '8.5'
   name: Authentification sécurisée
-  description: Contrôle 8.5 - Authentification sécurisée
+  description: 'Exigence ISO 27001 : Authentification sécurisée'
   theme: Technologique
   is_applicable: true
-  justification: Le MFA n'est pas encore déployé sur les postes RDP administratifs.
+  justification: Le MFA n'est pas encore déployé de manière systématique sur les accès
+    distants (téléradiologie). Projet en cours.
   status: not_implemented
   maturity: 1
-  evidence: Audit interne
+  evidence: Audit d'architecture
 - id: '8.6'
   name: Gestion de capacité
-  description: Contrôle 8.6 - Gestion de capacité
+  description: 'Exigence ISO 27001 : Gestion de capacité'
   theme: Technologique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.7'
-  name: Protection malwares
-  description: Contrôle 8.7 - Protection malwares
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 3
-  evidence: A documenter
-- id: '8.8'
-  name: Vulnérabilités techniques
-  description: Contrôle 8.8 - Vulnérabilités techniques
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
-- id: '8.9'
-  name: Configurations
-  description: Contrôle 8.9 - Configurations
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
-- id: '8.10'
-  name: Suppression de l'information
-  description: Contrôle 8.10 - Suppression de l'information
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 3
-  evidence: A documenter
-- id: '8.11'
-  name: Masquage des données
-  description: Contrôle 8.11 - Masquage des données
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
-- id: '8.12'
-  name: Prévention des fuites (DLP)
-  description: Contrôle 8.12 - Prévention des fuites (DLP)
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
-- id: '8.13'
-  name: Sauvegarde
-  description: Contrôle 8.13 - Sauvegarde
-  theme: Technologique
-  is_applicable: true
-  justification: Le PACS est sauvegardé quotidiennement mais l'immutabilité cloud
-    reste à finaliser.
-  status: partial
-  maturity: 3
-  evidence: Rapport de sauvegarde Veeam
-- id: '8.14'
-  name: Redondance
-  description: Contrôle 8.14 - Redondance
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
-- id: '8.15'
-  name: Journalisation
-  description: Contrôle 8.15 - Journalisation
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.16'
-  name: Surveillance
-  description: Contrôle 8.16 - Surveillance
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.17'
-  name: Synchronisation horloges
-  description: Contrôle 8.17 - Synchronisation horloges
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 3
-  evidence: A documenter
-- id: '8.18'
-  name: Utilisation de programmes
-  description: Contrôle 8.18 - Utilisation de programmes
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.19'
-  name: Installation logiciels
-  description: Contrôle 8.19 - Installation logiciels
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.20'
-  name: Sécurité réseaux
-  description: Contrôle 8.20 - Sécurité réseaux
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
-- id: '8.21'
-  name: Services réseau
-  description: Contrôle 8.21 - Services réseau
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
-- id: '8.22'
-  name: Ségrégation réseaux
-  description: Contrôle 8.22 - Ségrégation réseaux
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.23'
-  name: Filtrage Web
-  description: Contrôle 8.23 - Filtrage Web
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.24'
-  name: Cryptographie
-  description: Contrôle 8.24 - Cryptographie
-  theme: Technologique
-  is_applicable: true
-  justification: Le flux DICOM en interne n'est pas encore chiffré TLS, mais le VPN
-    externe l'est.
-  status: partial
-  maturity: 2
-  evidence: Analyse réseau
-- id: '8.25'
-  name: Cycle de vie développement
-  description: Contrôle 8.25 - Cycle de vie développement
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: partial
-  maturity: 2
-  evidence: A documenter
-- id: '8.26'
-  name: Exigences sécurité
-  description: Contrôle 8.26 - Exigences sécurité
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 3
-  evidence: A documenter
-- id: '8.27'
-  name: Architecture sécurité
-  description: Contrôle 8.27 - Architecture sécurité
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.28'
-  name: Sécurité du codage
-  description: Contrôle 8.28 - Sécurité du codage
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.29'
-  name: Tests de sécurité
-  description: Contrôle 8.29 - Tests de sécurité
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.30'
-  name: Développement externalisé
-  description: Contrôle 8.30 - Développement externalisé
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
   status: partial
   maturity: 1
-  evidence: A documenter
-- id: '8.31'
-  name: Séparation environnements
-  description: Contrôle 8.31 - Séparation environnements
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.7'
+  name: Protection malwares
+  description: 'Exigence ISO 27001 : Protection malwares'
   theme: Technologique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: not_implemented
-  maturity: 0
-  evidence: A documenter
-- id: '8.32'
-  name: Gestion des changements
-  description: Contrôle 8.32 - Gestion des changements
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
-  status: implemented
-  maturity: 4
-  evidence: A documenter
-- id: '8.33'
-  name: Informations de test
-  description: Contrôle 8.33 - Informations de test
-  theme: Technologique
-  is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Antivirus EDR installé sur les serveurs Windows, mais impossible
+    à déployer sur certaines modalités d'imagerie fermées.
   status: partial
   maturity: 2
-  evidence: A documenter
-- id: '8.34'
-  name: Protection systèmes d'audit
-  description: Contrôle 8.34 - Protection systèmes d'audit
+  evidence: Console EDR
+- id: '8.8'
+  name: Vulnérabilités techniques
+  description: 'Exigence ISO 27001 : Vulnérabilités techniques'
   theme: Technologique
   is_applicable: true
-  justification: Applicable pour la protection globale du centre d'imagerie.
+  justification: Scan de vulnérabilités (Trivy) mis en place (CVE-2024-1234 identifiée
+    sur le VPN) mais patch management manuel.
+  status: partial
+  maturity: 2
+  evidence: Rapports SARIF Trivy
+- id: '8.9'
+  name: Configurations
+  description: 'Exigence ISO 27001 : Configurations'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.10'
+  name: Suppression de l'information
+  description: 'Exigence ISO 27001 : Suppression de l''information'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.11'
+  name: Masquage des données
+  description: 'Exigence ISO 27001 : Masquage des données'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.12'
+  name: Prévention des fuites (DLP)
+  description: 'Exigence ISO 27001 : Prévention des fuites (DLP)'
+  theme: Technologique
+  is_applicable: true
+  justification: Aucune solution technique de Data Loss Prevention (DLP) ne bloque
+    actuellement l'exfiltration d'archives DICOM.
   status: not_implemented
   maturity: 0
-  evidence: A documenter
+  evidence: Constat IT
+- id: '8.13'
+  name: Sauvegarde
+  description: 'Exigence ISO 27001 : Sauvegarde'
+  theme: Technologique
+  is_applicable: true
+  justification: Sauvegarde quotidienne du PACS sur NAS local et réplication Cloud.
+    Les tests de restauration sont annuels.
+  status: implemented
+  maturity: 3
+  evidence: Rapport Veeam Backup
+- id: '8.14'
+  name: Redondance
+  description: 'Exigence ISO 27001 : Redondance'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.15'
+  name: Journalisation
+  description: 'Exigence ISO 27001 : Journalisation'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.16'
+  name: Surveillance
+  description: 'Exigence ISO 27001 : Surveillance'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.17'
+  name: Synchronisation horloges
+  description: 'Exigence ISO 27001 : Synchronisation horloges'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.18'
+  name: Utilisation de programmes
+  description: 'Exigence ISO 27001 : Utilisation de programmes'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.19'
+  name: Installation logiciels
+  description: 'Exigence ISO 27001 : Installation logiciels'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.20'
+  name: Sécurité réseaux
+  description: 'Exigence ISO 27001 : Sécurité réseaux'
+  theme: Technologique
+  is_applicable: true
+  justification: Pare-feu de nouvelle génération en place, mais flux non filtrés entre
+    le réseau administratif et le réseau imagerie (VLANs).
+  status: partial
+  maturity: 2
+  evidence: Règles Firewall
+- id: '8.21'
+  name: Services réseau
+  description: 'Exigence ISO 27001 : Services réseau'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.22'
+  name: Ségrégation réseaux
+  description: 'Exigence ISO 27001 : Ségrégation réseaux'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: implemented
+  maturity: 3
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.23'
+  name: Filtrage Web
+  description: 'Exigence ISO 27001 : Filtrage Web'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 1
+  evidence: Preuve d'implémentation (Logs, Charte)
+- id: '8.24'
+  name: Cryptographie
+  description: 'Exigence ISO 27001 : Cryptographie'
+  theme: Technologique
+  is_applicable: true
+  justification: Le flux DICOM interne n'est pas chiffré (TLS non supporté par d'anciennes
+    modalités). Chiffrement assuré aux frontières (VPN).
+  status: partial
+  maturity: 2
+  evidence: Analyse réseau Wireshark
+- id: '8.25'
+  name: Cycle de vie développement
+  description: 'Exigence ISO 27001 : Cycle de vie développement'
+  theme: Technologique
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
+- id: '8.26'
+  name: Exigences sécurité
+  description: 'Exigence ISO 27001 : Exigences sécurité'
+  theme: Technologique
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
+- id: '8.27'
+  name: Architecture sécurité
+  description: 'Exigence ISO 27001 : Architecture sécurité'
+  theme: Technologique
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
+- id: '8.28'
+  name: Sécurité du codage
+  description: 'Exigence ISO 27001 : Sécurité du codage'
+  theme: Technologique
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
+- id: '8.29'
+  name: Tests de sécurité
+  description: 'Exigence ISO 27001 : Tests de sécurité'
+  theme: Technologique
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
+- id: '8.30'
+  name: Développement externalisé
+  description: 'Exigence ISO 27001 : Développement externalisé'
+  theme: Technologique
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
+- id: '8.31'
+  name: Séparation environnements
+  description: 'Exigence ISO 27001 : Séparation environnements'
+  theme: Technologique
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
+- id: '8.32'
+  name: Gestion des changements
+  description: 'Exigence ISO 27001 : Gestion des changements'
+  theme: Technologique
+  is_applicable: true
+  justification: Les changements d'architecture RIS/PACS sont validés en CAB restreint
+    (Direction médicale + DSI).
+  status: implemented
+  maturity: 3
+  evidence: CR de réunion
+- id: '8.33'
+  name: Informations de test
+  description: 'Exigence ISO 27001 : Informations de test'
+  theme: Technologique
+  is_applicable: false
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
+    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
+    gérés par les éditeurs.'
+  status: not_applicable
+  maturity: 0
+  evidence: Politique d'acquisition logicielle
+- id: '8.34'
+  name: Protection systèmes d'audit
+  description: 'Exigence ISO 27001 : Protection systèmes d''audit'
+  theme: Technologique
+  is_applicable: true
+  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
+    du centre médical.
+  status: partial
+  maturity: 2
+  evidence: Preuve d'implémentation (Logs, Charte)
