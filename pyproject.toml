@@ -33,6 +33,11 @@ dev = [
 [project.scripts]
 grc = "app.cli:app"
 
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["app*"]
+exclude = ["dashboard*", "tests*", "docs*", "grc*", "data*", "samples*", "scratch*", "migrations*"]
+
 [tool.ruff]
 line-length = 120
 select = ["E", "F", "I"]

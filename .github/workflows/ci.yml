@@ -24,26 +24,12 @@ jobs:
       - name: Install Dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e ".[dev]"
+          pip install -r requirements-dev.txt
+          pip install -e .
 
       - name: Validate YAML Declarative Schemas
         run: |
-          python -c "
-          import glob, yaml, sys
-          yaml_files = glob.glob('grc/**/*.yaml', recursive=True)
-          print(f'Validating {len(yaml_files)} YAML files...')
-          errors = 0
-          for yf in yaml_files:
-              try:
-                  with open(yf, 'r', encoding='utf-8') as f:
-                      yaml.safe_load(f)
-              except Exception as e:
-                  print(f'Error in {yf}: {e}', file=sys.stderr)
-                  errors += 1
-          if errors > 0:
-              sys.exit(1)
-          print('All GRC YAML files are syntactically valid!')
-          "
+          python -c "import glob, yaml; [yaml.safe_load(open(f, encoding='utf-8')) for f in glob.glob('grc/**/*.yaml', recursive=True)]; print('All GRC YAML files are syntactically valid!')"
 
       - name: Run Pytest Suite
         run: |
