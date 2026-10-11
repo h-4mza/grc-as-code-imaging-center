@@ -115,7 +115,12 @@ cd grc-as-code-imaging-center
 make demo
 ```
 
-`make demo` construit les conteneurs, démarre la stack et charge le référentiel.
+`make demo` construit les conteneurs, attend que PostgreSQL et l'API soient opérationnels (avec vérification de santé et timeout de 60 s), charge le référentiel GRC (`grc load`), ingère automatiquement les rapports de scan SARIF (`grc ingest`), puis affiche les URLs d'accès.
+
+Pour arrêter la stack et réinitialiser les volumes :
+```bash
+make demo-down
+```
 
 <details>
 <summary><b>Sans Make (commandes manuelles)</b></summary>
@@ -123,15 +128,12 @@ make demo
 ```bash
 docker-compose up -d --build
 
-# Variable pratique pour les commandes suivantes
-export DB="postgresql+psycopg2://grc_user:grc_password@postgres/grc_db"
-
 # 1. Charger le référentiel (EBIOS RM, ISO 27001, mappings)
-docker-compose exec -e DATABASE_URL=$DB api python -m app.cli load
+docker-compose exec -T api grc load
 
 # 2. Ingérer les scans SARIF d'exemple
-docker-compose exec -e DATABASE_URL=$DB api python -m app.cli ingest --source sarif --file grc/scans/projet1_trivy.sarif
-docker-compose exec -e DATABASE_URL=$DB api python -m app.cli ingest --source sarif --file grc/scans/projet3_ad_audit.sarif
+docker-compose exec -T api grc ingest --source sarif --file grc/scans/projet1_trivy.sarif
+docker-compose exec -T api grc ingest --source sarif --file grc/scans/projet3_ad_audit.sarif
 ```
 </details>
 

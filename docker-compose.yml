@@ -21,6 +21,7 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: postgresql+psycopg2://grc_user:grc_password@postgres/grc_db
+      PYTHONPATH: /app
     depends_on:
       - postgres
     volumes:
