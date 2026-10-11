@@ -1,10 +1,14 @@
-# Python
+# ==============================================================================
+# GRC-as-Code — .gitignore strict et exhaustif
+# Stack: Python, FastAPI, Streamlit, PostgreSQL, Docker, DevSecOps
+# ==============================================================================
+
+# --- Python & Bytecode ---
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 .Python
-env/
 build/
 develop-eggs/
 dist/
@@ -21,25 +25,77 @@ share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Virtual Environment
-venv/
+# --- Environnements virtuels ---
 .venv/
+venv/
 env/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Secrets, Clés et Configuration sensible ---
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*.cert
+*.p12
+*.pfx
+secrets.json
+credentials.json
 
-# Pytest
+# --- Streamlit ---
+.streamlit/secrets.toml
+
+# --- Bases de données & Persistance locale ---
+*.db
+*.sqlite
+*.sqlite3
+pgdata/
+postgres_data/
+
+# --- Docker & Conteneurs ---
+docker-compose.override.yml
+*.cid
+
+# --- Tests, Couverture et Linting ---
 .pytest_cache/
-
-# Coverage
 .coverage
+.coverage.*
 htmlcov/
+.mypy_cache/
+.ruff_cache/
+.tox/
+nosetests.xml
+coverage.xml
+*.cover
 
-# IDEs
-.idea/
+# --- Logs & Fichiers temporaires ---
+*.log
+logs/
+*.pid
+tmp/
+temp/
+scratch/
+
+# --- IDEs et Éditeurs ---
 .vscode/
+.idea/
 *.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
 
-# OS
+# --- Système d'exploitation ---
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+[Dd]esktop.ini
