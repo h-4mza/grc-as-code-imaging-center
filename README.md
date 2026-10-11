@@ -1,131 +1,142 @@
-# 🛡️ GRC As-Code : Centre d'Imagerie Médicale
+# 🛡️ GRC-as-Code : Plateforme de Pilotage Cybersécurité & Conformité
 
-Un système de pilotage de la sécurité de l'information (GRC : Gouvernance, Risques, Conformité) innovant, entièrement géré **"As-Code"**. Conçu pour un Centre d'Imagerie Médicale fictif, ce projet démontre comment automatiser, versionner et piloter la conformité cybersécurité via des pipelines CI/CD modernes.
+> **Passez de la conformité statique sur tableurs à une gouvernance de sécurité continue, versionnée et pilotée par les données.**  
+> Une solution DevSecOps appliquée au secteur de la santé (Centre d'Imagerie Médicale) pour automatiser la méthode **EBIOS RM**, piloter les **93 contrôles ISO 27001:2022**, et réévaluer dynamiquement les risques résiduels via l'ingestion de scans de vulnérabilités (**SARIF**).
 
 ---
 
-## 🎯 Objectifs du Projet
+<!-- Badge CI GitHub Actions & Stack -->
+[![CI Pipeline](https://github.com/h-4mza/grc-as-code-imaging-center/actions/workflows/ci.yml/badge.svg)](https://github.com/h-4mza/grc-as-code-imaging-center/actions)
+[![Python Version](https://img.shields.io/badge/python-3.11-blue.svg?logo=python)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-009688.svg?logo=fastapi)](https://fastapi.tiangolo.com)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-FF4B4B.svg?logo=streamlit)](https://streamlit.io)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791.svg?logo=postgresql)](https://www.postgresql.org/)
+[![Docker Compose](https://img.shields.io/badge/Docker-compose-2496ED.svg?logo=docker)](https://www.docker.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-- **Versionner la conformité (GitOps)** : Les risques EBIOS RM, les contrôles ISO 27001 et les plans de traitement sont stockés sous forme de fichiers YAML (`grc/`).
-- **Générer dynamiquement les rapports** : Fini les fichiers Word obsolètes ! Les documents normatifs comme la Déclaration d'Applicabilité (SoA) sont générés en temps réel.
-- **Automatiser l'ingestion des vulnérabilités** : Intégration continue avec des outils de scan de sécurité (SARIF) pour relier automatiquement les vulnérabilités techniques aux risques opérationnels (ATT&CK).
-- **Synchroniser la remédiation** : Connecteur Jira pour créer et suivre automatiquement les tickets de traitement des risques.
+---
 
-## 🏗️ Architecture Technique
+## 🏗️ Architecture du Système
 
-La solution repose sur une stack moderne, légère et orientée API. Le schéma ci-dessous illustre le flux de données de l'approche "GRC As-Code" :
+Le système implémente le paradigme **GRC-as-Code** : les référentiels de sécurité, les ateliers de risques et les contrôles sont décrits sous forme déclarative (YAML), versionnés sous Git, validés automatiquement et consommés par des microservices conteneurisés.
 
 ```mermaid
 flowchart TD
-    subgraph Data ["GRC As-Code Data (Git)"]
-        EBIOS["Fichiers YAML<br>EBIOS RM"]
-        ISO["Fichiers YAML<br>ISO 27001"]
-        MAP["Mappings<br>NIS2, NIST, ATT&CK"]
+    subgraph Git ["1. Déclaratif GRC-as-Code (Git)"]
+        EBIOS["Ateliers EBIOS RM (1 à 5)<br>grc/ebios/*.yaml"]
+        ISO["Annexe A ISO 27001:2022<br>grc/iso27001/annex_a.yaml"]
+        MAP["Mappings Réglementaires<br>NIS2, NIST CSF, ATT&CK"]
     end
 
-    subgraph Operations ["Administration (DevSecOps)"]
-        SARIF["Rapports de Scan<br>(Format SARIF)"]
-        CLI["CLI Typer<br>'grc load' / 'grc ingest'"]
+    subgraph SecOps ["2. Ingestion & Télémétrie Sécurité"]
+        SARIF["Rapports SARIF<br>(Scans Trivy CVE, BloodHound AD)"]
+        CLI["CLI Typer DevSecOps<br>'grc load' & 'grc ingest'"]
     end
 
-    subgraph Core ["Backend Services"]
-        DB[("PostgreSQL<br>Base GRC")]
-        API["FastAPI<br>Moteur de règles & API"]
+    subgraph Core ["3. Backend & Persistance"]
+        DB[("PostgreSQL 15<br>Modèle Relationnel & Graphe")]
+        API["FastAPI Engine<br>Calculs Inhérent/Résiduel & Moteur API"]
     end
 
-    subgraph Users ["Interfaces"]
-        DASH["Dashboard Streamlit<br>(Heatmap, SoA, KPIs)"]
-    end
-    
-    subgraph External ["Outils Tiers"]
-        JIRA["Jira / ITSM<br>(Suivi des traitements)"]
+    subgraph Front ["4. Visualisation & Restitution"]
+        DASH["Dashboard Streamlit<br>Heatmap dynamique, SoA d'Audit, KPIs"]
     end
 
-    Data -->|Parsé par CLI| CLI
-    SARIF -->|Ingéré par CLI| CLI
-    CLI -->|Alimente| DB
-    DB <-->|Interroge| API
-    API <-->|Consomme les KPIs| DASH
-    API -->|Synchronise| JIRA
+    subgraph Ext ["5. Intégrations Externes"]
+        JIRA["Jira Service Management<br>Synchronisation des traitements"]
+    end
+
+    Git -->|Parsé à l'init| CLI
+    SARIF -->|Ingéré en continu| CLI
+    CLI -->|Persiste & Lie| DB
+    DB <-->|Relations & Métriques| API
+    API <-->|Consommation REST / JSON| DASH
+    API -.->|Export tickets| JIRA
 ```
-
-- **Base de données** : PostgreSQL (stockage relationnel des risques, contrôles, et mappings).
-- **Backend / API** : FastAPI (Python 3.11), exposant les endpoints de pilotage et les KPIs (`http://localhost:8000/docs`).
-- **CLI d'Administration** : Typer (commandes `grc load`, `grc ingest`, `grc export-jira` pour les administrateurs).
-- **Dashboard / Frontend** : Streamlit (tableau de bord de pilotage CISO interactif).
-- **Infrastructure** : Docker & Docker-Compose (conteneurisation complète).
-
-## ✨ Fonctionnalités Implémentées
-
-### 1. Analyse de Risques (EBIOS RM)
-Modélisation complète des 5 ateliers de la méthode EBIOS RM :
-- **Atelier 1 & 2** : Valeurs métiers (Base de données patients, PACS) et Événements redoutés.
-- **Atelier 3** : Scénarios stratégiques et profils d'attaquants.
-- **Atelier 4** : Scénarios opérationnels et matrice de risques (Gravité / Vraisemblance inhérente & résiduelle).
-- **Atelier 5** : Traitements de sécurité.
-
-### 2. Référentiels et Conformité
-- **ISO 27001:2022** : Intégration complète des 93 contrôles de l'Annexe A.
-- **Mappings Croisés** : Alignement des mesures de sécurité avec les directives **NIS2**, le framework **NIST CSF 2.0**, et les techniques du **MITRE ATT&CK**.
-
-### 3. Tableau de Bord (Dashboard)
-Interface d'administration (Streamlit) proposant 5 vues de pilotage :
-1. **Vue d'ensemble** : KPIs globaux (Risques critiques, vulnérabilités).
-2. **Heatmap des Risques** : Matrice dynamique des scores de risque inhérent vs résiduel.
-3. **SoA (ISO 27001)** : État d'avancement par chapitre (Organisationnel, Personnes, Physique, Tech).
-4. **Conformité Globale** : Statistiques de couverture NIS2 / NIST / ATT&CK.
-5. **Rapports Documentaires** : Génération visuelle, formelle et exportable de la Déclaration d'Applicabilité (SoA) prête pour l'audit.
 
 ---
 
-## 🚀 Démarrage Rapide (Local)
+## 📊 Chiffres Clés du Dossier
 
-### Prérequis
-- `Docker` et `Docker Compose`
-- `Make` (optionnel)
+| Indicateur | Volume | Description & Impact Métier |
+| :--- | :---: | :--- |
+| **Scénarios de Risque EBIOS RM** | **10** | Modélisation des 5 ateliers : du ransomware PACS à la compromission supply-chain, avec scoring inhérent vs résiduel. |
+| **Contrôles ISO 27001:2022 Évalués** | **93** | SoA complète (Thèmes 5 à 8) avec justifications médicales (PACS, VPN, HDS) et exclusion formelle du dev logiciel. |
+| **Mappings Réglementaires Croisés** | **3** | Correspondance directe des contrôles avec **NIS2** (Art. 21), **NIST CSF 2.0** et **MITRE ATT&CK v14**. |
+| **Sources de Télémétrie SecOps** | **2** | Ingestion native de rapports de scans **SARIF** (Trivy & Bloodhound) dégradant dynamiquement le risque résiduel. |
+| **Plans de Traitement Opérationnels** | **10** | Décisions formelles (Réduire, Transférer, Accepter) avec échéances, porteurs et passerelle Jira. |
 
-### Lancement via Make
-Si vous disposez de l'utilitaire Make, exécutez simplement :
+---
+
+## ⚡ Démarrage Rapide (Quickstart)
+
+Déployez l'ensemble de la stack (Base de données PostgreSQL, API FastAPI et Dashboard Streamlit) en quelques commandes grâce à Docker Compose.
+
+### 1. Cloner le dépôt
 ```bash
-make demo
+git clone https://github.com/h-4mza/grc-as-code-imaging-center.git
+cd grc-as-code-imaging-center
 ```
-*Cela construira les conteneurs, lancera la base de données, l'API et le Dashboard, et peuplera automatiquement la base via la CLI (commande `grc load`).*
 
-### Lancement manuel (Docker Compose)
-Si vous préférez lancer manuellement :
+### 2. Démarrer les conteneurs
 ```bash
-# 1. Démarrer les services
 docker-compose up -d --build
+```
 
-# 2. Peupler la base de données avec le référentiel YAML
+### 3. Initialiser les données GRC & Ingestion des scans
+Exécutez les commandes du CLI au sein du conteneur API pour charger le référentiel YAML et ingérer les constats techniques :
+
+```bash
+# Chargement du référentiel (EBIOS RM, ISO 27001, Mappings)
 docker-compose exec -e DATABASE_URL="postgresql+psycopg2://grc_user:grc_password@postgres/grc_db" api python -m app.cli load
+
+# Ingestion des constats techniques SecOps (Rapports SARIF)
+docker-compose exec -e DATABASE_URL="postgresql+psycopg2://grc_user:grc_password@postgres/grc_db" api python -m app.cli ingest --source sarif --file grc/scans/projet1_trivy.sarif
+docker-compose exec -e DATABASE_URL="postgresql+psycopg2://grc_user:grc_password@postgres/grc_db" api python -m app.cli ingest --source sarif --file grc/scans/projet3_ad_audit.sarif
 ```
 
-### Accès aux interfaces
-- **Dashboard Streamlit** (Pilotage) : [http://localhost:8501](http://localhost:8501)
-- **API FastAPI** (Documentation Swagger) : [http://localhost:8000/docs](http://localhost:8000/docs)
+### 4. Accéder aux applications
+* 🖥️ **Dashboard CISO / Auditeur (Streamlit)** : [http://localhost:8501](http://localhost:8501)
+* 📡 **API REST & Documentation interactive (Swagger)** : [http://localhost:8000/docs](http://localhost:8000/docs)
 
 ---
 
-## 💻 Exemples d'utilisation du CLI GRC
+## 📸 Aperçu & Livrables
 
-L'outil dispose d'une ligne de commande intégrée au conteneur API pour les tâches DevSecOps :
+### Tableau de Bord Interactif (Heatmap & Pilotage CISO)
+<!-- Insérer ici le GIF animé illustrant la navigation dans le dashboard, le passage inhérent/résiduel et la matrice croisée -->
+![Aperçu interactif du Dashboard Streamlit - Heatmap et KPIs GRC](docs/images/dashboard_demo.gif)
 
-**Recharger le référentiel YAML en base de données :**
-```bash
-docker-compose exec api python -m app.cli load
-```
+### Déclaration d'Applicabilité (SoA) ISO 27001:2022
+<!-- Insérer ici la capture d'écran du rapport SoA mis en forme avec ses statuts, maturités et justifications contextualisées -->
+![Déclaration d'Applicabilité (SoA) ISO 27001:2022 générée pour audit](docs/images/soa_matrix_preview.png)
 
-**Ingérer un rapport de scan de vulnérabilités (format SARIF) :**
-```bash
-docker-compose exec api python -m app.cli ingest samples/trivy_report.sarif
-```
+---
 
-**Exporter les plans de traitement vers Jira (Synchronisation) :**
-```bash
-docker-compose exec api python -m app.cli export-jira --project CIMSEC
+## 📁 Structure du Projet
+
+```text
+├── app/
+│   ├── main.py              # Endpoints FastAPI (/kpi/heatmap, /kpi/compliance, /kpi/soa)
+│   ├── cli.py               # Interface CLI Typer (commandes load & ingest)
+│   ├── models.py            # Modèles SQLAlchemy relationnels
+│   ├── parsers/sarif.py     # Parseur de rapports de scan SARIF
+│   └── services/scoring.py  # Algorithme de calcul de risques EBIOS RM
+├── dashboard/
+│   └── streamlit_app.py     # Interface utilisateur Streamlit
+├── docs/
+│   ├── compliance/          # Note d'applicabilité réglementaire (NIS2, RGPD, HDS)
+│   └── images/              # Captures et GIF pour la documentation
+├── grc/
+│   ├── ebios/               # Ateliers EBIOS RM au format YAML
+│   ├── iso27001/            # 93 contrôles ISO 27001:2022 évalués
+│   ├── mappings/            # Mappings formels (NIS2, NIST CSF, ATT&CK)
+│   └── scans/               # Rapports SARIF d'exemple (Trivy, BloodHound)
+├── docker-compose.yml       # Déploiement multi-conteneurs
+└── Dockerfile               # Définition de l'image de l'API
 ```
 
 ---
 
-*Développé dans le cadre d'un PoC de GRC-as-Code pour démontrer les capacités de l'automatisation de la conformité.*
+## 📜 Licence
+Ce projet est distribué sous licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus d'informations.
