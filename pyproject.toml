@@ -28,7 +28,8 @@ dev = [
     "pytest>=7.4.0",
     "ruff>=0.0.280",
     "pre-commit>=3.3.3",
-    "mkdocs-material>=9.1.18"
+    "mkdocs-material>=9.1.18",
+    "playwright>=1.40.0"
 ]
 
 [project.scripts]

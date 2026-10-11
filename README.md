@@ -15,8 +15,6 @@
 [![Docker](https://img.shields.io/badge/Docker-compose-2496ED?logo=docker&logoColor=white)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 
-![Aperçu du dashboard](docs/images/dashboard_demo.gif)
-
 </div>
 
 ---
@@ -69,8 +67,6 @@ Les plans de traitement (réduire, transférer, accepter) ont un porteur, une é
 
 ### 📈 Dashboard CISO / auditeur
 Cinq vues : vue d'ensemble, heatmap inhérent vs résiduel, avancement de la SoA, conformité globale (NIS2 / NIST / ATT&CK) et rapports exportables.
-
-![SoA ISO 27001](docs/images/soa_matrix_preview.png)
 
 ---
 
@@ -167,6 +163,27 @@ Exécution dans le conteneur : `docker-compose exec api python -m app.cli <comma
 | `GET /kpi/soa` | Avancement de la SoA par thème |
 
 Documentation interactive complète sur `/docs`.
+
+---
+
+## 📸 Aperçu
+
+### Matrice de Risques EBIOS RM (Heatmap)
+![Matrice de risques EBIOS RM comparant les niveaux inhérents et résiduels après traitement](docs/images/heatmap.png)
+
+### Déclaration d'Applicabilité (SoA) ISO 27001:2022
+![Déclaration d'Applicabilité ISO 27001:2022 avec statuts, maturités et justifications médicales](docs/images/soa_matrix_preview.png)
+
+### Matrice de Couverture Réglementaire (NIS2, NIST CSF, ATT&CK)
+![Matrice croisée de couverture des exigences NIS2, NIST CSF 2.0 et MITRE ATT&CK](docs/images/compliance.png)
+
+### 📸 Captures d'écran
+Pour régénérer automatiquement les captures d'écran du dashboard avec Playwright :
+
+```bash
+playwright install chromium
+python scripts/capture_screenshots.py
+```
 
 ---
 
