@@ -86,7 +86,8 @@ def load():
             if asset_ids:
                 db_risk.assets = db.query(models.Asset).filter(models.Asset.id.in_(asset_ids)).all()
             if control_ids:
-                db_risk.controls_list = db.query(models.Control).filter(models.Control.id.in_(control_ids)).all()
+                search_cids = list(set(control_ids + [c.replace("A.", "") for c in control_ids]))
+                db_risk.controls_list = db.query(models.Control).filter(models.Control.id.in_(search_cids)).all()
 
         # Mappings (Old schema)
         for mapping_file in ["iso_nis2.yaml", "iso_attack.yaml", "iso_nist.yaml"]:
@@ -122,10 +123,15 @@ def ingest(source: str = typer.Option(...), file: str = typer.Option(...)):
         db.close()
 
 from app.services.jira_client import JiraClient
+
+
 @app.command()
-def export_jira(dry_run: bool = True):
+def export_jira(
+    project: str = typer.Option(None, "--project", help="Clé du projet Jira"),
+    dry_run: bool = typer.Option(True, "--dry-run/--no-dry-run", help="Mode simulation sans appel API (défaut : dry-run)"),
+):
     db = SessionLocal()
-    jira = JiraClient()
+    jira = JiraClient(project_key=project)
     try:
         treatments = db.query(models.Treatment).filter(models.Treatment.jira_key == None).all()
         for t in treatments:

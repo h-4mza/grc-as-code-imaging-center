@@ -150,11 +150,27 @@ docker-compose exec -T api grc ingest --source sarif --file grc/scans/projet3_ad
 
 | Commande | Rôle |
 | :-- | :-- |
-| `grc load` | Charge les YAML (`grc/`) en base |
-| `grc ingest --source sarif --file <fichier>` | Ingère un rapport de scan et réévalue le risque résiduel |
-| `grc export-jira --project CIMSEC` | Synchronise les plans de traitement vers Jira |
+| `grc load` | Charge le référentiel déclaratif (`grc/`) en base PostgreSQL |
+| `grc ingest --source sarif --file <fichier>` | Ingère un rapport de scan (ex. Trivy, BloodHound) et réévalue le risque résiduel |
+| `grc export-jira [--project <KEY>] [--dry-run \| --no-dry-run]` | Synchronise les plans de traitement vers Jira Service Management |
 
-Exécution dans le conteneur : `docker-compose exec api python -m app.cli <commande>`
+Exécution dans le conteneur : `docker-compose exec -T api grc <commande>`
+
+### ⚙️ Intégration Jira Cloud
+Par défaut, `grc export-jira` s'exécute en mode **simulation** (`--dry-run`). Pour créer réellement les tickets (`--no-dry-run`), configurez les variables d'environnement suivantes :
+
+* `JIRA_URL` : URL de votre instance Atlassian (ex. `https://mon-domaine.atlassian.net`)
+* `JIRA_EMAIL` : Adresse e-mail du compte de service (ex. `ciso@mon-domaine.com`)
+* `JIRA_API_TOKEN` : Jeton d'API Atlassian
+* `JIRA_PROJECT_KEY` : Clé de projet par défaut (optionnel, repli sur `SEC` si non spécifié)
+
+```bash
+# Simulation (dry-run par défaut, aucun appel réseau)
+docker-compose exec -T api grc export-jira --project CIMSEC
+
+# Création réelle des tickets Jira (avec labels risk-id et control-id, et description ADF)
+docker-compose exec -T api grc export-jira --project CIMSEC --no-dry-run
+```
 
 ## 📡 API
 
