@@ -1,5 +1,7 @@
-from pydantic import BaseModel, Field
 from typing import List, Optional
+
+from pydantic import BaseModel, Field
+
 
 class BusinessValue(BaseModel):
     id: str = Field(..., description="Identifiant unique de la valeur métier")
@@ -8,8 +10,10 @@ class BusinessValue(BaseModel):
     evenement_redoute: str = Field(..., description="Événement redouté associé")
     gravite: int = Field(..., ge=1, le=5, description="Niveau de gravité (1 à 5)")
 
+
 class BusinessValueList(BaseModel):
     business_values: List[BusinessValue]
+
 
 class Asset(BaseModel):
     id: str = Field(..., description="Identifiant unique de l'actif")
@@ -18,8 +22,10 @@ class Asset(BaseModel):
     criticite: int = Field(..., ge=1, le=5, description="Criticité de l'actif (1 à 5)")
     valeurs_metier_liees: List[str] = Field(default_factory=list, description="Liste des IDs des valeurs métier liées")
 
+
 class AssetList(BaseModel):
     assets: List[Asset]
+
 
 class SourceRisque(BaseModel):
     id: str = Field(..., description="Identifiant unique de la SR")
@@ -28,10 +34,12 @@ class SourceRisque(BaseModel):
     motivation: str = Field(..., description="Motivation principale")
     ressources: str = Field(..., description="Niveau de ressources")
 
+
 class ObjectifVise(BaseModel):
     id: str = Field(..., description="Identifiant unique de l'OV")
     nom: str = Field(..., description="Nom de l'objectif visé")
     description: str = Field(..., description="Description détaillée")
+
 
 class CoupleSROV(BaseModel):
     id: str = Field(..., description="Identifiant unique du couple SR/OV")
@@ -40,10 +48,12 @@ class CoupleSROV(BaseModel):
     pertinence: int = Field(..., ge=1, le=5, description="Pertinence évaluée (1 à 5)")
     description: str = Field(..., description="Description du scénario stratégique de haut niveau")
 
+
 class Atelier2(BaseModel):
     sources_risques: List[SourceRisque]
     objectifs_vises: List[ObjectifVise]
     couples_sr_ov: List[CoupleSROV]
+
 
 class PartiePrenante(BaseModel):
     id: str = Field(..., description="Identifiant unique de la partie prenante")
@@ -51,6 +61,7 @@ class PartiePrenante(BaseModel):
     type: str = Field(..., description="Type (Partenaire, fournisseur, etc.)")
     niveau_menace: int = Field(..., ge=1, le=5, description="Niveau de menace perçu (1 à 5)")
     dependance: str = Field(..., description="Niveau et nature de la dépendance")
+
 
 class ScenarioStrategique(BaseModel):
     id: str = Field(..., description="Identifiant du scénario stratégique")
@@ -60,9 +71,11 @@ class ScenarioStrategique(BaseModel):
     vraisemblance: int = Field(..., ge=1, le=5, description="Vraisemblance (1 à 5)")
     description: str = Field(..., description="Description de l'attaque via l'écosystème")
 
+
 class Atelier3(BaseModel):
     parties_prenantes: List[PartiePrenante]
     scenarios_strategiques: List[ScenarioStrategique]
+
 
 class ScenarioOperationnel(BaseModel):
     id: str = Field(..., description="Identifiant du scénario opérationnel")
@@ -73,8 +86,10 @@ class ScenarioOperationnel(BaseModel):
     gravite: int = Field(..., ge=1, le=5, description="Gravité évaluée (1 à 5)")
     description: str = Field(..., description="Description technique du mode opératoire")
 
+
 class Atelier4(BaseModel):
     scenarios_operationnels: List[ScenarioOperationnel]
+
 
 class Control(BaseModel):
     id: str = Field(..., description="ID du contrôle ISO 27001 (ex: 5.1)")
@@ -83,18 +98,23 @@ class Control(BaseModel):
     theme: str = Field(..., description="Thème (Organisationnel, Personnes, Physique, Technologique)")
     is_applicable: bool = Field(..., description="Applicabilité du contrôle")
     justification: str = Field(..., description="Justification d'applicabilité ou d'exclusion")
-    status: str = Field(..., description="État de mise en œuvre (implemented, partial, not_implemented, not_applicable)")
+    status: str = Field(
+        ..., description="État de mise en œuvre (implemented, partial, not_implemented, not_applicable)"
+    )
     maturity: int = Field(..., ge=0, le=5, description="Niveau de maturité (0 à 5)")
     evidence: str = Field(..., description="Élément de preuve ou commentaire")
 
+
 class AnnexA(BaseModel):
     controls: List[Control]
+
 
 class ControlMapping(BaseModel):
     id: str = Field(..., description="ID unique du mapping")
     control_id: str = Field(..., description="ID du contrôle ISO")
     framework: str = Field(..., description="Nom du framework cible (NIS2, ATT&CK, NIST)")
     reference: str = Field(..., description="Référence ou article dans le framework cible")
+
 
 class Treatment(BaseModel):
     id: str = Field(..., description="ID du traitement")

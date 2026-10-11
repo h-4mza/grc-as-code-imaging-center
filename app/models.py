@@ -1,13 +1,15 @@
-from sqlalchemy import Column, String, Integer, Boolean, ForeignKey, Table
+from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Table
 from sqlalchemy.orm import relationship
+
 from app.db import Base
 
 asset_bv_table = Table(
-    'asset_business_value',
+    "asset_business_value",
     Base.metadata,
-    Column('asset_id', String, ForeignKey('assets.id'), primary_key=True),
-    Column('bv_id', String, ForeignKey('business_values.id'), primary_key=True)
+    Column("asset_id", String, ForeignKey("assets.id"), primary_key=True),
+    Column("bv_id", String, ForeignKey("business_values.id"), primary_key=True),
 )
+
 
 class BusinessValue(Base):
     __tablename__ = "business_values"
@@ -18,6 +20,7 @@ class BusinessValue(Base):
     gravite = Column(Integer)
     assets = relationship("Asset", secondary=asset_bv_table, back_populates="valeurs_metier")
 
+
 class Asset(Base):
     __tablename__ = "assets"
     id = Column(String, primary_key=True)
@@ -25,6 +28,7 @@ class Asset(Base):
     type = Column(String)
     criticite = Column(Integer)
     valeurs_metier = relationship("BusinessValue", secondary=asset_bv_table, back_populates="assets")
+
 
 class SourceRisque(Base):
     __tablename__ = "sources_risques"
@@ -34,11 +38,13 @@ class SourceRisque(Base):
     motivation = Column(String)
     ressources = Column(String)
 
+
 class ObjectifVise(Base):
     __tablename__ = "objectifs_vises"
     id = Column(String, primary_key=True)
     nom = Column(String, nullable=False)
     description = Column(String)
+
 
 class CoupleSROV(Base):
     __tablename__ = "couples_sr_ov"
@@ -50,6 +56,7 @@ class CoupleSROV(Base):
     sr = relationship("SourceRisque")
     ov = relationship("ObjectifVise")
 
+
 class PartiePrenante(Base):
     __tablename__ = "parties_prenantes"
     id = Column(String, primary_key=True)
@@ -57,6 +64,7 @@ class PartiePrenante(Base):
     type = Column(String)
     niveau_menace = Column(Integer)
     dependance = Column(String)
+
 
 class ScenarioStrategique(Base):
     __tablename__ = "scenarios_strategiques"
@@ -71,18 +79,19 @@ class ScenarioStrategique(Base):
 
 
 risk_asset_table = Table(
-    'risk_asset',
+    "risk_asset",
     Base.metadata,
-    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True),
-    Column('asset_id', String, ForeignKey('assets.id'), primary_key=True)
+    Column("risk_id", String, ForeignKey("scenarios_operationnels.id"), primary_key=True),
+    Column("asset_id", String, ForeignKey("assets.id"), primary_key=True),
 )
 
 risk_control_table = Table(
-    'risk_control',
+    "risk_control",
     Base.metadata,
-    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True),
-    Column('control_id', String, ForeignKey('controls.id'), primary_key=True)
+    Column("risk_id", String, ForeignKey("scenarios_operationnels.id"), primary_key=True),
+    Column("control_id", String, ForeignKey("controls.id"), primary_key=True),
 )
+
 
 class ScenarioOperationnel(Base):
     __tablename__ = "scenarios_operationnels"
@@ -97,6 +106,7 @@ class ScenarioOperationnel(Base):
     assets = relationship("Asset", secondary=risk_asset_table)
     controls_list = relationship("Control", secondary=risk_control_table)
 
+
 class Control(Base):
     __tablename__ = "controls"
     id = Column(String, primary_key=True)
@@ -108,22 +118,24 @@ class Control(Base):
     status = Column(String)
     maturity = Column(Integer)
     evidence = Column(String)
-    
+
     mappings = relationship("ControlMapping", back_populates="control")
 
+
 finding_control_table = Table(
-    'finding_control',
+    "finding_control",
     Base.metadata,
-    Column('finding_id', Integer, ForeignKey('findings.id'), primary_key=True),
-    Column('control_id', String, ForeignKey('controls.id'), primary_key=True)
+    Column("finding_id", Integer, ForeignKey("findings.id"), primary_key=True),
+    Column("control_id", String, ForeignKey("controls.id"), primary_key=True),
 )
 
 finding_risk_table = Table(
-    'finding_risk',
+    "finding_risk",
     Base.metadata,
-    Column('finding_id', Integer, ForeignKey('findings.id'), primary_key=True),
-    Column('risk_id', String, ForeignKey('scenarios_operationnels.id'), primary_key=True)
+    Column("finding_id", Integer, ForeignKey("findings.id"), primary_key=True),
+    Column("risk_id", String, ForeignKey("scenarios_operationnels.id"), primary_key=True),
 )
+
 
 class Finding(Base):
     __tablename__ = "findings"
@@ -135,10 +147,11 @@ class Finding(Base):
     technique_attack = Column(String, nullable=True)
     description = Column(String, nullable=True)
     date = Column(String)
-    
+
     actif = relationship("Asset")
     controls = relationship("Control", secondary=finding_control_table)
     risks = relationship("ScenarioOperationnel", secondary=finding_risk_table)
+
 
 class ControlMapping(Base):
     __tablename__ = "control_mappings"
@@ -146,8 +159,9 @@ class ControlMapping(Base):
     control_id = Column(String, ForeignKey("controls.id"))
     framework = Column(String)
     reference = Column(String)
-    
+
     control = relationship("Control", back_populates="mappings")
+
 
 class Treatment(Base):
     __tablename__ = "treatments"
@@ -159,5 +173,5 @@ class Treatment(Base):
     responsable = Column(String)
     jira_key = Column(String, nullable=True)
     status = Column(String, default="todo")
-    
+
     risk = relationship("ScenarioOperationnel")

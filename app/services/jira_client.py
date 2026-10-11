@@ -1,4 +1,5 @@
 import os
+
 import requests
 from requests.auth import HTTPBasicAuth
 
@@ -66,7 +67,8 @@ class JiraClient:
         }
 
         if dry_run:
-            print(f"[DRY-RUN] Jira ticket would be created: {payload['fields']['summary']} (Project: {self.project_key}, Labels: {labels})")
+            summary = payload["fields"]["summary"]
+            print(f"[DRY-RUN] Jira ticket would be created: {summary} (Project: {self.project_key}, Labels: {labels})")
             return f"DRYRUN-{treatment.id[-4:].upper()}"
 
         # Appel réel à l'API Jira Cloud v3

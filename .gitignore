@@ -81,6 +81,7 @@ logs/
 tmp/
 temp/
 scratch/
+site/
 
 # --- IDEs et Éditeurs ---
 .vscode/

@@ -1,5 +1,5 @@
-import pytest
-from app.services.scoring import calculate_level, adjust_vraisemblance, calculate_residual, get_risk_scores
+from app.services.scoring import adjust_vraisemblance, calculate_level, calculate_residual, get_risk_scores
+
 
 def test_calculate_level():
     assert calculate_level(1, 1) == "Faible"
@@ -10,12 +10,14 @@ def test_calculate_level():
     assert calculate_level(4, 3) == "Critique"
     assert calculate_level(4, 4) == "Critique"
     # Test capping
-    assert calculate_level(5, 5) == "Critique" 
+    assert calculate_level(5, 5) == "Critique"
+
 
 def test_adjust_vraisemblance():
     assert adjust_vraisemblance(3, False) == 3
     assert adjust_vraisemblance(3, True) == 4
     assert adjust_vraisemblance(4, True) == 4
+
 
 def test_calculate_residual():
     # gravite 4, v 4 -> 16 (Critique)
@@ -27,6 +29,7 @@ def test_calculate_residual():
     # gravite 3, v 3 -> 9 (Élevé)
     # maturity 3.0 -> v reduced by 1 -> v=2 -> score 6 (Moyen)
     assert calculate_residual(3, 3, 3.0) == "Moyen"
+
 
 def test_get_risk_scores():
     res = get_risk_scores(3, 2, maturity_avg=3.0, has_high_severity_finding=True)

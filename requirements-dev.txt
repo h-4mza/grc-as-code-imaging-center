@@ -1,6 +1,6 @@
 -r requirements.txt
 pytest>=7.4.0
-ruff>=0.0.280
+ruff>=0.8.0
 pre-commit>=3.3.3
 mkdocs-material>=9.1.18
 playwright>=1.40.0

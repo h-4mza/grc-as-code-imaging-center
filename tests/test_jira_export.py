@@ -10,17 +10,17 @@ Tests unitaires pour l'export des traitements vers Jira Cloud (API v3) :
 
 import os
 from unittest import mock
-import pytest
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.models import Base, Treatment, ScenarioOperationnel, Control
+from app.models import Base, ScenarioOperationnel, Treatment
 from app.services.jira_client import JiraClient
-
 
 # ==============================================================================
 # Classes fictives / Mocks simples pour les tests unitaires
 # ==============================================================================
+
 
 class DummyControl:
     def __init__(self, id_str):
@@ -49,6 +49,7 @@ class DummyTreatment:
 # 1. Tests de priorité de la clé de projet
 # ==============================================================================
 
+
 def test_jira_client_project_key_priority():
     """Vérifie la priorité : argument constructeur > variable JIRA_PROJECT_KEY > 'SEC'."""
     # 1. Priorité argument explicite
@@ -70,6 +71,7 @@ def test_jira_client_project_key_priority():
 # ==============================================================================
 # 2. Test du payload (Clé de projet, labels control-id, description ADF)
 # ==============================================================================
+
 
 def test_jira_payload_structure_and_project_key():
     """Vérifie que requests.post reçoit un payload valide avec la bonne clé, les labels et l'ADF."""
@@ -121,6 +123,7 @@ def test_jira_payload_structure_and_project_key():
 # 3. Test du mode Dry-Run
 # ==============================================================================
 
+
 def test_jira_dry_run_never_calls_requests_post():
     """Vérifie que le mode dry-run (défaut) n'effectue aucun appel réseau HTTP."""
     client = JiraClient(project_key="CIMSEC")
@@ -139,6 +142,7 @@ def test_jira_dry_run_never_calls_requests_post():
 # ==============================================================================
 # 4. Test d'idempotence (Traitements déjà exportés ignorés)
 # ==============================================================================
+
 
 def test_export_jira_idempotence():
     """Vérifie qu'un traitement possédant déjà un jira_key n'est pas réexporté."""
@@ -176,7 +180,7 @@ def test_export_jira_idempotence():
     session.commit()
 
     # Requête avec filtre d'idempotence (exactement comme dans export_jira de cli.py)
-    pending_treatments = session.query(Treatment).filter(Treatment.jira_key == None).all()
+    pending_treatments = session.query(Treatment).filter(Treatment.jira_key.is_(None)).all()
 
     # Seul le nouveau traitement doit être retourné pour export
     assert len(pending_treatments) == 1

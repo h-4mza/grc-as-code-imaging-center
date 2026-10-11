@@ -9,24 +9,25 @@ Tests unitaires et d'intégration validant la logique mathématique GRC :
 """
 
 import json
+
 import pytest
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from app.models import Base, ScenarioOperationnel, Control, Finding
+from app.models import Base, Control, Finding, ScenarioOperationnel
 from app.parsers.sarif import parse_sarif
 from app.services.ingest import ingest_findings
 from app.services.scoring import (
-    calculate_level,
     adjust_vraisemblance,
+    calculate_level,
     calculate_residual,
     get_risk_scores,
 )
 
-
 # ==============================================================================
 # Fixtures pour base de données isolée en mémoire
 # ==============================================================================
+
 
 @pytest.fixture
 def db_session():
@@ -79,9 +80,7 @@ def sample_sarif_file(tmp_path):
                             "tags": ["T1190"],
                             "asset_id": "ast_vpn",
                         },
-                        "message": {
-                            "text": "Exécution de code à distance (RCE) sur passerelle VPN"
-                        },
+                        "message": {"text": "Exécution de code à distance (RCE) sur passerelle VPN"},
                     }
                 ],
             }
@@ -97,15 +96,16 @@ def sample_sarif_file(tmp_path):
 # 1. Tests unitaires : Matrice de Risque EBIOS RM & Plafonnement
 # ==============================================================================
 
+
 def test_scoring_baseline_risk_matrix():
     """Vérifie le calcul des seuils de la matrice 4x4 (Faible <=3, Moyen <=6, Élevé <=9, Critique >9)."""
-    assert calculate_level(gravite=1, vraisemblance=1) == "Faible"   # Score 1
-    assert calculate_level(gravite=2, vraisemblance=1) == "Faible"   # Score 2
-    assert calculate_level(gravite=2, vraisemblance=2) == "Moyen"    # Score 4
-    assert calculate_level(gravite=2, vraisemblance=3) == "Moyen"    # Score 6
-    assert calculate_level(gravite=3, vraisemblance=3) == "Élevé"    # Score 9
-    assert calculate_level(gravite=4, vraisemblance=3) == "Critique" # Score 12
-    assert calculate_level(gravite=4, vraisemblance=4) == "Critique" # Score 16
+    assert calculate_level(gravite=1, vraisemblance=1) == "Faible"  # Score 1
+    assert calculate_level(gravite=2, vraisemblance=1) == "Faible"  # Score 2
+    assert calculate_level(gravite=2, vraisemblance=2) == "Moyen"  # Score 4
+    assert calculate_level(gravite=2, vraisemblance=3) == "Moyen"  # Score 6
+    assert calculate_level(gravite=3, vraisemblance=3) == "Élevé"  # Score 9
+    assert calculate_level(gravite=4, vraisemblance=3) == "Critique"  # Score 12
+    assert calculate_level(gravite=4, vraisemblance=4) == "Critique"  # Score 16
 
 
 def test_scoring_bounds_capping():
@@ -128,6 +128,7 @@ def test_adjust_vraisemblance_with_findings():
 # ==============================================================================
 # 2. Tests de la logique mathématique : Maturité vs Risque Résiduel
 # ==============================================================================
+
 
 def test_maturity_reduction_on_residual_risk():
     """Vérifie l'impact direct du niveau de maturité des contrôles sur l'atténuation du risque."""
@@ -196,6 +197,7 @@ def test_risk_escalation_upon_critical_finding():
 # ==============================================================================
 # 3. Tests d'intégration : Ingestion SARIF et Rattachement Automatique
 # ==============================================================================
+
 
 def test_sarif_parser_extraction(sample_sarif_file):
     """Vérifie que le parseur SARIF extrait fidèlement la CVE, la sévérité, l'actif et la technique ATT&CK."""

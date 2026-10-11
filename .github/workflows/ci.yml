@@ -31,6 +31,14 @@ jobs:
         run: |
           python -c "import glob, yaml; [yaml.safe_load(open(f, encoding='utf-8')) for f in glob.glob('grc/**/*.yaml', recursive=True)]; print('All GRC YAML files are syntactically valid!')"
 
+      - name: Lint Code with Ruff
+        run: |
+          ruff check .
+
+      - name: Build Documentation (MkDocs Strict)
+        run: |
+          mkdocs build --strict
+
       - name: Run Pytest Suite
         run: |
           pytest tests/ -v --tb=short

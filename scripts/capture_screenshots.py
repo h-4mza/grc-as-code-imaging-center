@@ -24,7 +24,8 @@ if hasattr(sys.stdout, "reconfigure"):
     except Exception:
         pass
 
-from playwright.sync_api import sync_playwright, TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
+from playwright.sync_api import sync_playwright
 
 DASHBOARD_URL = "http://localhost:8501"
 VIEWPORT_WIDTH = 1440
@@ -68,8 +69,10 @@ def main():
             "Veuillez démarrer la stack au préalable :\n"
             "  1. docker-compose up -d\n"
             "  2. docker-compose exec api python -m app.cli load\n"
-            "  3. docker-compose exec api python -m app.cli ingest --source sarif --file grc/scans/projet1_trivy.sarif\n"
-            "  4. docker-compose exec api python -m app.cli ingest --source sarif --file grc/scans/projet3_ad_audit.sarif\n",
+            "  3. docker-compose exec api python -m app.cli ingest "
+            "--source sarif --file grc/scans/projet1_trivy.sarif\n"
+            "  4. docker-compose exec api python -m app.cli ingest "
+            "--source sarif --file grc/scans/projet3_ad_audit.sarif\n",
             file=sys.stderr,
         )
         sys.exit(1)

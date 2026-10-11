@@ -1,22 +1,27 @@
-import streamlit as st
-import requests
 import os
+
 import pandas as pd
+import requests
+import streamlit as st
 
 API_URL = os.getenv("API_URL", "http://localhost:8000")
 
 st.set_page_config(page_title="GRC Dashboard", layout="wide", page_icon="🛡️")
 
 st.sidebar.title("Navigation GRC")
-page = st.sidebar.radio("Menu", [
-    "Vue d'ensemble", 
-    "Heatmap des Risques", 
-    "SoA (ISO 27001)", 
-    "Conformité Globale", 
-    "Plan de Traitement",
-    "Rapports Documentaires",
-    "Registre des Constats"
-])
+page = st.sidebar.radio(
+    "Menu",
+    [
+        "Vue d'ensemble",
+        "Heatmap des Risques",
+        "SoA (ISO 27001)",
+        "Conformité Globale",
+        "Plan de Traitement",
+        "Rapports Documentaires",
+        "Registre des Constats",
+    ],
+)
+
 
 def fetch_data(endpoint):
     try:
@@ -27,26 +32,28 @@ def fetch_data(endpoint):
         st.error(f"Erreur de connexion à l'API: {e}")
         return None
 
+
 if page == "Vue d'ensemble":
     st.title("👁️ Vue d'ensemble GRC - Imagerie Médicale")
     data = fetch_data("/kpi/overview")
-    
+
     if data:
-        st.markdown("""
-        Bienvenue sur le **Portail de Pilotage Cybersécurité**. 
-        Cet outil de la gamme **GRC-as-Code** agrège dynamiquement l'analyse de risques EBIOS RM, l'applicabilité ISO 27001, et les vulnérabilités de notre infrastructure d'imagerie médicale.
-        """)
+        st.markdown(
+            "Bienvenue sur le **Portail de Pilotage Cybersécurité**.\n"
+            "Cet outil de la gamme **GRC-as-Code** agrège dynamiquement l'analyse de risques EBIOS RM, "
+            "l'applicabilité ISO 27001, et les vulnérabilités de notre infrastructure d'imagerie médicale."
+        )
         st.markdown("---")
-        
+
         col1, col2, col3, col4 = st.columns(4)
         col1.metric("Risques Totaux", data["total_risks"], "Scénarios EBIOS")
         col2.metric("Risques Critiques", data["risques_critiques"], "- Résiduel", delta_color="inverse")
         col3.metric("Conformité ISO 27001", f"{data['controls_en_place_pct']}%", "Contrôles implémentés")
         col4.metric("Vulnérabilités Ouvertes", data["total_findings"], "- SecOps", delta_color="inverse")
-        
+
         st.markdown("---")
         st.subheader("📊 Tableau de Bord Opérationnel")
-        
+
         c1, c2 = st.columns(2)
         with c1:
             st.write("**Répartition des Constats (SecOps)**")
@@ -55,21 +62,27 @@ if page == "Vue d'ensemble":
                 st.bar_chart(pd.Series(f_stats))
             else:
                 st.info("Aucun constat ouvert.")
-                
+
         with c2:
             st.write("**Suivi des Plans de Traitement (Jira)**")
             st.progress(0.45, text="45% des plans d'action complétés")
             st.write(f"Nombre total d'actions définies dans le registre EBIOS : **{data['total_treatments']}**")
-            
-        st.info("💡 Navigation : Utilisez la barre latérale pour explorer la matrice de risques (Heatmap), examiner la conformité réglementaire (NIS2/HDS), ou vérifier les plans d'action.")
+
+        st.info(
+            "💡 Navigation : Utilisez la barre latérale pour explorer la matrice de risques (Heatmap), "
+            "examiner la conformité réglementaire (NIS2/HDS), ou vérifier les plans d'action."
+        )
 
 elif page == "Heatmap des Risques":
     st.title("🔥 Heatmap des Risques (Inhérent vs Résiduel)")
     data = fetch_data("/kpi/heatmap")
     if data:
         df = pd.DataFrame(data)
-        st.dataframe(df[["id", "nom", "gravite", "vraisemblance_inherente", "niveau_inherent", "niveau_residuel"]], use_container_width=True)
-        
+        st.dataframe(
+            df[["id", "nom", "gravite", "vraisemblance_inherente", "niveau_inherent", "niveau_residuel"]],
+            use_container_width=True,
+        )
+
         st.subheader("Matrice Inhérente (Gravité x Vraisemblance)")
         st.scatter_chart(df, x="gravite", y="vraisemblance_inherente", color="niveau_inherent")
 
@@ -81,18 +94,28 @@ elif page == "SoA (ISO 27001)":
         df["progression (%)"] = (df["en_place"] / df["total"] * 100).round(1)
         st.dataframe(df, use_container_width=True)
         st.bar_chart(df.set_index("theme")[["en_place", "total"]])
-        
+
     st.subheader("Détail des Contrôles de l'Annexe A")
     controls_data = fetch_data("/controls")
     if controls_data:
         df_ctrl = pd.DataFrame(controls_data)
         # On réorganise les colonnes pour que ce soit lisible
-        cols = ["id", "name", "description", "theme", "is_applicable", "status", "maturity", "justification", "evidence"]
+        cols = [
+            "id",
+            "name",
+            "description",
+            "theme",
+            "is_applicable",
+            "status",
+            "maturity",
+            "justification",
+            "evidence",
+        ]
         st.dataframe(df_ctrl[cols], use_container_width=True)
 
 elif page == "Conformité Globale":
     st.title("🎯 Matrice de Couverture & Conformité")
-    
+
     # 1. Retrieve aggregate data for Metrics
     kpi_data = fetch_data("/kpi/compliance")
     if kpi_data:
@@ -102,33 +125,30 @@ elif page == "Conformité Globale":
             cols[i].metric(
                 label=kpi["framework"],
                 value=f"{kpi['compliance_rate']}%",
-                delta=f"{kpi['implemented_controls']} / {kpi['total_mapped_controls']} en place"
+                delta=f"{kpi['implemented_controls']} / {kpi['total_mapped_controls']} en place",
             )
-            
+
     # 2. Retrieve detailed data for the Matrix
     matrix_data = fetch_data("/kpi/compliance_matrix")
     if matrix_data:
         st.markdown("---")
         st.subheader("Matrice Croisée (ISO 27001 vs Frameworks)")
         df = pd.DataFrame(matrix_data)
-        
+
         # We pivot: index = control_id, columns = framework, values = reference.
         df_pivot = df.pivot_table(
-            index="control_id", 
-            columns="framework", 
-            values="reference", 
-            aggfunc=lambda x: ' | '.join(x)
+            index="control_id", columns="framework", values="reference", aggfunc=lambda x: " | ".join(x)
         ).fillna("-")
-        
+
         # Sort index numerically if possible
         try:
-            df_pivot.index = pd.to_numeric(df_pivot.index, errors='coerce').fillna(df_pivot.index)
+            df_pivot.index = pd.to_numeric(df_pivot.index, errors="coerce").fillna(df_pivot.index)
             df_pivot = df_pivot.sort_index()
             # Restore to string to look good
             df_pivot.index = df_pivot.index.astype(str)
-        except:
+        except Exception:
             df_pivot = df_pivot.sort_index()
-            
+
         st.dataframe(df_pivot, use_container_width=True)
 
 elif page == "Plan de Traitement":
@@ -141,23 +161,24 @@ elif page == "Plan de Traitement":
 
 elif page == "Rapports Documentaires":
     st.title("📄 Rapports Documentaires GRC")
-    
+
     st.write("Visualisation des rapports générés (EBIOS, ISO 27001).")
-    
-    report = st.selectbox("Sélectionnez un document à consulter", [
-        "Déclaration d'Applicabilité (SoA) - ISO 27001",
-        "EBIOS RM - Atelier 4 (Scénarios Opérationnels)"
-    ])
-    
+
+    report = st.selectbox(
+        "Sélectionnez un document à consulter",
+        ["Déclaration d'Applicabilité (SoA) - ISO 27001", "EBIOS RM - Atelier 4 (Scénarios Opérationnels)"],
+    )
+
     file_map = {
         "Déclaration d'Applicabilité (SoA) - ISO 27001": "docs/iso27001/soa.md",
-        "EBIOS RM - Atelier 4 (Scénarios Opérationnels)": "docs/ebios/atelier4.md"
+        "EBIOS RM - Atelier 4 (Scénarios Opérationnels)": "docs/ebios/atelier4.md",
     }
-    
+
     filepath = file_map.get(report)
-    
+
     if report == "Déclaration d'Applicabilité (SoA) - ISO 27001":
-        st.markdown("""
+        st.markdown(
+            """
         <style>
         .soa-header {
             font-family: Arial, sans-serif;
@@ -223,14 +244,17 @@ elif page == "Rapports Documentaires":
             background-color: #f9f9f9;
         }
         </style>
-        """, unsafe_allow_html=True)
-        
+        """,
+            unsafe_allow_html=True,
+        )
+
         controls_data = fetch_data("/controls")
         if controls_data:
             import pandas as pd
+
             df = pd.DataFrame(controls_data)
-            
-            html_content = f"""<div class="soa-header">
+
+            html_content = """<div class="soa-header">
 <div class="soa-title">Centre d'Imagerie Médicale</div>
 <div class="soa-subtitle">
 Référence Projet : CIM-SEC-CYBER-001 | Version : v1.5 — Juin 2026<br>
@@ -245,18 +269,18 @@ Document annexe au Dossier de Sécurité de la Solution Déployée — À titre 
 <div class="chap-box chap-box-4"><b>Chapitre 8</b><br>34 contrôles</div>
 </div>
 """
-            
+
             chapitres = {
                 "Organisationnel": "5. Contrôles organisationnels",
                 "Personnes": "6. Contrôles liés aux personnes",
                 "Physique": "7. Contrôles physiques",
-                "Technologique": "8. Contrôles technologiques"
+                "Technologique": "8. Contrôles technologiques",
             }
-            
-            for theme in df['theme'].unique():
-                theme_controls = df[df['theme'] == theme]
+
+            for theme in df["theme"].unique():
+                theme_controls = df[df["theme"] == theme]
                 titre_chapitre = chapitres.get(theme, f"Contrôles : {theme}")
-                
+
                 html_content += f"""<div class="chap-title-text">{titre_chapitre}</div>
 <table class="soa-table">
 <thead>
@@ -271,29 +295,32 @@ Document annexe au Dossier de Sécurité de la Solution Déployée — À titre 
 </thead>
 <tbody>
 """
-                
+
                 for _, row in theme_controls.iterrows():
-                    desc = row['description'] if row.get('description') else 'Description non spécifiée.'
-                    etat = row.get('status', 'Non défini')
+                    desc = row["description"] if row.get("description") else "Description non spécifiée."
+                    etat = row.get("status", "Non défini")
                     color = "#27ae60" if etat == "implemented" else "#f39c12" if etat == "partial" else "#c0392b"
-                    badge = f'<span style="background-color: {color}; color: white; padding: 2px 6px; border-radius: 10px; font-size: 11px;">{etat}</span>'
+                    badge = (
+                        f'<span style="background-color: {color}; color: white; '
+                        f'padding: 2px 6px; border-radius: 10px; font-size: 11px;">{etat}</span>'
+                    )
                     mat = f"{row.get('maturity', 0)}/5"
-                    justif = row.get('justification', '')
-                    
+                    justif = row.get("justification", "")
+
                     html_content += f"""<tr>
-<td style="font-weight: bold; color: #1c325c;">{row['id']}</td>
-<td style="font-weight: bold; font-size: 12px;">{row['name']}</td>
+<td style="font-weight: bold; color: #1c325c;">{row["id"]}</td>
+<td style="font-weight: bold; font-size: 12px;">{row["name"]}</td>
 <td style="font-size: 11px; color: #555;">{desc}</td>
 <td>{badge}</td>
 <td style="text-align: center; font-weight: bold; font-size: 12px;">{mat}</td>
 <td style="font-size: 11px; font-style: italic;">{justif}</td>
 </tr>
 """
-                    
+
                 html_content += """</tbody>
 </table>
 """
-            
+
             st.markdown(html_content, unsafe_allow_html=True)
     elif filepath and os.path.exists(filepath):
         st.markdown("---")
@@ -304,25 +331,27 @@ Document annexe au Dossier de Sécurité de la Solution Déployée — À titre 
 
 elif page == "Registre des Constats":
     st.title("🚨 Registre Central des Constats (Vulnérabilités & Audits)")
-    st.markdown("Ce registre consolide les remontées automatiques (ex: Trivy, BloodHound) avec le référentiel de risques EBIOS.")
-    
+    st.markdown(
+        "Ce registre consolide les remontées automatiques (ex: Trivy, BloodHound) avec le référentiel de risques EBIOS."
+    )
+
     data = fetch_data("/findings")
     if data:
         df = pd.DataFrame(data)
-        
+
         # Colorisation de la sévérité
         def color_severity(val):
-            color = 'red' if val == 'error' else 'orange' if val == 'warning' else 'green'
-            return f'color: {color}; font-weight: bold;'
-            
-        st.dataframe(df.style.map(color_severity, subset=['severite']), use_container_width=True)
-        
+            color = "red" if val == "error" else "orange" if val == "warning" else "green"
+            return f"color: {color}; font-weight: bold;"
+
+        st.dataframe(df.style.map(color_severity, subset=["severite"]), use_container_width=True)
+
         col1, col2 = st.columns(2)
         with col1:
             st.subheader("Par Sévérité")
-            st.bar_chart(df['severite'].value_counts())
+            st.bar_chart(df["severite"].value_counts())
         with col2:
             st.subheader("Par Actif")
-            st.bar_chart(df['actif'].value_counts())
+            st.bar_chart(df["actif"].value_counts())
     else:
         st.info("Aucun constat n'a été ingéré.")
