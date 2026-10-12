@@ -617,6 +617,128 @@ class GRCValidator:
                     f"contrôle applicable ({applicable_ctrls[0]})."
                 )
 
+        # ---------------------------------------------------------------------
+        # 7. Cohérence de la Déclaration d'Applicabilité (SoA - ISO 27001)
+        # ---------------------------------------------------------------------
+        # a. Statut vs Maturité & Justification de non-applicabilité
+        for ctrl in controls:
+            cid = str(ctrl.get("id", "inconnu"))
+            status = ctrl.get("status")
+            maturity = ctrl.get("maturity")
+            justif = str(ctrl.get("justification", "") or "").strip()
+
+            if status == "not_implemented":
+                if maturity is None or not isinstance(maturity, int) or not (0 <= maturity <= 1):
+                    self.errors.append(
+                        f"SoA Statut : Contrôle '{cid}' avec statut 'not_implemented' doit avoir une maturité "
+                        f"entre 0 et 1 (valeur actuelle: {maturity})."
+                    )
+            elif status == "partial":
+                if maturity is None or not isinstance(maturity, int) or not (1 <= maturity <= 3):
+                    self.errors.append(
+                        f"SoA Statut : Contrôle '{cid}' avec statut 'partial' doit avoir une maturité "
+                        f"entre 1 et 3 (valeur actuelle: {maturity})."
+                    )
+            elif status == "implemented":
+                if maturity is None or not isinstance(maturity, int) or not (3 <= maturity <= 5):
+                    self.errors.append(
+                        f"SoA Statut : Contrôle '{cid}' avec statut 'implemented' doit avoir une maturité "
+                        f"entre 3 et 5 (valeur actuelle: {maturity})."
+                    )
+            elif status == "not_applicable":
+                if maturity is not None:
+                    self.errors.append(
+                        f"SoA Statut : Contrôle non applicable '{cid}' ne doit pas avoir de maturité "
+                        f"(valeur actuelle: {maturity}, attendu: null)."
+                    )
+                if not justif.startswith("Non applicable :") or len(justif[len("Non applicable :") :].strip()) == 0:
+                    self.errors.append(
+                        f"SoA Statut : Contrôle non applicable '{cid}' doit avoir une justification commençant "
+                        "obligatoirement par 'Non applicable :' suivie du motif."
+                    )
+            else:
+                self.errors.append(
+                    f"SoA Statut : Contrôle '{cid}' a un statut '{status}' invalide ou manquant "
+                    "(autorisés : not_implemented, partial, implemented, not_applicable)."
+                )
+
+        # b. Contrôle ciblé par un traitement 'todo' : pas implemented avec maturité >= 4
+        for tr in treatments:
+            tr_id = tr.get("id", "inconnu")
+            if tr.get("status") == "todo":
+                for c in tr.get("controls", []):
+                    clean_c = str(c).strip()
+                    if clean_c.startswith("A."):
+                        clean_c = clean_c[2:]
+                    ctrl = controls_dict.get(clean_c)
+                    if ctrl:
+                        c_status = ctrl.get("status")
+                        c_mat = ctrl.get("maturity")
+                        if c_status == "implemented" and c_mat is not None and isinstance(c_mat, int) and c_mat >= 4:
+                            self.errors.append(
+                                f"Cohérence Traitement : Contrôle '{clean_c}' ciblé par le traitement 'todo' "
+                                f"'{tr_id}' ne peut pas être 'implemented' avec une maturité >= 4 "
+                                f"(statut: '{c_status}', maturité: {c_mat})."
+                            )
+
+        # c. Justifications : Unicité (max 3 contrôles) et interdiction de la phrase générique
+        forbidden_phrases = [
+            "applicable pour la protection globale du centre d'imagerie",
+            "applicable pour la protection globale",
+        ]
+        justification_to_controls: Dict[str, List[str]] = {}
+
+        for ctrl in controls:
+            cid = str(ctrl.get("id", "inconnu"))
+            justif = str(ctrl.get("justification", "") or "").strip()
+            if not justif:
+                self.errors.append(f"SoA : Contrôle '{cid}' n'a pas de justification renseignée.")
+                continue
+
+            lowered_justif = justif.lower()
+            for phrase in forbidden_phrases:
+                if phrase in lowered_justif:
+                    self.errors.append(
+                        f"SoA : Contrôle '{cid}' utilise une justification générique interdite ('{justif}')."
+                    )
+
+            justification_to_controls.setdefault(justif, []).append(cid)
+
+        for justif_text, cids in justification_to_controls.items():
+            if len(cids) > 3:
+                self.errors.append(
+                    f"SoA : La justification suivante est partagée par plus de 3 contrôles ({len(cids)} contrôles : "
+                    f"{', '.join(sorted(cids))}) : '{justif_text[:80]}...'"
+                )
+
+        # d. Preuves : tout contrôle applicable lié à un risque doit avoir un champ evidence non vide
+        risk_linked_ctrl_ids: Set[str] = set()
+        for r in risks:
+            for c in r.get("controls", []):
+                clean_c = str(c).strip()
+                if clean_c.startswith("A."):
+                    clean_c = clean_c[2:]
+                risk_linked_ctrl_ids.add(clean_c)
+        for tr in treatments:
+            for c in tr.get("controls", []):
+                clean_c = str(c).strip()
+                if clean_c.startswith("A."):
+                    clean_c = clean_c[2:]
+                risk_linked_ctrl_ids.add(clean_c)
+
+        for cid in sorted(risk_linked_ctrl_ids):
+            ctrl = controls_dict.get(cid)
+            if ctrl:
+                is_app = ctrl.get("is_applicable")
+                status = ctrl.get("status")
+                if is_app is not False and status != "not_applicable":
+                    ev = ctrl.get("evidence")
+                    if not ev or not str(ev).strip():
+                        self.errors.append(
+                            f"SoA : Contrôle applicable '{cid}' lié à un risque n'a pas de champ 'evidence' "
+                            "(preuve non vide requise)."
+                        )
+
         return ValidationReport(
             is_valid=(len(self.errors) == 0),
             errors=self.errors,

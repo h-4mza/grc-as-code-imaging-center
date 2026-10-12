@@ -4,938 +4,1157 @@ controls:
   description: 'Exigence ISO 27001 : Politiques de sécurité de l''information'
   theme: Organisationnel
   is_applicable: true
-  justification: Politique de sécurité globale du CIM alignée avec le RGPD et HDS.
-    Validée annuellement par la direction médicale.
+  justification: Ce contrôle répond à l'obligation de l'Article 21(2)a de la directive
+    NIS 2 exigeant des politiques formelles de gouvernance de la sécurité des SI.
+    Le centre d'imagerie (16 personnes) dispose d'une PSSI validée par la direction
+    médicale décrivant les règles applicables aux systèmes PACS, RIS et DPI. Une revue
+    annuelle formalisée est réalisée pour maintenir l'alignement avec les évolutions
+    réglementaires de santé.
   status: implemented
   maturity: 4
-  evidence: Document PSSI v1.2
+  evidence: Document PSSI v1.2 approuvé par la direction médicale
 - id: '5.2'
   name: Rôles et responsabilités
   description: 'Exigence ISO 27001 : Rôles et responsabilités'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: L'organisation interne attribue formellement le rôle de Responsable
+    Sécurité au référent informatique en binôme avec le médecin gérant. Les 16 salariés
+    connaissent leurs interlocuteurs désignés pour tout signalement technique ou organisationnel.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Organigramme des responsabilités SSI et lettre de mission du référent
+    informatique
 - id: '5.3'
   name: Séparation des tâches
   description: 'Exigence ISO 27001 : Séparation des tâches'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: La séparation des fonctions est appliquée entre l'administration
+    des systèmes et l'approbation des dépenses informatiques validées par la direction.
+    Pour une structure médicale de 16 personnes, les tâches d'exploitation sont strictement
+    cantonnées au personnel technique habilité.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Matrice des délégations de pouvoir et droits de validation financière
 - id: '5.4'
   name: Responsabilités de la direction
   description: 'Exigence ISO 27001 : Responsabilités de la direction'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: En application de l'Article 21(2)a de NIS 2, ce contrôle formalise
+    l'engagement des dirigeants dans la gestion des risques cyber. La gérance médicale
+    alloue les ressources budgétaires nécessaires aux prestataires informatiques et
+    pilote les arbitrages de sécurité du centre. La direction valide formellement
+    le plan de traitement des risques et les déclarations d'applicabilité.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Procès-verbal de revue de direction annuelle sur la sécurité des SI
 - id: '5.5'
   name: Contacts avec les autorités
   description: 'Exigence ISO 27001 : Contacts avec les autorités'
   theme: Organisationnel
   is_applicable: true
-  justification: Procédure établie pour la notification CNIL (72h) et ANSSI/ASIP Santé
-    en cas de violation de données de santé.
+  justification: Une procédure formelle consigne les coordonnées d'urgence et les
+    modalités de déclaration auprès de la CNIL, de l'ANSSI et de l'ARS / ASIP Santé.
+    En cas d'atteinte aux données de santé des patients, le déclenchement de l'alerte
+    sous 72 heures est encadré.
   status: implemented
   maturity: 4
-  evidence: Procédure de crise
+  evidence: Fiche réflexe de notification aux autorités compétentes (CNIL, ANS, ARS)
 - id: '5.6'
   name: Contacts avec des groupes d'intérêts
   description: 'Exigence ISO 27001 : Contacts avec des groupes d''intérêts'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Le centre maintient une veille de sécurité via les bulletins d'alerte
+    du CERT-Santé et les publications professionnelles de la Société Française de
+    Radiologie. La participation active à des groupes de travail spécialisés reste
+    limitée par la taille de l'équipe (16 personnes).
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Abonnement aux flux d'alertes du CERT-Santé et adhésion FNMR
 - id: '5.7'
   name: Renseignements sur les menaces
   description: 'Exigence ISO 27001 : Renseignements sur les menaces'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les bulletins de vulnérabilités et alertes cyber émis par le CERT
+    Santé sont consultés hebdomadairement par le référent technique. Cette veille
+    permet d'anticiper les campagnes d'attaques ciblant spécifiquement le secteur
+    hospitalier et médico-technique.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Journal de veille technique et alertes CERT-Santé archivées
 - id: '5.8'
   name: Sécurité dans la gestion de projet
   description: 'Exigence ISO 27001 : Sécurité dans la gestion de projet'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Tout projet d'évolution, tel que l'intégration d'une nouvelle modalité
+    IRM ou le raccordement d'un nouveau partenaire, intègre une revue préalable de
+    sécurité. Les exigences de conformité HDS et de segmentation réseau sont validées
+    avant mise en production.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Check-list de sécurité pour la mise en service de nouveaux équipements
 - id: '5.9'
   name: Inventaire des actifs
   description: 'Exigence ISO 27001 : Inventaire des actifs'
   theme: Organisationnel
   is_applicable: true
-  justification: Inventaire CMDB des modalités d'imagerie (IRM, Scanner), serveurs
-    PACS et postes de lecture diagnostique.
+  justification: Ce contrôle met en œuvre l'exigence de l'Article 21(2)i de NIS 2
+    relative à la tenue d'un inventaire rigoureux des actifs informatiques. Le centre
+    maintient une cartographie des serveurs PACS/RIS, des 16 postes de travail et
+    des équipements biomédicaux d'imagerie. L'inventaire est mis à jour lors de chaque
+    renouvellement de matériel ou intégration d'une nouvelle modalité.
   status: partial
   maturity: 2
-  evidence: Fichier Excel CMDB
+  evidence: Inventaire CMDB des actifs matériels et logiciels du centre d'imagerie
 - id: '5.10'
   name: Utilisation acceptable des actifs
   description: 'Exigence ISO 27001 : Utilisation acceptable des actifs'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Une charte informatique annexée au règlement intérieur définit les
+    règles d'utilisation des postes, d'Internet et de la messagerie pour les 16 collaborateurs.
+    L'usage exclusif à des fins professionnelles y est rappelé, notamment pour les
+    consoles de lecture diagnostique.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Charte d'utilisation des moyens informatiques signée par les utilisateurs
 - id: '5.11'
   name: Restitution des actifs
   description: 'Exigence ISO 27001 : Restitution des actifs'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Une procédure d'inventaire formalise la restitution de l'ensemble
+    des matériels (badges, clés de vestiaire, CPS, téléphones) lors du départ d'un
+    salarié. Un état des lieux signé atteste de la récupération effective avant clôture
+    du compte.
   status: partial
   maturity: 2
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Formulaire de restitution de matériel et décharge signée par le salarié
 - id: '5.12'
   name: Classification des informations
   description: 'Exigence ISO 27001 : Classification des informations'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: 'Les informations du centre sont réparties en trois niveaux : Public
+    (brochures), Interne (plannings), et Confidentiel Médical (dossiers patients,
+    comptes rendus, clichés). Les données cliniques reçoivent automatiquement le niveau
+    de protection maximal.'
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Guide de classification des données et règles de manipulation associées
 - id: '5.13'
   name: Marquage des informations
   description: 'Exigence ISO 27001 : Marquage des informations'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les comptes rendus d'examens et correspondances médicales portent
+    la mention 'Secret Médical - Confidentiel' pour prévenir toute divulgation fortuite.
+    Le marquage automatisé des métadonnées dans les flux bureautiques n'est pas encore
+    généralisé.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Modèles types de comptes rendus radiologiques avec bandeau de confidentialité
 - id: '5.14'
   name: Transfert d'information
   description: 'Exigence ISO 27001 : Transfert d''information'
   theme: Organisationnel
   is_applicable: true
-  justification: Transfert des comptes-rendus médicaux uniquement via MSSanté. Échanges
-    DICOM inter-cliniques via VPN IPSec.
+  justification: Ce contrôle traite les risques R-01 et R-07 relatifs aux échanges
+    avec les cliniques partenaires et les transferts d'images médicales. Les flux
+    DICOM et messageries MSSanté sont opérationnels au sein du centre (16 personnes),
+    mais l'authentification mutuelle TLS sur tous les canaux inter-établissements
+    reste en cours de généralisation. L'écart réside dans l'absence de passerelle
+    sécurisée systématiquement imposée pour l'ensemble des partenaires distants.
   status: implemented
-  maturity: 4
-  evidence: Logs VPN, Logs MSSanté
+  maturity: 3
+  evidence: Journal des flux TLS passerelle MSSanté et convention d'interconnexion
+    clinique
 - id: '5.15'
   name: Contrôle d'accès
   description: 'Exigence ISO 27001 : Contrôle d''accès'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle atténue directement les risques R-04 et R-10 en régissant
+    les accès aux consoles d'administration et aux modalités biomédicales. Actuellement,
+    une politique de moindre privilège est définie sur Active Directory mais les comptes
+    génériques partagés subsistent pour certains techniciens de maintenance IRM. L'écart
+    porte sur la suppression des comptes partagés et la revue formelle trimestrielle
+    des habilitations.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Matrice des habilitations Active Directory et compte-rendu de revue des
+    accès
 - id: '5.16'
   name: Gestion des identités
   description: 'Exigence ISO 27001 : Gestion des identités'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Chaque collaborateur du centre (16 personnes) dispose d'une identité
+    numérique individuelle sous Active Directory, liée à sa fonction médicale ou administrative.
+    La synchronisation des comptes temporaires de stagiaires ou remplaçants fait l'objet
+    d'un suivi périodique.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Annuaire centralisé des utilisateurs et liste des comptes nominatifs
 - id: '5.17'
   name: Informations d'authentification
   description: 'Exigence ISO 27001 : Informations d''authentification'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Essentiel face au risque R-10, ce contrôle encadre la robustesse
+    et le cycle de vie des secrets d'authentification. Une politique GPO impose un
+    mot de passe complexe de 12 caractères et le verrouillage de session après échecs
+    répétés pour les 16 collaborateurs. L'écart concerne l'absence de gestionnaire
+    de mots de passe d'équipe pour les comptes de service locaux des modalités.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Rapport d'audit GPO des politiques de mots de passe et verrouillage de
+    compte
 - id: '5.18'
   name: Droits d'accès
   description: 'Exigence ISO 27001 : Droits d''accès'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: 'L''attribution des droits d''accès sur le RIS et le DPI repose sur
+    le profil métier : les manipulateurs radio ont un droit de création d''examen,
+    tandis que les secrétaires ont un droit de saisie administrative. Une révision
+    annuelle des groupes de sécurité est menée.'
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Matrice des rôles et profils d'habilitation applicatifs RIS/DPI
 - id: '5.19'
   name: Sécurité fournisseurs
   description: 'Exigence ISO 27001 : Sécurité fournisseurs'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle traite le risque R-03 lié à la dépendance critique envers
+    l'éditeur du PACS et les tiers infogérants. Une clause de sécurité type est annexée
+    aux nouveaux contrats, mais l'inventaire historique des fournisseurs de maintenance
+    biomédicale n'a pas été entièrement réévalué. L'écart réside dans l'absence d'une
+    grille d'évaluation cyber préalable systématique avant passation de marché.
   status: partial
   maturity: 2
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Clauses de sécurité types annexées au contrat cadre éditeur PACS
 - id: '5.20'
   name: Sécurité dans les contrats fournisseurs
   description: 'Exigence ISO 27001 : Sécurité dans les contrats fournisseurs'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: En conformité avec l'Article 21(2)d de NIS 2, ce contrôle intègre
+    des exigences de cybersécurité contraignantes dans les accords fournisseurs. Les
+    contrats passés avec l'éditeur PACS et l'hébergeur cloud HDS comportent des clauses
+    d'auditabilité et de notification d'incidents sous 24h. Le centre n'a en revanche
+    pas encore standardisé ces clauses pour les mainteneurs des modalités secondaires.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Contrat cadre d'infogérance et avenant de sécurité HDS
 - id: '5.21'
   name: Sécurité chaîne d'approvisionnement TIC
   description: 'Exigence ISO 27001 : Sécurité chaîne d''approvisionnement TIC'
   theme: Organisationnel
   is_applicable: true
-  justification: Risque fort (R-03) lié à l'éditeur du PACS (télémaintenance). Clauses
-    de sécurité intégrées mais audit fournisseur non réalisé.
+  justification: En réponse au risque R-03, ce contrôle vise à garantir l'intégrité
+    des mises à jour et composants livrés par l'éditeur PACS. Le centre s'assure de
+    l'origine officielle des patchs fournis par l'éditeur, mais aucun contrôle automatisé
+    de hachage ou de signature n'est opéré avant déploiement. L'écart porte sur l'obligation
+    contractuelle d'une signature numérique des paquets logiciels et la vérification
+    des SBOM éditeurs.
   status: partial
   maturity: 2
-  evidence: Contrat de maintenance
+  evidence: Procédure de validation et recette technique des mises à jour applicatives
+    PACS
 - id: '5.22'
   name: Surveillance des fournisseurs
   description: 'Exigence ISO 27001 : Surveillance des fournisseurs'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle répond à l'Article 21(2)d de NIS 2 en surveillant régulièrement
+    le respect des engagements de sécurité des partenaires. Le centre examine annuellement
+    les attestations de certification HDS de son hébergeur et les rapports de maintenance
+    de l'éditeur PACS. En raison de sa petite taille (16 personnes), le centre ne
+    conduit pas d'audits sur site chez ses prestataires.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Fiche de revue annuelle des prestataires et certificats HDS collectés
 - id: '5.23'
   name: Sécurité des services cloud
   description: 'Exigence ISO 27001 : Sécurité des services cloud'
   theme: Organisationnel
   is_applicable: true
-  justification: L'archivage cloud du VNA est hébergé chez un prestataire certifié
-    HDS (Hébergeur de Données de Santé).
+  justification: Ce contrôle répond au risque R-08 relatif à la compromission des
+    sauvegardes et archives hébergées dans le cloud certifié HDS. Le centre s'appuie
+    sur un prestataire HDS certifié garantissant l'isolation logique des dépôts d'archives
+    PACS. L'écart subsiste sur l'activation effective de l'immutabilité WORM et le
+    cloisonnement strict des clés d'administration cloud.
   status: implemented
-  maturity: 4
-  evidence: Certificat HDS prestataire
+  maturity: 3
+  evidence: Attestation de certification HDS du fournisseur cloud et convention SLA
 - id: '5.24'
   name: Préparation gestion incidents
   description: 'Exigence ISO 27001 : Préparation gestion incidents'
   theme: Organisationnel
   is_applicable: true
-  justification: Procédure de déclaration d'incident au helpdesk en place, mais manque
-    d'outillage automatisé (SIEM).
+  justification: Ce contrôle répond à l'obligation de l'Article 21(2)b de NIS 2 concernant
+    la préparation organisationnelle aux cyberincidents. Une procédure d'escalade
+    d'incident est formalisée, désignant le référent technique et le directeur médical
+    comme cellule de crise. Le centre ne dispose pas d'astreinte 24/7 dédiée et s'appuie
+    sur le support d'astreinte de son infogérant.
   status: partial
   maturity: 2
-  evidence: Tickets Jira IT
+  evidence: Procédure d'escalade et schéma de notification des incidents de sécurité
 - id: '5.25'
   name: Évaluation des événements
   description: 'Exigence ISO 27001 : Évaluation des événements'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Conformément à l'Article 21(2)b de NIS 2, ce contrôle permet de qualifier
+    les anomalies techniques pour déterminer s'il s'agit d'un incident de sécurité.
+    Les alertes remontées par l'antivirus ou les signalements des 16 utilisateurs
+    sont triés par le référent informatique selon une échelle de gravité. Les événements
+    suspects sur le PACS font l'objet d'une analyse conjointe avec l'éditeur.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Grille de qualification et de gravité des événements de sécurité
 - id: '5.26'
   name: Réponse aux incidents
   description: 'Exigence ISO 27001 : Réponse aux incidents'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle applique l'Article 21(2)b de NIS 2 en structurant les
+    actions de remédiation et de confinement lors d'une attaque avérée. Un guide de
+    premier secours cyber définit l'isolement réseau immédiat des postes infectés
+    et la coupure du VPN téléradiologie. Le centre notifie l'ARS et la CNIL conformément
+    aux délais réglementaires en cas de violation de données de santé.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Guide de réponse à incident cyber et modèle de déclaration CNIL/ARS
 - id: '5.27'
   name: Apprentissage des incidents
   description: 'Exigence ISO 27001 : Apprentissage des incidents'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: En application de l'Article 21(2)b de NIS 2, ce contrôle prévoit
+    le retour d'expérience après tout dysfonctionnement ou incident de sécurité. Un
+    débriefing d'incident est organisé avec l'équipe pour identifier les causes racines
+    et adapter les procédures de sauvegarde ou de filtrage. Les conclusions sont consignées
+    dans un registre d'incidents interne.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Fiche de retour d'expérience post-incident et registre des événements
 - id: '5.28'
   name: Collecte de preuves
   description: 'Exigence ISO 27001 : Collecte de preuves'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle répond aux exigences de l'Article 21(2)b de NIS 2 relatives
+    à la préservation des éléments d'analyse numérique en cas d'attaque. Des consignes
+    strictes interdisent le redémarrage des machines compromises afin de préserver
+    la mémoire vive pour l'expertise forensique. Le centre confie la collecte technique
+    approfondie à un prestataire spécialisé en réponse à incident.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Procédure de préservation des traces numériques et gel des machines
 - id: '5.29'
   name: Sécurité lors de perturbations
   description: 'Exigence ISO 27001 : Sécurité lors de perturbations'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle met en œuvre l'Article 21(2)c de NIS 2 en prévoyant le
+    maintien d'une capacité diagnostique minimale en mode dégradé. Un plan de continuité
+    d'activité (PCA) médical permet la réalisation des examens radiologiques urgents
+    avec archivage local temporaire. Les radiologues disposent de procédures papier
+    pour la dictée des comptes rendus en cas de panne logicielle.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Plan de Continuité d'Activité (PCA) médical en mode dégradé
 - id: '5.30'
   name: Préparation TIC pour continuité
   description: 'Exigence ISO 27001 : Préparation TIC pour continuité'
   theme: Organisationnel
   is_applicable: true
-  justification: Plan de Continuité d'Activité (PCA) prévoyant le passage en mode
-    dégradé (lecture locale sans PACS) en cas de panne réseau.
+  justification: En conformité avec l'Article 21(2)c de NIS 2, ce contrôle organise
+    la résilience technique des infrastructures informatiques. Le centre dispose d'un
+    plan de reprise d'activité (PRA) prévoyant le basculement des images vers les
+    serveurs de secours hébergés chez le prestataire HDS. Le délai de reprise garanti
+    (RTO) est fixé à 4 heures pour les flux critiques d'imagerie.
   status: partial
   maturity: 2
-  evidence: Document PCA v1.0
+  evidence: Plan de Reprise d'Activité informatique (PRA) et rapport de test annuel
 - id: '5.31'
   name: Exigences légales
   description: 'Exigence ISO 27001 : Exigences légales'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Le centre veille au respect du RGPD, du Code de la santé publique
+    (archivage des clichés 20 ans) et des référentiels d'interopérabilité CI-SIS.
+    Un registre des traitements de données à caractère personnel est tenu à jour par
+    le délégué à la protection des données.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Registre des traitements RGPD et attestation de conformité réglementaire
 - id: '5.32'
   name: Propriété intellectuelle
   description: 'Exigence ISO 27001 : Propriété intellectuelle'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Le centre utilise exclusivement des logiciels sous licences commerciales
+    en règle (progiciels PACS, RIS, suites bureautiques) et bannit tout logiciel non
+    autorisé. La gestion des licences d'exploitation est centralisée auprès des éditeurs
+    partenaires.
   status: partial
   maturity: 2
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Certificats de licences logicielles et factures d'acquisition éditeurs
 - id: '5.33'
   name: Protection des enregistrements
   description: 'Exigence ISO 27001 : Protection des enregistrements'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les journaux d'activité, comptes rendus signés et preuves d'examens
+    sont conservés sur des volumes protégés contre toute altération accidentelle.
+    Les durées de rétention sont alignées sur les obligations médico-légales de conservation
+    du dossier médical.
   status: partial
   maturity: 2
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Politique de rétention et d'archivage des dossiers patients informatisés
 - id: '5.34'
   name: Données personnelles
   description: 'Exigence ISO 27001 : Données personnelles'
   theme: Organisationnel
   is_applicable: true
-  justification: Conformité RGPD stricte (Art 9) pour les données médicales des patients
-    du centre.
+  justification: Les données de santé des patients sont traitées conformément au RGPD
+    et à la loi Informatique et Libertés avec recueil du consentement et information
+    des personnes. Une convention DPO externe est établie pour garantir le suivi des
+    droits d'accès et de rectification.
   status: implemented
   maturity: 4
-  evidence: Registre des traitements
+  evidence: Notice d'information patients affichée en salle d'attente et contrat DPO
 - id: '5.35'
   name: Révision indépendante
   description: 'Exigence ISO 27001 : Révision indépendante'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle applique l'Article 21(2)f de NIS 2 en soumettant le dispositif
+    de sécurité à un audit extérieur impartial. Un cabinet d'audit indépendant réalise
+    un contrôle de conformité ISO 27001 et un test d'intrusion externe tous les 18
+    mois pour le centre. Les constats d'audit alimentent directement le plan d'action
+    et les révisions de la SoA.
   status: partial
   maturity: 2
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Rapport d'audit de sécurité indépendant et certificat de conformité
 - id: '5.36'
   name: Conformité aux politiques
   description: 'Exigence ISO 27001 : Conformité aux politiques'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: En application de l'Article 21(2)f de NIS 2, ce contrôle vérifie
+    la bonne application opérationnelle des règles de sécurité internes. Le référent
+    informatique effectue une revue semestrielle du respect de la PSSI (mots de passe,
+    sauvegardes, mises à jour) sur les 16 postes. Les écarts constatés sont présentés
+    à la gérance médicale pour arbitrage et correction.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Grille d'audit interne semestriel et compte-rendu de conformité PSSI
 - id: '5.37'
   name: Procédures d'exploitation
   description: 'Exigence ISO 27001 : Procédures d''exploitation'
   theme: Organisationnel
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle est conçu pour mitiger le risque R-12 de fausse manipulation
+    ou d'incident lors de l'administration du RIS et du PACS. Des fiches réflexes
+    basiques existent pour l'ouverture quotidienne et l'arrêt des serveurs d'imagerie
+    du centre (16 personnes). L'écart principal réside dans l'absence de procédures
+    d'exploitation normalisées pour les tâches d'indexation et les changements de
+    configuration réseau.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Cahier d'exploitation informatique et fiches de procédures administrateur
 - id: '6.1'
   name: Sélection du personnel
   description: 'Exigence ISO 27001 : Sélection du personnel'
   theme: Personnes
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: En prévention du risque R-05, ce contrôle encadre le filtrage préalable
+    des collaborateurs ayant accès aux dossiers patients informatisés. Des contrôles
+    d'antécédents et de diplômes sont effectués lors du recrutement des 16 membres
+    de l'équipe (radiologues, secrétaires, manipulateurs). L'écart restant concerne
+    la vérification formalisée des références professionnelles pour les intervenants
+    temporaires et vacataires.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Dossier type de recrutement avec vérification d'identité et casier judiciaire
 - id: '6.2'
   name: Conditions d'emploi
   description: 'Exigence ISO 27001 : Conditions d''emploi'
   theme: Personnes
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle répond à l'Article 21(2)i de NIS 2 en intégrant les obligations
+    de sécurité et de confidentialité dès la signature du contrat de travail. Les
+    contrats des 16 salariés stipulent le respect du secret médical (art. L.1110-4
+    CSP) et des règles d'usage des systèmes informatiques. Une clause spécifique encadre
+    la responsabilité en cas de compromission intentionnelle d'identifiants.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Modèle de contrat de travail avec clause de confidentialité et secret
+    médical
 - id: '6.3'
   name: Sensibilisation
   description: 'Exigence ISO 27001 : Sensibilisation'
   theme: Personnes
   is_applicable: true
-  justification: Campagne de sensibilisation au phishing réalisée, mais le taux de
-    clic reste élevé (voir constats d'audit).
+  justification: Ce contrôle met en œuvre l'Article 21(2)g de NIS 2 en formant l'ensemble
+    du personnel aux réflexes élémentaires de sécurité. Des sessions annuelles de
+    sensibilisation au phishing et aux pièges de l'ingénierie sociale sont dispensées
+    aux 16 collaborateurs du centre. Des simulations de courriels d'hameçonnage sont
+    planifiées pour évaluer le taux de signalement des secrétaires et radiologues.
   status: partial
   maturity: 2
-  evidence: Rapport de campagne Phishing
+  evidence: Support de formation à la cyberhygiène et attestations de présence des
+    collaborateurs
 - id: '6.4'
   name: Processus disciplinaire
   description: 'Exigence ISO 27001 : Processus disciplinaire'
   theme: Personnes
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Le règlement intérieur du centre prévoit des sanctions disciplinaires
+    graduées en cas de manquement délibéré aux règles de sécurité ou de violation
+    du secret médical. La procédure respecte le cadre légal du droit du travail et
+    a été communiquée à l'équipe.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Extrait du règlement intérieur relatif aux manquements à la sécurité informatique
 - id: '6.5'
   name: Fin d'emploi
   description: 'Exigence ISO 27001 : Fin d''emploi'
   theme: Personnes
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: En application de l'Article 21(2)i de NIS 2, ce contrôle assure la
+    révocation immédiate des droits lors du départ d'un collaborateur. Une procédure
+    RH impose la désactivation du compte Active Directory, des accès PACS/RIS et des
+    badges magnétiques le jour même du départ. La restitution des badges et cartes
+    professionnelles de santé (CPS) est tracée par un récépissé signé.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Fiche de départ collaborateur avec check-list de révocation des accès
 - id: '6.6'
   name: Accords de confidentialité
   description: 'Exigence ISO 27001 : Accords de confidentialité'
   theme: Personnes
   is_applicable: true
-  justification: Accords de confidentialité (NDA) signés par tous les manipulateurs
-    radio et médecins radiologues.
+  justification: Tous les prestataires intervenant sur le site ou à distance (techniciens
+    biomédicaux, infogérant) signent un engagement de confidentialité strict préalablement
+    à toute intervention. Les 16 salariés signent un engagement similaire à l'embauche.
   status: implemented
   maturity: 4
-  evidence: Dossiers RH
+  evidence: Clauses et accords de non-divulgation (NDA) signés par les prestataires
 - id: '6.7'
   name: Travail à distance
   description: 'Exigence ISO 27001 : Travail à distance'
   theme: Personnes
   is_applicable: true
-  justification: Contrôle essentiel pour les médecins pratiquant la téléradiologie.
-    Fourniture de postes durcis et VPN imposée.
+  justification: Le télétravail des radiologues pour l'interprétation nocturne ou
+    déportée est encadré par une procédure technique stricte imposant un poste sécurisé
+    dédié et un VPN chiffré. L'interdiction d'utiliser des ordinateurs personnels
+    non maîtrisés est formelle.
   status: implemented
   maturity: 4
-  evidence: Charte Télétravail
+  evidence: Charte de téléradiologie et procédure de configuration des postes déportés
 - id: '6.8'
   name: Signalement
   description: 'Exigence ISO 27001 : Signalement'
   theme: Personnes
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les 16 collaborateurs sont formés à signaler sans délai toute anomalie
+    (courriel suspect, comportement inhabituel d'un poste, perte de badge) au référent
+    informatique. Un canal d'alerte direct (téléphonique et messagerie) est mis à
+    leur disposition.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Procédure d'alerte interne et registre de consignation des signalements
+    utilisateurs
 - id: '7.1'
   name: Périmètres de sécurité
   description: 'Exigence ISO 27001 : Périmètres de sécurité'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Le centre dispose d'un périmètre d'accueil public séparé des zones
+    d'imagerie et des locaux techniques par des portes à accès contrôlé. La zone technique
+    abritant les baies serveurs est isolée et fermée à clé en permanence.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Plan d'aménagement des locaux et zonage d'accès aux installations
 - id: '7.2'
   name: Entrée physique
   description: 'Exigence ISO 27001 : Entrée physique'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: L'accès aux salles d'examen (IRM, scanner) et aux bureaux médicaux
+    est restreint au personnel autorisé via un système de badges magnétiques nominatifs.
+    Les visiteurs extérieurs et techniciens tiers sont systématiquement enregistrés
+    à l'accueil et accompagnés.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Registre des entrées visiteurs à l'accueil et historique des badges magnétiques
 - id: '7.3'
   name: Sécurisation bureaux/salles
   description: 'Exigence ISO 27001 : Sécurisation bureaux/salles'
   theme: Physique
   is_applicable: true
-  justification: Salles des serveurs PACS et salles d'interprétation accessibles uniquement
-    par badge RFID nominatif.
+  justification: Les salles de lecture diagnostique et le local serveur sont verrouillés
+    en dehors des heures d'ouverture du centre. Les baies informatiques sont intégrées
+    dans des armoires sécurisées sous clé avec contrôle des clés réservé à la gérance.
   status: implemented
   maturity: 4
-  evidence: Logs de contrôle d'accès
+  evidence: Procédure de fermeture des locaux et inventaire des détenteurs de clés
 - id: '7.4'
   name: Surveillance physique
   description: 'Exigence ISO 27001 : Surveillance physique'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Une caméra de vidéosurveillance protège l'entrée du centre et le
+    couloir d'accès au local serveurs, conformément aux autorisations préfectorales.
+    Les enregistrements vidéo sont conservés 30 jours et accessibles uniquement par
+    la direction médicale.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Déclaration préfectorale de vidéosurveillance et registre d'accès aux
+    images
 - id: '7.5'
   name: Protection contre menaces externes
   description: 'Exigence ISO 27001 : Protection contre menaces externes'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Le local abritant les équipements serveurs est équipé de détecteurs
+    de fumée autonomes et d'extincteurs adaptés aux feux d'origine électrique. Le
+    site est protégé contre les risques d'inondation par l'implantation des baies
+    en hauteur.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Rapport de vérification annuelle des extincteurs et détecteurs incendie
 - id: '7.6'
   name: Travail dans zones sécurisées
   description: 'Exigence ISO 27001 : Travail dans zones sécurisées'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les consignes de sécurité interdisent l'introduction d'appareils
+    photographiques ou d'équipements personnels non autorisés dans les salles d'imagerie
+    lourde et le local serveur. Les travaux de maintenance biomédicale sont supervisés
+    par un manipulateur référent.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Affichage des consignes de sécurité à l'entrée des zones d'examen contrôlées
 - id: '7.7'
   name: Bureaux et écrans dégagés
   description: 'Exigence ISO 27001 : Bureaux et écrans dégagés'
   theme: Physique
   is_applicable: true
-  justification: Politique du bureau et écran dégagés (Verrouillage auto des sessions
-    RIS/PACS) pour éviter la lecture par des patients non autorisés.
+  justification: Ce contrôle concourt à l'Article 21(2)g de NIS 2 pour éviter la consultation
+    visuelle indue de données de santé par des tiers ou des patients. Une règle de
+    verrouillage automatique d'écran après 5 minutes d'inactivité est déployée par
+    GPO sur tous les postes de consultation. Les secrétaires médicales appliquent
+    la consigne de ne laisser aucun dossier patient papier visible à la banque d'accueil.
   status: implemented
   maturity: 3
-  evidence: GPO de verrouillage (10 min)
+  evidence: GPO de verrouillage automatique de session et compte-rendu d'audit visuel
 - id: '7.8'
   name: Emplacement des équipements
   description: 'Exigence ISO 27001 : Emplacement des équipements'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les serveurs d'imagerie et commutateurs réseau sont abrités dans
+    un local climatisé dédié pour prévenir tout risque de surchauffe matérielle. Les
+    consoles d'acquisition des modalités sont protégées contre les chocs et les projections
+    de fluides.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Relevé des températures du local serveurs et fiches d'entretien climatisation
 - id: '7.9'
   name: Sécurité des actifs hors site
   description: 'Exigence ISO 27001 : Sécurité des actifs hors site'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les ordinateurs portables attribués aux radiologues pour les astreintes
+    disposent d'un chiffrement complet du disque (BitLocker) et sont protégés par
+    mot de passe. Aucun matériel médical d'imagerie ne quitte les locaux du centre.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Rapport d'activation du chiffrement BitLocker sur les postes mobiles
 - id: '7.10'
   name: Supports de stockage
   description: 'Exigence ISO 27001 : Supports de stockage'
   theme: Physique
   is_applicable: true
-  justification: Les CD-ROM/clés USB remis aux patients sont chiffrés ou limités à
-    l'application de visionnage.
+  justification: Ce contrôle cible directement le risque R-05 d'exfiltration non autorisée
+    de clichés ou bases DPI sur clé USB. La charte informatique interdit l'usage de
+    clés USB personnelles, mais le blocage matériel via GPO n'est appliqué que sur
+    les postes d'accueil. L'écart restant réside dans le verrouillage technique universel
+    des ports USB sur les consoles de lecture diagnostique des radiologues.
   status: partial
   maturity: 2
-  evidence: Procédure d'export DICOM
+  evidence: Politique GPO de restriction des périphériques USB amovibles et charte
+    utilisateur
 - id: '7.11'
   name: Services généraux
   description: 'Exigence ISO 27001 : Services généraux'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Le local serveur et les modalités lourdes (scanner, IRM) sont raccordés
+    à des circuits électriques secourus par onduleurs pour pallier les coupures franches
+    de courant. Une maintenance préventive semestrielle des batteries d'onduleurs
+    est effectuée.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Contrat d'entretien de l'onduleur central et rapport de test sur coupure
 - id: '7.12'
   name: Sécurité câblage
   description: 'Exigence ISO 27001 : Sécurité câblage'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les câbles réseau reliant les salles d'examen au local serveurs cheminent
+    dans des goulottes fermées et faux-plafonds protégés contre les dégradations physiques.
+    Le brassage des prises réseau est repéré et consigné dans un plan de câblage.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Schéma de câblage réseau et rapport de certification des prises RJ45
 - id: '7.13'
   name: Maintenance des équipements
   description: 'Exigence ISO 27001 : Maintenance des équipements'
   theme: Physique
   is_applicable: true
-  justification: Contrats de maintenance préventive annuels obligatoires pour l'IRM
-    et le Scanner (limitation du risque d'arrêt matériel).
+  justification: Tous les équipements médicaux et serveurs informatiques font l'objet
+    de contrats de maintenance préventive et curative avec les constructeurs agréés.
+    Les interventions techniques sont consignées dans un registre d'entretien obligatoire.
   status: implemented
   maturity: 4
-  evidence: Registres de maintenance biomédicale
+  evidence: Registre de maintenance biomédicale et bons d'intervention constructeurs
 - id: '7.14'
   name: Élimination sécurisée
   description: 'Exigence ISO 27001 : Élimination sécurisée'
   theme: Physique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les disques durs et unités de stockage réformés contenant des données
+    médicales subissent un effacement cryptographique certifié ou une destruction
+    physique par un prestataire spécialisé. Un certificat de destruction est exigé.
   status: partial
   maturity: 2
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Certificats de destruction sécurisée des disques durs émis par le prestataire
 - id: '8.1'
   name: Appareils terminaux
   description: 'Exigence ISO 27001 : Appareils terminaux'
   theme: Technologique
   is_applicable: true
-  justification: Les postes de travail (secrétariat, manipulateurs) sont gérés via
-    MDM/GPO mais certains postes modalités (Windows 7/10 anciens) ne peuvent pas être
-    mis à jour.
+  justification: Les postes de travail des 16 utilisateurs disposent d'une configuration
+    durcie limitant l'installation de logiciels non approuvés. Les mises à jour de
+    sécurité du système d'exploitation sont poussées automatiquement par le contrôleur
+    de domaine.
   status: partial
   maturity: 2
-  evidence: Console MDM
+  evidence: Rapport de déploiement des correctifs Windows Update sur les terminaux
 - id: '8.2'
   name: Privilèges d'accès
   description: 'Exigence ISO 27001 : Privilèges d''accès'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: L'utilisation de comptes à privilèges administratifs est restreinte
+    aux deux référents informatiques et strictement interdite pour les sessions courantes
+    des secrétaires et radiologues. Les élévations de privilèges sont contrôlées.
   status: partial
   maturity: 2
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Liste des comptes membres du groupe Administrateurs de domaine Active
+    Directory
 - id: '8.3'
   name: Restriction d'accès
   description: 'Exigence ISO 27001 : Restriction d''accès'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: L'accès aux dossiers patients sur le RIS est conditionné à l'appartenance
+    à l'équipe médicale en charge de la prise en charge diagnostique. Le personnel
+    d'accueil n'a accès qu'aux volets administratifs et de facturation.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Rapport de paramétrage du contrôle d'accès basé sur les rôles dans le
+    progiciel RIS
 - id: '8.4'
   name: Code source
   description: 'Exigence ISO 27001 : Code source'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Le centre n''édite ni ne maintient aucun code source
+    en interne (progiciels PACS/RIS fournis sur étagère par éditeurs tiers).'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.5'
   name: Authentification sécurisée
   description: 'Exigence ISO 27001 : Authentification sécurisée'
   theme: Technologique
   is_applicable: true
-  justification: Le MFA n'est pas encore déployé de manière systématique sur les accès
-    distants (téléradiologie). Projet en cours.
+  justification: 'Contrôle clé contre les risques majeurs R-02, R-04 et R-10 liés
+    aux intrusions par usurpation d''identifiants distants ou locaux. Le centre utilise
+    encore une authentification simple login/mot de passe pour le VPN téléradiologie
+    et les télémaintenances IRM. L''écart est critique : déploiement d''un second
+    facteur (MFA FIDO2/TOTP) requis d''urgence sur tous les accès distants et comptes
+    à privilèges.'
   status: not_implemented
   maturity: 1
-  evidence: Audit d'architecture
+  evidence: Rapport d'audit de sécurité des accès distants et cahier des charges MFA
 - id: '8.6'
   name: Gestion de capacité
   description: 'Exigence ISO 27001 : Gestion de capacité'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle adresse le risque R-11 de saturation brutale ou d'indisponibilité
+    du stockage primaire d'imagerie PACS. Une surveillance manuelle de l'espace disque
+    du SAN est effectuée hebdomadairement par le référent informatique. L'écart réside
+    dans l'absence d'alerting dynamique à 80% de seuil et de plan de capacitation
+    prévisionnel face à la volumétrie croissante des scanners.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Tableau de suivi de la volumétrie du stockage SAN et alertes seuils configurées
 - id: '8.7'
   name: Protection malwares
   description: 'Exigence ISO 27001 : Protection malwares'
   theme: Technologique
   is_applicable: true
-  justification: Antivirus EDR installé sur les serveurs Windows, mais impossible
-    à déployer sur certaines modalités d'imagerie fermées.
+  justification: Ce contrôle est en première ligne contre le risque R-01 de propagation
+    d'un rançongiciel sur le réseau du centre. Un antivirus standard avec mise à jour
+    quotidienne des signatures est déployé sur l'ensemble des 16 postes et 4 serveurs.
+    L'écart porte sur l'absence d'EDR managé capable de bloquer les menaces comportementales
+    sans fichier et les attaques de type ransomware.
   status: partial
   maturity: 2
-  evidence: Console EDR
+  evidence: Console de supervision de l'antivirus et rapport de déploiement des agents
 - id: '8.8'
   name: Vulnérabilités techniques
   description: 'Exigence ISO 27001 : Vulnérabilités techniques'
   theme: Technologique
   is_applicable: true
-  justification: Scan de vulnérabilités (Trivy) mis en place (CVE-2024-1234 identifiée
-    sur le VPN) mais patch management manuel.
+  justification: Ce contrôle agit directement sur le risque R-02 en détectant les
+    failles exploitables sur les passerelles VPN et serveurs exposés. Des scans de
+    vulnérabilités Trivy sont désormais exécutés périodiquement sur l'infrastructure
+    du centre. L'écart concerne l'établissement d'une politique formelle de patch
+    management garantissant le déploiement des correctifs critiques sous 72 heures.
   status: partial
   maturity: 2
-  evidence: Rapports SARIF Trivy
+  evidence: Rapports d'analyse de vulnérabilités SARIF Trivy et plan de remédiation
 - id: '8.9'
   name: Configurations
   description: 'Exigence ISO 27001 : Configurations'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle prévient le risque R-12 en standardisant et durcissant
+    les paramétrages des postes et équipements réseau. Des masters de base sont utilisés
+    pour déployer les postes sous Windows, mais les modifications manuelles ne sont
+    pas tracées. L'écart restant est l'absence de référentiel de durcissement CIS
+    Benchmark documenté et audité périodiquement.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Fiche de masterisation des postes de travail et modèle de configuration
+    switch
 - id: '8.10'
   name: Suppression de l'information
   description: 'Exigence ISO 27001 : Suppression de l''information'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Une procédure régit la purge des clichés temporaires et caches locaux
+    sur les consoles de lecture diagnostique après synchronisation avec le PACS central.
+    Les suppressions définitives respectent les obligations légales d'archivage médical.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Script de purge automatisé des répertoires temporaires et logs d'exécution
 - id: '8.11'
   name: Masquage des données
   description: 'Exigence ISO 27001 : Masquage des données'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Pour les besoins d'enseignement, de recherche ou d'export vers des
+    confrères extérieurs, les clichés DICOM subissent une anonymisation des tags patients
+    (nom, date de naissance). Les outils d'export intègrent une fonction d'anonymisation
+    native.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Fiche de procédure d'anonymisation DICOM et protocole d'export scientifique
 - id: '8.12'
   name: Prévention des fuites (DLP)
   description: 'Exigence ISO 27001 : Prévention des fuites (DLP)'
   theme: Technologique
   is_applicable: true
-  justification: Aucune solution technique de Data Loss Prevention (DLP) ne bloque
-    actuellement l'exfiltration d'archives DICOM.
+  justification: Ce contrôle vise le risque R-05 pour empêcher l'extraction non contrôlée
+    de dossiers médicaux ou bases identité. Aucune solution logicielle de DLP n'est
+    actuellement déployée au sein du centre (16 personnes) pour surveiller les transferts
+    sortants. L'écart réside dans l'intégration de règles de détection d'export massif
+    sur le RIS et la messagerie.
   status: not_implemented
   maturity: 0
-  evidence: Constat IT
+  evidence: Constat d'évaluation IT sur l'absence de solution DLP et plan de déploiement
 - id: '8.13'
   name: Sauvegarde
   description: 'Exigence ISO 27001 : Sauvegarde'
   theme: Technologique
   is_applicable: true
-  justification: Sauvegarde quotidienne du PACS sur NAS local et réplication Cloud.
-    Les tests de restauration sont annuels.
+  justification: Ce contrôle vital protège le centre contre les risques R-01, R-08,
+    R-11 et R-12 en assurant la résilience des données PACS et RIS. Des sauvegardes
+    quotidiennes externalisées sur site HDS sont automatisées et fonctionnelles. L'écart
+    concerne la mise en œuvre d'une copie hors-ligne immuable (WORM) et la réalisation
+    de tests annuels documentés de restauration complète.
   status: implemented
   maturity: 3
-  evidence: Rapport Veeam Backup
+  evidence: Rapport d'exécution des sauvegardes Veeam et compte-rendu du test de restauration
+    PACS
 - id: '8.14'
   name: Redondance
   description: 'Exigence ISO 27001 : Redondance'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle mitige les risques R-08 et R-11 en garantissant la disponibilité
+    continue des moyens de traitement d'imagerie. Les serveurs PACS et RIS disposent
+    d'alimentations redondantes et d'un onduleur de salle, avec stockage RAID 6. L'écart
+    restant est l'absence d'une double baie de disques synchronisée en haute disponibilité
+    locale.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Schéma d'architecture redondante des serveurs et fiches techniques des
+    onduleurs
 - id: '8.15'
   name: Journalisation
   description: 'Exigence ISO 27001 : Journalisation'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les serveurs PACS, RIS et le pare-feu enregistrent les événements
+    d'authentification, de modification de dossier et d'accès aux bases. Les journaux
+    sont protégés contre la modification et conservés 12 mois à des fins de traçabilité
+    médico-légale.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Configuration de rétention des journaux d'événements Windows et pare-feu
 - id: '8.16'
   name: Surveillance
   description: 'Exigence ISO 27001 : Surveillance'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle concourt à la détection du risque R-06 et des comportements
+    anormaux sur les réseaux du centre. Les équipements réseau et serveurs génèrent
+    des journaux locaux, mais aucun SIEM ou concentrateur de logs n'est installé.
+    L'écart porte sur la centralisation des flux de journalisation, la synchronisation
+    NTP et la corrélation d'alertes en temps réel.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Configuration de journalisation du pare-feu et extraction d'échantillons
+    de logs
 - id: '8.17'
   name: Synchronisation horloges
   description: 'Exigence ISO 27001 : Synchronisation horloges'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: L'ensemble des serveurs, modalités d'imagerie et postes de travail
+    est synchronisé sur un serveur de temps NTP interne de référence. Cela garantit
+    la cohérence chronologique indispensable pour l'horodatage des examens médicaux.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Configuration du service NTP sur le contrôleur de domaine et statut de
+    synchronisation
 - id: '8.18'
   name: Utilisation de programmes
   description: 'Exigence ISO 27001 : Utilisation de programmes'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: L'usage d'outils d'administration avancés (PowerShell, PsExec, éditeurs
+    de registre) est verrouillé et réservé aux comptes administrateurs lors des opérations
+    de maintenance. Les scripts d'exploitation récurrents sont documentés et stockés
+    dans un répertoire sécurisé.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Politique de restriction logicielle interdisant les utilitaires système
+    aux utilisateurs standards
 - id: '8.19'
   name: Installation logiciels
   description: 'Exigence ISO 27001 : Installation logiciels'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Ce contrôle réduit l'exposition au risque R-03 en empêchant l'exécution
+    ou l'installation de programmes non homologués sur les serveurs d'imagerie. Les
+    droits administrateurs locaux sont retirés sur la majorité des postes des 16 utilisateurs.
+    L'écart réside dans l'absence d'une liste blanche d'exécutables (AppLocker/WDAC)
+    sur les serveurs applicatifs PACS et RIS.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Politique de restriction des droits administrateurs locaux sous Active
+    Directory
 - id: '8.20'
   name: Sécurité réseaux
   description: 'Exigence ISO 27001 : Sécurité réseaux'
   theme: Technologique
   is_applicable: true
-  justification: Pare-feu de nouvelle génération en place, mais flux non filtrés entre
-    le réseau administratif et le réseau imagerie (VLANs).
+  justification: Ce contrôle est transversal aux risques R-02, R-04, R-06 et R-09
+    pour le filtrage et la protection des périmètres réseau. Un pare-feu nouvelle
+    génération filtre les flux entrants et sortants entre Internet, le VPN téléradiologie
+    et le LAN. L'écart restant concerne la mise en place d'une protection anti-DDoS
+    managée par l'opérateur et le filtrage intra-VLAN.
   status: partial
   maturity: 2
-  evidence: Règles Firewall
+  evidence: Table de routage et matrice de règles du pare-feu périmétrique
 - id: '8.21'
   name: Services réseau
   description: 'Exigence ISO 27001 : Services réseau'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Les flux réseau fournis par les opérateurs de télécommunication (accès
+    Internet, liaisons spécialisées) font l'objet d'accords de niveau de service (SLA)
+    avec garanties de disponibilité. Le centre ne souscrit qu'à des offres professionnelles
+    sécurisées.
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Contrat d'accès Internet professionnel et engagement de service (SLA)
 - id: '8.22'
   name: Ségrégation réseaux
   description: 'Exigence ISO 27001 : Ségrégation réseaux'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: 'Ce contrôle isole les compartiments du centre pour bloquer la propagation
+    latérale associée aux risques R-01, R-02 et R-07. Le réseau est segmenté en VLANs
+    distincts : modalités biomédicales (IRM, scanner), serveurs PACS/RIS, postes administratifs
+    et accès invités. L''écart réside dans le renforcement du filtrage inter-VLAN
+    empêchant tout flux poste vers serveur non strictement autorisé.'
   status: implemented
   maturity: 3
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Schéma d'adressage et de segmentation VLAN des commutateurs de cœur
 - id: '8.23'
   name: Filtrage Web
   description: 'Exigence ISO 27001 : Filtrage Web'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: Un filtrage DNS et URL est actif sur le pare-feu périmétrique pour
+    bloquer l'accès aux catégories de sites malveillants, de phishing ou de contournement
+    de sécurité depuis les 16 postes. Les flux de téléchargement direct de binaires
+    sont filtrés.
   status: partial
   maturity: 1
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Rapport mensuel de filtrage web et liste des catégories de sites bloquées
 - id: '8.24'
   name: Cryptographie
   description: 'Exigence ISO 27001 : Cryptographie'
   theme: Technologique
   is_applicable: true
-  justification: Le flux DICOM interne n'est pas chiffré (TLS non supporté par d'anciennes
-    modalités). Chiffrement assuré aux frontières (VPN).
+  justification: Ce contrôle protège contre les risques R-07 et R-09 en garantissant
+    la confidentialité et l'intégrité des clichés et comptes rendus. Le chiffrement
+    HTTPS/TLS est actif sur le portail web de résultats, mais les flux DICOM internes
+    sur le LAN transitent encore en clair. L'écart réside dans l'activation complète
+    du protocole DICOM-TLS sur l'ensemble des modalités et serveurs d'archivage.
   status: partial
   maturity: 2
-  evidence: Analyse réseau Wireshark
+  evidence: Rapport d'analyse de trafic réseau (Wireshark) attestant du chiffrement
+    TLS
 - id: '8.25'
   name: Cycle de vie développement
   description: 'Exigence ISO 27001 : Cycle de vie développement'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Le Centre d''Imagerie Médicale (16 personnes) n''édite
+    ni ne développe aucun logiciel en interne. Les applications médicales (PACS, RIS,
+    DPI) sont acquises auprès d''éditeurs tiers spécialisés sous licences commerciales.
+    La sécurité applicative relève des clauses contractuelles d''acquisition et de
+    maintenance logicielle (mesure 21(2)e couverte par 8.8 et 8.19).'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.26'
   name: Exigences sécurité
   description: 'Exigence ISO 27001 : Exigences sécurité'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Le centre ne réalise pas de développements applicatifs
+    sur mesure requérant des spécifications logicielles internes.'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.27'
   name: Architecture sécurité
   description: 'Exigence ISO 27001 : Architecture sécurité'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Le centre n''assure pas la conception d''architectures
+    logicielles internes (recours exclusif à des architectures progicielles fournies
+    par les éditeurs).'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.28'
   name: Sécurité du codage
   description: 'Exigence ISO 27001 : Sécurité du codage'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Aucune activité d''écriture de code source ou de
+    développement applicatif n''est exercée par le personnel du centre. Les progiciels
+    d''imagerie déployés sont des solutions du commerce maintenues par leurs éditeurs
+    respectifs. L''intégrité et la robustesse du code incombent contractuellement
+    aux éditeurs certifiés de la chaîne d''imagerie (mesure 21(2)e couverte par 8.8).'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.29'
   name: Tests de sécurité
   description: 'Exigence ISO 27001 : Tests de sécurité'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Les tests de sécurité de code (SAST/DAST) sont
+    réalisés en amont par les éditeurs tiers des logiciels d''imagerie médicale.'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.30'
   name: Développement externalisé
   description: 'Exigence ISO 27001 : Développement externalisé'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Le centre ne commande aucun développement logiciel
+    sur mesure auprès de sous-traitants (progiciels standard sous licence).'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.31'
   name: Séparation environnements
   description: 'Exigence ISO 27001 : Séparation environnements'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Le centre n''opère aucun environnement de développement
+    ou de compilation logicielle distinct de la production.'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.32'
   name: Gestion des changements
   description: 'Exigence ISO 27001 : Gestion des changements'
   theme: Technologique
   is_applicable: true
-  justification: Les changements d'architecture RIS/PACS sont validés en CAB restreint
-    (Direction médicale + DSI).
+  justification: Toute modification d'infrastructure (mise à jour serveur PACS, reparamétrage
+    réseau, ajout d'une modalité) est consignée dans un registre de changements et
+    testée hors heures ouvrées. Un retour arrière est prévu avant chaque intervention.
   status: implemented
   maturity: 3
-  evidence: CR de réunion
+  evidence: Registre de suivi des changements informatiques et fiches d'intervention
 - id: '8.33'
   name: Informations de test
   description: 'Exigence ISO 27001 : Informations de test'
   theme: Technologique
   is_applicable: false
-  justification: 'Non applicable : Le Centre d''Imagerie Médicale ne développe aucun
-    logiciel en interne. Il utilise exclusivement des progiciels (PACS, RIS) sur étagère
-    gérés par les éditeurs.'
+  justification: 'Non applicable : Aucune création ou utilisation de bases de données
+    de test pour du développement logiciel n''est requise dans le centre.'
   status: not_applicable
-  maturity: 0
-  evidence: Politique d'acquisition logicielle
+  maturity: null
+  evidence: null
 - id: '8.34'
   name: Protection systèmes d'audit
   description: 'Exigence ISO 27001 : Protection systèmes d''audit'
   theme: Technologique
   is_applicable: true
-  justification: Contrôle mis en œuvre conformément à la politique de sécurité générale
-    du centre médical.
+  justification: L'accès aux outils de diagnostic et de supervision réseau est restreint
+    au référent informatique pour éviter tout détournement en écoute illégitime. Les
+    audits et scans de vulnérabilités sont programmés en dehors des plages d'examens
+    médicaux pour ne pas perturber les modalités.
   status: partial
   maturity: 2
-  evidence: Preuve d'implémentation (Logs, Charte)
+  evidence: Procédure d'encadrement des audits techniques et calendrier des analyses

@@ -23,7 +23,7 @@ Le tableau suivant détaille chaque contrôle ISO 27001:2022 de la Déclaration 
 | **5.11** - Restitution des actifs | Partiel | 2/5 | - | - | - |
 | **5.12** - Classification des informations | Partiel | 1/5 | - | - | - |
 | **5.13** - Marquage des informations | Partiel | 1/5 | - | - | - |
-| **5.14** - Transfert d'information | Implémenté | 4/5 | Art. 21(2)h | PR.DS-02 : Data-in-transit is protected | - |
+| **5.14** - Transfert d'information | Implémenté | 3/5 | Art. 21(2)h | PR.DS-02 : Data-in-transit is protected | - |
 | **5.15** - Contrôle d'accès | Partiel | 1/5 | Art. 21(2)i | PR.AA-05 : Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed (incorporating least privilege and separation of duties) | T1005, T1078, T1213, T1485, T1531, T1565 |
 | **5.16** - Gestion des identités | Partiel | 1/5 | - | - | - |
 | **5.17** - Informations d'authentification | Implémenté | 3/5 | Art. 21(2)j | PR.AA-01 : Identities and credentials for authorized users, services, and hardware are managed | T1110 |
@@ -32,7 +32,7 @@ Le tableau suivant détaille chaque contrôle ISO 27001:2022 de la Déclaration 
 | **5.20** - Sécurité dans les contrats fournisseurs | Implémenté | 3/5 | Art. 21(2)d | - | - |
 | **5.21** - Sécurité chaîne d'approvisionnement TIC | Partiel | 2/5 | Art. 21(2)d | GV.SC-09 : Supply chain security practices are integrated into cybersecurity and enterprise risk management programs, and their performance is monitored throughout the technology product and service life cycle | T1195 |
 | **5.22** - Surveillance des fournisseurs | Partiel | 1/5 | Art. 21(2)d | - | - |
-| **5.23** - Sécurité des services cloud | Implémenté | 4/5 | Art. 21(2)d | GV.SC-07 : The risks posed by a supplier, their products and services, and other third parties are understood, recorded, prioritized, assessed, responded to, and monitored over the course of the relationship | - |
+| **5.23** - Sécurité des services cloud | Implémenté | 3/5 | Art. 21(2)d | GV.SC-07 : The risks posed by a supplier, their products and services, and other third parties are understood, recorded, prioritized, assessed, responded to, and monitored over the course of the relationship | - |
 | **5.24** - Préparation gestion incidents | Partiel | 2/5 | Art. 21(2)b | - | - |
 | **5.25** - Évaluation des événements | Implémenté | 3/5 | Art. 21(2)b | - | - |
 | **5.26** - Réponse aux incidents | Implémenté | 3/5 | Art. 21(2)b | RS.MA-01 : The incident response plan is executed in coordination with relevant third parties once an incident is declared | - |

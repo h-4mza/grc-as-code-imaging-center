@@ -6,6 +6,7 @@ from app.services.ingest import ingest_findings
 from app.services.jira_client import JiraClient
 from app.services.loader import load_grc_idempotent, relink_findings
 from app.services.matrix import generate_compliance_matrix
+from app.services.soa_doc import generate_soa_markdown
 from app.services.validate import validate_grc_yaml
 
 app = typer.Typer()
@@ -180,6 +181,26 @@ def export_matrix(
         typer.echo(f"✅ Matrice de conformité exportée avec succès dans '{output}' !")
     except Exception as e:
         typer.echo(f"❌ Erreur lors de la génération de la matrice : {e}", err=True)
+        raise typer.Exit(code=1)
+
+
+@app.command("export-soa")
+def export_soa(
+    grc_dir: str = typer.Option("grc", "--grc-dir", help="Dossier racine des référentiels GRC YAML"),
+    output: str = typer.Option(
+        "docs/iso27001/soa.md",
+        "--output",
+        "-o",
+        help="Chemin du fichier Markdown de destination pour la SoA",
+    ),
+):
+    """Génère la Déclaration d'Applicabilité (SoA) ISO 27001:2022 depuis annex_a.yaml."""
+    typer.echo(f"📄 Génération de la SoA depuis '{grc_dir}' vers '{output}'...")
+    try:
+        generate_soa_markdown(grc_dir=grc_dir, output_path=output)
+        typer.echo(f"✅ Déclaration d'Applicabilité (SoA) exportée avec succès dans '{output}' !")
+    except Exception as e:
+        typer.echo(f"❌ Erreur lors de la génération de la SoA : {e}", err=True)
         raise typer.Exit(code=1)
 
 

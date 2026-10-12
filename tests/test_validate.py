@@ -58,14 +58,20 @@ def valid_grc_dir(tmp_path: Path) -> Path:
                 "name": "Protection contre logiciels malveillants",
                 "theme": "Technologique",
                 "is_applicable": True,
+                "status": "implemented",
                 "maturity": 4,
+                "justification": "Déploiement et maintien d'un agent EDR managé sur l'ensemble des serveurs et postes.",
+                "evidence": "Rapport hebdomadaire de conformité de l'agent EDR",
             },
             {
                 "id": "8.13",
                 "name": "Sauvegardes",
                 "theme": "Technologique",
                 "is_applicable": True,
+                "status": "implemented",
                 "maturity": 4,
+                "justification": "Sauvegardes quotidiennes externalisées avec rétention et vérification des journaux.",
+                "evidence": "Rapport de sauvegarde quotidien et journal d'intégrité",
             },
         ]
     }
@@ -311,7 +317,23 @@ def test_validator_coherence_accept_option_requires_residual_le_moyen(valid_grc_
     # Score 4x4 avec maturité faible (0/5) -> résiduel = Critique (16)
     iso_file = valid_grc_dir / "iso27001" / "annex_a.yaml"
     with open(iso_file, "w", encoding="utf-8") as f:
-        yaml.safe_dump({"controls": [{"id": "8.7", "maturity": 0}]}, f)
+        yaml.safe_dump(
+            {
+                "controls": [
+                    {
+                        "id": "8.7",
+                        "name": "Protection contre logiciels malveillants",
+                        "theme": "Technologique",
+                        "is_applicable": True,
+                        "status": "not_implemented",
+                        "maturity": 0,
+                        "justification": "Non implémenté sur les postes et serveurs du site.",
+                        "evidence": "Rapport d'audit EDR constatant l'absence de déploiement",
+                    }
+                ]
+            },
+            f,
+        )
 
     w4_file = valid_grc_dir / "ebios" / "w4_operationnels.yaml"
     with open(w4_file, "r", encoding="utf-8") as f:
@@ -450,3 +472,95 @@ def test_validator_sr_defaillance_allows_empty_attack_techniques(valid_grc_dir):
     report = validate_grc_yaml(valid_grc_dir)
     assert report.is_valid is True
     assert len(report.errors) == 0
+
+
+def test_validator_soa_status_vs_maturity_mismatch(valid_grc_dir):
+    """Vérifie la cohérence stricte entre statut et maturité."""
+    iso_file = valid_grc_dir / "iso27001" / "annex_a.yaml"
+    with open(iso_file, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    # Implemented avec maturité 2 (attendu 3-5)
+    data["controls"][0]["maturity"] = 2
+    with open(iso_file, "w", encoding="utf-8") as f:
+        yaml.safe_dump(data, f)
+
+    report = validate_grc_yaml(valid_grc_dir)
+    assert report.is_valid is False
+    assert any("doit avoir une maturité entre 3 et 5" in err for err in report.errors)
+
+
+def test_validator_soa_not_applicable_rules(valid_grc_dir):
+    """Vérifie que not_applicable exige maturité null et justification préfixée."""
+    iso_file = valid_grc_dir / "iso27001" / "annex_a.yaml"
+    with open(iso_file, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    # not_applicable avec maturité non-null et mauvaise justification
+    data["controls"].append(
+        {
+            "id": "8.4",
+            "name": "Code source",
+            "theme": "Technologique",
+            "is_applicable": False,
+            "status": "not_applicable",
+            "maturity": 0,
+            "justification": "Pas de dev interne.",
+        }
+    )
+    with open(iso_file, "w", encoding="utf-8") as f:
+        yaml.safe_dump(data, f)
+
+    report = validate_grc_yaml(valid_grc_dir)
+    assert report.is_valid is False
+    assert any("ne doit pas avoir de maturité" in err for err in report.errors)
+    assert any("commençant obligatoirement par 'Non applicable :'" in err for err in report.errors)
+
+
+def test_validator_soa_todo_treatment_cannot_target_implemented_high_maturity(valid_grc_dir):
+    """Vérifie qu'un contrôle ciblé par un traitement todo ne peut pas être implemented >= 4."""
+    w5_file = valid_grc_dir / "ebios" / "w5_traitements.yaml"
+    with open(w5_file, "r", encoding="utf-8") as f:
+        w5_data = yaml.safe_load(f)
+
+    # tr_01 passe à todo et cible 8.7 (qui a status: implemented, maturity: 4)
+    w5_data["treatments"][0]["status"] = "todo"
+    w5_data["treatments"][0]["controls"] = ["8.7"]
+    with open(w5_file, "w", encoding="utf-8") as f:
+        yaml.safe_dump(w5_data, f)
+
+    report = validate_grc_yaml(valid_grc_dir)
+    assert report.is_valid is False
+    assert any("ne peut pas être 'implemented' avec une maturité >= 4" in err for err in report.errors)
+
+
+def test_validator_soa_duplicate_or_forbidden_justification(valid_grc_dir):
+    """Vérifie l'interdiction de la phrase générique et la détection des copier-coller (> 3 fois)."""
+    iso_file = valid_grc_dir / "iso27001" / "annex_a.yaml"
+    with open(iso_file, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    # Utilisation de la phrase générique interdite
+    data["controls"][0]["justification"] = "Applicable pour la protection globale du centre d'imagerie."
+    with open(iso_file, "w", encoding="utf-8") as f:
+        yaml.safe_dump(data, f)
+
+    report = validate_grc_yaml(valid_grc_dir)
+    assert report.is_valid is False
+    assert any("justification générique interdite" in err for err in report.errors)
+
+
+def test_validator_soa_risk_linked_control_missing_evidence(valid_grc_dir):
+    """Vérifie que tout contrôle applicable lié à un risque doit avoir une preuve non vide."""
+    iso_file = valid_grc_dir / "iso27001" / "annex_a.yaml"
+    with open(iso_file, "r", encoding="utf-8") as f:
+        data = yaml.safe_load(f)
+
+    # Vider le champ evidence sur 8.7 (lié à R-01)
+    data["controls"][0]["evidence"] = ""
+    with open(iso_file, "w", encoding="utf-8") as f:
+        yaml.safe_dump(data, f)
+
+    report = validate_grc_yaml(valid_grc_dir)
+    assert report.is_valid is False
+    assert any("n'a pas de champ 'evidence'" in err for err in report.errors)
