@@ -1,5 +1,6 @@
 site_name: GRC-as-Code
 site_description: Plateforme GRC-as-Code - Piloter la gouvernance, les risques et la conformité (EBIOS RM, ISO 27001, NIS2) comme du code pour un centre d'imagerie médicale
+site_url: https://h-4mza.github.io/grc-as-code-imaging-center/
 repo_url: https://github.com/h-4mza/grc-as-code-imaging-center
 
 theme:
@@ -23,15 +24,16 @@ theme:
 nav:
   - Accueil: index.md
   - EBIOS RM:
-      - Atelier 1: ebios/atelier1.md
-      - Atelier 2: ebios/atelier2.md
-      - Atelier 3: ebios/atelier3.md
-      - Atelier 4: ebios/atelier4.md
-      - Atelier 5: ebios/atelier5.md
+      - "Atelier 1 : Contexte et Périmètre": ebios/atelier1.md
+      - "Atelier 2 : Événements Redoutés": ebios/atelier2.md
+      - "Atelier 3 : Scénarios Stratégiques": ebios/atelier3.md
+      - "Atelier 4 : Scénarios Opérationnels": ebios/atelier4.md
+      - "Atelier 5 : Traitement du Risque": ebios/atelier5.md
   - ISO 27001:
-      - SoA (Déclaration Applicabilité): iso27001/soa.md
+      - "SoA (Déclaration Applicabilité)": iso27001/soa.md
   - Conformité:
-      - Applicabilité Réglementaire: compliance/applicabilite_reglementaire.md
-      - Matrice de Contrôles: compliance/matrice_controles.md
+      - "Applicabilité Réglementaire": compliance/applicabilite_reglementaire.md
+      - "Matrice de Contrôles": compliance/matrice_controles.md
   - Outil:
-      - Méthode de Scoring: outil/scoring.md
+      - "Méthode de Scoring": outil/scoring.md
+      - "Aperçu du Dashboard": outil/apercu.md

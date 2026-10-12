@@ -8,6 +8,7 @@
 *Appliqué à un Centre d'Imagerie Médicale (cas fictif)*
 
 [![CI](https://github.com/h-4mza/grc-as-code-imaging-center/actions/workflows/ci.yml/badge.svg)](https://github.com/h-4mza/grc-as-code-imaging-center/actions)
+[![Docs](https://img.shields.io/badge/Docs-GitHub%20Pages-blue?logo=materialformkdocs&logoColor=white)](https://h-4mza.github.io/grc-as-code-imaging-center/)
 [![Python](https://img.shields.io/badge/python-3.11-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
 [![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io)
