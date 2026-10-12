@@ -150,7 +150,10 @@ docker-compose exec -T api grc ingest --source sarif --file grc/scans/projet3_ad
 
 | Commande | Rôle |
 | :-- | :-- |
-| `grc load` | Charge le référentiel déclaratif (`grc/`) en base PostgreSQL |
+| `grc validate [--grc-dir <dir>]` | Valide l'intégrité, la cohérence et l'échelle des YAML GRC sans toucher à la base |
+| `grc load [--grc-dir <dir>]` | Chargement idempotent en base : validation préalable, upsert, prune des éléments obsolètes, préservation des constats/clés Jira, et relink automatique |
+| `grc reset [--yes]` | Réinitialise complètement la base (`drop_all` + `create_all`) avec confirmation interactive (ou `--yes`) |
+| `grc relink [--grc-dir <dir>]` | Recalcule les liaisons constat ↔ scénario (ATT&CK) et constat ↔ contrôle (ISO 8.8) |
 | `grc ingest --source sarif --file <fichier>` | Ingère un rapport de scan (ex. Trivy, BloodHound) et réévalue le risque résiduel |
 | `grc export-jira [--project <KEY>] [--dry-run \| --no-dry-run]` | Synchronise les plans de traitement vers Jira Service Management |
 

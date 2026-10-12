@@ -24,6 +24,8 @@ demo:
 		sleep 1; \
 	done; \
 	echo "L'API est prete !"
+	@echo "Reinitialisation de la base de donnees..."
+	docker-compose exec -T api grc reset --yes
 	@echo "Chargement du referentiel GRC en base..."
 	docker-compose exec -T api grc load
 	@echo "Ingestion des constats SARIF (Projet 1 Trivy & Projet 3 AD Audit)..."
@@ -40,7 +42,7 @@ demo-down:
 	docker-compose down -v
 
 reset:
-	docker-compose down -v
+	docker-compose exec -T api grc reset --yes
 
 load:
 	docker-compose exec api grc load
