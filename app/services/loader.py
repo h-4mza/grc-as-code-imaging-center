@@ -421,13 +421,31 @@ def load_grc_idempotent(db: Session, grc_dir: str = "grc") -> Dict[str, int]:
     db.flush()
 
     # 3.10 Mappings
+    allowed_mapping_fields = {
+        "id",
+        "control_id",
+        "framework",
+        "reference",
+        "source",
+        "confidence",
+        "rationale",
+    }
     for m in all_mappings:
         mid = m["id"]
+        extra_keys = set(m.keys()) - allowed_mapping_fields
+        if extra_keys:
+            raise ValueError(
+                f"Champ inconnu dans le mapping '{mid}' : {', '.join(sorted(extra_keys))}. "
+                f"Champs autorisés : {', '.join(sorted(allowed_mapping_fields))}."
+            )
         existing_m = db.query(models.ControlMapping).filter_by(id=mid).first()
         if existing_m:
             existing_m.control_id = str(m["control_id"])
             existing_m.framework = m.get("framework")
             existing_m.reference = m.get("reference")
+            existing_m.source = m.get("source")
+            existing_m.confidence = m.get("confidence")
+            existing_m.rationale = m.get("rationale")
         else:
             db.add(
                 models.ControlMapping(
@@ -435,6 +453,9 @@ def load_grc_idempotent(db: Session, grc_dir: str = "grc") -> Dict[str, int]:
                     control_id=str(m["control_id"]),
                     framework=m.get("framework"),
                     reference=m.get("reference"),
+                    source=m.get("source"),
+                    confidence=m.get("confidence"),
+                    rationale=m.get("rationale"),
                 )
             )
     db.flush()

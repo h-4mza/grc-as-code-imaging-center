@@ -147,6 +147,11 @@ def validate(
             )
         typer.echo("-" * 102)
 
+    if report.warnings:
+        typer.echo(f"\n⚠️  Avertissement(s) ({len(report.warnings)}) :")
+        for w in report.warnings:
+            typer.echo(f"  - {w}")
+
     if not report.is_valid:
         typer.echo(f"\n❌ Validation échouée : {len(report.errors)} erreur(s) détectée(s) :\n", err=True)
         for i, err in enumerate(report.errors, 1):

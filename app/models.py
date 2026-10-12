@@ -170,6 +170,9 @@ class ControlMapping(Base):
     control_id = Column(String, ForeignKey("controls.id"))
     framework = Column(String)
     reference = Column(String)
+    source = Column(String, nullable=True)
+    confidence = Column(String, nullable=True)
+    rationale = Column(String, nullable=True)
 
     control = relationship("Control", back_populates="mappings")
 

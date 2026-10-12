@@ -51,6 +51,7 @@ class RiskLevelInfo:
 class ValidationReport:
     is_valid: bool
     errors: List[str] = field(default_factory=list)
+    warnings: List[str] = field(default_factory=list)
     risk_summaries: List[RiskLevelInfo] = field(default_factory=list)
 
 
@@ -78,10 +79,12 @@ class GRCValidator:
     def __init__(self, grc_dir: Path | str = "grc"):
         self.grc_dir = Path(grc_dir)
         self.errors: List[str] = []
+        self.warnings: List[str] = []
         self.risk_summaries: List[RiskLevelInfo] = []
 
     def validate(self) -> ValidationReport:
         self.errors = []
+        self.warnings = []
         self.risk_summaries = []
 
         # 1. Chargement des fichiers YAML
@@ -419,9 +422,205 @@ class GRCValidator:
                         "non conforme au format NIST CSF 2.0."
                     )
 
+        # ---------------------------------------------------------------------
+        # 6. Mappings réglementaires et techniques (NIS2, ATT&CK, NIST CSF 2.0)
+        # ---------------------------------------------------------------------
+        mappings_dir = self.grc_dir / "mappings"
+        mapping_files: List[Path] = []
+        if mappings_dir.exists():
+            mapping_files = sorted(mappings_dir.glob("*.yaml"))
+        else:
+            mapping_files = sorted(self.grc_dir.glob("**/mappings/*.yaml"))
+
+        all_mappings: List[Dict[str, Any]] = []
+        for mf in mapping_files:
+            m_data = _load_yaml_file(mf)
+            m_list = m_data.get("mappings", [])
+            if isinstance(m_list, list):
+                for item in m_list:
+                    if isinstance(item, dict):
+                        all_mappings.append(item)
+
+        allowed_mapping_keys = {
+            "id",
+            "control_id",
+            "framework",
+            "reference",
+            "source",
+            "confidence",
+            "rationale",
+        }
+        allowed_frameworks = {"NIS2", "ATT&CK", "NIST CSF 2.0"}
+        allowed_confidence = {"high", "medium", "low"}
+        nist_csf2_prefixes = (
+            "GV.",
+            "ID.",
+            "PR.AA",
+            "PR.AT",
+            "PR.DS",
+            "PR.PS",
+            "PR.IR",
+            "DE.CM",
+            "DE.AE",
+            "RS.",
+            "RC.",
+        )
+
+        seen_map_ids: Set[str] = set()
+
+        for m in all_mappings:
+            raw_mid = m.get("id")
+            mid = str(raw_mid).strip() if raw_mid is not None else ""
+            if not mid:
+                self.errors.append("Mapping : Champ 'id' manquant ou vide.")
+                continue
+
+            # Unicité des identifiants
+            if mid in seen_map_ids:
+                self.errors.append(f"Mapping ID '{mid}' dupliqué.")
+            else:
+                seen_map_ids.add(mid)
+
+            # Champs inconnus (schéma)
+            extra_keys = set(m.keys()) - allowed_mapping_keys
+            if extra_keys:
+                self.errors.append(
+                    f"Schéma : Mapping '{mid}' contient des champs non autorisés : {', '.join(sorted(extra_keys))}."
+                )
+
+            # Contrôle ISO associé
+            raw_cid = m.get("control_id")
+            if raw_cid is None:
+                self.errors.append(f"Mapping '{mid}' : champ 'control_id' manquant.")
+            else:
+                str_cid = str(raw_cid).strip()
+                if str_cid.startswith("A."):
+                    self.errors.append(
+                        f"Mapping '{mid}' : control_id '{str_cid}' doit être au format '8.7' sans 'A.'."
+                    )
+                elif str_cid not in controls_dict:
+                    self.errors.append(
+                        f"Mapping '{mid}' : control_id '{str_cid}' n'existe pas dans annex_a.yaml."
+                    )
+
+            # Framework
+            fw = m.get("framework")
+            if not fw or fw not in allowed_frameworks:
+                self.errors.append(
+                    f"Mapping '{mid}' : framework '{fw}' invalide (autorisés : NIS2, ATT&CK, NIST CSF 2.0)."
+                )
+
+            # Confidence
+            conf = m.get("confidence")
+            if conf is not None:
+                conf_str = str(conf).strip().lower()
+                if conf_str not in allowed_confidence:
+                    self.errors.append(
+                        f"Mapping '{mid}' : confidence '{conf}' invalide (autorisés : high, medium, low)."
+                    )
+                elif conf_str == "low":
+                    self.warnings.append(
+                        f"Mapping '{mid}' ({fw} -> {raw_cid}) : niveau de confiance faible (confidence: low)."
+                    )
+
+            # Format de reference
+            ref = str(m.get("reference", "")).strip()
+            if not ref:
+                self.errors.append(f"Mapping '{mid}' : champ 'reference' manquant ou vide.")
+            elif fw == "NIS2":
+                if not re.match(r"^Article 21\s*\(2\)\s*[a-j](?:\b.*)?$", ref, re.IGNORECASE):
+                    self.errors.append(
+                        f"Mapping NIS2 '{mid}' : référence '{ref}' invalide "
+                        "(format attendu : 'Article 21(2)x' avec x de a à j)."
+                    )
+            elif fw == "ATT&CK":
+                if not re.match(r"^T\d{4}(?:\.\d{3})?(?:\s*[-:].*)?$", ref):
+                    self.errors.append(
+                        f"Mapping ATT&CK '{mid}' : référence '{ref}' invalide "
+                        "(format attendu : Txxxx ou Txxxx.xxx)."
+                    )
+            elif fw == "NIST CSF 2.0":
+                if not any(ref.startswith(prefix) for prefix in nist_csf2_prefixes):
+                    self.errors.append(
+                        f"Mapping NIST '{mid}' : référence '{ref}' non conforme au format NIST CSF 2.0 "
+                        f"(attendu préfixe parmi {', '.join(nist_csf2_prefixes)})."
+                    )
+
+        # Couverture NIS2 : 10 mesures 21(2) a à j
+        for letter in "abcdefghij":
+            measure_label = f"Article 21(2){letter}"
+            mapped_ctrl_ids = []
+            for m in all_mappings:
+                if m.get("framework") == "NIS2":
+                    ref_str = str(m.get("reference", "")).strip()
+                    m_match = re.match(r"^Article 21\s*\(2\)\s*([a-j])(?:\b.*)?$", ref_str, re.IGNORECASE)
+                    if m_match and m_match.group(1).lower() == letter:
+                        cid = str(m.get("control_id", "")).strip()
+                        if cid and not cid.startswith("A.") and cid in controls_dict:
+                            mapped_ctrl_ids.append(cid)
+
+            unique_mapped = list(dict.fromkeys(mapped_ctrl_ids))
+            applicable_ctrls = [
+                cid for cid in unique_mapped if controls_dict.get(cid, {}).get("is_applicable") is True
+            ]
+
+            if not unique_mapped:
+                self.errors.append(
+                    f"Couverture NIS2 : La mesure {measure_label} n'est couverte par aucun contrôle."
+                )
+            elif not applicable_ctrls:
+                self.errors.append(
+                    f"Couverture NIS2 : La mesure {measure_label} n'est couverte que par des contrôles non "
+                    f"applicables ({', '.join(unique_mapped)}). Au moins 1 contrôle applicable est requis."
+                )
+
+        # Couverture ATT&CK : techniques citées dans w4_operationnels.yaml
+        cited_attack_techniques: Set[str] = set()
+        for r in risks:
+            for t in r.get("attack_techniques", []):
+                t_clean = str(t).strip()
+                if t_clean:
+                    cited_attack_techniques.add(t_clean)
+
+        for tech in sorted(cited_attack_techniques):
+            mapped_ctrl_ids = []
+            for m in all_mappings:
+                if m.get("framework") == "ATT&CK":
+                    ref_str = str(m.get("reference", "")).strip()
+                    t_match = re.match(r"^(T\d{4}(?:\.\d{3})?)", ref_str)
+                    if t_match:
+                        m_tech = t_match.group(1)
+                        if m_tech == tech or m_tech.split(".")[0] == tech or tech.split(".")[0] == m_tech:
+                            cid = str(m.get("control_id", "")).strip()
+                            if cid and not cid.startswith("A.") and cid in controls_dict:
+                                mapped_ctrl_ids.append(cid)
+
+            unique_mapped = list(dict.fromkeys(mapped_ctrl_ids))
+            applicable_ctrls = [
+                cid for cid in unique_mapped if controls_dict.get(cid, {}).get("is_applicable") is True
+            ]
+
+            if not unique_mapped:
+                self.errors.append(
+                    f"Couverture ATT&CK : La technique '{tech}' citée dans w4_operationnels.yaml "
+                    "n'est couverte par aucun contrôle."
+                )
+            elif not applicable_ctrls:
+                self.errors.append(
+                    f"Couverture ATT&CK : La technique '{tech}' citée dans w4_operationnels.yaml "
+                    f"n'est couverte que par des contrôles non applicables ({', '.join(unique_mapped)}). "
+                    "Au moins 1 contrôle applicable est requis."
+                )
+            elif len(applicable_ctrls) == 1:
+                self.warnings.append(
+                    f"Couverture ATT&CK : La technique '{tech}' n'est couverte que par un seul "
+                    f"contrôle applicable ({applicable_ctrls[0]})."
+                )
+
         return ValidationReport(
             is_valid=(len(self.errors) == 0),
             errors=self.errors,
+            warnings=self.warnings,
             risk_summaries=self.risk_summaries,
         )
 

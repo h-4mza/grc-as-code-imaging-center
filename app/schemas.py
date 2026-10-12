@@ -112,8 +112,11 @@ class AnnexA(BaseModel):
 class ControlMapping(BaseModel):
     id: str = Field(..., description="ID unique du mapping")
     control_id: str = Field(..., description="ID du contrôle ISO")
-    framework: str = Field(..., description="Nom du framework cible (NIS2, ATT&CK, NIST)")
+    framework: str = Field(..., description="Nom du framework cible (NIS2, ATT&CK, NIST CSF 2.0)")
     reference: str = Field(..., description="Référence ou article dans le framework cible")
+    source: Optional[str] = Field(None, description="URL ou nom du document officiel")
+    confidence: Optional[str] = Field(None, description="Niveau de confiance (high | medium | low)")
+    rationale: Optional[str] = Field(None, description="Pourquoi ce contrôle répond à cette exigence")
 
 
 class Treatment(BaseModel):

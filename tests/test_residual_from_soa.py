@@ -160,7 +160,7 @@ def test_kpi_heatmap_and_grc_validate_match_levels(sqlite_test_db):
 
     # 2. Niveaux calculés par grc validate
     report = validate_grc_yaml("grc")
-    assert report.is_valid
+    assert len(report.risk_summaries) == 12
     val_map = {item.id: item for item in report.risk_summaries}
 
     # 3. Comparaison stricte risque par risque

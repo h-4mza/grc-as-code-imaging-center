@@ -57,12 +57,14 @@ def valid_grc_dir(tmp_path: Path) -> Path:
                 "id": "8.7",
                 "name": "Protection contre logiciels malveillants",
                 "theme": "Technologique",
+                "is_applicable": True,
                 "maturity": 4,
             },
             {
                 "id": "8.13",
                 "name": "Sauvegardes",
                 "theme": "Technologique",
+                "is_applicable": True,
                 "maturity": 4,
             },
         ]
@@ -158,6 +160,76 @@ def valid_grc_dir(tmp_path: Path) -> Path:
     }
     with open(ebios_dir / "w5_traitements.yaml", "w", encoding="utf-8") as f:
         yaml.safe_dump(w5_content, f)
+
+    # 8. Mappings (mappings/iso_nis2.yaml, iso_attack.yaml, iso_nist.yaml)
+    mappings_dir = tmp_path / "mappings"
+    mappings_dir.mkdir()
+
+    nis2_mappings = {
+        "mappings": [
+            {
+                "id": f"map_nis2_{letter}",
+                "control_id": "8.7",
+                "framework": "NIS2",
+                "reference": f"Article 21(2){letter}",
+                "confidence": "high",
+                "source": "Directive NIS2",
+                "rationale": "Mesure couverte par le contrôle 8.7",
+            }
+            for letter in "abcdefghij"
+        ]
+    }
+    with open(mappings_dir / "iso_nis2.yaml", "w", encoding="utf-8") as f:
+        yaml.safe_dump(nis2_mappings, f)
+
+    attack_mappings = {
+        "mappings": [
+            {
+                "id": "map_att_1",
+                "control_id": "8.7",
+                "framework": "ATT&CK",
+                "reference": "T1566",
+                "confidence": "high",
+            },
+            {
+                "id": "map_att_2",
+                "control_id": "8.13",
+                "framework": "ATT&CK",
+                "reference": "T1566",
+                "confidence": "high",
+            },
+            {
+                "id": "map_att_3",
+                "control_id": "8.7",
+                "framework": "ATT&CK",
+                "reference": "T1486",
+                "confidence": "high",
+            },
+            {
+                "id": "map_att_4",
+                "control_id": "8.13",
+                "framework": "ATT&CK",
+                "reference": "T1486",
+                "confidence": "high",
+            },
+        ]
+    }
+    with open(mappings_dir / "iso_attack.yaml", "w", encoding="utf-8") as f:
+        yaml.safe_dump(attack_mappings, f)
+
+    nist_mappings = {
+        "mappings": [
+            {
+                "id": "map_nist_1",
+                "control_id": "8.7",
+                "framework": "NIST CSF 2.0",
+                "reference": "PR.AA-01",
+                "confidence": "high",
+            }
+        ]
+    }
+    with open(mappings_dir / "iso_nist.yaml", "w", encoding="utf-8") as f:
+        yaml.safe_dump(nist_mappings, f)
 
     return tmp_path
 
