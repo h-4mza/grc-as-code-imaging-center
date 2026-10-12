@@ -1,49 +1,216 @@
 mappings:
-- id: map_nist_1
-  control_id: '5.1'
-  framework: NIST CSF 2.0
-  reference: 'GV.PO-01 : Les politiques de sécurité sont établies'
-- id: map_nist_2
-  control_id: '5.9'
-  framework: NIST CSF 2.0
-  reference: 'ID.AM-01 : Inventaire des équipements physiques'
-- id: map_nist_3
-  control_id: '8.5'
-  framework: NIST CSF 2.0
-  reference: 'PR.AA-01 : Gestion des identités et authentification forte'
-- id: map_nist_4
-  control_id: '5.15'
-  framework: NIST CSF 2.0
-  reference: 'PR.AA-02 : Contrôle d''accès basé sur le moindre privilège'
-- id: map_nist_5
-  control_id: '8.7'
-  framework: NIST CSF 2.0
-  reference: 'PR.PS-01 : Protection contre les logiciels malveillants'
-- id: map_nist_6
-  control_id: '8.13'
-  framework: NIST CSF 2.0
-  reference: 'PR.DS-11 : Sauvegardes de données maintenues et testées'
-- id: map_nist_7
-  control_id: '8.24'
-  framework: NIST CSF 2.0
-  reference: 'PR.DS-01 : Données au repos et en transit protégées (Cryptographie)'
-- id: map_nist_8
-  control_id: '8.16'
-  framework: NIST CSF 2.0
-  reference: 'DE.CM-01 : Surveillance du réseau et des événements'
-- id: map_nist_9
-  control_id: '5.26'
-  framework: NIST CSF 2.0
-  reference: 'RS.MI-01 : Les incidents sont traités selon des plans de réponse'
-- id: map_nist_10
-  control_id: '5.30'
-  framework: NIST CSF 2.0
-  reference: 'RC.RP-01 : Plans de reprise après sinistre exécutés'
-- id: map_nist_11
-  control_id: '6.3'
-  framework: NIST CSF 2.0
-  reference: 'PR.AT-01 : Formation de sensibilisation des employés'
-- id: map_nist_12
-  control_id: '8.12'
-  framework: NIST CSF 2.0
-  reference: 'PR.DS-02 : Prévention des fuites de données'
+  - id: map_nist_1
+    control_id: "5.1"
+    framework: "NIST CSF 2.0"
+    reference: "GV.PO-01 : Cybersecurity policies are established, communicated, and enforced"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "La PSSI formalise, communique et impose le cadre des règles de cybersécurité de l'organisation."
+
+  - id: map_nist_2
+    control_id: "5.9"
+    framework: "NIST CSF 2.0"
+    reference: "ID.AM-01 : Physical devices and systems inventory is maintained"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "L'inventaire garantit la visibilité et la traçabilité continue de l'ensemble des équipements et serveurs."
+
+  - id: map_nist_3
+    control_id: "5.14"
+    framework: "NIST CSF 2.0"
+    reference: "PR.DS-02 : Data-in-transit is protected"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les règles de transfert sécurisé protègent les flux de données médicales et administratives en transit."
+
+  - id: map_nist_4
+    control_id: "5.15"
+    framework: "NIST CSF 2.0"
+    reference: "PR.AA-05 : Access permissions, entitlements, and authorizations are defined in a policy, managed, enforced, and reviewed (incorporating least privilege and separation of duties)"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "La gestion des habilitations applique strictement les principes du moindre privilège et de la séparation des tâches."
+
+  - id: map_nist_5
+    control_id: "5.17"
+    framework: "NIST CSF 2.0"
+    reference: "PR.AA-01 : Identities and credentials for authorized users, services, and hardware are managed"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "L'administration des secrets et mots de passe protège le cycle de vie des identifiants des utilisateurs."
+
+  - id: map_nist_6
+    control_id: "5.19"
+    framework: "NIST CSF 2.0"
+    reference: "GV.SC-05 : Requirements to address cybersecurity risks in supply chains are established, prioritized, and integrated into contracts and other types of agreements with suppliers and other relevant third parties"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les clauses contractuelles formalisent les exigences de sécurité et de conformité imposées aux prestataires."
+
+  - id: map_nist_7
+    control_id: "5.21"
+    framework: "NIST CSF 2.0"
+    reference: "GV.SC-09 : Supply chain security practices are integrated into cybersecurity and enterprise risk management programs, and their performance is monitored throughout the technology product and service life cycle"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les processus d'approvisionnement TIC intègrent la gestion des risques tout au long du cycle de vie des produits."
+
+  - id: map_nist_8
+    control_id: "5.23"
+    framework: "NIST CSF 2.0"
+    reference: "GV.SC-07 : The risks posed by a supplier, their products and services, and other third parties are understood, recorded, prioritized, assessed, responded to, and monitored over the course of the relationship"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "L'évaluation continue des services cloud audite la conformité HDS et le niveau de risque des hébergeurs externes."
+
+  - id: map_nist_9
+    control_id: "5.26"
+    framework: "NIST CSF 2.0"
+    reference: "RS.MA-01 : The incident response plan is executed in coordination with relevant third parties once an incident is declared"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "L'équipe de réponse exécute les plans d'intervention coordonnés dès la confirmation d'un incident de sécurité."
+
+  - id: map_nist_10
+    control_id: "5.30"
+    framework: "NIST CSF 2.0"
+    reference: "RC.RP-01 : The recovery portion of the incident response plan is executed once initiated from the incident response process"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Le volet reprise d'activité informatique (PRA) rétablit les infrastructures selon la priorité opérationnelle."
+
+  - id: map_nist_11
+    control_id: "5.37"
+    framework: "NIST CSF 2.0"
+    reference: "PR.PS-01 : Configuration management practices are established and applied"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les procédures documentées définissent les standards et pratiques d'administration opérationnelle des systèmes."
+
+  - id: map_nist_12
+    control_id: "6.1"
+    framework: "NIST CSF 2.0"
+    reference: "PR.AA-01 : Identities and credentials for authorized users, services, and hardware are managed"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "medium"
+    rationale: "Le filtrage et la vérification des candidats conditionnent l'attribution des identités et des droits d'accès."
+
+  - id: map_nist_13
+    control_id: "6.3"
+    framework: "NIST CSF 2.0"
+    reference: "PR.AT-01 : Personnel are provided with awareness and training so that they possess the knowledge and skills to perform general tasks with cybersecurity risks in mind"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les sessions de sensibilisation forment les collaborateurs aux bons réflexes face aux menaces d'ingénierie sociale."
+
+  - id: map_nist_14
+    control_id: "7.10"
+    framework: "NIST CSF 2.0"
+    reference: "PR.DS-01 : Data-at-rest is protected"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Le contrôle physique et logique des supports amovibles empêche le vol ou la perte de données stockées."
+
+  - id: map_nist_15
+    control_id: "8.5"
+    framework: "NIST CSF 2.0"
+    reference: "PR.AA-02 : Users, services, and hardware are authenticated"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "L'authentification multifacteur (MFA) valide formellement l'identité des utilisateurs accédant au réseau interne."
+
+  - id: map_nist_16
+    control_id: "8.6"
+    framework: "NIST CSF 2.0"
+    reference: "PR.IR-04 : Adequate resource capacity to ensure availability is maintained"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Le suivi capacitaire des serveurs et de la bande passante prévient l'indisponibilité par déni de service involontaire."
+
+  - id: map_nist_17
+    control_id: "8.7"
+    framework: "NIST CSF 2.0"
+    reference: "PR.PS-05 : Installation and execution of unauthorized software are prevented"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "L'antivirus et l'EDR neutralisent l'installation et l'exécution de charges binaires malveillantes non approuvées."
+
+  - id: map_nist_18
+    control_id: "8.8"
+    framework: "NIST CSF 2.0"
+    reference: "ID.RA-01 : Vulnerabilities in assets are identified, validated, and recorded"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les analyses régulières de vulnérabilités recensent et qualifient les failles de sécurité des équipements."
+
+  - id: map_nist_19
+    control_id: "8.9"
+    framework: "NIST CSF 2.0"
+    reference: "PR.PS-01 : Configuration management practices are established and applied"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les baselines de durcissement sont appliquées pour verrouiller les paramètres de configuration par défaut."
+
+  - id: map_nist_20
+    control_id: "8.12"
+    framework: "NIST CSF 2.0"
+    reference: "PR.DS-11 : Unauthorized data disclosures are prevented"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les dispositifs DLP bloquent l'exfiltration et la divulgation non autorisée de données sensibles de santé."
+
+  - id: map_nist_21
+    control_id: "8.13"
+    framework: "NIST CSF 2.0"
+    reference: "PR.DS-10 : Data is backed up, protected, and tested"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les sauvegardes complètes régulières sont chiffrées, immuables et testées périodiquement en restauration."
+
+  - id: map_nist_22
+    control_id: "8.14"
+    framework: "NIST CSF 2.0"
+    reference: "PR.IR-03 : Mechanisms are implemented to achieve resilience requirements in normal and adverse situations"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "L'architecture matérielle redondante garantit la résilience opérationnelle face aux pannes d'équipements."
+
+  - id: map_nist_23
+    control_id: "8.16"
+    framework: "NIST CSF 2.0"
+    reference: "DE.CM-01 : Networks and network services are monitored to find potentially adverse events"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "La supervision continue du trafic et des logs réseau détecte les signaux précurseurs d'activités hostiles."
+
+  - id: map_nist_24
+    control_id: "8.19"
+    framework: "NIST CSF 2.0"
+    reference: "PR.PS-05 : Installation and execution of unauthorized software are prevented"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Le verrouillage des droits administratifs locaux prévient l'installation de logiciels non approuvés."
+
+  - id: map_nist_25
+    control_id: "8.20"
+    framework: "NIST CSF 2.0"
+    reference: "PR.IR-01 : Networks and environments are protected from unauthorized logical access and usage"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Les pare-feux et passerelles sécurisent l'accès logique aux périmètres réseau du centre d'imagerie."
+
+  - id: map_nist_26
+    control_id: "8.22"
+    framework: "NIST CSF 2.0"
+    reference: "PR.IR-01 : Networks and environments are protected from unauthorized logical access and usage"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "La micro-segmentation en VLANs isolés empêche les mouvements latéraux non autorisés entre environnements."
+
+  - id: map_nist_27
+    control_id: "8.24"
+    framework: "NIST CSF 2.0"
+    reference: "PR.DS-01 : Data-at-rest is protected"
+    source: "NIST CSF 2.0 (csrc.nist.gov/pubs/cswp/29/the-nist-cybersecurity-framework-20/final)"
+    confidence: "high"
+    rationale: "Le chiffrement fort préserve la confidentialité des bases de données et des archives d'images au repos."
