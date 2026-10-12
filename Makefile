@@ -1,4 +1,4 @@
-.PHONY: demo demo-down reset load test lint docs
+.PHONY: demo demo-down reset load test lint docs release-check
 
 demo:
 	docker-compose up -d --build
@@ -56,3 +56,10 @@ lint:
 
 docs:
 	mkdocs serve
+
+release-check:
+	ruff check .
+	pytest
+	grc validate
+	mkdocs build --strict
+	docker compose build
