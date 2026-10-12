@@ -3,7 +3,7 @@ from pathlib import Path
 from typer.testing import CliRunner
 
 from app.cli import app
-from app.db import Base, SessionLocal, engine
+from app.db import Base
 from app.main import get_kpi_coverage
 from app.models import Control, ControlMapping, ScenarioOperationnel
 from app.services.loader import load_grc_idempotent
@@ -48,9 +48,13 @@ def test_matrix_generation_service(tmp_path: Path):
 
 def test_kpi_coverage_endpoint():
     """Vérifie le calcul des métriques de couverture NIS2 (10/10) et ATT&CK (20/20)."""
-    # S'assurer que les tables sont initialisées et chargées
-    Base.metadata.create_all(bind=engine)
-    db = SessionLocal()
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+
+    test_engine = create_engine("sqlite:///:memory:")
+    Base.metadata.create_all(bind=test_engine)
+    TestSession = sessionmaker(bind=test_engine)
+    db = TestSession()
     try:
         load_grc_idempotent(db, grc_dir="grc")
         db.commit()
