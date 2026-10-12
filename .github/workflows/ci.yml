@@ -40,6 +40,23 @@ jobs:
           grc export-matrix
           git diff --exit-code docs/compliance
 
+      - name: Check Documentation for Forbidden Claims
+        run: |
+          python -c "
+          import sys, glob
+          forbidden = ['Statut : Approuvé', 'de plein droit']
+          errors = [
+              f'Forbidden phrase \"{t}\" found in {f}'
+              for f in glob.glob('docs/**/*.md', recursive=True)
+              for t in forbidden
+              if t in open(f, encoding='utf-8').read()
+          ]
+          if errors:
+              print('\n'.join(errors))
+              sys.exit(1)
+          print('Docs compliance language verification passed.')
+          "
+
       - name: Build Documentation (MkDocs Strict)
         run: |
           mkdocs build --strict
