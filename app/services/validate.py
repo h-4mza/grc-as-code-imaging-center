@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Optional, Set
 
 import yaml
 
-from app.services.scoring import get_risk_scores
+from app.services.scoring import compute_risk_view
 
 NIST_CSF2_CATEGORIES = (
     "GV.OC",
@@ -44,6 +44,7 @@ class RiskLevelInfo:
     niveau_inherent: str
     score_residuel: int
     niveau_residuel: str
+    target_residual: Optional[str] = None
 
 
 @dataclass
@@ -343,21 +344,26 @@ class GRCValidator:
             sev = risk.get("severity", 1) if isinstance(risk.get("severity"), int) else 1
             lik = risk.get("likelihood", 1) if isinstance(risk.get("likelihood"), int) else 1
 
-            # Calcul de la maturité moyenne des contrôles associés
-            ctrl_maturities = []
+            # Extraction des contrôles résolus
+            ctrl_objs = []
             for c in risk.get("controls", []):
                 clean_c = str(c).strip()
                 if clean_c.startswith("A."):
                     clean_c = clean_c[2:]
                 if clean_c in controls_dict:
-                    ctrl_maturities.append(controls_dict[clean_c].get("maturity", 0))
+                    ctrl_objs.append(controls_dict[clean_c])
 
-            maturity_avg = round(sum(ctrl_maturities) / len(ctrl_maturities), 2) if ctrl_maturities else 0.0
+            risk_treatments = [tr for tr in treatments if str(tr.get("risk_id")) == r_id]
 
-            # Calcul des scores inhérent et résiduel via scoring.py si échelle valide
+            # Calcul unifié via compute_risk_view
             try:
-                scores = get_risk_scores(gravite=sev, vraisemblance=lik, maturity_avg=maturity_avg)
-                res_level = scores["niveau_residuel"]
+                view = compute_risk_view(
+                    risk=risk,
+                    findings=[],
+                    controls=ctrl_objs,
+                    treatments=risk_treatments,
+                )
+                res_level = view["current_residual"]["niveau"]
 
                 self.risk_summaries.append(
                     RiskLevelInfo(
@@ -365,16 +371,16 @@ class GRCValidator:
                         name=r_name,
                         gravite=sev,
                         vraisemblance=lik,
-                        maturity_avg=maturity_avg,
-                        score_inherent=scores["score_inherent"],
-                        niveau_inherent=scores["niveau_inherent"],
-                        score_residuel=scores["score_residuel"],
-                        niveau_residuel=scores["niveau_residuel"],
+                        maturity_avg=view["maturity_avg"],
+                        score_inherent=view["inherent"]["score"],
+                        niveau_inherent=view["inherent"]["niveau"],
+                        score_residuel=view["current_residual"]["score"],
+                        niveau_residuel=view["current_residual"]["niveau"],
+                        target_residual=view["target_residual"],
                     )
                 )
 
                 # Règle de cohérence pour l'option "accept"
-                risk_treatments = [tr for tr in treatments if str(tr.get("risk_id")) == r_id]
                 for tr in risk_treatments:
                     if str(tr.get("option", "")).strip().lower() == "accept":
                         if res_level not in ("Faible", "Moyen"):

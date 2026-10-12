@@ -131,16 +131,21 @@ def validate(
     # Affichage du calcul des niveaux de risque
     if report.risk_summaries:
         typer.echo("\n📊 Évaluation des Scénarios de Risque (scoring.py) :")
-        typer.echo("-" * 88)
-        typer.echo(f"{'ID':<6} | {'Nom du Risque':<35} | {'Inhérent':<14} | {'Résiduel':<14} | {'Maturité':<8}")
-        typer.echo("-" * 88)
+        typer.echo("-" * 102)
+        typer.echo(
+            f"{'ID':<6} | {'Nom du Risque':<35} | {'Inhérent':<14} | {'Résiduel':<14} | {'Cible':<10} | {'Maturité':<8}"
+        )
+        typer.echo("-" * 102)
         for r in report.risk_summaries:
             nom_court = (r.name[:32] + "...") if len(r.name) > 35 else r.name
             inh_str = f"{r.niveau_inherent} ({r.score_inherent})"
             res_str = f"{r.niveau_residuel} ({r.score_residuel})"
+            target_str = r.target_residual or "N/A"
             mat_str = f"{r.maturity_avg}/5"
-            typer.echo(f"{r.id:<6} | {nom_court:<35} | {inh_str:<14} | {res_str:<14} | {mat_str:<8}")
-        typer.echo("-" * 88)
+            typer.echo(
+                f"{r.id:<6} | {nom_court:<35} | {inh_str:<14} | {res_str:<14} | {target_str:<10} | {mat_str:<8}"
+            )
+        typer.echo("-" * 102)
 
     if not report.is_valid:
         typer.echo(f"\n❌ Validation échouée : {len(report.errors)} erreur(s) détectée(s) :\n", err=True)

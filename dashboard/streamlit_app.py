@@ -74,14 +74,52 @@ if page == "Vue d'ensemble":
         )
 
 elif page == "Heatmap des Risques":
-    st.title("🔥 Heatmap des Risques (Inhérent vs Résiduel)")
+    st.title("🔥 Heatmap des Risques (Inhérent ➔ Résiduel ➔ Cible)")
     data = fetch_data("/kpi/heatmap")
     if data:
         df = pd.DataFrame(data)
-        st.dataframe(
-            df[["id", "nom", "gravite", "vraisemblance_inherente", "niveau_inherent", "niveau_residuel"]],
-            use_container_width=True,
+
+        # 1. Trajectoire inhérent -> résiduel actuel -> cible
+        df["trajectoire"] = df.apply(
+            lambda r: f"{r.get('niveau_inherent')} ➔ {r.get('niveau_residuel')} ➔ {r.get('target_residual') or 'N/A'}",
+            axis=1,
         )
+
+        # 2. Détection des risques dont le résiduel dépasse la cible sans traitement en cours
+        level_ranks = {"Faible": 1, "Moyen": 2, "Élevé": 3, "Critique": 4}
+        flagged_risks = []
+        for _, row in df.iterrows():
+            res_rank = level_ranks.get(row.get("niveau_residuel"), 0)
+            target_str = row.get("target_residual")
+            target_rank = level_ranks.get(target_str, 99) if target_str else 99
+            tr_status = str(row.get("treatment_status", "")).strip().lower()
+            if res_rank > target_rank and tr_status != "in_progress":
+                flagged_risks.append(row)
+
+        if flagged_risks:
+            st.error(f"🚨 **{len(flagged_risks)} risque(s) au-dessus du niveau cible sans traitement en cours :**")
+            for fr in flagged_risks:
+                st.markdown(
+                    f"- **{fr['id']}** ({fr['nom']}) : Résiduel actuel **{fr['niveau_residuel']}** > "
+                    f"Cible **{fr['target_residual']}** (statut: `{fr.get('treatment_status') or 'aucun'}`)"
+                )
+        else:
+            st.success("✅ Tous les risques au-dessus de leur cible disposent d'un plan de traitement en cours.")
+
+        st.subheader("Tableau de Suivi des Niveaux de Risque")
+        cols_display = [
+            "id",
+            "nom",
+            "gravite",
+            "vraisemblance_inherente",
+            "niveau_inherent",
+            "niveau_residuel",
+            "target_residual",
+            "treatment_status",
+            "trajectoire",
+        ]
+        cols_final = [c for c in cols_display if c in df.columns]
+        st.dataframe(df[cols_final], use_container_width=True)
 
         st.subheader("Matrice Inhérente (Gravité x Vraisemblance)")
         st.scatter_chart(df, x="gravite", y="vraisemblance_inherente", color="niveau_inherent")

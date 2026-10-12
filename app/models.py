@@ -99,6 +99,13 @@ risk_control_table = Table(
     Column("control_id", String, ForeignKey("controls.id"), primary_key=True),
 )
 
+finding_risk_table = Table(
+    "finding_risk",
+    Base.metadata,
+    Column("finding_id", Integer, ForeignKey("findings.id"), primary_key=True),
+    Column("risk_id", String, ForeignKey("scenarios_operationnels.id"), primary_key=True),
+)
+
 
 class ScenarioOperationnel(Base):
     __tablename__ = "scenarios_operationnels"
@@ -114,6 +121,8 @@ class ScenarioOperationnel(Base):
     scenario_strategique = relationship("ScenarioStrategique", backref="scenarios_operationnels")
     assets = relationship("Asset", secondary=risk_asset_table)
     controls_list = relationship("Control", secondary=risk_control_table)
+    findings = relationship("Finding", secondary=finding_risk_table, back_populates="risks")
+    treatments = relationship("Treatment", back_populates="risk")
 
 
 class Control(Base):
@@ -138,13 +147,6 @@ finding_control_table = Table(
     Column("control_id", String, ForeignKey("controls.id"), primary_key=True),
 )
 
-finding_risk_table = Table(
-    "finding_risk",
-    Base.metadata,
-    Column("finding_id", Integer, ForeignKey("findings.id"), primary_key=True),
-    Column("risk_id", String, ForeignKey("scenarios_operationnels.id"), primary_key=True),
-)
-
 
 class Finding(Base):
     __tablename__ = "findings"
@@ -159,7 +161,7 @@ class Finding(Base):
 
     actif = relationship("Asset")
     controls = relationship("Control", secondary=finding_control_table)
-    risks = relationship("ScenarioOperationnel", secondary=finding_risk_table)
+    risks = relationship("ScenarioOperationnel", secondary=finding_risk_table, back_populates="findings")
 
 
 class ControlMapping(Base):
@@ -187,4 +189,4 @@ class Treatment(Base):
     review_date = Column(String, nullable=True)
     controls = Column(String, nullable=True)
 
-    risk = relationship("ScenarioOperationnel")
+    risk = relationship("ScenarioOperationnel", back_populates="treatments")

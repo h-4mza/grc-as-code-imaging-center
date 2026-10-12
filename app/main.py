@@ -1,9 +1,9 @@
 from fastapi import Depends, FastAPI
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, selectinload
 
 from app.db import get_db
-from app.models import Control, ScenarioOperationnel
-from app.services.scoring import get_risk_scores
+from app.models import Control, Finding, ScenarioOperationnel, Treatment
+from app.services.scoring import compute_risk_view
 
 app = FastAPI(
     title="GRC API",
@@ -19,18 +19,36 @@ def root():
 
 @app.get("/risks")
 def get_risks(db: Session = Depends(get_db)):
-    from app.models import Finding
-
-    scenarios = db.query(ScenarioOperationnel).all()
+    scenarios = (
+        db.query(ScenarioOperationnel)
+        .options(
+            selectinload(ScenarioOperationnel.controls_list),
+            selectinload(ScenarioOperationnel.findings),
+            selectinload(ScenarioOperationnel.treatments),
+        )
+        .all()
+    )
     results = []
     for sc in scenarios:
-        findings = db.query(Finding).filter(Finding.risks.contains(sc)).all()
-        errors = len([f for f in findings if f.severite == "error"])
-        warnings = len([f for f in findings if f.severite == "warning"])
-        computed_maturity = max(0.0, 3.0 - (errors * 1.0) - (warnings * 0.5))
-
-        scores = get_risk_scores(gravite=sc.gravite, vraisemblance=sc.vraisemblance, maturity_avg=computed_maturity)
-        results.append({"id": sc.id, "nom": sc.nom, "scores": scores, "constats_ouverts": len(findings)})
+        view = compute_risk_view(sc, sc.findings)
+        results.append(
+            {
+                "id": sc.id,
+                "nom": sc.nom,
+                "scores": {
+                    "score_inherent": view["inherent"]["score"],
+                    "niveau_inherent": view["inherent"]["niveau"],
+                    "score_residuel": view["current_residual"]["score"],
+                    "niveau_residuel": view["current_residual"]["niveau"],
+                    "maturity_avg": view["maturity_avg"],
+                    "likelihood_adjusted": view["likelihood_adjusted"],
+                },
+                "inherent": view["inherent"],
+                "current_residual": view["current_residual"],
+                "target_residual": view["target_residual"],
+                "constats_ouverts": len(sc.findings),
+            }
+        )
     return results
 
 
@@ -42,8 +60,6 @@ def get_controls(db: Session = Depends(get_db)):
 
 @app.get("/kpi/overview")
 def get_kpi_overview(db: Session = Depends(get_db)):
-    from app.models import Control, Finding, ScenarioOperationnel, Treatment
-
     total_risks = db.query(ScenarioOperationnel).count()
     total_controls = db.query(Control).count()
     controls_en_place = db.query(Control).filter(Control.status == "implemented").count()
@@ -51,21 +67,23 @@ def get_kpi_overview(db: Session = Depends(get_db)):
     total_treatments = db.query(Treatment).count()
 
     risques_critiques = 0
-    scenarios = db.query(ScenarioOperationnel).all()
+    scenarios = (
+        db.query(ScenarioOperationnel)
+        .options(
+            selectinload(ScenarioOperationnel.controls_list),
+            selectinload(ScenarioOperationnel.findings),
+            selectinload(ScenarioOperationnel.treatments),
+        )
+        .all()
+    )
 
-    # Calculate finding stats
     findings_stats = {"error": 0, "warning": 0, "info": 0}
     for f_obj in db.query(Finding).all():
         findings_stats[f_obj.severite] = findings_stats.get(f_obj.severite, 0) + 1
 
     for sc in scenarios:
-        findings = db.query(Finding).filter(Finding.risks.contains(sc)).all()
-        errors = len([f for f in findings if f.severite == "error"])
-        warnings = len([f for f in findings if f.severite == "warning"])
-        computed_maturity = max(0.0, 3.0 - (errors * 1.0) - (warnings * 0.5))
-
-        scores = get_risk_scores(sc.gravite, sc.vraisemblance, computed_maturity)
-        if scores["niveau_residuel"] == "Critique":
+        view = compute_risk_view(sc, sc.findings)
+        if view["current_residual"]["niveau"] == "Critique":
             risques_critiques += 1
 
     return {
@@ -80,26 +98,33 @@ def get_kpi_overview(db: Session = Depends(get_db)):
 
 @app.get("/kpi/heatmap")
 def get_kpi_heatmap(db: Session = Depends(get_db)):
-    from app.models import Finding
-
-    scenarios = db.query(ScenarioOperationnel).all()
+    scenarios = (
+        db.query(ScenarioOperationnel)
+        .options(
+            selectinload(ScenarioOperationnel.controls_list),
+            selectinload(ScenarioOperationnel.findings),
+            selectinload(ScenarioOperationnel.treatments),
+        )
+        .all()
+    )
     data = []
     for sc in scenarios:
-        findings = db.query(Finding).filter(Finding.risks.contains(sc)).all()
-        errors = len([f for f in findings if f.severite == "error"])
-        warnings = len([f for f in findings if f.severite == "warning"])
-        computed_maturity = max(0.0, 3.0 - (errors * 1.0) - (warnings * 0.5))
-
-        scores = get_risk_scores(sc.gravite, sc.vraisemblance, computed_maturity)
+        view = compute_risk_view(sc, sc.findings)
+        treatment_status = sc.treatments[0].status if sc.treatments else None
         data.append(
             {
                 "id": sc.id,
                 "nom": sc.nom,
                 "gravite": sc.gravite,
                 "vraisemblance_inherente": sc.vraisemblance,
-                "score_inherent": scores["score_inherent"],
-                "niveau_inherent": scores["niveau_inherent"],
-                "niveau_residuel": scores["niveau_residuel"],
+                "vraisemblance_ajustee": view["likelihood_adjusted"],
+                "maturity_avg": view["maturity_avg"],
+                "score_inherent": view["inherent"]["score"],
+                "niveau_inherent": view["inherent"]["niveau"],
+                "score_residuel": view["current_residual"]["score"],
+                "niveau_residuel": view["current_residual"]["niveau"],
+                "target_residual": view["target_residual"],
+                "treatment_status": treatment_status,
             }
         )
     return data
