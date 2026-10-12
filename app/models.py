@@ -37,6 +37,7 @@ class SourceRisque(Base):
     type = Column(String)
     motivation = Column(String)
     ressources = Column(String)
+    rationale = Column(String, nullable=True)
 
 
 class ObjectifVise(Base):
@@ -64,6 +65,10 @@ class PartiePrenante(Base):
     type = Column(String)
     niveau_menace = Column(Integer)
     dependance = Column(String)
+    penetration = Column(Integer, nullable=True)
+    maturity = Column(Integer, nullable=True)
+    trust = Column(Integer, nullable=True)
+    description = Column(String, nullable=True)
 
 
 class ScenarioStrategique(Base):
@@ -71,9 +76,11 @@ class ScenarioStrategique(Base):
     id = Column(String, primary_key=True)
     nom = Column(String, nullable=False)
     srov_id = Column(String, ForeignKey("couples_sr_ov.id"))
-    partie_prenante_id = Column(String, ForeignKey("parties_prenantes.id"))
+    partie_prenante_id = Column(String, ForeignKey("parties_prenantes.id"), nullable=True)
     vraisemblance = Column(Integer)
     description = Column(String)
+    attack_path = Column(String, nullable=True)
+    ecosystem_measures = Column(String, nullable=True)
     srov = relationship("CoupleSROV")
     partie_prenante = relationship("PartiePrenante")
 
@@ -97,12 +104,14 @@ class ScenarioOperationnel(Base):
     __tablename__ = "scenarios_operationnels"
     id = Column(String, primary_key=True)
     nom = Column(String, nullable=False)
-    sc_strat_id = Column(String, nullable=True)
+    sc_strat_id = Column(String, ForeignKey("scenarios_strategiques.id"), nullable=True)
     techniques_attack = Column(String)
     vraisemblance = Column(Integer)
     gravite = Column(Integer)
     description = Column(String)
+    rationale = Column(String, nullable=True)
     nist_csf = Column(String, nullable=True)
+    scenario_strategique = relationship("ScenarioStrategique", backref="scenarios_operationnels")
     assets = relationship("Asset", secondary=risk_asset_table)
     controls_list = relationship("Control", secondary=risk_control_table)
 
@@ -173,5 +182,9 @@ class Treatment(Base):
     responsable = Column(String)
     jira_key = Column(String, nullable=True)
     status = Column(String, default="todo")
+    expected_residual = Column(String, nullable=True)
+    accepted_by = Column(String, nullable=True)
+    review_date = Column(String, nullable=True)
+    controls = Column(String, nullable=True)
 
     risk = relationship("ScenarioOperationnel")

@@ -8,34 +8,21 @@ assets:
   - bv_interpretation
   - bv_teleradiologie
   - bv_archivage
+  - bv_confidentialite
+- id: ast_dpi
+  name: DPI (Dossier Patient Informatisé)
+  type: application
+  criticality: 4
+  business_values:
+  - bv_prise_en_charge
+  - bv_interpretation
+  - bv_confidentialite
 - id: ast_modalites
   name: Scanner IRM / Scanner CT / Mammographe
   type: device
   criticality: 4
   business_values:
   - bv_acquisition
-- id: ast_vpn
-  name: Connexion Internet / VPN téléradiologie
-  type: network
-  criticality: 4
-  business_values:
-  - bv_teleradiologie
-  - bv_archivage
-- id: ast_postes_travail
-  name: Postes de travail (Secrétariat, Médecins)
-  type: device
-  criticality: 3
-  business_values:
-  - bv_prise_en_charge
-  - bv_interpretation
-- id: ast_personnel
-  name: Personnel du centre (Administratif, Manipulateurs, Médecins)
-  type: human
-  criticality: 4
-  business_values:
-  - bv_prise_en_charge
-  - bv_acquisition
-  - bv_interpretation
 - id: ast_ris
   name: RIS (Radiological Information System)
   type: application
@@ -44,9 +31,42 @@ assets:
   - bv_prise_en_charge
   - bv_interpretation
   - bv_teleradiologie
+  - bv_facturation
+  - bv_confidentialite
+- id: ast_telemaintenance
+  name: Accès de télémaintenance biomédicale
+  type: network
+  criticality: 3
+  business_values:
+  - bv_acquisition
+- id: ast_vpn
+  name: Connexion Internet / VPN téléradiologie
+  type: network
+  criticality: 3
+  business_values:
+  - bv_teleradiologie
+  - bv_archivage
 - id: ast_donnees_identite
   name: Données administratives et identité patient
   type: data
-  criticality: 4
+  criticality: 3
   business_values:
   - bv_prise_en_charge
+  - bv_facturation
+  - bv_confidentialite
+- id: ast_personnel
+  name: Personnel du centre (Administratif, Manipulateurs, Médecins)
+  type: human
+  criticality: 3
+  business_values:
+  - bv_prise_en_charge
+  - bv_acquisition
+  - bv_interpretation
+- id: ast_postes_travail
+  name: Postes de travail (Secrétariat, Médecins)
+  type: device
+  criticality: 2
+  business_values:
+  - bv_prise_en_charge
+  - bv_interpretation
+  - bv_facturation

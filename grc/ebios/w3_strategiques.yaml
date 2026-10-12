@@ -2,26 +2,185 @@ stakeholders:
 - id: pp_editeur_pacs
   name: Éditeur du PACS
   type: Fournisseur logiciel
+  dependency: 4
+  penetration: 4
+  maturity: 2
+  trust: 2
   threat_level: 4
-  dependency: Critique (Cœur du SI, accès télémaintenance privilégié)
-- id: pp_maintenance
-  name: Prestataire maintenance biomédicale
-  type: Fournisseur service
+  description: Fournisseur du cœur applicatif d'imagerie médicale, disposant d'accès de télémaintenance à privilèges administrateur permanents.
+
+- id: pp_mainteneurs_bio
+  name: Mainteneurs biomédicaux
+  type: Fournisseur de service / Matériel
+  dependency: 4
+  penetration: 3
+  maturity: 2
+  trust: 2
   threat_level: 3
-  dependency: Forte (Accès réseau aux modalités IRM/Scanner)
+  description: Techniciens tiers assurant la maintenance des modalités IRM et Scanner via un accès direct au VLAN biomédical.
+
+- id: pp_teleradiologie
+  name: Service de téléradiologie
+  type: Prestataire de soins à distance
+  dependency: 3
+  penetration: 3
+  maturity: 2
+  trust: 2
+  threat_level: 2
+  description: Prestataire assurant les gardes et l'interprétation d'urgence nocturne via une liaison VPN dédiée vers les serveurs PACS.
+
+- id: pp_cliniques_partenaires
+  name: Cliniques partenaires
+  type: Partenaire de soins
+  dependency: 2
+  penetration: 3
+  maturity: 2
+  trust: 2
+  threat_level: 2
+  description: Établissements de santé partenaires échangeant des examens et comptes rendus radiologiques via des liaisons VPN inter-sites.
+
+- id: pp_hebergeur_hds
+  name: Hébergeur certifié HDS
+  type: Hébergeur d'infrastructure cloud
+  dependency: 4
+  penetration: 2
+  maturity: 4
+  trust: 4
+  threat_level: 1
+  description: Hébergeur de données de santé souverain certifié HDS et ISO 27001 hébergeant les sauvegardes externalisées et la réplication PACS.
+
 strategic_scenarios:
 - id: sc_strat_1
-  name: Compromission via l'éditeur PACS (Supply Chain)
+  name: Supply chain via l'éditeur PACS
   srov_id: srov_1
   stakeholder_id: pp_editeur_pacs
   likelihood: 3
-  description: Des cybercriminels compromettent l'éditeur du PACS et déploient une
-    mise à jour malveillante (ransomware) chez tous ses clients, y compris le centre
-    d'imagerie.
+  description: Des cybercriminels compromettent l'infrastructure de développement de l'éditeur PACS et injectent un rançongiciel dans un patch logiciel officiel déployé chez les clients.
+  attack_path:
+  - Compromission de la chaîne de build CI/CD et vol de clé de signature chez l'éditeur PACS
+  - Diffusion d'un patch logiciel vérolé intégrant un composant d'extorsion
+  - Exécution du correctif sur le serveur PACS local du centre et chiffrement des examens DICOM
+  ecosystem_measures:
+  - Clauses contractuelles imposant des audits de code annuels et la notification d'incident sous 24h
+  - Vérification systématique des condensats d'intégrité (hash SHA-256) avant déploiement
+  - Qualification des mises à jour sur environnement de pré-production isolé avant mise en production
+
 - id: sc_strat_2
-  name: Attaque via accès VPN partenaire
+  name: Rebond via le VPN de téléradiologie
+  srov_id: srov_2
+  stakeholder_id: pp_teleradiologie
+  likelihood: 3
+  description: Compromission du poste nomade d'un radiologue de garde permettant d'emprunter la connexion VPN permanente pour s'introduire sur le RIS/PACS et exfiltrer des dossiers médicaux.
+  attack_path:
+  - Infection par logiciel espion (infostealer) d'un poste distant utilisé par un radiologue de garde
+  - Rebond via le tunnel VPN permanent du prestataire vers le réseau interne du centre
+  - Énumération des partages réseau et exfiltration silencieuse de données de santé du RIS/PACS
+  ecosystem_measures:
+  - Authentification multifacteur (MFA) obligatoire pour l'ensemble des accès VPN distants
+  - Contrôle de posture de sécurité du poste client (EDR actif, OS à jour, disque chiffré)
+  - Cloisonnement réseau limitant les flux VPN aux seuls ports nécessaires de visualisation DICOM
+
+- id: sc_strat_3
+  name: Usurpation d'accès d'un mainteneur biomédical
   srov_id: srov_1
-  stakeholder_id: pp_maintenance
+  stakeholder_id: pp_mainteneurs_bio
+  likelihood: 3
+  description: Des cybercriminels dérobent les identifiants d'un technicien biomédical afin de se connecter au portail de télémaintenance, compromettre un équipement IRM et tenter une extorsion.
+  attack_path:
+  - Vol des identifiants d'un technicien tiers via hameçonnage ou fuite d'un mot de passe par défaut
+  - Connexion distante sur la console de commande d'un équipement IRM via la passerelle de maintenance
+  - Neutralisation de la modalité d'imagerie et menace d'indisponibilité pour forcer un paiement
+  ecosystem_measures:
+  - Sessions de télémaintenance activées à la demande avec validation explicite du responsable biomédical
+  - Comptes d'accès nominatifs obligatoires et interdiction des comptes partagés génériques
+  - Isolation stricte des modalités biomédicales dans un VLAN dédié sans communication vers la bureautique
+
+- id: sc_strat_4
+  name: Propagation et altération via une clinique partenaire
+  srov_id: srov_6
+  stakeholder_id: pp_cliniques_partenaires
+  likelihood: 2
+  description: Des cybercriminels infectent le poste d'une clinique partenaire connectée en VPN inter-sites et manipulent les flux d'échanges pour altérer des comptes rendus radiologiques.
+  attack_path:
+  - Infiltration d'un poste de travail au sein d'une clinique partenaire suite à un phishing
+  - Pivot à travers le tunnel VPN inter-établissements vers l'application de diffusion des résultats
+  - Modification non autorisée de comptes rendus médicaux et injection d'informations erronées
+  ecosystem_measures:
+  - Filtrage applicatif strict et inspection des flux HL7 et DICOM au niveau du pare-feu périmétrique
+  - Signature électronique obligatoire des comptes rendus pour garantir l'intégrité des diagnostics
+  - Convention d'interconnexion annuelle imposant des exigences de sécurité mutuelles et des audits
+
+- id: sc_strat_5
+  name: Destruction des sauvegardes chez l'hébergeur HDS
+  srov_id: srov_1
+  stakeholder_id: pp_hebergeur_hds
+  likelihood: 2
+  description: Des cybercriminels obtiennent des clés d'administration cloud et suppriment les snapshots PACS chez l'hébergeur HDS pour maximiser l'impact d'une future extorsion.
+  attack_path:
+  - Compromission d'un jeton API ou d'identifiants d'administration du tenant cloud HDS
+  - Connexion à la console d'orchestration et effacement ciblée des sauvegardes et archives PACS
+  - Blocage de la capacité de restauration avant déploiement coordonné d'un rançongiciel
+  ecosystem_measures:
+  - Immutabilité des sauvegardes (politique WORM / Object Lock) interdisant toute suppression anticipée
+  - Séparation stricte des privilèges et MFA physique (FIDO2) pour l'administration des sauvegardes
+  - Revue contractuelle des garanties SLA et journalisation d'audit externe non modifiable
+
+- id: sc_strat_6
+  name: Attaque directe du SI (phishing, RDP exposé)
+  srov_id: srov_1
+  stakeholder_id: null
   likelihood: 4
-  description: Un prestataire externe se fait voler ses accès, permettant aux attaquants
-    d'entrer sur le réseau.
+  description: Attaque frontale menée par des cybercriminels ciblant le personnel par phishing ou exploitant un port RDP exposé pour infecter le réseau interne et déployer un rançongiciel.
+  attack_path:
+  - Envoi d'un courriel d'hameçonnage ciblé au secrétariat médical ou force brute sur service RDP
+  - Prise de contrôle d'un poste de travail, élévation de privilèges et découverte du domaine AD
+  - Déploiement global d'un ransomware chiffrant les serveurs de bases de données et partages
+  ecosystem_measures:
+  - Campagnes régulières de sensibilisation et simulations de phishing pour le personnel
+  - Interdiction formelle du protocole RDP sur Internet et sécurisation par passerelle bastion MFA
+  - Déploiement d'une solution EDR managée avec surveillance continue des comportements anormaux
+
+- id: sc_strat_7
+  name: Abus d'accès interne et vol de données
+  srov_id: srov_3
+  stakeholder_id: null
+  likelihood: 2
+  description: Un collaborateur interne malveillant utilise ses droits légitimes pour extraire massivement des dossiers patients et des données d'identité à des fins de fuite ou revente.
+  attack_path:
+  - Exploitation d'un compte utilisateur interne valide disposant d'accès au DPI et au RIS
+  - Requêtes volumiques anormales et extraction des dossiers cliniques et états civils
+  - Exfiltration des données médicales dérobées via support amovible non autorisé ou messagerie
+  ecosystem_measures:
+  - Blocage logiciel et physique des ports USB / supports amovibles sur les postes de travail
+  - Journalisation fine des accès aux dossiers patients avec alertes sur requêtes anormales
+  - Application stricte du principe de moindre privilège et sensibilisation à la confidentialité
+
+- id: sc_strat_8
+  name: Saturation de la connexion Internet (DDoS)
+  srov_id: srov_4
+  stakeholder_id: null
+  likelihood: 3
+  description: Des hacktivistes lancent une attaque DDoS volumétrique saturant le lien d'accès Internet du centre, bloquant la téléradiologie et l'accueil en ligne pour nuire à l'image du centre.
+  attack_path:
+  - Déclenchement d'une attaque par déni de service distribué (amplification UDP/DNS)
+  - Saturation complète de la bande passante de la connexion fibre du centre d'imagerie
+  - Interruption de la téléradiologie d'urgence et indisponibilité du portail patient
+  ecosystem_measures:
+  - Protection anti-DDoS souscrite auprès de l'opérateur télécoms avec nettoyage en amont du trafic
+  - Lien Internet de secours avec bascule automatique (SD-WAN / opérateur tiers)
+  - Procédure de secours prévoyant un fonctionnement autonome du plateau d'imagerie en local
+
+- id: sc_strat_9
+  name: Défaillance majeure du stockage NAS/SAN
+  srov_id: srov_5
+  stakeholder_id: null
+  likelihood: 2
+  description: Une défaillance physique matérielle ou une corruption accidentelle de disques sur la baie de stockage centrale entraîne l'indisponibilité prolongée des archives et images PACS.
+  attack_path:
+  - Panne mécanique en cascade de disques sur la baie NAS/SAN principale
+  - Rupture du volume de stockage de production et suspension des flux DICOM en cours
+  - Dégradation immédiate de la prise en charge médicale nécessitant l'activation du PCA
+  ecosystem_measures:
+  - Redondance matérielle de la baie de stockage (RAID résilient, contrôleurs et alimentations doubles)
+  - Contrat de maintenance constructeur avec garantie de temps de rétablissement (GTR) sous 4 heures
+  - Surveillance proactive des indicateurs d'usure matérielle (SMART, alertes températures)

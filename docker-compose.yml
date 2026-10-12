@@ -30,6 +30,10 @@ services:
       - ./tests:/app/tests
       - ./scripts:/app/scripts
       - ./samples:/app/samples
+      - ./dashboard:/app/dashboard
+      - ./pyproject.toml:/app/pyproject.toml
+      - ./docs:/app/docs
+      - ./mkdocs.yml:/app/mkdocs.yml
 
   dashboard:
     build:

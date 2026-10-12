@@ -1,3 +1,5 @@
+import pytest
+
 from app.services.scoring import adjust_vraisemblance, calculate_level, calculate_residual, get_risk_scores
 
 
@@ -9,8 +11,11 @@ def test_calculate_level():
     assert calculate_level(3, 3) == "Élevé"
     assert calculate_level(4, 3) == "Critique"
     assert calculate_level(4, 4) == "Critique"
-    # Test capping
-    assert calculate_level(5, 5) == "Critique"
+    # Rejet des valeurs hors 1-4
+    with pytest.raises(ValueError):
+        calculate_level(5, 5)
+    with pytest.raises(ValueError):
+        calculate_level(0, 2)
 
 
 def test_adjust_vraisemblance():

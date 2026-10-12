@@ -1,81 +1,195 @@
 treatments:
-- id: tr_mfa
-  name: Déploiement MFA pour accès critiques
-  risk_id: R-10
-  option: reduce
-  due_date: '2026-12-31'
-  owner: DSSI
-  jira_key: null
-  status: todo
-- id: tr_segmentation
-  name: Segmentation réseau et sauvegardes hors ligne testées
+- id: tr_pacs_ransomware_defense
+  name: Segmentation réseau, EDR managé, sauvegardes hors ligne testées et sensibilisation anti-phishing
   risk_id: R-01
   option: reduce
-  due_date: '2026-11-30'
+  controls:
+  - '8.7'
+  - '8.13'
+  - '5.14'
+  - '8.22'
+  due_date: '2026-12-15'
   owner: IT
-  jira_key: null
   status: in_progress
-- id: tr_patch_vpn
-  name: Mise à jour d'urgence firmware VPN
+  jira_key: null
+  expected_residual: Moyen
+  review_date: '2027-06-30'
+
+- id: tr_vpn_hardening_mfa
+  name: Mise à jour corrective d'urgence du firmware VPN, MFA obligatoire et segmentation réseau stricte
   risk_id: R-02
   option: reduce
-  due_date: '2026-10-15'
+  controls:
+  - '8.20'
+  - '8.22'
+  - '8.8'
+  - '8.5'
+  due_date: '2026-11-30'
   owner: Réseau
+  status: in_progress
   jira_key: null
-  status: todo
-- id: tr_dicom_tls
-  name: Chiffrement TLS flux DICOM
-  risk_id: R-09
+  expected_residual: Moyen
+  review_date: '2027-06-30'
+
+- id: tr_audit_clauses_fournisseur
+  name: Audit de sécurité du fournisseur PACS et renforcement des clauses contractuelles
+  risk_id: R-03
   option: reduce
-  due_date: '2027-01-31'
-  owner: Biomédical
-  jira_key: null
+  controls:
+  - '5.19'
+  - '5.21'
+  - '8.19'
+  due_date: '2027-02-28'
+  owner: DSSI
   status: todo
-- id: tr_assurance_cyber
-  name: Souscription assurance cyber et audit fournisseur
+  jira_key: null
+  expected_residual: Moyen
+  review_date: '2027-06-30'
+
+- id: tr_cyber_assurance
+  name: Souscription d'une assurance cyber-risques dédiée couvrant la chaîne d'approvisionnement logicielle
   risk_id: R-03
   option: transfer
-  due_date: '2026-12-15'
+  controls:
+  - '5.19'
+  due_date: '2027-01-15'
   owner: Direction
-  jira_key: null
   status: todo
-- id: tr_bastion
-  name: Mise en place d'un bastion pour la télémaintenance IRM
+  jira_key: null
+  expected_residual: Faible
+  review_date: '2027-06-30'
+
+- id: tr_bastion_telemaintenance
+  name: Déploiement d'un bastion pour la télémaintenance IRM avec MFA et validation biomédicale à la demande
   risk_id: R-04
   option: reduce
-  due_date: '2027-02-28'
+  controls:
+  - '8.20'
+  - '5.15'
+  - '8.5'
+  due_date: '2027-04-30'
   owner: Biomédical
-  jira_key: null
   status: todo
-- id: tr_dlp_usb
-  name: Désactivation des ports USB et monitoring DLP
+  jira_key: null
+  expected_residual: Moyen
+  review_date: '2027-06-30'
+
+- id: tr_dlp_usb_blocking
+  name: Blocage logiciel et physique des ports USB et surveillance DLP sur les extractions de données patients
   risk_id: R-05
   option: reduce
-  due_date: '2026-11-15'
+  controls:
+  - '8.12'
+  - '7.10'
+  - '6.1'
+  due_date: '2027-01-31'
   owner: IT
-  jira_key: null
   status: in_progress
-- id: tr_anti_ddos
-  name: Acceptation du risque avec solution Anti-DDoS FAI de base
+  jira_key: null
+  expected_residual: Faible
+  review_date: '2027-06-30'
+
+- id: tr_anti_ddos_accept
+  name: Acceptation formelle du risque DDoS avec souscription à la protection de base de l'opérateur FAI
   risk_id: R-06
   option: accept
-  due_date: '2026-10-30'
+  controls:
+  - '8.16'
+  - '8.20'
+  due_date: '2026-10-31'
   owner: Réseau
-  jira_key: null
   status: done
-- id: tr_ipsec_filter
-  name: Filtrage strict des flux IPSec inter-cliniques
+  jira_key: null
+  expected_residual: Moyen
+  review_date: '2027-06-30'
+  justification: Le coût d'une infrastructure anti-DDoS dédiée haute capacité sur site excède l'impact d'une indisponibilité temporaire des accès distants, le plateau d'imagerie restant pleinement opérationnel en local et l'opérateur assurant un nettoyage volumétrique en amont.
+  accepted_by: Comité de Direction / DSSI
+
+- id: tr_ipsec_filter_signature
+  name: Filtrage applicatif strict des flux HL7/DICOM et signature électronique des comptes rendus médicaux
   risk_id: R-07
   option: reduce
-  due_date: '2026-12-01'
+  controls:
+  - '8.22'
+  - '5.14'
+  - '8.24'
+  due_date: '2027-03-15'
   owner: Réseau
-  jira_key: null
   status: todo
-- id: tr_backup_immutability
-  name: Activation de l'immutabilité des sauvegardes (WORM) sur le cloud
+  jira_key: null
+  expected_residual: Moyen
+  review_date: '2027-06-30'
+
+- id: tr_backup_immutability_worm
+  name: Activation de l'immutabilité des sauvegardes (WORM / Object Lock) sur le cloud souverain HDS
   risk_id: R-08
   option: reduce
-  due_date: '2027-01-15'
+  controls:
+  - '8.13'
+  - '8.14'
+  - '5.23'
+  due_date: '2027-02-15'
   owner: IT
-  jira_key: null
   status: todo
+  jira_key: null
+  expected_residual: Faible
+  review_date: '2027-06-30'
+
+- id: tr_dicom_tls_encryption
+  name: Chiffrement TLS des flux DICOM en transit sur le réseau local et durcissement des communications
+  risk_id: R-09
+  option: reduce
+  controls:
+  - '8.24'
+  - '8.20'
+  due_date: '2027-05-31'
+  owner: Biomédical
+  status: todo
+  jira_key: null
+  expected_residual: Faible
+  review_date: '2027-06-30'
+
+- id: tr_rdp_closure_mfa
+  name: Fermeture complète de l'exposition Internet du port RDP et déploiement du MFA pour les administrateurs
+  risk_id: R-10
+  option: reduce
+  controls:
+  - '5.17'
+  - '8.5'
+  - '5.15'
+  due_date: '2026-11-15'
+  owner: DSSI
+  status: in_progress
+  jira_key: null
+  expected_residual: Moyen
+  review_date: '2027-06-30'
+
+- id: tr_raid6_backup_321
+  name: Migration de la baie de stockage en RAID 6 avec redondance matérielle et stratégie de sauvegarde 3-2-1
+  risk_id: R-11
+  option: reduce
+  controls:
+  - '8.14'
+  - '8.6'
+  - '8.13'
+  due_date: '2027-06-30'
+  owner: IT
+  status: todo
+  jira_key: null
+  expected_residual: Faible
+  review_date: '2027-06-30'
+
+- id: tr_procedures_versioning_formation
+  name: Documentation des procédures d'exploitation, versionnage des configurations et formation du personnel
+  risk_id: R-12
+  option: reduce
+  controls:
+  - '8.9'
+  - '8.13'
+  - '5.37'
+  due_date: '2027-03-31'
+  owner: IT
+  status: todo
+  jira_key: null
+  expected_residual: Faible
+  review_date: '2027-06-30'

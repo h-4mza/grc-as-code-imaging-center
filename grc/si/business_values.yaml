@@ -1,33 +1,54 @@
 business_values:
 - id: bv_prise_en_charge
   name: Prise en charge patient
-  process: Accueil administratif, vérification des prescriptions, enregistrement DPI/RIS,
-    consentement
-  feared_event: Impossibilité d'accueillir et d'enregistrer les patients, entraînant
-    des retards de prise en charge.
-  severity: 4
+  process: Accueil administratif, vérification des prescriptions, enregistrement DPI/RIS, consentement
+  feared_event: Impossibilité d'accueillir et d'enregistrer les patients, entraînant des retards de prise en charge.
+  severity: 3
+  dicr:
+  - D
 - id: bv_acquisition
   name: Acquisition des images
-  process: Réalisation de l'examen par le manipulateur, acquisition et transfert DICOM
-    vers le PACS
-  feared_event: Arrêt des équipements d'imagerie ou impossibilité de transférer les
-    images, arrêt de la production de soins.
+  process: Réalisation de l'examen par le manipulateur, acquisition et transfert DICOM vers le PACS
+  feared_event: Arrêt des équipements d'imagerie ou impossibilité de transférer les images, arrêt de la production de soins.
   severity: 4
+  dicr:
+  - D
+  - I
 - id: bv_interpretation
   name: Interprétation et compte rendu
-  process: Visualisation PACS, rédaction CR dans le RIS, signature électronique, envoi
-    MSSanté
-  feared_event: Indisponibilité des images ou du RIS retardant le diagnostic, ou erreur
-    de compte rendu affectant la santé du patient.
+  process: Visualisation PACS, rédaction CR dans le RIS, signature électronique, envoi MSSanté
+  feared_event: Indisponibilité des images ou du RIS retardant le diagnostic, ou erreur de compte rendu affectant la santé du patient.
   severity: 4
+  dicr:
+  - D
+  - I
 - id: bv_teleradiologie
   name: Téléradiologie
   process: Transfert chiffré VPN, interprétation à distance, retour CR signé
-  feared_event: Interception ou indisponibilité du flux de téléradiologie compromettant
-    les gardes et urgences.
-  severity: 4
+  feared_event: Interception ou indisponibilité du flux de téléradiologie compromettant les gardes et urgences.
+  severity: 3
+  dicr:
+  - D
+  - C
 - id: bv_archivage
   name: Archivage légal
   process: Stockage long terme, réplication sur site distant
   feared_event: Perte définitive des historiques médicaux.
+  severity: 3
+  dicr:
+  - D
+  - I
+- id: bv_facturation
+  name: Administration et facturation
+  process: Gestion des rendez-vous, facturation des actes, télétransmission des feuilles de soins
+  feared_event: Blocage de la facturation ou rejet des télétransmissions entraînant des pertes financières.
+  severity: 2
+  dicr:
+  - D
+- id: bv_confidentialite
+  name: Confidentialité des données de santé
+  process: Protection des dossiers médicaux, images DICOM et données identifiantes contre la divulgation non autorisée
+  feared_event: Divulgation de dossiers patients, violation RGPD art. 9, notification CNIL/CNDP.
   severity: 4
+  dicr:
+  - C

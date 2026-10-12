@@ -2,30 +2,81 @@ risk_sources:
 - id: sr_cybercriminels
   name: Groupe de cybercriminels
   type: Malveillance externe
-  motivation: Gain financier (extorsion)
-  resources: Importantes (outils sophistiqués, botnets, RaaS)
-- id: sr_employe_malveillant
-  name: Employé malveillant
+  motivation: Gain financier (extorsion et revente de données de santé)
+  resources: Importantes (outils offensifs avancés, botnets, RaaS)
+  rationale: Retenue car il s'agit de la principale menace pesant sur le secteur de la santé, motivée par la rentabilité de la double extorsion (chiffrement et divulgation).
+
+- id: sr_interne_malveillant
+  name: Employé malveillant ou compte usurpé
   type: Malveillance interne
-  motivation: Vengeance ou gain financier (revente d'accès)
-  resources: Modérées (Accès légitimes internes)
+  motivation: Vengeance, appât du gain ou contrainte suite à compromission
+  resources: Modérées (accès légitimes internes et connaissances du SI)
+  rationale: Retenue car les personnels et prestataires disposent d'accès réguliers aux consoles PACS/RIS et aux dossiers cliniques sensibles.
+
+- id: sr_hacktivistes
+  name: Hacktivistes
+  type: Malveillance externe
+  motivation: Atteinte à l'image, revendication idéologique et déstabilisation
+  resources: Moyennes (attaques par déni de service distribué, défaçage)
+  rationale: Retenue car le centre constitue une cible potentielle d'opportunité pour des actions d'indisponibilité médiatisées.
+
+- id: sr_defaillance
+  name: Défaillance technique ou accident
+  type: Non-malveillant / Accidentel
+  motivation: N/A
+  resources: N/A
+  rationale: Retenue car l'infrastructure d'imagerie repose sur des équipements matériels et de stockage critiques soumis aux pannes et aléas d'exploitation.
+
 objectives:
 - id: ov_extorsion
-  name: Extorsion par paralysie du SI et/ou menace de divulgation
-  description: Chiffrement des données (PACS, DPI) et exfiltration préalable pour
-    double extorsion.
-- id: ov_sabotage
-  name: Sabotage des opérations de soins
-  description: Destruction des accès ou des équipements biomédicaux.
+  name: Extorsion par paralysie du SI et chantage
+  description: Chiffrement des données sensibles (PACS, DPI) et menace de publication pour contraindre au paiement d'une rançon.
+
+- id: ov_vol_donnees
+  name: Vol et exfiltration de données de santé
+  description: Exfiltration massive d'images médicales et d'identités de patients pour revente sur des forums illicites.
+
+- id: ov_indisponibilite
+  name: Indisponibilité des services et paralysie des soins
+  description: Interruption du fonctionnement du plateau technique ou du lien de téléradiologie empêchant la prise en charge des patients.
+
+- id: ov_alteration
+  name: Altération des données et comptes rendus médicaux
+  description: Modification malveillante ou corruption de comptes rendus et diagnostics radiologiques pouvant induire des erreurs médicales.
+
 sr_ov_pairs:
 - id: srov_1
   sr_id: sr_cybercriminels
   ov_id: ov_extorsion
   relevance: 4
-  description: Un groupe de ransomwares cible le centre pour chiffrer le PACS et demander
-    une rançon.
+  description: Un groupe de cybercriminels cible le centre pour chiffrer le PACS et réclamer une rançon financière.
+
 - id: srov_2
-  sr_id: sr_employe_malveillant
-  ov_id: ov_sabotage
+  sr_id: sr_cybercriminels
+  ov_id: ov_vol_donnees
+  relevance: 4
+  description: Des cybercriminels s'infiltrent pour dérober des examens DICOM et données personnelles à des fins de revente.
+
+- id: srov_3
+  sr_id: sr_interne_malveillant
+  ov_id: ov_vol_donnees
   relevance: 3
-  description: Un employé utilise ses accès pour détruire des bases de données.
+  description: Un employé malveillant ou un compte interne usurpé exfiltre des dossiers médicaux ciblés.
+
+- id: srov_4
+  sr_id: sr_hacktivistes
+  ov_id: ov_indisponibilite
+  relevance: 2
+  description: Des hacktivistes mènent une attaque DDoS saturant la connexion Internet et bloquant la téléradiologie pour nuire à l'image du centre.
+
+- id: srov_5
+  sr_id: sr_defaillance
+  ov_id: ov_indisponibilite
+  relevance: 3
+  description: Une panne majeure sur le stockage PACS ou le réseau local entraîne une interruption prolongée de l'activité.
+
+- id: srov_6
+  sr_id: sr_cybercriminels
+  ov_id: ov_alteration
+  relevance: 2
+  description: "Attaquant externe (cybercriminels) infiltrant le réseau via un poste compromis d'une clinique partenaire pour altérer des comptes rendus radiologiques. Source externe retenue car plus plausible : l'attaquant exploite un rebond tiers pour contourner le périmètre du centre et modifier des diagnostics."

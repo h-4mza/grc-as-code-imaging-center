@@ -1,29 +1,32 @@
 risks:
 - id: R-01
-  name: Phishing et déploiement de Ransomware
-  strategic_scenario_id: null
+  name: Phishing et déploiement de Ransomware sur PACS/RIS
+  strategic_scenario_id: sc_strat_6
   assets:
   - ast_pacs
+  - ast_ris
   - ast_postes_travail
   - ast_personnel
   attack_techniques:
   - T1566
   - T1078
+  - T1021
   - T1486
-  likelihood: 4
   severity: 4
-  description: Envoi d'un email de phishing à un secrétaire médical, vol d'identifiants,
-    puis déploiement d'un ransomware chiffrant le PACS.
+  likelihood: 4
+  rationale: Gravité critique (4) car le chiffrement conjoint du PACS et du RIS paralyse entièrement la prise en charge médicale et diagnostique du centre. Vraisemblance maximale (4) au vu de la prolifération des campagnes d'hameçonnage ciblant le secteur santé et du niveau d'exposition du personnel.
+  description: Réception d'un courriel d'ingénierie sociale par un secrétaire médical, exécution d'une charge malveillante dérobant des identifiants valides, élévation de privilèges puis propagation latérale d'un ransomware chiffrant les serveurs PACS et RIS.
   controls:
-  - A.8.7
-  - A.8.13
-  - A.5.14
+  - '8.7'
+  - '8.13'
+  - '5.14'
   nist_csf:
   - PR.AT-01
   - PR.DS-11
   - RC.RP-03
+
 - id: R-02
-  name: Exfiltration de données via faille VPN
+  name: Exfiltration de données via faille VPN téléradiologie
   strategic_scenario_id: sc_strat_2
   assets:
   - ast_vpn
@@ -33,143 +36,177 @@ risks:
   - T1190
   - T1005
   - T1567
-  likelihood: 4
   severity: 4
-  description: Exploitation d'une vulnérabilité non patchée sur le pare-feu/VPN de
-    téléradiologie pour accéder au RIS et exfiltrer les données.
+  likelihood: 3
+  rationale: Gravité critique (4) en raison de la fuite massive de données de santé à caractère personnel (RGPD art. 9) exposant le centre à de lourdes sanctions et une atteinte réputationnelle majeure. Vraisemblance forte (3) due à l'exploitation fréquente de vulnérabilités sur les passerelles d'accès distants.
+  description: Exploitation d'une vulnérabilité non corrigée sur la passerelle VPN de téléradiologie pour pénétrer le sous-réseau interne, collecter les dossiers patients dans la base RIS et exfiltrer silencieusement les données vers un serveur externe.
   controls:
-  - A.8.20
-  - A.8.22
-  - A.8.8
+  - '8.20'
+  - '8.22'
+  - '8.8'
   nist_csf:
   - ID.RA-01
-  - PR.PT-04
+  - PR.PS-01
+  - PR.DS-10
+
 - id: R-03
-  name: Compromission de la chaîne logistique
+  name: Compromission de la chaîne logistique (Supply chain PACS)
   strategic_scenario_id: sc_strat_1
   assets:
   - ast_pacs
   attack_techniques:
   - T1195
-  - T1021
+  - T1059
   - T1486
-  likelihood: 3
   severity: 4
-  description: L'éditeur du PACS est piraté, poussant une mise à jour malveillante
-    qui chiffre automatiquement les bases de données du centre.
+  likelihood: 2
+  rationale: Gravité critique (4) car l'altération du cœur applicatif PACS entraîne une paralysie globale et silencieuse des flux d'imagerie. Vraisemblance significative mais contenue (2) compte tenu de la complexité technique nécessaire pour pirater l'environnement de build d'un éditeur spécialisé.
+  description: Piratage de l'éditeur de logiciel PACS conduisant à l'injection d'un composant malveillant dans une mise à jour applicative officielle, qui déclenche un chiffrement destructeur lors de son exécution locale.
   controls:
-  - A.5.19
-  - A.5.21
-  - A.8.19
+  - '5.19'
+  - '5.21'
+  - '8.19'
   nist_csf:
   - GV.SC-04
+  - GV.SC-06
+  - PR.PS-06
+
 - id: R-04
-  name: Attaque d'un équipement IRM via télémaintenance
-  strategic_scenario_id: sc_strat_2
+  name: Attaque d'un équipement IRM via télémaintenance biomédicale
+  strategic_scenario_id: sc_strat_3
   assets:
   - ast_modalites
+  - ast_telemaintenance
   attack_techniques:
   - T1078
-  - T1499
   - T1190
+  - T1499
+  severity: 3
   likelihood: 3
-  severity: 4
-  description: Utilisation d'identifiants de mainteneur volés pour accéder au réseau
-    biomédical et paralyser le scanner IRM.
+  rationale: Gravité grave (3) entraînant l'arrêt opérationnel direct d'une modalité lourde et une interruption diagnostique sans compromission des bases cliniques. Vraisemblance forte (3) car les accès de télémaintenance des prestataires biomédicaux recourent fréquemment à des comptes génériques peu surveillés.
+  description: Utilisation frauduleuse d'identifiants de télémaintenance dérobés à un technicien biomédical pour pénétrer sur la console de pilotage d'un scanner IRM et bloquer son fonctionnement par saturation de service.
   controls:
-  - A.8.20
-  - A.5.15
+  - '8.20'
+  - '5.15'
+  - '8.5'
   nist_csf:
-  - PR.AC-01
+  - PR.AA-01
+  - PR.AA-05
+  - PR.IR-01
+
 - id: R-05
-  name: Vol de données internes (Insider Threat)
-  strategic_scenario_id: null
+  name: Vol de données internes par un employé (USB)
+  strategic_scenario_id: sc_strat_7
   assets:
   - ast_personnel
   - ast_postes_travail
   - ast_donnees_identite
+  - ast_dpi
   attack_techniques:
   - T1078
   - T1213
   - T1052
-  likelihood: 3
   severity: 4
-  description: Un employé télécharge massivement des dossiers patients depuis le DPI
-    vers une clé USB.
+  likelihood: 2
+  rationale: Gravité critique (4) découlant de la divulgation malveillante de dossiers médicaux nominatifs avec notification obligatoire auprès des autorités et responsabilité juridique. Vraisemblance significative (2) car les employés ont des accès légitimes au DPI mais le passage à l'acte requiert une motivation hostile spécifique.
+  description: Un collaborateur interne malveillant utilise son compte légitime pour requêter massivement la base DPI et exfiltrer des dossiers patients confidentiels sur un support amovible USB non bloqué.
   controls:
-  - A.8.12
-  - A.6.1
+  - '8.12'
+  - '6.1'
+  - '7.10'
   nist_csf:
-  - PR.DS-05
+  - PR.AA-02
+  - PR.DS-10
+  - DE.CM-03
+
 - id: R-06
   name: Attaque DDoS sur la ligne Internet
-  strategic_scenario_id: null
+  strategic_scenario_id: sc_strat_8
   assets:
   - ast_vpn
   attack_techniques:
   - T1498
-  likelihood: 4
-  severity: 4
-  description: Saturation de la bande passante du centre, bloquant l'accès au service
-    de téléradiologie.
+  - T1499
+  severity: 2
+  likelihood: 3
+  rationale: Gravité significative mais modérée (2) car l'indisponibilité isole les accès externes (portail, téléradiologie) sans altérer les données ni empêcher le fonctionnement local du centre. Vraisemblance forte (3) due à l'extrême facilité de déclenchement d'attaques volumétriques par déni de service.
+  description: Envoi d'un trafic volumétrique massif saturant la liaison Internet principale du centre, bloquant les transferts de téléradiologie nocturne et empêchant les patients d'accéder au portail de résultats.
   controls:
-  - A.8.16
+  - '8.16'
+  - '8.20'
   nist_csf:
-  - PR.PT-04
+  - PR.IR-01
+  - DE.AE-04
+
 - id: R-07
-  name: Rebond via une clinique partenaire
-  strategic_scenario_id: null
+  name: Rebond et altération de comptes rendus via clinique partenaire
+  strategic_scenario_id: sc_strat_4
   assets:
   - ast_vpn
   - ast_ris
   attack_techniques:
   - T1190
+  - T1021
   - T1565
-  likelihood: 3
   severity: 4
-  description: Un poste infecté dans une clinique voisine utilise la connexion VPN
-    inter-sites pour altérer des CR médicaux.
+  likelihood: 2
+  rationale: Gravité critique (4) car la falsification d'un diagnostic radiologique peut fausser une décision thérapeutique et engager le pronostic vital du patient. Vraisemblance significative (2) requérant à la fois la compromission du partenaire et la capacité d'injecter des trames applicatives altérées.
+  description: Un attaquant ayant compromis le poste d'une clinique partenaire utilise l'interconnexion réseau de confiance pour s'introduire sur l'application RIS et modifier insidieusement des comptes rendus d'examens.
   controls:
-  - A.8.22
+  - '8.22'
+  - '5.14'
+  - '8.24'
   nist_csf:
-  - PR.AC-05
+  - PR.AA-05
+  - PR.DS-01
+  - DE.CM-01
+
 - id: R-08
-  name: Destruction des sauvegardes HDS
-  strategic_scenario_id: null
+  name: Destruction des sauvegardes hébergées chez l'hébergeur HDS
+  strategic_scenario_id: sc_strat_5
   assets:
   - ast_pacs
   attack_techniques:
+  - T1078
   - T1531
   - T1485
-  likelihood: 2
   severity: 4
-  description: L'attaquant accède à la console cloud HDS et supprime les snapshots
-    du PACS.
+  likelihood: 2
+  rationale: Gravité critique (4) car la suppression des sauvegardes prive le centre de toute capacité de reprise sur sinistre et rend le chantage par rançongiciel imparable. Vraisemblance significative (2) car l'accès aux consoles cloud HDS est protégé par des protocoles stricts mais reste vulnérable au vol d'identifiants privilégiés.
+  description: Obtention illégitime des identifiants d'administration de l'espace d'archivage HDS, révocation des accès légitimes et purge totale des clichés et sauvegardes historiques du PACS.
   controls:
-  - A.8.13
-  - A.8.14
+  - '8.13'
+  - '8.14'
+  - '5.23'
   nist_csf:
   - PR.DS-11
+  - PR.AA-03
+  - RC.RP-01
+
 - id: R-09
-  name: Interception de trafic DICOM non chiffré
-  strategic_scenario_id: null
+  name: Interception de trafic DICOM en clair sur le LAN
+  strategic_scenario_id: sc_strat_7
   assets:
   - ast_modalites
   - ast_pacs
   attack_techniques:
-  - T1557
   - T1040
-  likelihood: 3
-  severity: 4
-  description: Écoute du trafic sur le LAN interne pour intercepter des images médicales
-    en clair.
+  - T1557
+  - T1005
+  severity: 3
+  likelihood: 2
+  rationale: Gravité grave (3) liée à la capture non autorisée d'images médicales et d'identifiants patients circulant sans protection cryptographique. Vraisemblance significative (2) nécessitant une présence physique sur le câblage du centre ou la prise de contrôle préalable d'un équipement connecté au réseau local.
+  description: Écoute clandestine et interception par attaque d'homme du milieu du trafic réseau transitant entre les modalités d'acquisition et les serveurs PACS pour capturer des images DICOM non chiffrées.
   controls:
-  - A.8.24
+  - '8.24'
+  - '8.20'
   nist_csf:
   - PR.DS-02
+  - PR.PS-05
+
 - id: R-10
-  name: Compromission de compte Administrateur (Brute Force)
-  strategic_scenario_id: null
+  name: Brute force RDP et compromission de compte Administrateur
+  strategic_scenario_id: sc_strat_6
   assets:
   - ast_postes_travail
   - ast_vpn
@@ -177,12 +214,52 @@ risks:
   - T1110
   - T1078
   - T1547
-  likelihood: 4
   severity: 4
-  description: Attaque brute force sur RDP exposé, menant à la compromission d'un
-    compte admin (absence MFA).
+  likelihood: 3
+  rationale: Gravité critique (4) car l'usurpation d'un compte administrateur confère un pouvoir d'action absolu sur l'annuaire Active Directory et toutes les applications connectées. Vraisemblance forte (3) en raison de l'automatisation industrielle des attaques par force brute contre les protocoles de gestion distante exposés.
+  description: Attaque par force brute automatisée contre un port RDP exposé, découverte du mot de passe d'un compte administrateur dépourvu de MFA, suivie de l'installation de mécanismes de persistance sur les contrôleurs de domaine.
   controls:
-  - A.5.17
-  - A.8.5
+  - '5.17'
+  - '8.5'
+  - '5.15'
   nist_csf:
   - PR.AA-01
+  - PR.AA-03
+  - DE.AE-02
+
+- id: R-11
+  name: Panne matérielle majeure du stockage NAS/SAN
+  strategic_scenario_id: sc_strat_9
+  assets:
+  - ast_pacs
+  attack_techniques: []
+  severity: 3
+  likelihood: 3
+  rationale: Gravité grave (3) causant l'indisponibilité physique immédiate des banques d'images médicales et la suspension de l'activité diagnostique. Vraisemblance forte (3) due aux contraintes d'usure continue et aux pannes mécaniques imprévisibles affectant les baies de disques fortement sollicitées.
+  description: Défaillance matérielle en cascade de disques sur la baie de stockage centrale hébergeant les examens PACS, rendant les volumes de données inaccessibles jusqu'au remplacement physique et reconstruction des grappes RAID.
+  controls:
+  - '8.14'
+  - '8.6'
+  nist_csf:
+  - PR.IR-02
+  - RC.RP-02
+
+- id: R-12
+  name: Erreur humaine d'exploitation (suppression ou mauvaise configuration)
+  strategic_scenario_id: sc_strat_9
+  assets:
+  - ast_postes_travail
+  - ast_ris
+  attack_techniques: []
+  severity: 2
+  likelihood: 3
+  rationale: Gravité significative mais maîtrisée (2) car les erreurs de saisie ou de manipulation affectent temporairement les opérations sans causer de destruction irréversible sous réserve de sauvegardes. Vraisemblance forte (3) en raison de la récurrence statistique des erreurs de manipulation dans les opérations d'exploitation quotidiennes.
+  description: Mauvaise manipulation d'un opérateur ou administrateur entraînant la suppression accidentelle d'une table d'indexation RIS ou une erreur de configuration de routage réseau isolant une partie des postes médicaux.
+  controls:
+  - '8.9'
+  - '8.13'
+  - '5.37'
+  nist_csf:
+  - PR.PS-02
+  - PR.AT-02
+  - ID.IM-01
