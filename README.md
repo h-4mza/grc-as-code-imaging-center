@@ -271,11 +271,6 @@ Ce projet prolonge et industrialise le travail académique original :
 - **Rapport de recherche** : *Gestion des risques : Application du NIST Cybersecurity Framework (CSF 2.0) dans un centre d'imagerie médicale* ([rapport PDF conservé dans `grc/legacy/nist_csf_report.pdf`](grc/legacy/nist_csf_report.pdf)).
 - **Institution** : Université Chouaib Doukkali — École Nationale des Sciences Appliquées d'El Jadida (ENSA El Jadida), Département Télécommunications, Réseaux et Informatique.
 - **Année universitaire** : 2025 – 2026.
-- **Co-auteurs** :
-  - **Hamza Bahalloul** ([@h-4mza](https://github.com/h-4mza))
-  - **Malak Alioua**
-  - **Elferdouas Haouchra**
-- **Encadrement académique** : **Professeur Ali Kartit**
 
 ---
 
