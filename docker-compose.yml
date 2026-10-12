@@ -19,8 +19,11 @@ services:
     command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
     ports:
       - "8000:8000"
+    env_file:
+      - path: .env
+        required: false
     environment:
-      DATABASE_URL: postgresql+psycopg2://grc_user:grc_password@postgres/grc_db
+      DATABASE_URL: ${DATABASE_URL:-postgresql+psycopg2://grc_user:grc_password@postgres/grc_db}
       PYTHONPATH: /app
     depends_on:
       - postgres

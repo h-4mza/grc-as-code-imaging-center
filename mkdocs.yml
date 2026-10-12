@@ -35,5 +35,6 @@ nav:
       - "Applicabilité Réglementaire": compliance/applicabilite_reglementaire.md
       - "Matrice de Contrôles": compliance/matrice_controles.md
   - Outil:
+      - "Architecture & Modèle": outil/architecture.md
       - "Méthode de Scoring": outil/scoring.md
       - "Aperçu du Dashboard": outil/apercu.md

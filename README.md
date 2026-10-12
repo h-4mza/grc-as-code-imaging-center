@@ -45,7 +45,7 @@ Dans la plupart des organisations, la conformité vit dans des tableurs et des d
 
 ## 📑 Sommaire
 
-[Fonctionnalités](#-fonctionnalités) · [Architecture](#-architecture) · [Démarrage rapide](#-démarrage-rapide) · [CLI](#-cli) · [API](#-api) · [Structure](#-structure-du-projet) · [Feuille de route](#-feuille-de-route) · [Licence](#-licence)
+[Fonctionnalités](#-fonctionnalités) · [Architecture](#-architecture) · [Démarrage rapide](#-démarrage-rapide) · [CLI](#-cli) · [API](#-api) · [Structure](#-structure-du-projet) · [Limites](#-limites) · [Crédits](#-crédits) · [Licence](#-licence)
 
 ---
 
@@ -143,7 +143,12 @@ docker-compose exec -T api grc ingest --source sarif --file grc/scans/projet3_ad
 | 🖥️ Dashboard | http://localhost:8501 |
 | 📡 API (Swagger) | http://localhost:8000/docs |
 
-> 🔐 Les identifiants de `docker-compose.yml` sont destinés à la démo locale. Ne les réutilisez jamais en production.
+> 🔐 **Sécurité & Identifiants de démo** :  
+> Les identifiants PostgreSQL (`grc_user` / `grc_password`) définis dans `docker-compose.yml` sont **strictement réservés à la démonstration locale**. Ne les réutilisez jamais en production.  
+> Un fichier d'exemple [`.env.example`](.env.example) est fourni pour surcharger la configuration (`DATABASE_URL`, jetons `JIRA_*`) sans exposer de secrets :  
+> ```bash
+> cp .env.example .env
+> ```
 
 ---
 
@@ -249,13 +254,34 @@ python scripts/capture_screenshots.py
 - [ ] Mapping RGPD et HDS au niveau contrôle
 - [ ] Historisation des scores pour suivre la tendance du risque
 
-## ⚠️ Avertissement
+## ⚠️ Limites
 
-Ce projet est une **preuve de concept pédagogique**. Le centre d'imagerie, ses actifs et ses données sont fictifs. Il ne remplace pas une analyse de risques réelle ni un conseil de conformité.
+Ce projet a été conçu comme un démonstrateur méthodologique et technique :
+
+- **Système d'Information fictif** : Le centre d'imagerie médicale (16 collaborateurs), les flux d'imagerie, les serveurs PACS/RIS et les topologies réseau modélisent un cas d'étude fictif. Le projet ne contient aucune donnée médicale réelle ni aucune donnée à caractère personnel (DCP).
+- **Preuves documentaires illustratives** : Les références d'éléments de preuve (`evidence`) associées aux contrôles ISO 27001 et aux plans de traitement constituent des attendus méthodologiques types et non des documents d'audit réels issus d'une structure en production.
+- **Mappings à valider formellement** : Les correspondances réglementaires et techniques établies entre ISO 27001:2022, la Directive NIS 2, le NIST CSF 2.0 et MITRE ATT&CK v14 sont fournies à titre indicatif et pédagogique. Elles doivent faire l'objet d'une validation formelle par des auditeurs ou juristes qualifiés avant tout réemploi en environnement opérationnel.
+- **Outil non certifié** : Ce moteur d'évaluation et de pilotage GRC-as-code n'est pas un outil de conformité ou de certification officiel.
+
+---
+
+## 👥 Crédits
+
+Ce projet prolonge et industrialise le travail académique original :
+- **Rapport de recherche** : *Gestion des risques : Application du NIST Cybersecurity Framework (CSF 2.0) dans un centre d'imagerie médicale* ([rapport PDF conservé dans `grc/legacy/nist_csf_report.pdf`](grc/legacy/nist_csf_report.pdf)).
+- **Institution** : Université Chouaib Doukkali — École Nationale des Sciences Appliquées d'El Jadida (ENSA El Jadida), Département Télécommunications, Réseaux et Informatique.
+- **Année universitaire** : 2025 – 2026.
+- **Co-auteurs** :
+  - **Hamza Bahalloul** ([@h-4mza](https://github.com/h-4mza))
+  - **Malak Alioua**
+  - **Elferdouas Haouchra**
+- **Encadrement académique** : **Professeur Ali Kartit**
+
+---
 
 ## 📜 Licence
 
-Distribué sous licence [MIT](LICENSE).
+Distribué sous licence open-source [MIT](LICENSE). Vous êtes libre d'utiliser, modifier et redistribuer ce projet selon les termes de la licence.
 
 <div align="center">
 
