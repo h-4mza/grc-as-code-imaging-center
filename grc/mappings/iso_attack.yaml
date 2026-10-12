@@ -1,21 +1,507 @@
 mappings:
-  - id: map_att_1
-    control_id: "6.3"
+  # ---------------------------------------------------------------------------
+  # T1005 - Data from Local System
+  # ---------------------------------------------------------------------------
+  - id: map_att_01
+    control_id: "8.12"
     framework: "ATT&CK"
-    reference: "T1566 - Phishing (Mitigation: User Training)"
-  - id: map_att_2
+    reference: "T1005 - Data from Local System"
+    source: "https://attack.mitre.org/techniques/T1005/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1057 (Data Loss Prevention) : contrôle préventif bloquant l'exfiltration ou la copie non autorisée de données sensibles locales."
+  - id: map_att_02
+    control_id: "5.15"
+    framework: "ATT&CK"
+    reference: "T1005 - Data from Local System"
+    source: "https://attack.mitre.org/techniques/T1005/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1022 (Restrict File and Directory Permissions) : contrôle d'accès limitant les droits de lecture aux seuls répertoires autorisés."
+  - id: map_att_03
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1005 - Data from Local System"
+    source: "https://attack.mitre.org/techniques/T1005/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Audit logs) : surveillance et journalisation des accès aux fichiers et volumes locaux."
+
+  # ---------------------------------------------------------------------------
+  # T1021 - Remote Services
+  # ---------------------------------------------------------------------------
+  - id: map_att_04
     control_id: "8.5"
     framework: "ATT&CK"
-    reference: "T1110 - Brute Force (Mitigation: Multi-factor Authentication)"
-  - id: map_att_3
+    reference: "T1021 - Remote Services"
+    source: "https://attack.mitre.org/techniques/T1021/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1032 (Multi-factor Authentication) : contrôle préventif imposant l'authentification multifacteur sur tous les accès distants."
+  - id: map_att_05
     control_id: "8.20"
     framework: "ATT&CK"
-    reference: "T1190 - Exploit Public-Facing Application (Mitigation: Network Segmentation)"
-  - id: map_att_4
+    reference: "T1021 - Remote Services"
+    source: "https://attack.mitre.org/techniques/T1021/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1035 (Limit Access to Resource Over Network) : filtrage et restriction des flux réseau sur les ports d'administration à distance."
+  - id: map_att_06
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1021 - Remote Services"
+    source: "https://attack.mitre.org/techniques/T1021/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1047 (Audit) : journalisation et surveillance continue des sessions et ouvertures de connexions distantes."
+
+  # ---------------------------------------------------------------------------
+  # T1040 - Network Sniffing
+  # ---------------------------------------------------------------------------
+  - id: map_att_07
+    control_id: "8.24"
+    framework: "ATT&CK"
+    reference: "T1040 - Network Sniffing"
+    source: "https://attack.mitre.org/techniques/T1040/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1041 (Encrypt Sensitive Information) : chiffrement TLS de bout en bout rendant illisible tout trafic réseau intercepté."
+  - id: map_att_08
+    control_id: "8.22"
+    framework: "ATT&CK"
+    reference: "T1040 - Network Sniffing"
+    source: "https://attack.mitre.org/techniques/T1040/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1030 (Network Segmentation) : cloisonnement en VLANs réduisant le domaine de diffusion et restreignant l'écoute passive."
+  - id: map_att_09
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1040 - Network Sniffing"
+    source: "https://attack.mitre.org/techniques/T1040/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Network Traffic Monitoring) : détection des interfaces en mode promiscuous et analyse des flux réseau anormaux."
+
+  # ---------------------------------------------------------------------------
+  # T1052 - Exfiltration Over Physical Medium
+  # ---------------------------------------------------------------------------
+  - id: map_att_10
+    control_id: "7.10"
+    framework: "ATT&CK"
+    reference: "T1052 - Exfiltration Over Physical Medium"
+    source: "https://attack.mitre.org/techniques/T1052/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1042 / M1034 (Disable External Storage / Limit Hardware Installation) : interdiction et désactivation matérielle des clés USB non autorisées."
+  - id: map_att_11
+    control_id: "8.12"
+    framework: "ATT&CK"
+    reference: "T1052 - Exfiltration Over Physical Medium"
+    source: "https://attack.mitre.org/techniques/T1052/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1057 (Data Loss Prevention) : blocage préventif des copies de fichiers de santé vers des supports amovibles."
+  - id: map_att_12
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1052 - Exfiltration Over Physical Medium"
+    source: "https://attack.mitre.org/techniques/T1052/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Audit logs) : journalisation des événements de connexion de périphériques USB et des transferts de fichiers."
+
+  # ---------------------------------------------------------------------------
+  # T1059 - Command and Scripting Interpreter
+  # ---------------------------------------------------------------------------
+  - id: map_att_13
+    control_id: "8.19"
+    framework: "ATT&CK"
+    reference: "T1059 - Command and Scripting Interpreter"
+    source: "https://attack.mitre.org/techniques/T1059/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1038 (Execution Prevention) : restriction de l'exécution de scripts (PowerShell Constrained Language Mode, AppLocker)."
+  - id: map_att_14
     control_id: "8.7"
     framework: "ATT&CK"
-    reference: "T1486 - Data Encrypted for Impact (Mitigation: Antivirus/Antimalware)"
-  - id: map_att_5
+    reference: "T1059 - Command and Scripting Interpreter"
+    source: "https://attack.mitre.org/techniques/T1059/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1049 (Antivirus/Antimalware) : analyse comportementale et blocage des scripts malveillants par l'antivirus/EDR."
+  - id: map_att_15
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1059 - Command and Scripting Interpreter"
+    source: "https://attack.mitre.org/techniques/T1059/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1047 (Audit) : journalisation détaillée des lignes de commande et blocs de scripts (PowerShell Script Block Logging)."
+
+  # ---------------------------------------------------------------------------
+  # T1078 - Valid Accounts
+  # ---------------------------------------------------------------------------
+  - id: map_att_16
+    control_id: "8.5"
+    framework: "ATT&CK"
+    reference: "T1078 - Valid Accounts"
+    source: "https://attack.mitre.org/techniques/T1078/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1032 (Multi-factor Authentication) : contrôle préventif empêchant l'utilisation d'identifiants dérobés sans second facteur."
+  - id: map_att_17
+    control_id: "5.15"
+    framework: "ATT&CK"
+    reference: "T1078 - Valid Accounts"
+    source: "https://attack.mitre.org/techniques/T1078/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1026 (Privileged Account Management) : contrôle d'accès limitant strictement l'attribution et l'usage des privilèges d'administration."
+  - id: map_att_18
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1078 - Valid Accounts"
+    source: "https://attack.mitre.org/techniques/T1078/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (User Account Authentication) : surveillance des connexions atypiques et des ouvertures de session anormales."
+
+  # ---------------------------------------------------------------------------
+  # T1110 - Brute Force
+  # ---------------------------------------------------------------------------
+  - id: map_att_19
+    control_id: "8.5"
+    framework: "ATT&CK"
+    reference: "T1110 - Brute Force"
+    source: "https://attack.mitre.org/techniques/T1110/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1032 (Multi-factor Authentication) : neutralisation préventive des attaques par force brute grâce au MFA obligatoire."
+  - id: map_att_20
+    control_id: "5.17"
+    framework: "ATT&CK"
+    reference: "T1110 - Brute Force"
+    source: "https://attack.mitre.org/techniques/T1110/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1036 (Account Use Policies / Account Lockout) : verrouillage automatique des comptes après échecs répétés et règles de complexité."
+  - id: map_att_21
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1110 - Brute Force"
+    source: "https://attack.mitre.org/techniques/T1110/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Audit logs) : détection et alerte en temps réel sur les rafales d'échecs d'authentification."
+
+  # ---------------------------------------------------------------------------
+  # T1190 - Exploit Public-Facing Application
+  # ---------------------------------------------------------------------------
+  - id: map_att_22
+    control_id: "8.8"
+    framework: "ATT&CK"
+    reference: "T1190 - Exploit Public-Facing Application"
+    source: "https://attack.mitre.org/techniques/T1190/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1051 (Update Software) : remédiation rapide des vulnérabilités logicielles sur les services exposés (VPN, portails)."
+  - id: map_att_23
+    control_id: "8.20"
+    framework: "ATT&CK"
+    reference: "T1190 - Exploit Public-Facing Application"
+    source: "https://attack.mitre.org/techniques/T1190/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1037 (Filter Network Traffic) : filtrage réseau, règles de pare-feu et WAF protégeant les points d'entrée externes."
+  - id: map_att_24
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1190 - Exploit Public-Facing Application"
+    source: "https://attack.mitre.org/techniques/T1190/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Application Log Analysis) : surveillance des journaux d'accès web/VPN et détection de tentatives d'exploitation."
+
+  # ---------------------------------------------------------------------------
+  # T1195 - Supply Chain Compromise
+  # ---------------------------------------------------------------------------
+  - id: map_att_25
+    control_id: "5.19"
+    framework: "ATT&CK"
+    reference: "T1195 - Supply Chain Compromise"
+    source: "https://attack.mitre.org/techniques/T1195/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1013 (Application Developer Guidance) : exigences contractuelles de sécurité et audits réguliers des éditeurs tiers (PACS)."
+  - id: map_att_26
+    control_id: "5.21"
+    framework: "ATT&CK"
+    reference: "T1195 - Supply Chain Compromise"
+    source: "https://attack.mitre.org/techniques/T1195/"
+    confidence: "high"
+    rationale: "Contrôle ISO 27001 chaîne d'approvisionnement TIC : vérification de l'intégrité des livrables et gestion des risques fournisseurs."
+  - id: map_att_27
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1195 - Supply Chain Compromise"
+    source: "https://attack.mitre.org/techniques/T1195/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Integrity Monitoring) : surveillance comportementale post-mise à jour pour détecter toute anomalie applicative."
+
+  # ---------------------------------------------------------------------------
+  # T1213 - Data from Information Repositories
+  # ---------------------------------------------------------------------------
+  - id: map_att_28
+    control_id: "5.15"
+    framework: "ATT&CK"
+    reference: "T1213 - Data from Information Repositories"
+    source: "https://attack.mitre.org/techniques/T1213/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1018 (User Account Management) : contrôle d'accès limitant l'interrogation des bases de données de santé (DPI/RIS)."
+  - id: map_att_29
+    control_id: "8.12"
+    framework: "ATT&CK"
+    reference: "T1213 - Data from Information Repositories"
+    source: "https://attack.mitre.org/techniques/T1213/"
+    confidence: "high"
+    rationale: "Prévention des fuites de données : détection et restriction des exports massifs de dossiers patients depuis les applications cliniques."
+  - id: map_att_30
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1213 - Data from Information Repositories"
+    source: "https://attack.mitre.org/techniques/T1213/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1047 (Audit) : journalisation détaillée des requêtes de consultation et d'export dans les référentiels de données."
+
+  # ---------------------------------------------------------------------------
+  # T1485 - Data Destruction
+  # ---------------------------------------------------------------------------
+  - id: map_att_31
     control_id: "8.13"
     framework: "ATT&CK"
-    reference: "T1485 - Data Destruction (Mitigation: Data Backup)"
+    reference: "T1485 - Data Destruction"
+    source: "https://attack.mitre.org/techniques/T1485/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1053 (Data Backup) : sauvegardes régulières, hors-ligne et immuables garantissant la restauration après tentative de destruction."
+  - id: map_att_32
+    control_id: "5.15"
+    framework: "ATT&CK"
+    reference: "T1485 - Data Destruction"
+    source: "https://attack.mitre.org/techniques/T1485/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1018 / M1032 : contrôle d'accès strict et séparation des privilèges sur les opérations de purge ou suppression."
+  - id: map_att_33
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1485 - Data Destruction"
+    source: "https://attack.mitre.org/techniques/T1485/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Audit logs) : détection et alerte en cas de suppression massive ou anormale de fichiers et répertoires."
+
+  # ---------------------------------------------------------------------------
+  # T1486 - Data Encrypted for Impact
+  # ---------------------------------------------------------------------------
+  - id: map_att_34
+    control_id: "8.7"
+    framework: "ATT&CK"
+    reference: "T1486 - Data Encrypted for Impact"
+    source: "https://attack.mitre.org/techniques/T1486/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1040 (Behavior Prevention on Endpoint) : détection et blocage des comportements de chiffrement massif par l'antivirus/EDR."
+  - id: map_att_35
+    control_id: "8.13"
+    framework: "ATT&CK"
+    reference: "T1486 - Data Encrypted for Impact"
+    source: "https://attack.mitre.org/techniques/T1486/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1053 (Data Backup) : procédure de sauvegarde déconnectée et testée permettant le recouvrement complet sans payer de rançon."
+  - id: map_att_36
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1486 - Data Encrypted for Impact"
+    source: "https://attack.mitre.org/techniques/T1486/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (File System Monitoring) : alerte sur les pics d'accès disques et renommages massifs d'extensions de fichiers."
+
+  # ---------------------------------------------------------------------------
+  # T1498 - Network Denial of Service
+  # ---------------------------------------------------------------------------
+  - id: map_att_37
+    control_id: "8.20"
+    framework: "ATT&CK"
+    reference: "T1498 - Network Denial of Service"
+    source: "https://attack.mitre.org/techniques/T1498/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1037 (Filter Network Traffic) : filtrage en amont, pare-feu périmétrique et service de protection anti-DDoS opérateur."
+  - id: map_att_38
+    control_id: "8.14"
+    framework: "ATT&CK"
+    reference: "T1498 - Network Denial of Service"
+    source: "https://attack.mitre.org/techniques/T1498/"
+    confidence: "high"
+    rationale: "Contrôle ISO 27001 redondance : liaisons télécoms redondantes et basculement automatique en cas de saturation de la liaison principale."
+  - id: map_att_39
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1498 - Network Denial of Service"
+    source: "https://attack.mitre.org/techniques/T1498/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Network Traffic Monitoring) : métriques de trafic, seuils de débit et alerte immédiate en cas de saturation."
+
+  # ---------------------------------------------------------------------------
+  # T1499 - Endpoint Denial of Service
+  # ---------------------------------------------------------------------------
+  - id: map_att_40
+    control_id: "8.20"
+    framework: "ATT&CK"
+    reference: "T1499 - Endpoint Denial of Service"
+    source: "https://attack.mitre.org/techniques/T1499/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1037 (Filter Network Traffic) : limitation de débit (rate limiting) et filtrage des requêtes abusives ciblant les hôtes."
+  - id: map_att_41
+    control_id: "8.6"
+    framework: "ATT&CK"
+    reference: "T1499 - Endpoint Denial of Service"
+    source: "https://attack.mitre.org/techniques/T1499/"
+    confidence: "high"
+    rationale: "Contrôle ISO 27001 dimensionnement et capacité : allocation dynamique des ressources CPU/RAM et quotas pour prévenir la saturation."
+  - id: map_att_42
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1499 - Endpoint Denial of Service"
+    source: "https://attack.mitre.org/techniques/T1499/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Host Monitoring) : surveillance de la disponibilité des processus et alertes sur dépassement de seuils d'utilisation."
+
+  # ---------------------------------------------------------------------------
+  # T1531 - Account Access Removal
+  # ---------------------------------------------------------------------------
+  - id: map_att_43
+    control_id: "5.15"
+    framework: "ATT&CK"
+    reference: "T1531 - Account Access Removal"
+    source: "https://attack.mitre.org/techniques/T1531/"
+    confidence: "medium"
+    rationale: "Pivot NIST 800-53 AC-2 / AC-6 (CTID) : contrôle d'accès strict limitant les permissions de révocation ou suppression de comptes aux seuls administrateurs habilités."
+  - id: map_att_44
+    control_id: "8.13"
+    framework: "ATT&CK"
+    reference: "T1531 - Account Access Removal"
+    source: "https://attack.mitre.org/techniques/T1531/"
+    confidence: "medium"
+    rationale: "Pivot NIST 800-53 CP-9 (CTID) : sauvegardes régulières de l'annuaire d'identité permettant la restauration immédiate des comptes révoqués malveillamment."
+  - id: map_att_45
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1531 - Account Access Removal"
+    source: "https://attack.mitre.org/techniques/T1531/"
+    confidence: "medium"
+    rationale: "Stratégie de détection ATT&CK DET0120 (AN0334 Multi-Platform Audit Correlation) : corrélation d'événements de suppression ou désactivation de comptes."
+
+  # ---------------------------------------------------------------------------
+  # T1547 - Boot or Logon Autostart Execution
+  # ---------------------------------------------------------------------------
+  - id: map_att_46
+    control_id: "8.9"
+    framework: "ATT&CK"
+    reference: "T1547 - Boot or Logon Autostart Execution"
+    source: "https://attack.mitre.org/techniques/T1547/"
+    confidence: "medium"
+    rationale: "Pivot NIST 800-53 CM-6 / Mitigation sous-techniques M1028 (OS Configuration) : durcissement des systèmes d'exploitation et verrouillage des clés Run."
+  - id: map_att_47
+    control_id: "8.19"
+    framework: "ATT&CK"
+    reference: "T1547 - Boot or Logon Autostart Execution"
+    source: "https://attack.mitre.org/techniques/T1547/"
+    confidence: "medium"
+    rationale: "Mitigation sous-techniques M1038 (Execution Prevention) : restriction de l'installation logicielle et contrôle des exécutables au démarrage."
+  - id: map_att_48
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1547 - Boot or Logon Autostart Execution"
+    source: "https://attack.mitre.org/techniques/T1547/"
+    confidence: "medium"
+    rationale: "Stratégie de détection ATT&CK DET0274 (AN0764) : surveillance des modifications de clés de registre autostart et corrélation de processus."
+
+  # ---------------------------------------------------------------------------
+  # T1557 - Adversary-in-the-Middle
+  # ---------------------------------------------------------------------------
+  - id: map_att_49
+    control_id: "8.24"
+    framework: "ATT&CK"
+    reference: "T1557 - Adversary-in-the-Middle"
+    source: "https://attack.mitre.org/techniques/T1557/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1041 (Encrypt Sensitive Information) : chiffrement TLS mutuel empêchant toute interception ou falsification de session en transit."
+  - id: map_att_50
+    control_id: "8.22"
+    framework: "ATT&CK"
+    reference: "T1557 - Adversary-in-the-Middle"
+    source: "https://attack.mitre.org/techniques/T1557/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1030 (Network Segmentation) : cloisonnement réseau réduisant l'exposition aux attaques d'usurpation locale (ARP spoofing)."
+  - id: map_att_51
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1557 - Adversary-in-the-Middle"
+    source: "https://attack.mitre.org/techniques/T1557/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1031 / Détection : surveillance des anomalies réseau (DAI, DHCP snooping) et alertes d'empoisonnement de cache ARP."
+
+  # ---------------------------------------------------------------------------
+  # T1565 - Data Manipulation
+  # ---------------------------------------------------------------------------
+  - id: map_att_52
+    control_id: "5.15"
+    framework: "ATT&CK"
+    reference: "T1565 - Data Manipulation"
+    source: "https://attack.mitre.org/techniques/T1565/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1022 (Restrict File and Directory Permissions) : contrôle d'accès strict limitant les droits d'écriture sur les comptes rendus médicaux."
+  - id: map_att_53
+    control_id: "8.13"
+    framework: "ATT&CK"
+    reference: "T1565 - Data Manipulation"
+    source: "https://attack.mitre.org/techniques/T1565/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1029 (Remote Data Storage) : archivage sécurisé et sauvegardes régulières permettant de rétablir les données d'origine."
+  - id: map_att_54
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1565 - Data Manipulation"
+    source: "https://attack.mitre.org/techniques/T1565/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Integrity Monitoring / Audit) : journalisation des écritures et contrôle d'intégrité des bases cliniques."
+
+  # ---------------------------------------------------------------------------
+  # T1566 - Phishing
+  # ---------------------------------------------------------------------------
+  - id: map_att_55
+    control_id: "6.3"
+    framework: "ATT&CK"
+    reference: "T1566 - Phishing"
+    source: "https://attack.mitre.org/techniques/T1566/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1017 (User Training) : formation continue et campagnes de simulation de phishing pour l'ensemble du personnel soignant."
+  - id: map_att_56
+    control_id: "8.9"
+    framework: "ATT&CK"
+    reference: "T1566 - Phishing"
+    source: "https://attack.mitre.org/techniques/T1566/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1054 (Software Configuration) : configuration des serveurs de messagerie avec protocoles SPF, DKIM, DMARC et filtrage anti-spam."
+  - id: map_att_57
+    control_id: "8.7"
+    framework: "ATT&CK"
+    reference: "T1566 - Phishing"
+    source: "https://attack.mitre.org/techniques/T1566/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1049 (Antivirus/Antimalware) : analyse des pièces jointes et bac à sable (sandboxing) sur les passerelles email."
+  - id: map_att_58
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1566 - Phishing"
+    source: "https://attack.mitre.org/techniques/T1566/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1047 (Audit) : journalisation des flux de messagerie et alertes sur signalement d'e-mails suspects par les utilisateurs."
+
+  # ---------------------------------------------------------------------------
+  # T1567 - Exfiltration Over Web Service
+  # ---------------------------------------------------------------------------
+  - id: map_att_59
+    control_id: "8.12"
+    framework: "ATT&CK"
+    reference: "T1567 - Exfiltration Over Web Service"
+    source: "https://attack.mitre.org/techniques/T1567/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1057 (Data Loss Prevention) : inspection et blocage des téléversements de données sensibles vers des services web ou clouds publics."
+  - id: map_att_60
+    control_id: "8.20"
+    framework: "ATT&CK"
+    reference: "T1567 - Exfiltration Over Web Service"
+    source: "https://attack.mitre.org/techniques/T1567/"
+    confidence: "high"
+    rationale: "Mitigation ATT&CK M1021 (Restrict Web-Based Content) : filtrage proxy et interdiction des catégories de partage de fichiers personnelles."
+  - id: map_att_61
+    control_id: "8.16"
+    framework: "ATT&CK"
+    reference: "T1567 - Exfiltration Over Web Service"
+    source: "https://attack.mitre.org/techniques/T1567/"
+    confidence: "high"
+    rationale: "Détection officielle ATT&CK (Network Traffic Analysis) : surveillance des flux sortants et alertes sur volumes anormaux vers des API/services web."

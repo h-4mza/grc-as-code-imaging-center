@@ -154,6 +154,51 @@ elif page == "SoA (ISO 27001)":
 elif page == "Conformité Globale":
     st.title("🎯 Matrice de Couverture & Conformité")
 
+    # 0. Couverture Réglementaire & Technique (NIS2 & ATT&CK) via /kpi/coverage
+    cov_data = fetch_data("/kpi/coverage")
+    if cov_data:
+        st.subheader("Couverture Réglementaire et Technique (EBIOS RM / SoA)")
+        col_c1, col_c2 = st.columns(2)
+        with col_c1:
+            nis2_info = cov_data.get("nis2", {})
+            cov_m = nis2_info.get("covered_measures", 0)
+            tot_m = nis2_info.get("total_measures", 10)
+            st.metric(
+                label="Couverture Directive NIS 2 (Art. 21(2))",
+                value=f"{nis2_info.get('coverage_rate_pct', 0)}%",
+                delta=f"{cov_m} / {tot_m} mesures couvertes",
+            )
+            bd_nis2 = nis2_info.get("breakdown_by_status", {})
+            st.caption(
+                f"Contrôles NIS2 : {bd_nis2.get('implemented', 0)} implémentés, "
+                f"{bd_nis2.get('partial', 0)} partiels, {bd_nis2.get('not_implemented', 0)} non implémentés"
+            )
+
+        with col_c2:
+            att_info = cov_data.get("attack", {})
+            cov_t = att_info.get("covered_techniques", 0)
+            tot_t = att_info.get("total_techniques", 0)
+            st.metric(
+                label="Couverture MITRE ATT&CK (Scénarios w4)",
+                value=f"{att_info.get('coverage_rate_pct', 0)}%",
+                delta=f"{cov_t} / {tot_t} techniques couvertes",
+            )
+            bd_att = att_info.get("breakdown_by_status", {})
+            st.caption(
+                f"Contrôles ATT&CK : {bd_att.get('implemented', 0)} implémentés, "
+                f"{bd_att.get('partial', 0)} partiels, {bd_att.get('not_implemented', 0)} non implémentés"
+            )
+
+        # Alertes sur les techniques non couvertes par des contrôles implémentés
+        alerts = att_info.get("alerts", [])
+        if alerts:
+            for alert in alerts:
+                st.warning(f"⚠️ {alert}")
+        else:
+            st.success("✅ Toutes les techniques d'attaque sont couvertes par des contrôles de sécurité applicables !")
+
+        st.markdown("---")
+
     # 1. Retrieve aggregate data for Metrics
     kpi_data = fetch_data("/kpi/compliance")
     if kpi_data:
@@ -200,15 +245,20 @@ elif page == "Plan de Traitement":
 elif page == "Rapports Documentaires":
     st.title("📄 Rapports Documentaires GRC")
 
-    st.write("Visualisation des rapports générés (EBIOS, ISO 27001).")
+    st.write("Visualisation des rapports générés (EBIOS, ISO 27001, Matrice de Contrôles).")
 
     report = st.selectbox(
         "Sélectionnez un document à consulter",
-        ["Déclaration d'Applicabilité (SoA) - ISO 27001", "EBIOS RM - Atelier 4 (Scénarios Opérationnels)"],
+        [
+            "Déclaration d'Applicabilité (SoA) - ISO 27001",
+            "Matrice de Contrôles & Conformité (ISO / NIS2 / NIST / ATT&CK)",
+            "EBIOS RM - Atelier 4 (Scénarios Opérationnels)",
+        ],
     )
 
     file_map = {
         "Déclaration d'Applicabilité (SoA) - ISO 27001": "docs/iso27001/soa.md",
+        "Matrice de Contrôles & Conformité (ISO / NIS2 / NIST / ATT&CK)": "docs/compliance/matrice_controles.md",
         "EBIOS RM - Atelier 4 (Scénarios Opérationnels)": "docs/ebios/atelier4.md",
     }
 

@@ -32,5 +32,6 @@ nav:
       - SoA (Déclaration Applicabilité): iso27001/soa.md
   - Conformité:
       - Applicabilité Réglementaire: compliance/applicabilite_reglementaire.md
+      - Matrice de Contrôles: compliance/matrice_controles.md
   - Outil:
       - Méthode de Scoring: outil/scoring.md

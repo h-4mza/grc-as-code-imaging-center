@@ -35,6 +35,11 @@ jobs:
         run: |
           ruff check .
 
+      - name: Verify Compliance Matrix is Up-to-Date
+        run: |
+          grc export-matrix
+          git diff --exit-code docs/compliance
+
       - name: Build Documentation (MkDocs Strict)
         run: |
           mkdocs build --strict

@@ -5,6 +5,7 @@ from app.db import Base, SessionLocal, engine
 from app.services.ingest import ingest_findings
 from app.services.jira_client import JiraClient
 from app.services.loader import load_grc_idempotent, relink_findings
+from app.services.matrix import generate_compliance_matrix
 from app.services.validate import validate_grc_yaml
 
 app = typer.Typer()
@@ -162,5 +163,26 @@ def validate(
     typer.echo("\n✅ Succès : Tous les fichiers YAML GRC sont valides et cohérents !")
 
 
+@app.command("export-matrix")
+def export_matrix(
+    grc_dir: str = typer.Option("grc", "--grc-dir", help="Dossier racine des référentiels GRC YAML"),
+    output: str = typer.Option(
+        "docs/compliance/matrice_controles.md",
+        "--output",
+        "-o",
+        help="Chemin du fichier Markdown de destination",
+    ),
+):
+    """Génère la matrice de conformité croisée des contrôles (ISO 27001, NIS2, NIST CSF 2.0, MITRE ATT&CK)."""
+    typer.echo(f"📄 Génération de la matrice de conformité depuis '{grc_dir}' vers '{output}'...")
+    try:
+        generate_compliance_matrix(grc_dir=grc_dir, output_path=output)
+        typer.echo(f"✅ Matrice de conformité exportée avec succès dans '{output}' !")
+    except Exception as e:
+        typer.echo(f"❌ Erreur lors de la génération de la matrice : {e}", err=True)
+        raise typer.Exit(code=1)
+
+
 if __name__ == "__main__":
     app()
+

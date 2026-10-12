@@ -36,9 +36,9 @@ Dans la plupart des organisations, la conformité vit dans des tableurs et des d
 
 ## 📊 Le projet en chiffres
 
-| **10** | **93** | **3** | **2** | **10** |
-| :--: | :--: | :--: | :--: | :--: |
-| scénarios EBIOS RM | contrôles ISO 27001 évalués | référentiels mappés | sources SARIF | plans de traitement |
+| **12** | **93** | **3** | **10 / 10** | **20 / 20** | **13** |
+| :--: | :--: | :--: | :--: | :--: | :--: |
+| scénarios EBIOS RM | contrôles ISO 27001 évalués | référentiels mappés | mesures NIS 2 couvertes | techniques ATT&CK couvertes | plans de traitement |
 
 ---
 
@@ -155,6 +155,7 @@ docker-compose exec -T api grc ingest --source sarif --file grc/scans/projet3_ad
 | `grc reset [--yes]` | Réinitialise complètement la base (`drop_all` + `create_all`) avec confirmation interactive (ou `--yes`) |
 | `grc relink [--grc-dir <dir>]` | Recalcule les liaisons constat ↔ scénario (ATT&CK) et constat ↔ contrôle (ISO 8.8) |
 | `grc ingest --source sarif --file <fichier>` | Ingère un rapport de scan (ex. Trivy, BloodHound) et réévalue le risque résiduel |
+| `grc export-matrix [--output <fichier>]` | Exporte la matrice de conformité croisée (ISO 27001, NIS2, NIST CSF 2.0, ATT&CK) |
 | `grc export-jira [--project <KEY>] [--dry-run \| --no-dry-run]` | Synchronise les plans de traitement vers Jira Service Management |
 
 Exécution dans le conteneur : `docker-compose exec -T api grc <commande>`
@@ -180,7 +181,8 @@ docker-compose exec -T api grc export-jira --project CIMSEC --no-dry-run
 | Endpoint | Retourne |
 | :-- | :-- |
 | `GET /kpi/heatmap` | Matrice de risques inhérent / résiduel |
-| `GET /kpi/compliance` | Couverture NIS2 / NIST CSF / ATT&CK |
+| `GET /kpi/coverage` | Taux de couverture NIS2 (10/10) et ATT&CK (20/20), ventilation par statut et alertes |
+| `GET /kpi/compliance` | Couverture agrégée NIS2 / NIST CSF / ATT&CK |
 | `GET /kpi/soa` | Avancement de la SoA par thème |
 
 Documentation interactive complète sur `/docs`.
